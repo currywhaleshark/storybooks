@@ -92,7 +92,7 @@ Missing optional pages should not crash the tool. A folder without a valid cover
 
 Verification should cover:
 
-- `series/sanho-village-daycare/images`
+- `series/coral-town-daycare/images/episodes/산호마을_어린이집`
 - `series/sherlock-fin-deep-city/images/episodes/거꾸로_도서관의_다정한_비밀`
 - numeric page sorting
 - odd page count blank right slot

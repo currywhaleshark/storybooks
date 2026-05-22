@@ -42,7 +42,7 @@ print-ready-combined-portrait.pdf
 ## 명령어로 바로 PDF 만들기
 
 ```powershell
-& 'C:\Users\USER\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe' -m tools.print_layout.pdf_layout 'series/sanho-village-daycare/images' --target both --layout landscape
+& 'C:\Users\USER\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe' -m tools.print_layout.pdf_layout 'series/coral-town-daycare/images/episodes/산호마을_어린이집' --target both --layout landscape
 ```
 
 `--target` 값:

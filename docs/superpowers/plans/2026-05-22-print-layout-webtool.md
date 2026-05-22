@@ -357,10 +357,10 @@ Expected: PASS.
 Run:
 
 ```powershell
-& 'C:\Users\USER\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe' -m tools.print_layout.pdf_layout series/sanho-village-daycare/images --target both
+& 'C:\Users\USER\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe' -m tools.print_layout.pdf_layout series/coral-town-daycare/images/episodes/산호마을_어린이집 --target both
 ```
 
-Expected: `cover.pdf` and `body-a4-landscape-2up.pdf` are created under `series/sanho-village-daycare/images/print-output`.
+Expected: `cover.pdf` and `body-a4-landscape-2up.pdf` are created under `series/coral-town-daycare/images/episodes/산호마을_어린이집/print-output`.
 
 - [ ] **Step 3: Start web server**
 
