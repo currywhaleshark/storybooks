@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>그림책 인쇄 레이아웃</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <main class="app">
+      <header class="toolbar">
+        <div>
+          <h1>그림책 인쇄 레이아웃</h1>
+          <p id="summary">책 폴더를 불러오는 중입니다.</p>
+        </div>
+        <label class="selector">
+          <span>책</span>
+          <select id="bookSelect"></select>
+        </label>
+      </header>
+
+      <section class="actions" aria-label="PDF 생성">
+        <button id="coverButton" type="button">표지 PDF</button>
+        <button id="bodyButton" type="button">본문 PDF</button>
+        <button id="bothButton" type="button">둘 다 생성</button>
+      </section>
+
+      <section class="preview-grid">
+        <article class="panel">
+          <div class="panel-header">
+            <h2>표지</h2>
+          </div>
+          <div class="cover-stage" id="coverStage"></div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-header spread-header">
+            <h2>본문</h2>
+            <div class="pager">
+              <button id="prevButton" type="button" aria-label="이전 펼침">‹</button>
+              <span id="spreadLabel">0 / 0</span>
+              <button id="nextButton" type="button" aria-label="다음 펼침">›</button>
+            </div>
+          </div>
+          <div class="sheet-stage" id="sheetStage"></div>
+        </article>
+      </section>
+
+      <section class="status" id="status" role="status">준비 중입니다.</section>
+    </main>
+    <script src="/app.js"></script>
+  </body>
+</html>

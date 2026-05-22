@@ -1,0 +1,4 @@
+.tmp/
+print-output/
+__pycache__/
+*.pyc
