@@ -11,6 +11,7 @@ const sheetStage = document.querySelector("#sheetStage");
 const spreadLabel = document.querySelector("#spreadLabel");
 const prevButton = document.querySelector("#prevButton");
 const nextButton = document.querySelector("#nextButton");
+const layoutSelect = document.querySelector("#layoutSelect");
 const coverButton = document.querySelector("#coverButton");
 const bodyButton = document.querySelector("#bodyButton");
 const bothButton = document.querySelector("#bothButton");
@@ -35,6 +36,10 @@ function currentSpreads() {
   return spreads;
 }
 
+function currentLayout() {
+  return layoutSelect.value === "portrait" ? "portrait" : "landscape";
+}
+
 function renderCover() {
   coverStage.innerHTML = "";
   const page = document.createElement("div");
@@ -55,7 +60,7 @@ function renderBody() {
   const spreads = currentSpreads();
   const spread = spreads[state.spreadIndex] || [null, null];
   const sheet = document.createElement("div");
-  sheet.className = "sheet";
+  sheet.className = `sheet ${currentLayout()}`;
 
   for (const pagePath of spread) {
     const slot = document.createElement("div");
@@ -135,6 +140,7 @@ async function loadBooks() {
 async function generate(target) {
   if (!state.selected) return;
   setStatus("PDF 생성 중입니다...");
+  layoutSelect.disabled = true;
   coverButton.disabled = true;
   bodyButton.disabled = true;
   bothButton.disabled = true;
@@ -142,7 +148,7 @@ async function generate(target) {
     const response = await fetch("/api/generate", {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({ folder: state.selected.folder, target }),
+      body: JSON.stringify({ folder: state.selected.folder, target, layout: currentLayout() }),
     });
     const data = await response.json();
     if (!response.ok || data.error) {
@@ -152,15 +158,18 @@ async function generate(target) {
     const lines = ["PDF 생성 완료"];
     if (result.cover_pdf) lines.push(`표지: ${result.cover_pdf}`);
     if (result.body_pdf) lines.push(`본문: ${result.body_pdf}`);
+    if (result.combined_pdf) lines.push(`통합: ${result.combined_pdf}`);
     setStatus(lines.join("\n"));
   } catch (error) {
     setStatus(error.message, true);
   } finally {
+    layoutSelect.disabled = false;
     renderSelectedBook();
   }
 }
 
 bookSelect.addEventListener("change", () => selectBook(bookSelect.value));
+layoutSelect.addEventListener("change", renderBody);
 prevButton.addEventListener("click", () => {
   state.spreadIndex = Math.max(0, state.spreadIndex - 1);
   renderBody();

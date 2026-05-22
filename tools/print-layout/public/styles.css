@@ -95,8 +95,18 @@ select {
 
 .actions {
   display: flex;
+  align-items: end;
+  flex-wrap: wrap;
   gap: 8px;
   margin-bottom: 14px;
+}
+
+.layout-control {
+  display: grid;
+  gap: 4px;
+  min-width: 190px;
+  color: var(--muted);
+  font-size: 13px;
 }
 
 .preview-grid {
@@ -172,6 +182,14 @@ select {
   background: var(--paper);
   box-shadow: 0 8px 24px rgba(30, 35, 41, 0.16);
   padding: 18px;
+}
+
+.sheet.portrait {
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  width: min(100%, 520px);
+  aspect-ratio: 210 / 297;
+  margin: 0 auto;
 }
 
 .slot {

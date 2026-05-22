@@ -61,14 +61,15 @@ class PdfLayoutTest(unittest.TestCase):
             make_png(folder / "03_3페이지.png")
             output_dir = folder / "print-output"
 
-            result = pdf_layout.generate_pdfs(folder, output_dir, "both")
+            cover_result = pdf_layout.generate_pdfs(folder, output_dir, "cover")
+            body_result = pdf_layout.generate_pdfs(folder, output_dir, "body", "landscape")
 
-            self.assertTrue(Path(result["cover_pdf"]).exists())
-            self.assertTrue(Path(result["body_pdf"]).exists())
-            self.assertEqual(result["body_sheet_count"], 2)
+            self.assertTrue(Path(cover_result["cover_pdf"]).exists())
+            self.assertTrue(Path(body_result["body_pdf"]).exists())
+            self.assertEqual(body_result["body_sheet_count"], 2)
 
-            cover_reader = PdfReader(result["cover_pdf"])
-            body_reader = PdfReader(result["body_pdf"])
+            cover_reader = PdfReader(cover_result["cover_pdf"])
+            body_reader = PdfReader(body_result["body_pdf"])
             cover_page = cover_reader.pages[0].mediabox
             body_page = body_reader.pages[0].mediabox
 
@@ -76,6 +77,45 @@ class PdfLayoutTest(unittest.TestCase):
             self.assertEqual(len(body_reader.pages), 2)
             self.assertGreater(float(cover_page.height), float(cover_page.width))
             self.assertGreater(float(body_page.width), float(body_page.height))
+
+    def test_generate_combined_pdf_for_both_target(self):
+        with test_temp_dir() as folder:
+            make_png(folder / "00_표지.png")
+            make_png(folder / "01_1페이지.png")
+            make_png(folder / "02_2페이지.png")
+            make_png(folder / "03_3페이지.png")
+            output_dir = folder / "print-output"
+
+            result = pdf_layout.generate_pdfs(tmp_path := folder, output_dir, "both", "landscape")
+
+            self.assertNotIn("cover_pdf", result)
+            self.assertNotIn("body_pdf", result)
+            self.assertTrue(Path(result["combined_pdf"]).exists())
+
+            reader = PdfReader(result["combined_pdf"])
+            cover_page = reader.pages[0].mediabox
+            first_body_page = reader.pages[1].mediabox
+
+            self.assertEqual(result["folder"], str(tmp_path))
+            self.assertEqual(len(reader.pages), 3)
+            self.assertGreater(float(cover_page.height), float(cover_page.width))
+            self.assertGreater(float(first_body_page.width), float(first_body_page.height))
+
+    def test_generate_portrait_body_pdf_uses_vertical_slots(self):
+        with test_temp_dir() as folder:
+            make_png(folder / "00_표지.png")
+            make_png(folder / "01_1페이지.png")
+            make_png(folder / "02_2페이지.png")
+            output_dir = folder / "print-output"
+
+            result = pdf_layout.generate_pdfs(folder, output_dir, "body", "portrait")
+
+            reader = PdfReader(result["body_pdf"])
+            page = reader.pages[0].mediabox
+
+            self.assertEqual(result["layout"], "portrait")
+            self.assertTrue(result["body_pdf"].endswith("body-a4-portrait-2up.pdf"))
+            self.assertGreater(float(page.height), float(page.width))
 
 
 if __name__ == "__main__":

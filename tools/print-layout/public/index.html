@@ -20,9 +20,16 @@
       </header>
 
       <section class="actions" aria-label="PDF 생성">
+        <label class="layout-control">
+          <span>본문 배치</span>
+          <select id="layoutSelect">
+            <option value="landscape">가로 좌우 2페이지</option>
+            <option value="portrait">세로 상하 2페이지</option>
+          </select>
+        </label>
         <button id="coverButton" type="button">표지 PDF</button>
         <button id="bodyButton" type="button">본문 PDF</button>
-        <button id="bothButton" type="button">둘 다 생성</button>
+        <button id="bothButton" type="button">통합 PDF</button>
       </section>
 
       <section class="preview-grid">
