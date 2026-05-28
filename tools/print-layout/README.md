@@ -17,6 +17,14 @@
 저장소 루트에서 실행합니다.
 
 ```powershell
+npm run print-layout
+```
+
+Windows에서 더블클릭으로 실행하려면 저장소 루트의 `run-print-layout.bat`을 실행합니다.
+
+Codex 번들 Node를 직접 써야 하는 경우:
+
+```powershell
 & 'C:\Users\USER\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe' tools/print-layout/server.js
 ```
 
