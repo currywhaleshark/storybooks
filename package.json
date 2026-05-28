@@ -1,0 +1,7 @@
+{
+  "scripts": {
+    "print-layout": "node tools/print-layout/server.js"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
