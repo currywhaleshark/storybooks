@@ -2,6 +2,8 @@ const state = {
   books: [],
   selected: null,
   spreadIndex: 0,
+  selectedPage: null,
+  excludedPages: new Set(),
 };
 
 const bookSelect = document.querySelector("#bookSelect");
@@ -15,6 +17,7 @@ const layoutSelect = document.querySelector("#layoutSelect");
 const coverButton = document.querySelector("#coverButton");
 const bodyButton = document.querySelector("#bodyButton");
 const bothButton = document.querySelector("#bothButton");
+const bookletButton = document.querySelector("#bookletButton");
 const statusBox = document.querySelector("#status");
 
 function imageUrl(path) {
@@ -28,7 +31,7 @@ function setStatus(message, isError = false) {
 
 function currentSpreads() {
   if (!state.selected) return [];
-  const pages = state.selected.bodyPages;
+  const pages = state.selected.bodyPages.filter((page) => !state.excludedPages.has(page));
   const spreads = [];
   for (let index = 0; index < pages.length; index += 2) {
     spreads.push([pages[index], pages[index + 1] || null]);
@@ -36,8 +39,23 @@ function currentSpreads() {
   return spreads;
 }
 
+function visibleBodyPageCount() {
+  return state.selected ? state.selected.bodyPages.length - state.excludedPages.size : 0;
+}
+
+function visibleBodySheetCount() {
+  return Math.ceil(visibleBodyPageCount() / 2);
+}
+
 function currentLayout() {
   return layoutSelect.value === "portrait" ? "portrait" : "landscape";
+}
+
+function setGenerateButtonsDisabled(disabled) {
+  coverButton.disabled = disabled;
+  bodyButton.disabled = disabled;
+  bothButton.disabled = disabled;
+  bookletButton.disabled = disabled;
 }
 
 function renderCover() {
@@ -58,6 +76,7 @@ function renderCover() {
 function renderBody() {
   sheetStage.innerHTML = "";
   const spreads = currentSpreads();
+  state.spreadIndex = Math.min(state.spreadIndex, Math.max(spreads.length - 1, 0));
   const spread = spreads[state.spreadIndex] || [null, null];
   const sheet = document.createElement("div");
   sheet.className = `sheet ${currentLayout()}`;
@@ -66,10 +85,15 @@ function renderBody() {
     const slot = document.createElement("div");
     slot.className = pagePath ? "slot" : "slot blank";
     if (pagePath) {
+      slot.tabIndex = 0;
+      slot.dataset.pagePath = pagePath;
+      slot.classList.toggle("selected", state.selectedPage === pagePath);
       const image = document.createElement("img");
       image.src = imageUrl(pagePath);
       image.alt = pagePath.split("/").pop();
       slot.append(image);
+      slot.addEventListener("click", () => selectPage(pagePath));
+      slot.addEventListener("focus", () => selectPage(pagePath));
     } else {
       slot.textContent = "빈 칸";
     }
@@ -85,9 +109,7 @@ function renderBody() {
 function renderSelectedBook() {
   const book = state.selected;
   const disabled = !book?.available;
-  coverButton.disabled = disabled;
-  bodyButton.disabled = disabled;
-  bothButton.disabled = disabled;
+  setGenerateButtonsDisabled(disabled);
   prevButton.disabled = true;
   nextButton.disabled = true;
 
@@ -99,8 +121,8 @@ function renderSelectedBook() {
     return;
   }
 
-  summary.textContent = `${book.bodyPageCount}쪽, 인쇄 ${book.bodySheetCount}장`;
-  state.spreadIndex = Math.min(state.spreadIndex, Math.max(book.bodySheetCount - 1, 0));
+  summary.textContent = `${visibleBodyPageCount()}쪽, 인쇄 ${visibleBodySheetCount()}장, 제외 ${state.excludedPages.size}쪽`;
+  state.spreadIndex = Math.min(state.spreadIndex, Math.max(visibleBodySheetCount() - 1, 0));
   renderCover();
   renderBody();
 
@@ -114,8 +136,25 @@ function renderSelectedBook() {
 function selectBook(folder) {
   state.selected = state.books.find((book) => book.folder === folder) || state.books[0] || null;
   state.spreadIndex = 0;
+  state.selectedPage = null;
+  state.excludedPages = new Set();
   if (state.selected) bookSelect.value = state.selected.folder;
   renderSelectedBook();
+}
+
+function selectPage(pagePath) {
+  state.selectedPage = pagePath;
+  renderBody();
+  setStatus(`선택됨: ${pagePath.split("/").pop()}`);
+}
+
+function excludeSelectedPage() {
+  if (!state.selectedPage || state.excludedPages.has(state.selectedPage)) return;
+  const filename = state.selectedPage.split("/").pop();
+  state.excludedPages.add(state.selectedPage);
+  state.selectedPage = null;
+  renderSelectedBook();
+  setStatus(`제외됨: ${filename}\n폴더의 원본 파일은 삭제되지 않았습니다.`);
 }
 
 async function loadBooks() {
@@ -141,14 +180,17 @@ async function generate(target) {
   if (!state.selected) return;
   setStatus("PDF 생성 중입니다...");
   layoutSelect.disabled = true;
-  coverButton.disabled = true;
-  bodyButton.disabled = true;
-  bothButton.disabled = true;
+  setGenerateButtonsDisabled(true);
   try {
     const response = await fetch("/api/generate", {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({ folder: state.selected.folder, target, layout: currentLayout() }),
+      body: JSON.stringify({
+        folder: state.selected.folder,
+        target,
+        layout: currentLayout(),
+        excludedPages: Array.from(state.excludedPages),
+      }),
     });
     const data = await response.json();
     if (!response.ok || data.error) {
@@ -159,6 +201,7 @@ async function generate(target) {
     if (result.cover_pdf) lines.push(`표지: ${result.cover_pdf}`);
     if (result.body_pdf) lines.push(`본문: ${result.body_pdf}`);
     if (result.combined_pdf) lines.push(`통합: ${result.combined_pdf}`);
+    if (result.booklet_pdf) lines.push(`책자: ${result.booklet_pdf}`);
     setStatus(lines.join("\n"));
   } catch (error) {
     setStatus(error.message, true);
@@ -170,6 +213,13 @@ async function generate(target) {
 
 bookSelect.addEventListener("change", () => selectBook(bookSelect.value));
 layoutSelect.addEventListener("change", renderBody);
+document.addEventListener("keydown", (event) => {
+  if (event.key !== "Delete" || !state.selectedPage) return;
+  const activeTag = document.activeElement?.tagName;
+  if (activeTag === "INPUT" || activeTag === "TEXTAREA" || activeTag === "SELECT") return;
+  event.preventDefault();
+  excludeSelectedPage();
+});
 prevButton.addEventListener("click", () => {
   state.spreadIndex = Math.max(0, state.spreadIndex - 1);
   renderBody();
@@ -181,5 +231,6 @@ nextButton.addEventListener("click", () => {
 coverButton.addEventListener("click", () => generate("cover"));
 bodyButton.addEventListener("click", () => generate("body"));
 bothButton.addEventListener("click", () => generate("both"));
+bookletButton.addEventListener("click", () => generate("booklet"));
 
 loadBooks();

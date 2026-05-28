@@ -146,10 +146,14 @@ function readJsonBody(req) {
   });
 }
 
-function generatePdf(folder, target, layout) {
+function generatePdf(folder, target, layout, excludedPages = []) {
   return new Promise((resolve, reject) => {
     const absoluteFolder = repoPath(folder);
-    const child = spawn(bundledPython(), ["-m", "tools.print_layout.pdf_layout", absoluteFolder, "--target", target, "--layout", layout], {
+    const args = ["-m", "tools.print_layout.pdf_layout", absoluteFolder, "--target", target, "--layout", layout];
+    for (const page of excludedPages) {
+      args.push("--exclude", repoPath(page));
+    }
+    const child = spawn(bundledPython(), args, {
       cwd: repoRoot,
       env: { ...process.env, PYTHONIOENCODING: "utf-8", PYTHONUTF8: "1" },
       windowsHide: true,
@@ -190,9 +194,10 @@ async function handleRequest(req, res) {
     }
     if (url.pathname === "/api/generate" && req.method === "POST") {
       const body = await readJsonBody(req);
-      const target = ["cover", "body", "both"].includes(body.target) ? body.target : "both";
+      const target = ["cover", "body", "both", "booklet"].includes(body.target) ? body.target : "both";
       const layout = ["landscape", "portrait"].includes(body.layout) ? body.layout : "landscape";
-      const result = await generatePdf(body.folder, target, layout);
+      const excludedPages = Array.isArray(body.excludedPages) ? body.excludedPages : [];
+      const result = await generatePdf(body.folder, target, layout, excludedPages);
       sendJson(res, 200, { result });
       return;
     }

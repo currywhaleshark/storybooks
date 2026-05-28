@@ -16,6 +16,9 @@ A4_LANDSCAPE = landscape(A4)
 MARGIN = 24
 GUTTER = 18
 LAYOUTS = {"landscape", "portrait"}
+BookletSlot = Path | None
+BookletSide = tuple[BookletSlot, BookletSlot]
+BookletSheet = tuple[BookletSide, BookletSide]
 
 
 def leading_number(path: Path) -> int | None:
@@ -46,6 +49,26 @@ def pair_body_pages(pages: list[Path]) -> list[tuple[Path, Path | None]]:
         right = pages[index + 1] if index + 1 < len(pages) else None
         pairs.append((left, right))
     return pairs
+
+
+def booklet_pages(cover: Path, body_pages: list[Path]) -> list[BookletSlot]:
+    pages: list[BookletSlot] = [cover, None, *body_pages]
+    while len(pages) % 4:
+        pages.append(None)
+    return pages
+
+
+def pair_booklet_sheets(pages: list[BookletSlot]) -> list[BookletSheet]:
+    sheets = []
+    left = 0
+    right = len(pages) - 1
+    while left < right:
+        front = (pages[right], pages[left])
+        back = (pages[left + 1], pages[right - 1])
+        sheets.append((front, back))
+        left += 2
+        right -= 2
+    return sheets
 
 
 def draw_image_contained(pdf: canvas.Canvas, image_path: Path, box: tuple[float, float, float, float]) -> None:
@@ -101,6 +124,23 @@ def draw_body_pages(pdf: canvas.Canvas, body_pages: list[Path], layout: str) -> 
     return len(pairs)
 
 
+def draw_booklet_side(pdf: canvas.Canvas, side: BookletSide) -> None:
+    slots = body_slots("landscape")
+    for page, slot in zip(side, slots):
+        if page is not None:
+            draw_image_contained(pdf, page, slot)
+    pdf.showPage()
+
+
+def draw_booklet_pages(pdf: canvas.Canvas, cover: Path, body_pages: list[Path]) -> tuple[int, int]:
+    pages = booklet_pages(cover, body_pages)
+    sheets = pair_booklet_sheets(pages)
+    for front, back in sheets:
+        draw_booklet_side(pdf, front)
+        draw_booklet_side(pdf, back)
+    return len(pages), len(sheets)
+
+
 def generate_cover_pdf(cover: Path, output_path: Path) -> None:
     pdf = canvas.Canvas(str(output_path), pagesize=A4_PORTRAIT)
     page_width, page_height = A4_PORTRAIT
@@ -127,13 +167,34 @@ def generate_combined_pdf(cover: Path, body_pages: list[Path], output_path: Path
     return sheet_count
 
 
-def generate_pdfs(folder: Path, output_dir: Path, target: str, layout: str = "landscape") -> dict[str, Any]:
+def generate_booklet_pdf(cover: Path, body_pages: list[Path], output_path: Path) -> tuple[int, int]:
+    pdf = canvas.Canvas(str(output_path), pagesize=A4_LANDSCAPE)
+    page_count, sheet_count = draw_booklet_pages(pdf, cover, body_pages)
+    pdf.save()
+    return page_count, sheet_count
+
+
+def filter_excluded_pages(body_pages: list[Path], excluded_pages: set[Path] | None) -> list[Path]:
+    if not excluded_pages:
+        return body_pages
+    excluded = {path.resolve() for path in excluded_pages}
+    return [page for page in body_pages if page.resolve() not in excluded]
+
+
+def generate_pdfs(
+    folder: Path,
+    output_dir: Path,
+    target: str,
+    layout: str = "landscape",
+    excluded_pages: set[Path] | None = None,
+) -> dict[str, Any]:
     if layout not in LAYOUTS:
         raise ValueError("layout은 landscape 또는 portrait 여야 합니다.")
 
     book = discover_book_images(folder)
     cover = book["cover"]
-    body_pages = book["body_pages"]
+    discovered_body_pages = book["body_pages"]
+    body_pages = filter_excluded_pages(discovered_body_pages, excluded_pages)
     output_dir.mkdir(parents=True, exist_ok=True)
 
     result: dict[str, Any] = {
@@ -142,6 +203,7 @@ def generate_pdfs(folder: Path, output_dir: Path, target: str, layout: str = "la
         "layout": layout,
         "body_page_count": len(body_pages),
         "body_sheet_count": len(pair_body_pages(body_pages)),
+        "excluded_page_count": len(discovered_body_pages) - len(body_pages),
     }
 
     if target == "cover":
@@ -167,6 +229,17 @@ def generate_pdfs(folder: Path, output_dir: Path, target: str, layout: str = "la
         generate_combined_pdf(cover, body_pages, combined_pdf, layout)
         result["combined_pdf"] = str(combined_pdf)
 
+    if target == "booklet":
+        if cover is None:
+            raise ValueError("Cover image is required for booklet PDF.")
+        if not body_pages:
+            raise ValueError("Body pages are required for booklet PDF.")
+        booklet_pdf = output_dir / "booklet-a4-landscape.pdf"
+        booklet_page_count, booklet_sheet_count = generate_booklet_pdf(cover, body_pages, booklet_pdf)
+        result["booklet_pdf"] = str(booklet_pdf)
+        result["booklet_page_count"] = booklet_page_count
+        result["booklet_sheet_count"] = booklet_sheet_count
+
     return result
 
 
@@ -174,13 +247,15 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("folder")
     parser.add_argument("--output", default=None)
-    parser.add_argument("--target", choices=["cover", "body", "both"], default="both")
+    parser.add_argument("--target", choices=["cover", "body", "both", "booklet"], default="both")
     parser.add_argument("--layout", choices=sorted(LAYOUTS), default="landscape")
+    parser.add_argument("--exclude", action="append", default=[])
     args = parser.parse_args()
 
     folder = Path(args.folder).resolve()
     output_dir = Path(args.output).resolve() if args.output else folder / "print-output"
-    result = generate_pdfs(folder, output_dir, args.target, args.layout)
+    excluded_pages = {Path(page).resolve() for page in args.exclude}
+    result = generate_pdfs(folder, output_dir, args.target, args.layout, excluded_pages)
     print(json.dumps(result, ensure_ascii=False, indent=2))
     return 0
 

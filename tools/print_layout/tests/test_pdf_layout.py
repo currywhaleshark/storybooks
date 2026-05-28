@@ -8,7 +8,7 @@ from pypdf import PdfReader
 
 from tools.print_layout import pdf_layout
 
-TEST_TEMP_ROOT = Path(".tmp/print-layout-tests")
+TEST_TEMP_ROOT = Path("C:/tmp/print-layout-tests")
 
 
 @contextmanager
@@ -31,17 +31,17 @@ def make_png(path: Path, size=(320, 240), color=(200, 80, 120)) -> None:
 class PdfLayoutTest(unittest.TestCase):
     def test_discover_book_images_sorts_by_leading_number(self):
         with test_temp_dir() as folder:
-            touch(folder / "10_10페이지.png")
-            touch(folder / "02_2페이지.png")
-            touch(folder / "00_표지.png")
-            touch(folder / "01_1페이지.png")
+            touch(folder / "10_page.png")
+            touch(folder / "02_page.png")
+            touch(folder / "00_cover.png")
+            touch(folder / "01_page.png")
 
             book = pdf_layout.discover_book_images(folder)
 
-            self.assertEqual(book["cover"].name, "00_표지.png")
+            self.assertEqual(book["cover"].name, "00_cover.png")
             self.assertEqual(
                 [page.name for page in book["body_pages"]],
-                ["01_1페이지.png", "02_2페이지.png", "10_10페이지.png"],
+                ["01_page.png", "02_page.png", "10_page.png"],
             )
 
     def test_pair_body_pages_leaves_blank_for_odd_count(self):
@@ -53,12 +53,30 @@ class PdfLayoutTest(unittest.TestCase):
                 [(pages[0], pages[1]), (pages[2], None)],
             )
 
+    def test_booklet_pages_include_cover_inside_blank_body_and_padding(self):
+        with test_temp_dir() as folder:
+            cover = folder / "00_cover.png"
+            pages = [folder / f"{number:02}.png" for number in range(1, 4)]
+
+            booklet_pages = pdf_layout.booklet_pages(cover, pages)
+
+            self.assertEqual(booklet_pages, [cover, None, pages[0], pages[1], pages[2], None, None, None])
+
+    def test_pair_booklet_sheets_orders_front_and_back_for_folding(self):
+        with test_temp_dir() as folder:
+            pages = [folder / f"{number:02}.png" for number in range(1, 17)]
+
+            sheets = pdf_layout.pair_booklet_sheets(pages)
+
+            self.assertEqual(sheets[0], ((pages[15], pages[0]), (pages[1], pages[14])))
+            self.assertEqual(sheets[1], ((pages[13], pages[2]), (pages[3], pages[12])))
+
     def test_generate_cover_and_body_pdfs(self):
         with test_temp_dir() as folder:
-            make_png(folder / "00_표지.png")
-            make_png(folder / "01_1페이지.png")
-            make_png(folder / "02_2페이지.png")
-            make_png(folder / "03_3페이지.png")
+            make_png(folder / "00_cover.png")
+            make_png(folder / "01_page.png")
+            make_png(folder / "02_page.png")
+            make_png(folder / "03_page.png")
             output_dir = folder / "print-output"
 
             cover_result = pdf_layout.generate_pdfs(folder, output_dir, "cover")
@@ -80,10 +98,10 @@ class PdfLayoutTest(unittest.TestCase):
 
     def test_generate_combined_pdf_for_both_target(self):
         with test_temp_dir() as folder:
-            make_png(folder / "00_표지.png")
-            make_png(folder / "01_1페이지.png")
-            make_png(folder / "02_2페이지.png")
-            make_png(folder / "03_3페이지.png")
+            make_png(folder / "00_cover.png")
+            make_png(folder / "01_page.png")
+            make_png(folder / "02_page.png")
+            make_png(folder / "03_page.png")
             output_dir = folder / "print-output"
 
             result = pdf_layout.generate_pdfs(tmp_path := folder, output_dir, "both", "landscape")
@@ -103,9 +121,9 @@ class PdfLayoutTest(unittest.TestCase):
 
     def test_generate_portrait_body_pdf_uses_vertical_slots(self):
         with test_temp_dir() as folder:
-            make_png(folder / "00_표지.png")
-            make_png(folder / "01_1페이지.png")
-            make_png(folder / "02_2페이지.png")
+            make_png(folder / "00_cover.png")
+            make_png(folder / "01_page.png")
+            make_png(folder / "02_page.png")
             output_dir = folder / "print-output"
 
             result = pdf_layout.generate_pdfs(folder, output_dir, "body", "portrait")
@@ -116,6 +134,40 @@ class PdfLayoutTest(unittest.TestCase):
             self.assertEqual(result["layout"], "portrait")
             self.assertTrue(result["body_pdf"].endswith("body-a4-portrait-2up.pdf"))
             self.assertGreater(float(page.height), float(page.width))
+
+    def test_generate_booklet_pdf_includes_cover_blank_inside_cover_and_padding(self):
+        with test_temp_dir() as folder:
+            make_png(folder / "00_cover.png")
+            make_png(folder / "01_page.png")
+            make_png(folder / "02_page.png")
+            make_png(folder / "03_page.png")
+            output_dir = folder / "print-output"
+
+            result = pdf_layout.generate_pdfs(folder, output_dir, "booklet", "landscape")
+
+            self.assertTrue(Path(result["booklet_pdf"]).exists())
+            self.assertEqual(result["booklet_page_count"], 8)
+            self.assertEqual(result["booklet_sheet_count"], 2)
+            self.assertTrue(result["booklet_pdf"].endswith("booklet-a4-landscape.pdf"))
+            self.assertEqual(len(PdfReader(result["booklet_pdf"]).pages), 4)
+
+    def test_generate_body_pdf_excludes_selected_pages(self):
+        with test_temp_dir() as folder:
+            make_png(folder / "00_cover.png")
+            page1 = folder / "01_page.png"
+            page2 = folder / "02_page.png"
+            page3 = folder / "03_page.png"
+            make_png(page1)
+            make_png(page2)
+            make_png(page3)
+            output_dir = folder / "print-output"
+
+            result = pdf_layout.generate_pdfs(folder, output_dir, "body", "landscape", excluded_pages={page2})
+
+            self.assertEqual(result["body_page_count"], 2)
+            self.assertEqual(result["excluded_page_count"], 1)
+            self.assertEqual(result["body_sheet_count"], 1)
+            self.assertEqual(len(PdfReader(result["body_pdf"]).pages), 1)
 
 
 if __name__ == "__main__":
