@@ -215,6 +215,31 @@ Created prop reference:
 - Intended use: official recurring prop reference for the coral slide in pages 2-3 and any later playground scenes.
 - Locked features: orange-pink coral frame, blue chute descending on the left/front side, green-blue stairs on the right, yellow handrail, no landing mat, side waiting stones separated from the slide descent path.
 
+## 2026-05-29 Batch 1 Page 3 Slide Reference Retry
+
+Generated one new replacement candidate using the dedicated coral slide reference:
+
+| File | Scene | QA judgment | Notes |
+| --- | --- | --- | --- |
+| `03_candidate_text_v7.png` | Page 3 counting beside recurring coral slide | Improved candidate, needs user visual approval | A5-ish file saved as `1054x1492`. Slide silhouette, stairs, handrail, and no-mat playground floor follow the new prop reference more closely. No bags or art tools. Landing path is empty and characters are off the slide path. Text is readable and close to the script. Remaining caution: 준이 reads as counting just before riding rather than actively sliding during the line `준이가 미끄럼틀을 탔어요.` |
+
+User direction for next retry:
+
+- Revise the page 3 prompt so the page is split into two stacked panels:
+  - top panel: 준이 calms himself and counts `한 번, 두 번, 세 번` beside the safe stair/waiting area;
+  - bottom panel: 준이 joyfully rides the coral slide with `슝—`.
+- This should solve the mismatch between the counting scene and the script line `준이가 미끄럼틀을 탔어요.`
+- Popo lock: unless a page explicitly asks otherwise, 포포 should follow the official reference with eyes hidden under the translucent moon-jellyfish bell. Express emotion mostly with the small mouth; do not turn 포포 into a droplet-like 방울이 form.
+- Updated prompt plan:
+  - `series/coral-town-daycare/images/episodes/산호마을_어린이집의_기다림_이야기/work_2026-05-28/batch_1/batch_1_prompt_plan.md`
+  - Its `03 Page Prompt` now describes the two-panel layout and Popo eye rule.
+
+Generated two-panel replacement candidate:
+
+| File | Scene | QA judgment | Notes |
+| --- | --- | --- | --- |
+| `03_candidate_text_v8.png` | Page 3 top/bottom split: counting, then sliding | Improved candidate, likely best current page 3 | A5-ish file saved as `1054x1492`. Text appears once in a single left panel. Top panel shows 준이 counting beside the safe stair/waiting area. Bottom panel shows 준이 joyfully riding the slide. Coral slide shape is consistent across panels. No bags or art tools. 포포 follows the moon jellyfish reference more closely with eyes hidden under the bell. Needs user visual approval before final assembly. |
+
 ## Next Session Prompt
 
 ```text
@@ -229,3 +254,111 @@ series/coral-town-daycare/docs/산호마을_어린이집_이미지_규칙서.md 
 이미지 생성은 한 세션에 3-4장 단위로 끊고, 생성 이미지를 대화에 계속 누적하지 말고 파일 경로와 판정만 worklog에 남겨줘.
 다음 작업은 Batch 1: 출력 폴더 준비, 표지 + 1-3페이지 생성 계획/프롬프트 확정부터 시작.
 ```
+
+## 2026-05-29 Batch 2 Corrections
+
+- User confirmed Batch 1 visual inspection is done; continue with Batch 2 pages 4-7.
+- Non-negotiable for this retry: actual official reference image files must be used/inspected for visible characters and locations; do not generate from text-only descriptions.
+- Page 4 correction:
+  - Only Aru, Mari teacher, and Banguli should be visible.
+  - Remove the extra child/helper character from the scene.
+  - Bags should appear only during arrival/dismissal scenes, so Aru should not have a bag in lunch scenes.
+  - `04_candidate_text_v1.png` is rejected/hold because it includes an unwanted extra child.
+  - Generated replacement candidate: `work_2026-05-28/batch_2/04_candidate_text_v2.png`.
+- Page 5 source/prompt correction:
+  - The line `다 같이 손을 모았어요.` should be deleted.
+  - Do not show children pressing palms together, clasping hands, or making a Japanese-style pre-meal gesture.
+  - Keep `잘 먹겠습니다!`, but stage it as a Korean daycare lunch start with children calmly seated and ready to eat together.
+  - Bags should also be removed from all lunch-scene children.
+  - `05_candidate_text_v1.png` is hold because it followed the removed hand-gathering line.
+  - Generated replacement candidate: `work_2026-05-28/batch_2/05_candidate_text_v2.png`.
+- Page 6-7 character correction:
+  - User noted 루루 and 수아 lost the official seahorse snout and eye shapes.
+  - Regeneration prompts must lock the long tubular seahorse snout/muzzle, small simple black oval eyes, ribbed seahorse body, curled tail, and crest silhouette from the official references.
+  - User clarified the official references have small button eyes with one short eyelash stroke; restore that one-lash button-eye look.
+  - Avoid round child faces, tiny human noses, large glossy/anime eyes, heavy eyelashes, and flattened faces for 루루/수아.
+  - `06_candidate_text_v2.png` is hold because 루루's snout is nearly missing and 수아's eyes/snout drift from reference.
+  - Generated corrected candidate: `work_2026-05-28/batch_2/06_candidate_text_v3.png`.
+  - Generated stricter reference-eye retry: `work_2026-05-28/batch_2/06_candidate_text_v4.png`.
+  - User said background 수아 in page 7 is acceptable/normal; preserve that kind of background 수아 while correcting foreground 루루.
+  - `07_candidate_text_v1.png` is hold because foreground 루루's snout/eye shape drift from reference.
+  - Generated corrected candidates: `work_2026-05-28/batch_2/07_candidate_text_v2.png`, then stricter eye retry `07_candidate_text_v3.png`.
+  - QA caution: `07_candidate_text_v3.png` restores the seahorse snout better than v1, but foreground 루루's eye may still read slightly larger/more decorative than the official reference; user visual approval needed.
+
+## 2026-05-29 Batch 3 Preparation
+
+- Created Batch 3 folder:
+  - `series/coral-town-daycare/images/episodes/산호마을_어린이집의_기다림_이야기/work_2026-05-28/batch_3`
+- Created prompt/reference plan:
+  - `series/coral-town-daycare/images/episodes/산호마을_어린이집의_기다림_이야기/work_2026-05-28/batch_3/batch_3_prompt_plan.md`
+- Batch 3 scope:
+  - Pages 8-12.
+  - Recommended generation split: pages 8-9 first, then pages 10-12 after QA.
+- Reference-grounding rule remains non-negotiable:
+  - Before every page generation, open/pass the actual official character and background reference image files listed in `batch_3_prompt_plan.md`.
+  - Do not generate from text-only descriptions.
+- Carry-forward visual locks:
+  - Bags appear only in arrival/dismissal scenes; remove bags from pages 8-11, allow bags on page 12 dismissal.
+  - 루루 and 수아 keep official seahorse traits: long tubular snout, small black button eyes with one short eyelash stroke, ribbed body, curled tail, small fins, seahorse crest.
+  - 포포 keeps official moon-jellyfish traits: translucent bell, eyes hidden or mostly hidden, expression mainly through small mouth, not droplet-shaped.
+  - 아루 stays pufferfish-only: no human arms, legs, hands, shoes, sleeves, or full-body human clothing.
+  - 몽글이 stays octopus: round purple head, eight legs, yellow beret; no bag in indoor art scenes.
+- New prop note:
+  - Page 11 uses a new `마음조개` prop. It should be a small shell in Mari teacher's palm with a gentle watercolor glow, not neon/jewel-like.
+
+## 2026-05-29 Batch 2 Final Copy
+
+- Copied Batch 2 selected candidates into the episode `final` folder:
+  - `work_2026-05-28/batch_2/04_candidate_text_v2.png` -> `final/04_페이지.png`
+  - `work_2026-05-28/batch_2/05_candidate_text_v2.png` -> `final/05_페이지.png`
+  - `work_2026-05-28/batch_2/06_candidate_text_v4.png` -> `final/06_페이지.png`
+  - `work_2026-05-28/batch_2/07_candidate_text_v3.png` -> `final/07_페이지.png`
+- Final folder now contains pages `00_표지.png` and `01_페이지.png` through `07_페이지.png`.
+- Batch 3 can proceed after this copy step, starting with pages 8-9.
+
+## 2026-05-29 Batch 3 Pages 8-9 Generation
+
+- Generated Batch 3 first-pass candidates using the actual official reference images for:
+  - `몽글이.png`
+  - `마리_선생님.png`
+  - `방울이.png`
+  - `배경_교실.png`
+- Saved generated candidates into:
+  - `series/coral-town-daycare/images/episodes/산호마을_어린이집의_기다림_이야기/work_2026-05-28/batch_3`
+
+| File | Scene | QA judgment | Notes |
+| --- | --- | --- | --- |
+| `08_candidate_text_v1.png` | 몽글이가 젖은 그림을 만지고 싶은 다리를 붙잡으며 기다림 | Candidate pass | A5-ish file saved as `1054x1492`. 몽글이 identity, no-bag rule, 방울이, 교실 reference, wet drawing, and self-control leg action are readable. Needs user visual approval and final text proofread. |
+| `09_candidate_text_v1.png` | 몽글이가 다 마른 그림을 확인하고 기뻐함 | Candidate pass | A5-ish file saved as `1054x1492`. Same art-corner continuity, no-bag rule, dry drawing, gentle glow, proud Mongle pose, and 방울이 presence are readable. Needs user visual approval and final text proofread. |
+
+Next Batch 3 step:
+
+- User visually reviews pages 8-9.
+- If accepted, copy to `final/08_페이지.png` and `final/09_페이지.png`, then generate pages 10-12.
+- If either page fails, regenerate only the failing page with a targeted correction.
+
+## 2026-05-29 Batch 3 Pages 8-9 Correction
+
+User QA:
+
+- Page 8 failed because 몽글이 was already stepping on / touching the painting, which contradicts the waiting/self-control action.
+- Pages 8 and 9 also failed continuity because the painting looked different between pages.
+
+Correction:
+
+- Created a shared prop reference for Mongle's painting:
+  - `series/coral-town-daycare/references/props/몽글이_그림_레퍼런스.png`
+  - Locked features: cream paper, blue sea, three yellow stars, red coral branches, small green sea plants, and soft bubbles.
+- Regenerated pages 8-9 using the actual official reference images plus the new painting prop reference:
+  - `몽글이.png`
+  - `마리_선생님.png`
+  - `방울이.png`
+  - `배경_교실.png`
+  - `몽글이_그림_레퍼런스.png`
+
+| File | Scene | QA judgment | Notes |
+| --- | --- | --- | --- |
+| `08_candidate_text_v2.png` | 몽글이가 젖은 그림을 만지고 싶은 다리를 붙잡으며 기다림 | Improved candidate | Mongle no longer steps on or touches the painting. The painting remains unobstructed and follows the shared prop reference. Needs user visual approval and final text proofread. |
+| `09_candidate_text_v2.png` | 몽글이가 다 마른 그림을 확인하고 기뻐함 | Improved candidate | Painting is now visually aligned with page 8 through the shared prop reference: blue sea, yellow stars, red coral, green plants, cream paper. Needs user visual approval and final text proofread. |
+
+Do not use `08_candidate_text_v1.png` or `09_candidate_text_v1.png` for final without explicit approval; they failed the page-8 touch/continuity QA.

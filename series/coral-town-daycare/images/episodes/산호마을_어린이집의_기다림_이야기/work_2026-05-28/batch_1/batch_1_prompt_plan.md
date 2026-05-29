@@ -47,7 +47,7 @@ Page format:
 Character locks for retries:
 
 - 아루: round baby pufferfish body only, orange-yellow pufferfish body, tiny fins and tiny spikes, sailor scarf and yellow bag. No human arms, no human legs, no shoes, no hands.
-- 포포: moon jellyfish child, pale sky-blue translucent rounded bell, soft tentacles under the bell, sailor collar and beige bag. Eyes are hidden or barely visible; express mostly with a small mouth. No droplet body, no hard glass look.
+- 포포: moon jellyfish child, pale sky-blue translucent rounded bell, soft tentacles under the bell, sailor collar and beige bag when the scene calls for bags. Unless a page explicitly asks for visible eyes, keep Popo's eyes hidden under the translucent bell like the official reference; express mostly with a small mouth. No droplet body, no hard glass look.
 - 방울이: tiny water droplet mascot, separate from 포포. Simple pale sky-blue droplet with a tiny face and two or three small droplets nearby.
 
 Safety and scene locks for slide pages:
@@ -106,16 +106,36 @@ Avoid: no angry yelling, no unsafe slide use, no exaggerated motion blur, no ove
 
 Use case: illustration-story
 Asset type: picture-book interior page candidate
-Primary request: 준이 calms himself by counting turns before using the coral slide.
-Input images: Official references for 준이, 포포, 몽글이, 방울이; official background reference `배경_전경과_놀이터.png`.
-Scene/backdrop: Near the bottom or steps of the coral slide in the playground.
-Subject: It is almost 준이's turn. 준이 stands calmly near the slide steps, holding up small fingers or quietly counting "one, two, three" with a softened expression. 포포 has finished sliding in the background and 몽글이 is moving away after their turn. 방울이 glows very subtly near a coral decoration, smiling supportively.
+Primary request: 준이 first calms himself by counting, then joyfully rides the coral slide.
+Input images: Official references for 준이, 포포, 몽글이, 방울이; official background reference `배경_전경과_놀이터.png`; official recurring prop reference `series/coral-town-daycare/references/props/산호_미끄럼틀_레퍼런스.png`.
+Scene/backdrop: Near the coral slide in the playground, using the slide prop reference as visual truth. Keep the orange-pink coral frame, blue chute on the left/front side, green-blue stairs on the right, yellow handrail, no landing mat, and regular sandy playground floor with shell stepping stones.
+Subject: Split the page into two stacked story panels. In the top panel, 준이 stands safely beside the stairs/waiting spot, not in the slide path, and quietly counts "one, two, three" with a small breath and calmer proud expression. 포포 and 몽글이 are safely away from the chute and landing path; 포포 remains a moon jellyfish with eyes hidden unless explicitly instructed otherwise. In the bottom panel, 준이 is joyfully sliding down the blue chute with a bright but non-scary smile. 방울이 appears subtly near coral decoration, smiling supportively.
 Style/medium: warm children's picture-book illustration, soft pastel, paper texture.
-Composition/framing: medium shot or gentle close medium shot focused on 준이's calmer face and counting gesture, with enough background context to show the slide and the previous children. Leave blank space on the upper-left for text.
+Composition/framing: A5 portrait page with two horizontal stacked panels. The top panel shows the counting/waiting moment; the bottom panel shows the joyful slide-riding moment. Keep a soft cream Korean story text panel on the left or top-left with print-safe margins, or integrate the text between/alongside the two panels without covering faces or the slide path.
 Lighting/mood: warm, patient, quietly proud.
-Text: no rendered text in this candidate; reserve blank area only.
-Constraints: 준이 should still look like the official blue shark child, not a generic shark. 방울이 remains small and simple, with only a soft glow, not a dramatic light effect.
-Avoid: no big typography inside the image, no neon glow, no crowded cast, no repeated pose from page 2, no prior episode contamination.
+Text: render the approved Korean story text directly in the image, verbatim:
+
+```text
+준이는 작게 숨을 쉬었어요.
+
+후—
+
+한 번.
+두 번.
+세 번.
+
+"내 차례야!"
+
+준이가 미끄럼틀을 탔어요.
+
+슝—
+
+기다린 미끄럼틀은
+더 신났어요.
+```
+
+Constraints: 준이 should still look like the official blue shark child, not a generic shark. Outdoor free-play pages 2-3 should have no bags/backpacks/shoulder straps and no art tools. The slide landing path must stay visibly empty except for the active sliding motion in the bottom panel. 방울이 remains small and simple, with only a soft glow, not a dramatic light effect.
+Avoid: no visible eyes on 포포 unless explicitly requested, no bags, no art tools, no extra signs, no invented labels, no speech bubbles, no random numbers, no big typography outside the story text panel, no neon glow, no crowded cast, no repeated pose from page 2, no prior episode contamination.
 
 ## QA Criteria For Batch 1
 
