@@ -362,3 +362,140 @@ Correction:
 | `09_candidate_text_v2.png` | 몽글이가 다 마른 그림을 확인하고 기뻐함 | Improved candidate | Painting is now visually aligned with page 8 through the shared prop reference: blue sea, yellow stars, red coral, green plants, cream paper. Needs user visual approval and final text proofread. |
 
 Do not use `08_candidate_text_v1.png` or `09_candidate_text_v1.png` for final without explicit approval; they failed the page-8 touch/continuity QA.
+
+## 2026-05-29 Batch 3 Pages 8-9 Final Copy
+
+- User visually approved pages 8-9.
+- Copied selected candidates into the episode `final` folder:
+  - `work_2026-05-28/batch_3/08_candidate_text_v2.png` -> `final/08_페이지.png`
+  - `work_2026-05-28/batch_3/09_candidate_text_v2.png` -> `final/09_페이지.png`
+- Final folder now contains pages `00_표지.png` and `01_페이지.png` through `09_페이지.png`.
+
+## 2026-05-29 Batch 3 Pages 10-12 Generation
+
+- User direction: proceed after pages 8-9 approval, and 반드시 actual reference images must be checked and reflected.
+- Opened/inspected the actual official reference PNG files before generating:
+  - Character refs: `마리_선생님.png`, `준이.png`, `아루.png`, `루루.png`, `몽글이.png`, `수아.png`, `토리.png`, `포포.png`, `방울이.png`
+  - Background refs: `배경_교실.png`, `배경_전경과_놀이터.png`
+- Reference locks carried into prompts:
+  - 루루/수아: long tubular seahorse snout, small button eyes with one short eyelash stroke, ribbed body, curled tail, crest.
+  - 포포: moon-jellyfish bell with eyes hidden/mostly hidden, expression mainly through small mouth, not droplet-shaped.
+  - 아루: pufferfish-only body, no human arms/legs/hands/shoes.
+  - 몽글이: purple octopus child with eight visible legs and yellow beret.
+  - Page 10-11: no bags; Page 12 dismissal: bags allowed.
+
+| File | Scene | QA judgment | Notes |
+| --- | --- | --- | --- |
+| `10_candidate_text_v1.png` | Closing-circle waiting stories | Hold / text repair needed | Character and classroom references are strong, but generated Korean text included typos such as `말했어오`. |
+| `10_candidate_text_v2.png` | Closing-circle waiting stories text repair | Fail / do not use | Text was corrected but overflowed outside the repaired panel. |
+| `10_candidate_text_v3.png` | Closing-circle waiting stories text repair | Improved candidate | Text panel was repaired locally with exact Korean text. Character identities remain grounded in the inspected references. Needs user visual approval. |
+| `11_candidate_text_v1.png` | Mari teacher shows the heart-shell | Candidate pass | Mari, Jun, Aru, Lulu, Mongle, Banguli, and classroom references are readable. Heart-shell is soft and not neon/jewel-like. Needs user visual approval and final text proofread. |
+| `12_candidate_text_v1.png` | Sunset dismissal | Candidate pass | Exterior/playground reference is well reflected: pink coral roof, blue door, bell, sandy path, stepping stones. Children have dismissal bags. Needs user visual approval and final text proofread. |
+
+Next Batch 3 step:
+
+- User visually reviews `10_candidate_text_v3.png`, `11_candidate_text_v1.png`, and `12_candidate_text_v1.png`.
+- If accepted, copy them to `final/10_페이지.png`, `final/11_페이지.png`, and `final/12_페이지.png`.
+- If any page fails, regenerate or repair only the failing page.
+
+## 2026-05-30 Batch 3 Pages 10-12 Fresh Retry Direction
+
+- User correction: page 9 is fine; only pages 10-12 need a fresh retry.
+- Ignore previous page 10-12 versions and create a fresh set.
+- Keep approved/final page 9 as-is.
+- Do not use local text-panel postprocessing for this retry; previous text postprocessing looked unsatisfactory.
+- Keep story text generated directly in the image.
+- Critical Aru lock:
+  - Use the actual official `아루.png` reference as visual truth.
+  - 아루 must remain a round baby pufferfish silhouette.
+  - Do not prompt Aru with hands, arms, legs, lower body, sitting, or hand-waving actions.
+  - When a group action mentions greeting, describe Aru's greeting only through facial expression and round-body tilt.
+- Page 12 text correction for generation:
+  - Replace `손을 흔들었어요.` with `인사했어요.`
+  - This avoids prompting the model to invent hands for Aru.
+- Updated prompt plan:
+  - `series/coral-town-daycare/images/episodes/산호마을_어린이집의_기다림_이야기/work_2026-05-28/batch_3/batch_3_prompt_plan.md`
+
+## 2026-05-30 Batch 3 Page 10 Fresh Candidate
+
+- Generated fresh page 10 using the actual official reference images for all visible characters and the classroom.
+- Saved candidate:
+  - `series/coral-town-daycare/images/episodes/산호마을_어린이집의_기다림_이야기/work_2026-05-28/batch_3/10_candidate_text_fresh_v1.png`
+- User approved this page 10 candidate.
+- QA note: Aru kept the round pufferfish silhouette with no human hands, lower body, or sitting pose.
+
+## 2026-05-30 Batch 3 Page 11 Fresh Candidate
+
+- Generated fresh page 11 using the actual official reference images for:
+  - `마리_선생님.png`, `준이.png`, `아루.png`, `루루.png`, `몽글이.png`, `방울이.png`, `배경_교실.png`
+- Saved candidate:
+  - `series/coral-town-daycare/images/episodes/산호마을_어린이집의_기다림_이야기/work_2026-05-28/batch_3/11_candidate_text_fresh_v1.png`
+- QA note: Aru kept the round pufferfish silhouette with no human hands, lower body, or sitting pose.
+- QA note: Heart-shell reads as a small soft watercolor glow, not neon or jewel-like.
+- Needs user visual approval before final copy.
+
+User QA:
+
+- `11_candidate_text_fresh_v1.png` is visually good, but Aru and Mongle were not clearly looking at the shell.
+
+Generated gaze-corrected retry:
+
+- `series/coral-town-daycare/images/episodes/산호마을_어린이집의_기다림_이야기/work_2026-05-28/batch_3/11_candidate_text_fresh_v2.png`
+- QA note: Shell is clearer as the visual focus; Aru is aimed toward the shell; Mongle's gaze/attention is improved compared with v1.
+- QA note: Aru still keeps the round pufferfish silhouette with no human hands, lower body, or sitting pose.
+- Needs user visual approval before final copy.
+
+## 2026-05-30 Batch 3 Pages 9-12 Final Copy / Page 12 Fresh Retry
+
+- User direction: extract/finalize pages 9-12 while ignoring older versions, and keep Aru grounded in the official reference.
+- Kept approved page 9 already in final:
+  - `final/09_페이지.png`
+- Copied approved fresh page 10:
+  - `work_2026-05-28/batch_3/10_candidate_text_fresh_v1.png` -> `final/10_페이지.png`
+- Copied gaze-corrected fresh page 11:
+  - `work_2026-05-28/batch_3/11_candidate_text_fresh_v2.png` -> `final/11_페이지.png`
+- Generated page 12 fresh retries from the official references, with Aru described only as the round pufferfish reference body and greeting via expression/body tilt.
+  - `12_candidate_text_fresh_v1.png` was held because the first text line had an extra punctuation-like mark.
+  - `12_candidate_text_fresh_v2.png` was selected because the text uses `인사했어요` and Aru keeps the round pufferfish silhouette without a human lower body.
+- Copied selected page 12:
+  - `work_2026-05-28/batch_3/12_candidate_text_fresh_v2.png` -> `final/12_페이지.png`
+
+Final pages now present:
+
+- `final/09_페이지.png` (`1054x1492`)
+- `final/10_페이지.png` (`1055x1491`)
+- `final/11_페이지.png` (`1055x1491`)
+- `final/12_페이지.png` (`1055x1491`)
+
+QA notes:
+
+- Page 12 text now uses `인사했어요` instead of `손을 흔들었어요`.
+- Page 12 Aru follows the official round pufferfish reference, with compact body, scarf, bag, tiny spikes, and no human lower body.
+- Older page 10-12 candidates remain in the work folder only as history and should not be used for final unless explicitly requested.
+
+## 2026-05-30 Batch 3 Pages 11-12 User QA Corrections
+
+User QA:
+
+- Page 11: Aru's mouth was twisted; Aru and Mongle needed to look clearly at the shell.
+- Page 12: Aru's mouth disappeared, Aru's fin read too much like a greeting hand, Mongle became visually mixed with Lulu, Popo should not show eyes unless a special scene requires it.
+- Page 12 background also needed to remain underwater: no horizon line, visible sun, sky, or clouds; the water itself should be peach-pink sunset-colored.
+
+Generated and selected corrected candidates:
+
+- `work_2026-05-28/batch_3/11_candidate_text_fresh_v3.png` -> `final/11_페이지.png`
+  - QA note: Aru's mouth is restored as centered puckered pufferfish lips.
+  - QA note: Aru and Mongle are oriented toward Mari teacher's glowing shell more clearly than the previous version.
+- `work_2026-05-28/batch_3/12_candidate_text_fresh_v3.png` -> `final/12_페이지.png`
+  - QA note: background is underwater sunset light with peach-pink water glow, bubbles, and coral; no visible horizon, sun disk, sky, or clouds.
+  - QA note: Aru has visible centered mouth and remains a round pufferfish silhouette.
+  - QA note: Mongle and Lulu are separated; Mongle reads as octopus and Lulu reads as seahorse.
+  - QA note: Popo keeps the moon-jellyfish bell with eyes hidden; expression is mainly a small mouth under the bell.
+
+## 2026-05-30 Final User Approval
+
+- User approved all final pages after the page 11-12 corrections.
+- Final folder contains the complete episode set:
+  - `final/00_표지.png`
+  - `final/01_페이지.png` through `final/12_페이지.png`
+- Episode production is ready for the next packaging/print-layout step.

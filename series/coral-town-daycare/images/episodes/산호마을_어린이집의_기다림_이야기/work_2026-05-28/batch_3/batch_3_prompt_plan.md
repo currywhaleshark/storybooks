@@ -293,7 +293,7 @@ Text:
 
 준이도, 아루도,
 루루도, 몽글이도
-손을 흔들었어요.
+인사했어요.
 
 방울이도
 산호 지붕 위에서
@@ -318,7 +318,7 @@ Prompt:
 
 Create page 12 of a Korean toddler storybook in A5 portrait page proportion, about 1:1.414. Use the official reference images for all visible characters and the daycare exterior/playground as visual truth.
 
-Scene: warm dismissal time at the Coral Town Daycare entrance. The sunset water is peach and pink, bright and cozy, not dark. The daycare exterior has pink coral roof, cream walls, blue door, small bell, sandy path, and rounded stepping stones matching the official exterior/playground reference. The children are leaving with their bags because this is dismissal: 준이, 아루, 루루, 몽글이, 수아, 토리, and 포포 wave goodbye in varied poses. 마리 선생님 stands at the entrance waving warmly. 방울이 floats near the coral roof, swaying/waving gently, with two or three tiny bubbles softly catching the sunset.
+Scene: warm dismissal time at the Coral Town Daycare entrance. The sunset water is peach and pink, bright and cozy, not dark. The daycare exterior has pink coral roof, cream walls, blue door, small bell, sandy path, and rounded stepping stones matching the official exterior/playground reference. The children are leaving with their bags because this is dismissal: 준이, 루루, 몽글이, 수아, 토리, and 포포 greet goodbye in varied gentle poses. 아루 appears only as the official round pufferfish silhouette with small fins, tiny spikes, scarf, and dismissal bag, greeting with facial expression and body tilt only while keeping the round body intact. 마리 선생님 stands at the entrance waving warmly. 방울이 floats near the coral roof, swaying/waving gently, with two or three tiny bubbles softly catching the sunset.
 
 Layout: wide bright closing view with the daycare entrance readable and enough upper sunset space for text. Put the story text once in a clean rounded text panel on the upper side with generous margins. No extra signs, labels, random writing, or speech bubbles.
 
