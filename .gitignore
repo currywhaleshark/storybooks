@@ -2,3 +2,4 @@
 print-output/
 __pycache__/
 *.pyc
+_skill_repo/
