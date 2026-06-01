@@ -50,6 +50,10 @@ Use these actual image files as visual truth. Do not rely on prose-only characte
 - Popo's translucent jellyfish bell itself is Popo's face. No separate head, face, cheeks, body, human limbs, or hair under the bell.
 - Popo has a pale sky-blue translucent scalloped bell, white moon-jellyfish flower pattern inside the bell, a small mouth on the bell, hidden or barely visible eyes, soft thin tentacles, and a small sailor collar.
 - Do not add Popo's bag in Batch 2. These are nap/rest or activity scenes where the bag is not needed.
+- Page 4 is a nap-room scene: do not show bags on any child in the nap room. Remove Jun-i's bag, Aru's bag, Lulu's bag, and other child bags for this page.
+- Jun-i must keep the official blue shark body with fins and tail. Do not draw gloves, mittens, human fingers, or sleeve-like hands on Jun-i.
+- Page 4 must preserve the approved pages 1-3 nap-room bed map: left story panel; Lulu red bed lower left/front; Jun-i blue bed lower center-left; Mongle purple bed lower center/front; Aru yellow bed upper center-right/back; Tori green bed upper left/back; Popo's aqua bed front/right. Do not invent a new nap room or move the beds into a different layout.
+- For pages 5-7, Aru's red-and-white sailor scarf must be visible. Aru still must not have human hands, fingers, arms, or gloves.
 - Banguli is a separate tiny pale-blue water droplet mascot. Do not duplicate Banguli.
 - Aru is a round orange pufferfish with tiny fins only. No human hands, fingers, or arms.
 - Lulu must match the official pink seahorse reference: long tube snout, black button eyes, coral decoration only as a side head accessory, seahorse body, curled tail, soft sailor outfit when visible. Do not turn Lulu into a coral-headed monster or generic spiky creature.

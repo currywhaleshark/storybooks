@@ -196,11 +196,16 @@ Generated Batch 2 candidates and saved them into:
 | `06_candidate_text_v1.png` | Page 6 Popo becomes sleepy during play | Candidate pass | Popo is the emotional center with drooping bell/tentacles and yawning mouth. Height contrast with friends is clear. Lulu remains a seahorse. Text has minor generated variation but is acceptable under current user direction. |
 | `07_candidate_text_v1.png` | Page 7 Popo cannot float highest | Candidate pass | Strong vertical contrast: friends high, Popo low and gently disappointed. Lulu/Aru/Mongle identities are readable and friends are not teasing. Text is readable with minor generated variation. |
 | `batch_2_contact_sheet.png` | Batch 2 review sheet | Review aid | Contact sheet showing current preferred candidates for pages 4-7. |
+| `04_candidate_text_v3.png` | Page 4 nap time ends, no-bag/Jun-i retry | Candidate for user review | Regenerated because Jun-i in v2 had glove-like raised arms and a slightly drifted look. This version removes child bags for the nap-room scene and keeps Jun-i closer to the official blue shark body. QA note: Jun-i's raised fins may still read a little arm-like because the script says he stretches, but no separate gloves or bag are visible. |
+| `05_candidate_text_v2.png` | Page 5 floating game, Aru scarf retry | Candidate for user review | Regenerated because Aru's scarf was missing in v1. This version shows Aru's red-and-white sailor scarf clearly and keeps Aru round with side fins, no human hands. |
+| `06_candidate_text_v2.png` | Page 6 Popo gets sleepy, Aru scarf retry | Candidate for user review | Regenerated because Aru's scarf was missing in v1. This version shows Aru's red-and-white sailor scarf clearly while keeping Popo centered and sleepy. |
+| `07_candidate_text_v2.png` | Page 7 Popo cannot float highest, Aru scarf retry | Candidate for user review | Regenerated because Aru's scarf was missing in v1. This version shows Aru's red-and-white sailor scarf clearly and preserves the vertical contrast with Popo low and friends high. |
+| `04_candidate_text_v4.png` | Page 4 nap time ends, bed-map continuity retry | Candidate for user review | Regenerated because v3 changed the nap-room and bed layout too far from final pages 1-3. This version restores the familiar left text panel, Lulu red bed at lower left/front, Jun-i blue bed at lower center-left, Mongle purple bed at lower center/front, Aru yellow bed at upper center-right/back, and Popo's empty aqua bed at front/right. QA note: bed coordinates are closer to pages 1-3 but not pixel-identical; no child bags are visible, and Jun-i has raised shark fins rather than gloves. |
 
 Current Batch 2 review state:
 
-- Page 4: `04_candidate_text_v2.png` is the current preferred candidate.
-- Page 5: `05_candidate_text_v1.png` is the current preferred candidate.
-- Page 6: `06_candidate_text_v1.png` is the current preferred candidate.
-- Page 7: `07_candidate_text_v1.png` is the current preferred candidate.
+- Page 4: `04_candidate_text_v4.png` is the current preferred candidate after the bed-map continuity retry.
+- Page 5: `05_candidate_text_v2.png` is user-approved.
+- Page 6: `06_candidate_text_v2.png` is user-approved.
+- Page 7: `07_candidate_text_v2.png` is user-approved.
 - Do not promote to `final/04_페이지.png` through `final/07_페이지.png` until the user approves the Batch 2 candidate set or requests targeted retries.
