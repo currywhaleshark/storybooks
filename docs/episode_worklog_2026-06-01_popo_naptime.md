@@ -218,3 +218,68 @@ Current Batch 2 review state:
 - Do not replace final pages 4-7 unless the user explicitly requests a targeted revision.
 - Batch 3 handoff created:
   - `series/coral-town-daycare/images/episodes/포포는_안_졸려/work_2026-06-01/batch_3_handoff.md`
+
+## 2026-06-01 Batch 3 Preparation
+
+- Read and cross-checked:
+  - `docs/episode_worklog_2026-06-01_popo_naptime.md`
+  - `series/coral-town-daycare/images/episodes/포포는_안_졸려/work_2026-06-01/batch_3_handoff.md`
+  - `series/coral-town-daycare/docs/episodes/popo_naptime_story_prompts.md`
+  - `series/coral-town-daycare/docs/산호마을_어린이집_이미지_규칙서.md`
+- Visually inspected approved final continuity pages:
+  - `final/04_페이지.png`
+  - `final/05_페이지.png`
+  - `final/06_페이지.png`
+  - `final/07_페이지.png`
+- Created Batch 3 prompt/reference plan:
+  - `series/coral-town-daycare/images/episodes/포포는_안_졸려/work_2026-06-01/batch_3/batch_3_prompt_plan.md`
+- Batch 3 generation scope remains pages 8-12 only.
+- Do not promote any Batch 3 candidate to final until user approval or targeted instructions.
+
+## 2026-06-01 Batch 3 Generation
+
+Generated Batch 3 candidates and saved them into:
+
+`series/coral-town-daycare/images/episodes/포포는_안_졸려/work_2026-06-01/batch_3`
+
+| File | Scene | QA judgment | Notes |
+| --- | --- | --- | --- |
+| `08_candidate_text_v1.png` | Page 8 Mari notices tired Popo | Fail / do not use | User caught that visible eyes were drawn on Popo. Popo should not have drawn eyes unless explicitly requested; emotion should come from the mouth, bell, and tentacles only. |
+| `09_candidate_text_v1.png` | Page 9 Mari explains naps gather strength | Fail / do not use | User caught the same visible-eye issue on Popo. Also hold this page out of review; regenerate with no visible/drawn Popo eyes. |
+| `08_candidate_text_v2.png` | Page 8 Mari notices tired Popo, no-eye retry | Candidate pass / user review | Regenerated with the strengthened Popo lock. Popo has no visible/drawn eyes; emotion reads through the small mouth, drooped bell, and tentacles. Mari lowers herself warmly, Banguli appears once, and the page keeps the playground/text-panel continuity. |
+| `09_candidate_text_v2.png` | Page 9 Mari explains naps gather strength, no-eye retry | Candidate pass / user review | Regenerated with no visible/drawn Popo eyes. Popo's realization reads through the round mouth and attentive tilted bell. Mari's rounded-hand strength gesture is clear, Banguli appears once, and the Korean text is readable. |
+| `10_candidate_text_v1.png` | Page 10 Popo rests softly | User-approved / promoted to final | Assistant initially flagged a possible closed-eye-like mark on Popo, but user reviewed and approved v1 as the final choice for page 10. |
+| `10_candidate_text_v2.png` | Page 10 Popo rests softly, no-eye retry | Fail / do not use | Popo face improved, but generated text repeated part of `살며시—` incorrectly. |
+| `10_candidate_text_v3.png` | Page 10 Popo rests softly, text retry | Superseded / do not promote | Popo has no visible/drawn eyes and no bag; emotion reads through the small mouth, rested bell, and relaxed tentacles. User selected v1 instead. |
+| `11_candidate_text_v1.png` | Page 11 next day Popo settles first | User-approved / promoted to final | Popo has no visible/drawn eyes, no bag, and chooses the aqua bed first. The familiar nap-room bed map is preserved well. Banguli appears once beside Popo. |
+| `12_candidate_text_v1.png` | Page 12 Popo floats highest | User-approved / promoted to final | Popo floats highest with no visible/drawn eyes; emotion reads through the open mouth, lifted bell, and spread tentacles. Banguli appears once. Aru's red-and-white scarf is visible, and friends/Mari look up warmly. |
+
+Current Batch 3 review state:
+
+- Page 8: `08_candidate_text_v2.png` is user-approved.
+- Page 9: `09_candidate_text_v2.png` is user-approved.
+- Page 10: `10_candidate_text_v1.png` is user-approved.
+- Page 11: `11_candidate_text_v1.png` is user-approved.
+- Page 12: `12_candidate_text_v1.png` is user-approved.
+- Batch 3 is closed and promoted to final:
+  - `final/08_페이지.png` from `batch_3/08_candidate_text_v2.png`
+  - `final/09_페이지.png` from `batch_3/09_candidate_text_v2.png`
+  - `final/10_페이지.png` from `batch_3/10_candidate_text_v1.png`
+  - `final/11_페이지.png` from `batch_3/11_candidate_text_v1.png`
+  - `final/12_페이지.png` from `batch_3/12_candidate_text_v1.png`
+- Do not replace final pages 8-12 unless the user explicitly requests a targeted revision.
+
+## 2026-06-02 Page 1 Bed-Map Continuity Issue
+
+- User identified a continuity issue: `final/01_페이지.png` does not match the nap-room bed placement established across the later nap-room pages.
+- Visual comparison confirmed that page 1 is less consistent with the stable bed map used in `final/02_페이지.png`, `final/03_페이지.png`, `final/04_페이지.png`, and `final/11_페이지.png`.
+- The existing Batch 1 page 1 candidates are not clean replacements:
+  - `01_candidate_text_v3.png` has a similar page role but is weaker for Popo structure and should not be promoted.
+  - `01_candidate_text_v4_ref.png` remains the current final source, but needs a targeted retry for bed-map continuity.
+- New targeted retry:
+  - `01_candidate_text_v5_bedmap.png` - Fail / do not use. Bed-map continuity improved, but Popo gained a separate face/body impression under the bell/gat area, breaking the official lock that Popo's translucent bell itself is the face.
+  - `01_candidate_text_v6_bedmap_popo_lock.png` - Candidate for user review. Bed-map continuity is closer to the later nap-room pages, and Popo is now drawn as a single translucent bell in the aqua bed without a separate face/head/body under the bell. Text appears readable and close to the approved page 1 text.
+  - `01_candidate_text_v7_bedmap_mari_center_seahorse_ref.png` - User-approved / promoted to final. Regenerated after user noted Mari teacher should move toward the center, Aru should move higher/back to match the next page, and the seahorse friends should match original references instead of looking like coral grows from their heads. QA note: Mari is now centered, Aru sits higher/back, Popo remains a single bell in the aqua bed, and Lulu/Sua read closer to the original seahorse silhouettes with rounded ridge bumps rather than branching coral.
+- Page 1 replacement is promoted to final:
+  - `final/01_페이지.png` from `batch_1/01_candidate_text_v7_bedmap_mari_center_seahorse_ref.png`
+- Do not replace `final/01_페이지.png` again unless the user explicitly requests another targeted revision.
