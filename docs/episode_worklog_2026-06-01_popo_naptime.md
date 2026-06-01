@@ -210,4 +210,11 @@ Current Batch 2 review state:
 - Page 5: `05_candidate_text_v2.png` is user-approved.
 - Page 6: `06_candidate_text_v2.png` is user-approved.
 - Page 7: `07_candidate_text_v2.png` is user-approved.
-- Do not promote to `final/04_페이지.png` through `final/07_페이지.png` until the user approves the Batch 2 candidate set or requests targeted retries.
+- Batch 2 is closed and promoted to final:
+  - `final/04_페이지.png` from `batch_2/04_candidate_text_v6.png`
+  - `final/05_페이지.png` from `batch_2/05_candidate_text_v2.png`
+  - `final/06_페이지.png` from `batch_2/06_candidate_text_v2.png`
+  - `final/07_페이지.png` from `batch_2/07_candidate_text_v2.png`
+- Do not replace final pages 4-7 unless the user explicitly requests a targeted revision.
+- Batch 3 handoff created:
+  - `series/coral-town-daycare/images/episodes/포포는_안_졸려/work_2026-06-01/batch_3_handoff.md`
