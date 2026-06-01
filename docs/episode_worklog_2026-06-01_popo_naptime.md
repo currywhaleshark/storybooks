@@ -201,10 +201,12 @@ Generated Batch 2 candidates and saved them into:
 | `06_candidate_text_v2.png` | Page 6 Popo gets sleepy, Aru scarf retry | Candidate for user review | Regenerated because Aru's scarf was missing in v1. This version shows Aru's red-and-white sailor scarf clearly while keeping Popo centered and sleepy. |
 | `07_candidate_text_v2.png` | Page 7 Popo cannot float highest, Aru scarf retry | Candidate for user review | Regenerated because Aru's scarf was missing in v1. This version shows Aru's red-and-white sailor scarf clearly and preserves the vertical contrast with Popo low and friends high. |
 | `04_candidate_text_v4.png` | Page 4 nap time ends, bed-map continuity retry | Candidate for user review | Regenerated because v3 changed the nap-room and bed layout too far from final pages 1-3. This version restores the familiar left text panel, Lulu red bed at lower left/front, Jun-i blue bed at lower center-left, Mongle purple bed at lower center/front, Aru yellow bed at upper center-right/back, and Popo's empty aqua bed at front/right. QA note: bed coordinates are closer to pages 1-3 but not pixel-identical; no child bags are visible, and Jun-i has raised shark fins rather than gloves. |
+| `04_candidate_text_v5.png` | Page 4 nap time ends, Sua/Mongle placement retry | Candidate for user review | Regenerated because v4 placed Mongle in the lower/front spot below Jun-i where Sua should be. This version puts Sua, the purple seahorse, below/in front of Jun-i and moves Mongle to the right-side bed area. No child bags are visible; Jun-i still reads as a blue shark with raised fins. QA note: Popo floats slightly more central than ideal, but the specific Sua/Mongle bed-map error is corrected. |
+| `04_candidate_text_v6.png` | Page 4 nap time ends, Sua bed color retry | Candidate for user review | Regenerated because v5 placed Sua correctly but changed Sua's bed to green/teal. This version keeps Sua below/in front of Jun-i in a purple/lavender bed and keeps the aqua/teal bed reserved for Popo's empty bed. No child bags are visible; Jun-i uses raised shark fins rather than gloves. |
 
 Current Batch 2 review state:
 
-- Page 4: `04_candidate_text_v4.png` is the current preferred candidate after the bed-map continuity retry.
+- Page 4: `04_candidate_text_v6.png` is the current preferred candidate after the Sua bed color retry.
 - Page 5: `05_candidate_text_v2.png` is user-approved.
 - Page 6: `06_candidate_text_v2.png` is user-approved.
 - Page 7: `07_candidate_text_v2.png` is user-approved.
