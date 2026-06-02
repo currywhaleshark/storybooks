@@ -3,3 +3,6 @@ print-output/
 __pycache__/
 *.pyc
 _skill_repo/
+
+# Completed episode work images kept locally only.
+series/coral-town-daycare/images/episodes/포포는_안_졸려/work_2026-06-01/**/*.png
