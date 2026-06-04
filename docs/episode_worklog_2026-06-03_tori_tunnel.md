@@ -200,3 +200,114 @@
   - Start with one low-complexity page such as page 3 or cover to check whether image model reference fidelity has recovered.
   - If quality is better, continue with smaller grouped generations for pages 1-2.
   - Keep all hard locks: outside playtime means no bags; Lulu and Sua must not mix; Aru must have no hands/arms/legs/feet and must keep scarf; tunnel size stays just large enough that Tori has to lower his body/head to pass.
+
+## Batch 1 fresh reference-board pass - 2026-06-04
+
+- Restarted Batch 1 from the next-day handoff using the page-specific reference boards.
+- Generation mode:
+  - illustration-only candidates with clean blank text panels/spaces.
+  - exact Korean story text still needs a deterministic text pass after user visual approval.
+- Fresh candidate set:
+  - `series/coral-town-daycare/images/episodes/토리야_한_걸음만/work_2026-06-03/batch_1/00_cover_candidate_refboard_fresh_v1.png`
+    - QA: candidate pass for mobile review. Tori/Banguli/tunnel relationship is clear, no bag on Tori, blank title/subtitle panels available. Tunnel is prominent but still warm and toddler-safe.
+  - `series/coral-town-daycare/images/episodes/토리야_한_걸음만/work_2026-06-03/batch_1/01_candidate_refboard_fresh_v1.png`
+    - QA: candidate pass for mobile review. Character reference fidelity is improved over the aborted prose-only pass. No child bags visible, Aru remains limbless with scarf, Lulu/Sua separation is readable, and the group scene is less inspection-like than the prior refboard candidate.
+  - `series/coral-town-daycare/images/episodes/토리야_한_걸음만/work_2026-06-03/batch_1/02_candidate_refboard_fresh_v1.png`
+    - QA: candidate pass for mobile review. Jun's pose is simpler and less awkward than the prior diagnostic candidate. Tori watches from the side with no bag; Aru/Lulu/Mongle identities are readable. Tunnel is slightly large but remains soft and non-scary.
+  - `series/coral-town-daycare/images/episodes/토리야_한_걸음만/work_2026-06-03/batch_1/03_candidate_refboard_fresh_v1.png`
+    - QA: candidate pass / review carefully. Tori identity, no-bag rule, and blank text panel pass. One worry-thought cloud is darker than ideal, so user should decide whether to keep, lighten in edit, or regenerate page 3.
+- Mobile review upload:
+  - Google Slides: https://docs.google.com/presentation/d/14TQ2mpYPU8-58h0k1N-M5MjHtRjNLKDBc4-JApFrag8/edit?usp=drivesdk
+- Current status:
+  - Do not promote to final yet.
+  - Await user visual approval or targeted regeneration requests.
+  - If approved, next step is deterministic Korean text-panel pass for cover and pages 1-3, then final promotion.
+
+## Batch 1 text-in-image pass - 2026-06-04
+
+- User feedback on `*_refboard_fresh_v1`:
+  - Character fidelity is better than the prior day but still weak.
+  - Page 1 Mari teacher is not accurate enough.
+  - Page 1 Sua outfit is distorted.
+  - Tunnel scale is too large overall.
+  - Required tunnel scale: just large enough that Tori must bend/lower the body to pass.
+- Generated text-in-image candidates:
+  - `00_cover_candidate_text_fresh_v1.png`
+  - `01_candidate_text_fresh_v1.png`
+  - `02_candidate_text_fresh_v1.png`
+  - `03_candidate_text_fresh_v1.png`
+- QA on v1 text candidates:
+  - Text rendering is stronger than earlier text attempts.
+  - Tunnel scale still reads too large, especially pages 2-3.
+  - Do not use v1 as the primary review set unless comparing text quality.
+- Generated stricter small-tunnel v2 candidates:
+  - `00_cover_candidate_text_fresh_v2.png`
+    - QA: primary text review candidate. Korean text readable. Tunnel is smaller than v1 and shows Tori standing taller than the opening, but still visually prominent.
+  - `01_candidate_text_fresh_v2.png`
+    - QA: primary text review candidate. Korean text readable. Mari teacher is improved; Sua keeps lavender/blue direction better than v1. Tunnel is lower and smaller than v1, though still has strong page presence.
+  - `02_candidate_text_fresh_v2.png`
+    - QA: primary text review candidate. Korean text readable. Tunnel scale is best aligned with the user's bend/lower-body requirement; Jun's pose supports the low-opening scale.
+  - `03_candidate_text_fresh_v2.png`
+    - QA: primary text review candidate with caveat. Korean text readable and tunnel is smaller than v1. One thought cloud remains darker than ideal; consider lightening or regenerating if user rejects the mood.
+- Current recommended review set:
+  - `00_cover_candidate_text_fresh_v2.png`
+  - `01_candidate_text_fresh_v2.png`
+  - `02_candidate_text_fresh_v2.png`
+  - `03_candidate_text_fresh_v2.png`
+- Google Drive upload status:
+  - Created empty review deck: https://docs.google.com/presentation/d/1p05mqwc5Q4u7YmX7ZrYU4WSrc96OOUdjRni-fmEXqbE/edit?usp=drivesdk
+  - After explicit user approval, inserted all four v2 text candidates into the deck and removed the default blank title slide.
+  - Verified the deck contains only four review slides.
+- Current status:
+  - Do not promote to final yet.
+  - Await mobile visual review decision.
+
+## Coral tunnel prop scale lock - 2026-06-04
+
+- User observed the coral tunnel size and shape keep changing between pages.
+- Diagnosis:
+  - The existing playground reference only contains the tunnel as a single background element.
+  - Page prompts were asking the image model to reinterpret tunnel size and shape per scene.
+  - For this episode, the tunnel must be treated as a recurring prop with a concrete reference sheet, especially for scale.
+- Generated prop reference sheet candidates:
+  - `series/coral-town-daycare/images/episodes/토리야_한_걸음만/work_2026-06-03/prop_refs/coral_tunnel_scale_reference_sheet_v1.png`
+    - QA: useful layout, but still reads too much like a coral cave/mound and the entrance is slightly high for the required Tori bend.
+  - `series/coral-town-daycare/images/episodes/토리야_한_걸음만/work_2026-06-03/prop_refs/coral_tunnel_scale_reference_sheet_v2.png`
+    - QA: preferred prop lock candidate. Lower, flatter toddler crawl-tube silhouette; Tori must bend at the waist to enter; Mari teacher is clearly too tall; small child scale is readable.
+- Promoted reference copy for future sessions:
+  - `series/coral-town-daycare/references/props/산호_터널_크기비교_레퍼런스_v1.png`
+- User feedback on promoted v1:
+  - It still reads as a closed coral cave, not a pass-through tunnel.
+  - The crawling Tori is much smaller than the standing Tori, which breaks the scale comparison.
+- Generated corrected pass-through candidate:
+  - `series/coral-town-daycare/images/episodes/토리야_한_걸음만/work_2026-06-03/prop_refs/coral_tunnel_scale_reference_sheet_v3.png`
+    - QA: preferred over v1/v2. Both ends are visibly open; front and 3/4 views read as a pass-through tunnel rather than a cave. Bending Tori is closer to the same scale as standing Tori, though the coral body remains visually thick.
+- Updated promoted reference copy for future sessions:
+  - `series/coral-town-daycare/references/props/산호_터널_크기비교_레퍼런스_v2.png`
+- Carried-forward tunnel lock:
+  - Use `series/coral-town-daycare/references/props/산호_터널_크기비교_레퍼런스_v2.png` as the visual source of truth for every future page containing the coral tunnel.
+  - Prompt lock: the tunnel is a pass-through low toddler crawl-through half-cylinder tube with both ends open, not a cave, not a closed den, not a giant arch, not a building-like mound.
+  - Scale lock: tunnel top is around Tori's lower chest / upper belly height when Tori stands beside it; Tori must bend at the waist and lower the shell/head to pass.
+  - Same-character scale lock: if Tori appears standing and bending/crawling in the same reference or story page, both poses must keep the same head, shell, hat, and body size; only the pose changes.
+  - Teacher lock: Mari teacher is far too tall to enter.
+  - Avoid generating Batch 1 pages again from the old playground tunnel alone; attach this prop reference sheet together with character references.
+
+## Handoff before commit/push - 2026-06-04
+
+- User had to move and requested logging, commit, and push.
+- Current newest prop reference:
+  - `series/coral-town-daycare/references/props/산호_터널_크기비교_레퍼런스_v2.png`
+  - Use this instead of the earlier cave-like tunnel references.
+- First cover regeneration attempt with the new tunnel reference:
+  - `series/coral-town-daycare/images/episodes/토리야_한_걸음만/work_2026-06-03/batch_1/00_cover_candidate_text_prop_tunnel_v1_reject.png`
+  - Status: reject / diagnostic only.
+  - Problems:
+    - Cover was not generated in the required A5 portrait format.
+    - Tunnel reads as a pass-through tunnel better than before, but it is slightly too small for the cover composition.
+    - Tori still needs to remain clearly larger than the tunnel opening, but the tunnel itself can be a little larger and more readable than this rejected cover attempt.
+- Next concrete action:
+  - Regenerate cover first, not the full batch.
+  - Required canvas/composition: A5 portrait cover, not landscape.
+  - Required tunnel lock: both ends open / pass-through, not a cave; slightly larger than `00_cover_candidate_text_prop_tunnel_v1_reject.png`, but still low enough that Tori must bend at the waist to pass.
+  - Required Tori lock: no outside-play bag; green turtle child with yellow hat and shell.
+  - Required text: include exact Korean cover text only after the A5 portrait composition and tunnel scale are correct, or generate with text if text fidelity is stable.

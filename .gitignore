@@ -4,6 +4,9 @@ __pycache__/
 *.pyc
 _skill_repo/
 
+# Local-only generated episode work images. Keep final/ deliverables tracked.
+series/*/images/episodes/*/work_*/**/*.png
+
 # Completed episode work images kept locally only.
 series/coral-town-daycare/images/episodes/포포는_안_졸려/work_2026-06-01/**/*.png
 series/coral-town-daycare/images/episodes/산호마을_어린이집의_기다림_이야기/work_2026-05-28/**/*.png
