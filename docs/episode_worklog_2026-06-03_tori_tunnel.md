@@ -311,3 +311,60 @@
   - Required tunnel lock: both ends open / pass-through, not a cave; slightly larger than `00_cover_candidate_text_prop_tunnel_v1_reject.png`, but still low enough that Tori must bend at the waist to pass.
   - Required Tori lock: no outside-play bag; green turtle child with yellow hat and shell.
   - Required text: include exact Korean cover text only after the A5 portrait composition and tunnel scale are correct, or generate with text if text fidelity is stable.
+
+## Cover text-in-image retry with prop reference - 2026-06-04
+
+- User requested one more cover generation with text included, 반드시 레퍼런스 이미지 참조.
+- References inspected immediately before generation:
+  - `series/coral-town-daycare/references/characters/토리.png`
+  - `series/coral-town-daycare/references/characters/방울이.png`
+  - `series/coral-town-daycare/references/배경_전경과_놀이터.png`
+  - `series/coral-town-daycare/references/props/산호_터널_크기비교_레퍼런스_v2.png`
+- Generated and saved:
+  - `series/coral-town-daycare/images/episodes/토리야_한_걸음만/work_2026-06-03/batch_1/00_cover_candidate_text_prop_tunnel_v2_hold.png`
+- QA:
+  - A5 portrait composition: pass.
+  - Korean cover text: mostly readable; title is close to exact, subtitle is readable.
+  - Reference use: playground mood, Tori/Banguli, and pass-through tunnel are visibly reference-driven.
+  - Hold / do not promote yet:
+    - Tori still appears to retain a strap/backpack-like detail despite the no-bag lock.
+    - Tunnel remains somewhat large/high relative to the strict lower-chest / upper-belly scale lock.
+- Next recommended action:
+  - If regenerating again, use an even simpler cover composition with Tori drawn from the front/side without any back-visible area, so the model cannot preserve a bag/strap silhouette from the character sheet.
+  - Keep text-in-image if user prioritizes quick mobile review; otherwise generate illustration-only after the no-bag and tunnel scale pass, then add deterministic text.
+
+## Batch 1 body text-in-image attempt with prop reference - 2026-06-04
+
+- User approved the cover direction as good-looking and requested trying the body pages too.
+- References inspected / used in context before generation:
+  - `series/coral-town-daycare/references/characters/토리.png`
+  - `series/coral-town-daycare/references/characters/마리_선생님.png`
+  - `series/coral-town-daycare/references/characters/준이.png`
+  - `series/coral-town-daycare/references/characters/아루.png`
+  - `series/coral-town-daycare/references/characters/루루.png`
+  - `series/coral-town-daycare/references/characters/몽글이.png`
+  - `series/coral-town-daycare/references/characters/수아.png`
+  - `series/coral-town-daycare/references/characters/포포.png`
+  - `series/coral-town-daycare/references/props/산호_터널_크기비교_레퍼런스_v2.png`
+- Note:
+  - The older `batch_1/ref_boards/` image files are no longer present after repository sync, so generation used the official source references directly rather than the missing board composites.
+- Generated and saved:
+  - `series/coral-town-daycare/images/episodes/토리야_한_걸음만/work_2026-06-03/batch_1/02_candidate_text_prop_tunnel_v1_hold.png`
+  - `series/coral-town-daycare/images/episodes/토리야_한_걸음만/work_2026-06-03/batch_1/03_candidate_text_prop_tunnel_v1_hold.png`
+- QA:
+  - Page 2 hold:
+    - Tori no-bag direction improved.
+    - Friend action and pass-through tunnel are readable.
+    - Text is not exact; `슝—` appears unreliable.
+    - Tunnel still reads larger than the strict prop scale lock.
+  - Page 3 hold:
+    - Tori worry mood and text block are readable.
+    - Text is not exact enough for final.
+    - Tunnel still reads larger than the strict prop scale lock.
+- Page 1:
+  - Three text-in-image generation attempts failed with image generation server errors, including simplified prompts.
+  - Do not infer a visual QA judgment for page 1 from this failure; retry later with a shorter prompt or a freshly rebuilt page-specific reference board.
+- Current recommendation:
+  - Treat pages 2-3 as mobile-review / direction candidates only.
+  - For final-quality body pages, rebuild page-specific ref boards including the new tunnel prop reference, then regenerate in smaller units.
+  - If exact Korean text remains unstable, use approved illustration candidates plus deterministic text panel placement.
