@@ -9,9 +9,59 @@ This note explains how to recreate narrated storybook videos from the existing p
 - Gemini-TTS narration using voices such as `Kore`.
 - Optional silence between pages so the narration does not feel rushed.
 
+## Local Web App
+
+The browser workflow is available as a local web app:
+
+```powershell
+C:\Users\yurib\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe tools\tts-video\server.py
+```
+
+Open:
+
+```text
+http://localhost:4174
+```
+
+The app can:
+
+- Discover episode `final` image folders under `series`.
+- Preview page images.
+- Extract page narration from markdown script files.
+- Edit and save `tts_script.md`.
+- Select TTS mode, model, voice, style prompt, speed, pitch, and page gap.
+- Select `gemini-3.1-flash-tts-preview` when it is available to the current Google Cloud project.
+- Assemble a video from already generated page audio files if a preview TTS model is not reachable from this app.
+- Generate page-by-page review audio, listen to each page, reroll only weak pages, then assemble the final video from the approved audio files.
+- Start a render job and poll its progress.
+
 Current example output:
 
 `series/sherlock-fin-deep-city/videos/누가_먼저_왔을까_tts_google/sherlock_fin_ep01_gemini25_kore_gap.mp4`
+
+## Episode Script Storage
+
+For every storybook episode, keep the full source prompt/script Markdown in the series project folder:
+
+```text
+series/<series-name>/docs/episodes/<episode-title>.md
+```
+
+This full source file should preserve scene directions, composition notes, key emotions, image prompts, and page text.
+
+When a separate narration-only file is useful, keep it beside the source script:
+
+```text
+series/<series-name>/docs/episodes/<episode-title>_tts.md
+```
+
+The TTS web app lists both files as script candidates for the matching episode image folder and prefers `_tts.md` files when they match the episode title. For reliable extraction, the TTS file should include a `### 페이지 텍스트` heading followed by a fenced `text` block containing only the narration for that page.
+
+When the web app saves edited narration for a specific video run, it still writes that run-specific copy to:
+
+```text
+series/<series-name>/videos/<episode-title>_tts_app/tts_script.md
+```
 
 ## Required Local Tools
 
@@ -113,6 +163,14 @@ Current verified model:
 gemini-2.5-flash-tts
 ```
 
+The web app also exposes:
+
+```text
+gemini-3.1-flash-tts-preview
+```
+
+This model is still preview-labeled. If the Cloud Text-to-Speech API rejects it for the current account, region, or project, generate page audio separately in Google Cloud Studio or another supported console, download the files, and use the web app's `오디오 파일 업로드` mode.
+
 Example:
 
 ```powershell
@@ -156,6 +214,34 @@ python make_tts_video.py --tts gemini --reuse-audio --page-gap 1.0 --output outp
 ```
 
 Important: `--reuse-audio` reuses whatever is in the `audio` folder, so only use it when the audio was generated with the intended voice/model.
+
+## Building Video From Downloaded Audio
+
+In the web app, choose `TTS 방식` -> `오디오 파일 업로드`.
+
+Prepare one audio file per page, including the cover page when the episode has `00_...` as the first image. Name the files with matching leading numbers:
+
+```text
+00.mp3
+01.mp3
+02.mp3
+...
+```
+
+Then select all audio files in the upload field and click `영상 만들기`. Files are matched by the leading number in the filename. MP3 files are used directly; WAV, M4A, OGG, and OPUS files are converted to MP3 with FFmpeg before assembly.
+
+## Page Audio Review Workflow
+
+For normal Gemini or Cloud TTS work, use this flow instead of creating the final video immediately:
+
+1. Extract or edit the TTS script.
+2. Select model, voice, style, speed, and pitch.
+3. Click `검수용 음성 생성`.
+4. Listen to each page in `음성 검수`.
+5. Click `리롤` only on pages with bad pronunciation or weak delivery.
+6. Click `영상 만들기`.
+
+When page review audio exists, `영상 만들기` reuses the approved `audio/00.mp3`, `audio/01.mp3`, ... files instead of calling TTS again. Changing the script, model, voice, style, speed, or pitch invalidates the review audio and requires generating it again.
 
 ## Porting To Another Episode
 

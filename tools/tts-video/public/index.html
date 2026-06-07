@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>그림책 TTS 영상 제작</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <main class="app">
+      <header class="topbar">
+        <div>
+          <h1>그림책 TTS 영상 제작</h1>
+          <p id="summary">에피소드를 불러오는 중입니다.</p>
+        </div>
+        <button id="reloadButton" type="button">새로고침</button>
+      </header>
+
+      <section class="workspace">
+        <aside class="sidebar">
+          <label class="field">
+            <span>에피소드</span>
+            <select id="episodeSelect"></select>
+          </label>
+
+          <label class="field">
+            <span>대본 파일</span>
+            <select id="scriptSelect"></select>
+          </label>
+
+          <div class="button-row">
+            <button id="extractButton" type="button">대본 추출</button>
+            <button id="saveButton" type="button" class="secondary">원고 저장</button>
+          </div>
+
+          <label class="field">
+            <span>대본 파일 직접 선택</span>
+            <input id="scriptFileInput" type="file" accept=".md,.txt,text/markdown,text/plain">
+          </label>
+
+          <label class="field">
+            <span>대본 붙여넣기</span>
+            <textarea id="scriptPaste" rows="5" placeholder="Markdown 대본을 붙여넣은 뒤 아래 버튼을 누르세요."></textarea>
+          </label>
+
+          <button id="extractPasteButton" type="button" class="secondary">붙여넣은 대본 추출</button>
+
+          <section class="settings">
+            <h2>낭독 설정</h2>
+
+            <label class="field">
+              <span>TTS 방식</span>
+              <select id="ttsSelect">
+                <option value="gemini">Gemini-TTS</option>
+                <option value="cloud">Cloud TTS</option>
+                <option value="google">Google Translate TTS</option>
+                <option value="manual">오디오 파일 업로드</option>
+              </select>
+            </label>
+
+            <label class="field gemini-only">
+              <span>Gemini 모델</span>
+              <select id="geminiModel">
+                <option value="gemini-3.1-flash-tts-preview">gemini-3.1-flash-tts-preview</option>
+                <option value="gemini-2.5-flash-tts">gemini-2.5-flash-tts</option>
+                <option value="gemini-2.5-flash-lite-preview-tts">gemini-2.5-flash-lite-preview-tts</option>
+                <option value="gemini-2.5-pro-tts">gemini-2.5-pro-tts</option>
+              </select>
+            </label>
+
+            <label class="field gemini-only">
+              <span>Gemini 보이스</span>
+              <select id="geminiVoice">
+                <option>Kore</option>
+                <option>Aoede</option>
+                <option>Callirrhoe</option>
+                <option>Leda</option>
+                <option>Despina</option>
+                <option>Zephyr</option>
+                <option>Puck</option>
+                <option>Charon</option>
+                <option>Achernar</option>
+                <option>Achird</option>
+                <option>Algenib</option>
+                <option>Algieba</option>
+                <option>Alnilam</option>
+                <option>Autonoe</option>
+                <option>Enceladus</option>
+                <option>Erinome</option>
+                <option>Fenrir</option>
+                <option>Gacrux</option>
+                <option>Iapetus</option>
+                <option>Laomedeia</option>
+                <option>Orus</option>
+                <option>Pulcherrima</option>
+                <option>Rasalgethi</option>
+                <option>Sadachbia</option>
+                <option>Sadaltager</option>
+                <option>Schedar</option>
+                <option>Sulafat</option>
+                <option>Umbriel</option>
+                <option>Vindemiatrix</option>
+                <option>Zubenelgenubi</option>
+              </select>
+            </label>
+
+            <label class="field manual-only">
+              <span>페이지별 오디오</span>
+              <input id="manualAudioInput" type="file" multiple accept="audio/*,.mp3,.wav,.m4a,.ogg,.opus">
+            </label>
+            <p id="manualAudioStatus" class="hint manual-only">파일명 앞 숫자 기준으로 00, 01, 02 순서에 맞춰 붙입니다.</p>
+
+            <label class="field cloud-only">
+              <span>Cloud 보이스</span>
+              <div class="inline-field">
+                <select id="cloudVoice">
+                  <option>ko-KR-Chirp3-HD-Kore</option>
+                  <option>ko-KR-Chirp3-HD-Aoede</option>
+                  <option>ko-KR-Neural2-A</option>
+                  <option>ko-KR-Wavenet-A</option>
+                </select>
+                <button id="voiceButton" type="button" class="icon-button" title="보이스 목록 새로고침">↻</button>
+              </div>
+            </label>
+
+            <label class="field">
+              <span>스타일</span>
+              <textarea id="stylePrompt" rows="5">따뜻하고 다정한 어린이 그림책 낭독가처럼 읽어 주세요. 유아가 따라듣기 좋게 또박또박 읽고, 문장 끝은 자연스럽게 쉬어 주세요.</textarea>
+            </label>
+
+            <label class="range-field">
+              <span>속도 <strong id="speedValue">1.00</strong></span>
+              <input id="speedInput" type="range" min="0.75" max="1.2" step="0.01" value="1">
+            </label>
+
+            <label class="range-field">
+              <span>피치 <strong id="pitchValue">0.0</strong></span>
+              <input id="pitchInput" type="range" min="-6" max="6" step="0.5" value="0">
+            </label>
+
+            <label class="range-field">
+              <span>페이지 텀 <strong id="gapValue">0.8초</strong></span>
+              <input id="gapInput" type="range" min="0" max="2" step="0.1" value="0.8">
+            </label>
+
+            <label class="field">
+              <span>출력 파일명</span>
+              <input id="outputName" type="text" value="storybook_tts.mp4">
+            </label>
+
+            <label class="field">
+              <span>미리듣기 문장</span>
+              <textarea id="sampleText" rows="3">포포는 안 졸려요. 낮잠은 신나게 놀 힘을 모으는 시간이래요.</textarea>
+            </label>
+
+            <div class="button-row">
+              <button id="sampleButton" type="button" class="secondary">보이스 미리듣기</button>
+              <audio id="sampleAudio" controls></audio>
+            </div>
+
+            <button id="reviewAudioButton" type="button" class="secondary">검수용 음성 생성</button>
+            <button id="renderButton" type="button" class="primary">영상 만들기</button>
+          </section>
+        </aside>
+
+        <section class="main-panel">
+          <section class="preview-panel">
+            <div class="panel-header">
+              <h2>페이지</h2>
+              <span id="pageCount">0장</span>
+            </div>
+            <div id="pageStrip" class="page-strip"></div>
+          </section>
+
+          <section class="editor-panel">
+            <div class="panel-header">
+              <h2>TTS 원고</h2>
+              <span id="scriptStatus">대본 추출 전</span>
+            </div>
+            <div id="scriptEditor" class="script-editor"></div>
+          </section>
+
+          <section class="audio-review-panel">
+            <div class="panel-header">
+              <h2>음성 검수</h2>
+              <span id="audioReviewStatus">미생성</span>
+            </div>
+            <div id="audioReviewList" class="audio-review-list"></div>
+          </section>
+
+          <section class="status-panel">
+            <div class="panel-header">
+              <h2>상태</h2>
+              <span id="jobState">대기</span>
+            </div>
+            <pre id="statusLog">준비 중입니다.</pre>
+          </section>
+        </section>
+      </section>
+    </main>
+    <script src="/app.js"></script>
+  </body>
+</html>

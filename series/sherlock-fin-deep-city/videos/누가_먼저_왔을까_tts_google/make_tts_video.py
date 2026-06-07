@@ -291,6 +291,7 @@ def build_segments(
     speaking_rate: float,
     pitch: float,
     page_gap: float,
+    audio_tail_pad: float,
 ) -> list[Path]:
     audio_dir = OUT_DIR / "audio"
     segment_dir = OUT_DIR / "segments"
@@ -331,7 +332,8 @@ def build_segments(
             else:
                 download_google_tts(page["text"], audio, slow=True)
 
-        duration = max(3.0, ffprobe_duration(audio) + max(0.0, page_gap))
+        padding = max(0.0, page_gap) + max(0.0, audio_tail_pad)
+        duration = max(3.0, ffprobe_duration(audio) + padding)
         segment = segment_dir / f"{index:02d}.mp4"
         vf = (
             "scale=1920:1080:force_original_aspect_ratio=decrease,"
@@ -358,7 +360,7 @@ def build_segments(
                 "-tune",
                 "stillimage",
                 "-af",
-                f"apad=pad_dur={max(0.0, page_gap):.3f}",
+                f"apad=pad_dur={padding:.3f}",
                 "-c:a",
                 "aac",
                 "-b:a",
@@ -379,9 +381,14 @@ def concatenate(segments: list[Path], output: Path) -> None:
 
 
 def main() -> int:
+    global EPISODE_DIR, OUT_DIR, SCRIPT_PATH
+
     parser = argparse.ArgumentParser()
     parser.add_argument("--reuse-audio", action="store_true")
     parser.add_argument("--output", default="sherlock_fin_ep01_google_tts.mp4")
+    parser.add_argument("--episode-dir", default=str(EPISODE_DIR))
+    parser.add_argument("--script-path", default=str(SCRIPT_PATH))
+    parser.add_argument("--out-dir", default=str(OUT_DIR))
     parser.add_argument("--tts", choices=["google", "cloud", "gemini", "sapi"], default="google")
     parser.add_argument("--cloud-language", default="ko-KR")
     parser.add_argument("--cloud-voice", default="ko-KR-Neural2-A")
@@ -394,8 +401,16 @@ def main() -> int:
     parser.add_argument("--speaking-rate", type=float, default=0.9)
     parser.add_argument("--pitch", type=float, default=0.0)
     parser.add_argument("--page-gap", type=float, default=0.8)
+    parser.add_argument("--audio-tail-pad", type=float, default=0.35)
     parser.add_argument("--list-cloud-voices", action="store_true")
+    parser.add_argument("--sample-text", default="")
+    parser.add_argument("--sample-output", default="")
     args = parser.parse_args()
+
+    EPISODE_DIR = Path(args.episode_dir).resolve()
+    SCRIPT_PATH = Path(args.script_path).resolve()
+    OUT_DIR = Path(args.out_dir).resolve()
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
 
     if args.list_cloud_voices:
         for voice in list_cloud_voices(args.cloud_language):
@@ -404,6 +419,33 @@ def main() -> int:
             sample_rate = voice.get("naturalSampleRateHertz", "")
             languages = ",".join(voice.get("languageCodes", []))
             print(f"{name}\t{gender}\t{sample_rate}\t{languages}")
+        return 0
+
+    if args.sample_text:
+        sample_output = Path(args.sample_output or "tts_sample.mp3")
+        if args.tts == "cloud":
+            download_cloud_tts(
+                args.sample_text,
+                sample_output,
+                voice=args.cloud_voice,
+                language_code=args.cloud_language,
+                speaking_rate=args.speaking_rate,
+                pitch=args.pitch,
+            )
+        elif args.tts == "gemini":
+            download_cloud_tts(
+                args.sample_text,
+                sample_output,
+                voice=args.gemini_voice,
+                language_code=args.cloud_language,
+                speaking_rate=args.speaking_rate,
+                pitch=args.pitch,
+                model_name=args.gemini_model,
+                prompt=args.gemini_prompt,
+            )
+        else:
+            download_google_tts(args.sample_text, sample_output, slow=False)
+        print(f"Created sample: {sample_output}")
         return 0
 
     pages = read_script()
@@ -422,8 +464,11 @@ def main() -> int:
         speaking_rate=args.speaking_rate,
         pitch=args.pitch,
         page_gap=args.page_gap,
+        audio_tail_pad=args.audio_tail_pad,
     )
-    output = OUT_DIR / args.output
+    output = Path(args.output)
+    if not output.is_absolute():
+        output = OUT_DIR / output
     concatenate(segments, output)
     duration = sum(ffprobe_duration(segment) for segment in segments)
     print(f"Created: {output}")

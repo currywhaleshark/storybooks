@@ -368,3 +368,327 @@
   - Treat pages 2-3 as mobile-review / direction candidates only.
   - For final-quality body pages, rebuild page-specific ref boards including the new tunnel prop reference, then regenerate in smaller units.
   - If exact Korean text remains unstable, use approved illustration candidates plus deterministic text panel placement.
+
+## Batch 1 restart - 2026-06-06
+
+- Restarting after the 2026-06-04 hold because the user wants to test whether today's image model quality has recovered.
+- New work folder:
+  - `series/coral-town-daycare/images/episodes/토리야_한_걸음만/work_2026-06-06/batch_1`
+- Prompt plan:
+  - `series/coral-town-daycare/images/episodes/토리야_한_걸음만/work_2026-06-06/batch_1/batch_1_restart_prompt_plan.md`
+- First action:
+  - Regenerate cover only as a model-quality check before continuing pages 1-3.
+- Hard locks carried forward:
+  - Use `series/coral-town-daycare/references/props/산호_터널_크기비교_레퍼런스_v2.png` as the tunnel scale source of truth.
+  - Tunnel is a low pass-through toddler crawl-through tube with both ends open, not a cave or giant arch.
+  - Tori has no bag or strap in outdoor-play cover/pages.
+  - Banguli remains a soft pale sky-blue water droplet mascot.
+  - If text is unstable, preserve clean blank text areas and add deterministic Korean text later.
+
+## Batch 1 generation - 2026-06-06
+
+- User accepted the cover direction and asked to continue the rest of Batch 1.
+- Current review candidates saved in:
+  - `series/coral-town-daycare/images/episodes/토리야_한_걸음만/work_2026-06-06/batch_1`
+- Candidate set:
+  - `00_cover_candidate_20260606_v1.png`
+    - Size: `1054 x 1492`, A5 portrait ratio pass.
+    - User note: looks good; do not keep reworking cover text.
+    - QA: title/subtitle are readable enough for review; Tori/Banguli mood works. Tunnel remains larger than the strict prop scale, but user accepted the cover direction.
+  - `00_cover_candidate_20260606_v2_illustration_only.png`
+    - Size: `1055 x 1491`, A5 portrait ratio pass.
+    - Status: diagnostic/hold only because user preferred v1 and asked not to continue cover work.
+  - `01_candidate_20260606_v1.png`
+    - Size: `1054 x 1492`, A5 portrait ratio pass.
+    - QA: review candidate. Text is readable and close to exact; Mari teacher, Tori, Jun, Aru, Lulu, Mongle, Sua, and Popo are visually readable. No obvious child bags. Aru remains limbless with scarf; Lulu/Sua separation is readable. Tunnel is still a little large but warm and non-scary.
+  - `02_candidate_20260606_v1.png`
+    - Size: `1054 x 1492`, A5 portrait ratio pass.
+    - QA: strong review candidate. Text is readable and close to exact. Tori's cautious distance, Jun entering, Aru bouncing, Lulu laughing, and Mongle exiting are readable. No obvious child bags. Tunnel reads as a play tunnel, though still slightly larger than the strict prop scale.
+  - `03_candidate_20260606_v1.png`
+    - Size: `1054 x 1492`, A5 portrait ratio pass.
+    - QA: review candidate with caveat. Tori's worried expression and Korean text are strong. Thought-cloud worries are gentle. Physical tunnel is larger than the strict prop scale and should be reviewed against the user's tolerance for "emotionally large" page 3 staging.
+- Current recommendation:
+  - Present Batch 1 candidate set for user review:
+    - `00_cover_candidate_20260606_v1.png`
+    - `01_candidate_20260606_v1.png`
+    - `02_candidate_20260606_v1.png`
+    - `03_candidate_20260606_v1.png`
+  - Do not promote to final until user approval.
+  - If regenerating, page 3 is the most likely target because of tunnel scale; pages 1-2 are usable review candidates.
+
+## User QA notes - Batch 1 - 2026-06-07
+
+- Cover:
+  - Keep `00_cover_candidate_20260606_v1.png` direction; no further cover text work requested.
+- Page 1:
+  - `01_candidate_20260606_v1.png` is rejected/hold for tunnel structure.
+  - Problem: tunnel changed from a straight tube into an L-shaped / cornered structure.
+  - Required: tunnel must be a straight, single-axis, left-to-right pass-through tube. No L shape, no corner bend, no side branch, no second perpendicular opening.
+  - Popo note: unless specifically requested, Popo should not have visible eyes emphasized. Popo emotion should be mostly mouth/body silhouette; do not draw clear black eyes.
+- Page 2:
+  - `02_candidate_20260606_v1.png` is rejected/hold for tunnel structure.
+  - Problem: tunnel changed from straight tube into an L-shaped / cornered structure.
+  - Required: same straight, single-axis, left-to-right pass-through tube lock.
+- Page 3:
+  - `03_candidate_20260606_v1.png` has the correct issue diagnosis: tunnel scale is the problem.
+  - Required: regenerate page 3 with the same emotional setup and text quality, but reduce tunnel to the prop reference scale.
+- Next action:
+  - Regenerate pages 1, 2, and 3 only.
+  - Use strong tunnel structure lock: straight horizontal low toddler crawl-through tube, both ends visible or implied along one axis, no L-turn, no corner, no perpendicular second opening, no cave mound.
+  - Use Popo eye lock on page 1: no visible black eyes unless the page specifically calls for it.
+
+## Batch 1 revision generation - 2026-06-07
+
+- Regenerated pages 1-3 in the existing work folder:
+  - `series/coral-town-daycare/images/episodes/토리야_한_걸음만/work_2026-06-06/batch_1`
+- New candidate set:
+  - `01_candidate_20260607_v2.png`
+    - Size: `1054 x 1492`, A5 portrait ratio pass.
+    - QA: tunnel is now straight / single-axis rather than L-shaped. Text remains readable and close to exact. Character grouping remains readable.
+    - Caveat: Popo no longer has strong black open eyes, but a closed-eye expression is still visible. If the user's Popo rule means no eye marks at all, regenerate page 1 again with Popo turned away or partially behind another child.
+  - `02_candidate_20260607_v2.png`
+    - Size: `1055 x 1491`, A5 portrait ratio pass.
+    - QA: tunnel is now straight / single-axis rather than L-shaped. Text is readable and close to exact. Tori's cautious distance and friends' movement read clearly.
+  - `03_candidate_20260607_v2.png`
+    - Size: `1055 x 1491`, A5 portrait ratio pass.
+    - QA: tunnel scale is much improved versus `03_candidate_20260606_v1.png`; actual tunnel is low and toddler-sized while the worry-cloud handles the emotionally large/dark idea. Text is readable and close to exact.
+- Current recommended Batch 1 review set:
+  - `00_cover_candidate_20260606_v1.png`
+  - `01_candidate_20260607_v2.png`
+  - `02_candidate_20260607_v2.png`
+  - `03_candidate_20260607_v2.png`
+- Status:
+  - Do not promote to final until user approval.
+
+## User QA notes - Batch 1 revision - 2026-06-07
+
+- Page 1:
+  - `01_candidate_20260607_v2.png` is acceptable for now.
+- Page 2:
+  - `02_candidate_20260607_v2.png` still needs regeneration.
+  - Problem: tunnel entrance and exit face the same direction.
+  - Required: straight tube remains, but the two openings must be opposite ends of one tube and face opposite directions. Do not draw two front-facing arches on the same side.
+- Page 3:
+  - `03_candidate_20260607_v2.png` still needs regeneration.
+  - Problem: tunnel became too small.
+  - Required: increase tunnel size to a middle scale between `03_candidate_20260606_v1.png` and `03_candidate_20260607_v2.png`; still low enough that Tori must bend, but visible enough to feel story-important.
+
+## Batch 1 second revision generation - 2026-06-07
+
+- Regenerated pages 2 and 3 after user QA.
+- New candidates:
+  - `02_candidate_20260607_v3.png`
+    - Size: `1054 x 1492`, A5 portrait ratio pass.
+    - QA: improves the prior issue where entrance and exit faced the same direction. The tunnel now reads more like one straight tube with opposite ends, though it should still be user-reviewed for geometry tolerance.
+    - Text remains readable and close to exact.
+  - `03_candidate_20260607_v3.png`
+    - Size: `1054 x 1492`, A5 portrait ratio pass.
+    - QA: tunnel is larger than `03_candidate_20260607_v2.png` and smaller than the too-large `03_candidate_20260606_v1.png`; this is the intended middle scale. Text and Tori worry mood remain strong.
+- Current recommended Batch 1 review set:
+  - `00_cover_candidate_20260606_v1.png`
+  - `01_candidate_20260607_v2.png`
+  - `02_candidate_20260607_v3.png`
+  - `03_candidate_20260607_v3.png`
+- Status:
+  - Do not promote to final until user approval.
+
+## User QA notes - Batch 1 second revision - 2026-06-07
+
+- Page 2:
+  - `02_candidate_20260607_v3.png` still needs regeneration.
+  - Problem: entrance and exit keep appearing at the same time, causing geometry confusion.
+  - Required: the exit does not need to be visible. For page 2, show only the near entrance or mostly one visible opening of a straight tube, with the far exit hidden by the tube body, angle, characters, or coral decoration.
+- Page 3:
+  - `03_candidate_20260607_v3.png` is still too small.
+  - Required: make the tunnel about the same visual scale as the accepted cover `00_cover_candidate_20260606_v1.png`; larger and story-important, but still a safe playground tunnel rather than a scary cave.
+- Next action:
+  - Regenerate pages 2 and 3 only.
+  - Page 2 lock: one visible entrance is enough; hide or occlude the far exit.
+  - Page 3 lock: cover-like tunnel scale.
+
+## Batch 1 third revision generation - 2026-06-07
+
+- Regenerated pages 2 and 3 after user QA.
+- New candidates:
+  - `02_candidate_20260607_v4.png`
+    - Size: `1054 x 1492`, A5 portrait ratio pass.
+    - QA: far exit is not visible, so the entrance/exit simultaneous-visibility issue is resolved. One visible entrance is shown; tunnel body continues behind coral decoration/characters. Text remains readable and close to exact.
+  - `03_candidate_20260607_v4.png`
+    - Size: `1054 x 1492`, A5 portrait ratio pass.
+    - QA: tunnel is now cover-like in visual scale and story presence. Tori worry mood and readable text are preserved. Caveat: the imagined dark tunnel in the thought cloud is visually strong; treat it as Tori's worry image, not the real tunnel.
+- Current recommended Batch 1 review set:
+  - `00_cover_candidate_20260606_v1.png`
+  - `01_candidate_20260607_v2.png`
+  - `02_candidate_20260607_v4.png`
+  - `03_candidate_20260607_v4.png`
+- Status:
+  - Do not promote to final until user approval.
+
+## Batch 1 approval and Batch 2 handoff prep - 2026-06-07
+
+- User said the latest Batch 1 set is done.
+- Promoted approved Batch 1 candidates to final:
+  - `series/coral-town-daycare/images/episodes/토리야_한_걸음만/final/00_표지.png`
+    - Source: `work_2026-06-06/batch_1/00_cover_candidate_20260606_v1.png`
+  - `series/coral-town-daycare/images/episodes/토리야_한_걸음만/final/01_페이지.png`
+    - Source: `work_2026-06-06/batch_1/01_candidate_20260607_v2.png`
+  - `series/coral-town-daycare/images/episodes/토리야_한_걸음만/final/02_페이지.png`
+    - Source: `work_2026-06-06/batch_1/02_candidate_20260607_v4.png`
+  - `series/coral-town-daycare/images/episodes/토리야_한_걸음만/final/03_페이지.png`
+    - Source: `work_2026-06-06/batch_1/03_candidate_20260607_v4.png`
+- Created Batch 2 work folder and prompt plan:
+  - `series/coral-town-daycare/images/episodes/토리야_한_걸음만/work_2026-06-06/batch_2/batch_2_prompt_plan.md`
+- Created next-thread handoff:
+  - `series/coral-town-daycare/images/episodes/토리야_한_걸음만/work_2026-06-06/HANDOFF_next_thread_batch_2.md`
+- Batch 2 scope:
+  - `04_페이지.png`: Lulu and Mongle invite Tori; Tori says no; friends wait.
+  - `05_페이지.png`: Mari teacher validates Tori's fear.
+  - `06_페이지.png`: Banguli shows the tunnel is safe; Tori takes a tiny step.
+- Batch 2 must preserve Batch 1 lessons:
+  - For tunnel geometry, one visible entrance is enough when the far exit is not needed.
+  - Avoid same-facing double openings and L-shaped tunnel structures.
+  - Keep tunnel warm and story-important, not tiny.
+  - Outdoor play means no child bags.
+  - Popo eyes should not be emphasized unless explicitly requested.
+
+## Batch 2 generation - 2026-06-07
+
+- Started Batch 2 in:
+  - `series/coral-town-daycare/images/episodes/토리야_한_걸음만/work_2026-06-06/batch_2`
+- Generated page 4:
+  - `series/coral-town-daycare/images/episodes/토리야_한_걸음만/work_2026-06-06/batch_2/04_candidate_20260607_v1.png`
+  - Size: `1054 x 1492`, A5 portrait ratio pass.
+  - QA: review candidate. Korean story text appears exact and readable. Tori, Lulu, Mongle, and Mari teacher are visually readable; no child bags are visible; Tori is cautious and respected. The tunnel uses one visible entrance with the far end hidden, avoiding the Batch 1 same-facing/double-opening issue.
+  - Caveat: tunnel has a clear right-side presence, so user should confirm whether the page still satisfies "visible but not dominant."
+- Generated page 5:
+  - `series/coral-town-daycare/images/episodes/토리야_한_걸음만/work_2026-06-06/batch_2/05_candidate_20260607_v1.png`
+  - Size: `1054 x 1492`, A5 portrait ratio pass.
+  - QA: review candidate. Korean story text appears exact and readable. Mari teacher keeps the yellow apron, star hairpin, purple mermaid tail, and notebook; Tori has no child bag and looks relieved; Banguli reads as a soft water droplet. The tunnel stays in the soft background with one clear entrance and no L-shape or confusing double opening.
+  - Caveat: Mari remains visually much larger than Tori, but the pose reads lowered, calm, and validating rather than scolding or pressuring.
+- Generated page 6:
+  - Raw visual candidate: `series/coral-town-daycare/images/episodes/토리야_한_걸음만/work_2026-06-06/batch_2/06_candidate_20260607_v1.png`
+  - Text-fixed alternate candidate: `series/coral-town-daycare/images/episodes/토리야_한_걸음만/work_2026-06-06/batch_2/06_candidate_20260607_v1_textfix_v2.png`
+  - Size: `1054 x 1492`, A5 portrait ratio pass.
+  - QA: visual review candidate. Tori has no child bag and takes a tiny step; Mari teacher stays calm and encouraging; Banguli reads as a soft water droplet and peeks out safely. The tunnel is not L-shaped and reads as a single straight playground tube with a near entrance plus an opposite/side exit for Banguli.
+  - Text QA: raw generated version was initially suspected for quote-mark drift, so a deterministic text panel repair was created as an alternate. User later confirmed page 6 text has no problem and requested the first version, so `06_candidate_20260607_v1.png` is the current review file.
+  - Caveat: because page 6 shows both openings, user should review whether the side/rear Banguli exit clearly reads as the opposite end of one straight tube. The deterministic text uses a clean system Korean font rather than the generator's handwritten text style.
+  - Reject/diagnostic only: `06_candidate_20260607_v1_textfix_reject.png` used a variable font that rendered Korean poorly; do not use.
+- Mobile review upload:
+  - Created local review PPTX: `series/coral-town-daycare/images/episodes/토리야_한_걸음만/work_2026-06-06/batch_2/토리야_한_걸음만_batch_2_mobile_review_20260607.pptx`
+  - Imported to Google Drive as native Google Slides:
+    - https://docs.google.com/presentation/d/1P4Sf_jnLaK8rH_-1naqDbtEAqj14fr0hF4LI3sgmklc/edit?usp=drivesdk
+  - Connector readback verified title, native Slides MIME type, and 3 slides.
+  - Thumbnail verification returned all three slides as portrait thumbnails (`1600 x 2264`).
+- Mobile review update after user QA:
+  - User said page 6 text had no problem and requested the first version.
+  - Updated Google Slides slide 3 from `06_candidate_20260607_v1_textfix_v2.png` to `06_candidate_20260607_v1.png`.
+  - Connector readback verified the target deck and slide `p3`; fresh thumbnail was downloaded and visually checked as the original page 6 candidate.
+
+## Batch 3 handoff prep - 2026-06-07
+
+- User requested next-thread handoff prep for Batch 3.
+- Created Batch 3 work folder and prompt plan:
+  - `series/coral-town-daycare/images/episodes/토리야_한_걸음만/work_2026-06-06/batch_3/batch_3_prompt_plan.md`
+- Created next-thread handoff:
+  - `series/coral-town-daycare/images/episodes/토리야_한_걸음만/work_2026-06-06/HANDOFF_next_thread_batch_3.md`
+- Batch 3 scope:
+  - `07_페이지.png`: Tori reaches the entrance and only peeks the head inside.
+  - `08_페이지.png`: Tori discovers the tunnel interior is warm, pretty, and not scary.
+  - `09_페이지.png`: Tori takes one step, then another, entering with Banguli guiding ahead.
+- Handoff caveat:
+  - Batch 2 has review candidates and an updated mobile review deck, but pages 4-6 have not been copied to final yet in this workspace.
+  - Next thread should confirm Batch 2 approval first. If accepted, copy `04_candidate_20260607_v1.png`, `05_candidate_20260607_v1.png`, and `06_candidate_20260607_v1.png` to final before generating Batch 3.
+- Batch 3 must preserve:
+  - one straight toddler crawl-through tunnel, no L shape or confusing double openings;
+  - no child bags/straps on Tori;
+  - page 7 head-only peek pose;
+  - page 8 warm/safe tunnel discovery mood;
+  - page 9 forward movement without showing the final exit success yet.
+
+## Batch 2 approval and final promotion - 2026-06-07
+
+- User approved Batch 2 and requested starting Batch 3.
+- Promoted approved Batch 2 candidates to final:
+  - `series/coral-town-daycare/images/episodes/토리야_한_걸음만/final/04_페이지.png`
+    - Source: `work_2026-06-06/batch_2/04_candidate_20260607_v1.png`
+  - `series/coral-town-daycare/images/episodes/토리야_한_걸음만/final/05_페이지.png`
+    - Source: `work_2026-06-06/batch_2/05_candidate_20260607_v1.png`
+  - `series/coral-town-daycare/images/episodes/토리야_한_걸음만/final/06_페이지.png`
+    - Source: `work_2026-06-06/batch_2/06_candidate_20260607_v1.png`
+
+## Batch 3 generation - 2026-06-07
+
+- Started Batch 3 in:
+  - `series/coral-town-daycare/images/episodes/토리야_한_걸음만/work_2026-06-06/batch_3`
+- References inspected immediately before generation:
+  - `series/coral-town-daycare/references/characters/토리.png`
+  - `series/coral-town-daycare/references/characters/마리_선생님.png`
+  - `series/coral-town-daycare/references/characters/방울이.png`
+  - `series/coral-town-daycare/references/배경_전경과_놀이터.png`
+  - `series/coral-town-daycare/references/props/산호_터널_크기비교_레퍼런스_v2.png`
+  - `series/coral-town-daycare/images/episodes/토리야_한_걸음만/final/06_페이지.png`
+- Generated page 7:
+  - `series/coral-town-daycare/images/episodes/토리야_한_걸음만/work_2026-06-06/batch_3/07_candidate_20260607_v1.png`
+  - Size: `1054 x 1492`, A5 portrait ratio pass.
+  - QA: review candidate. Tori's shell/body remain outside the near entrance while the head/neck peek inside. No child bag or strap is visible. Mari teacher stays low and calm; Banguli remains a soft water droplet inside the tunnel. Korean story text is readable and appears exact.
+- Generated page 8:
+  - `series/coral-town-daycare/images/episodes/토리야_한_걸음만/work_2026-06-06/batch_3/08_candidate_20260607_v1.png`
+  - Size: `1054 x 1492`, A5 portrait ratio pass.
+  - QA: review candidate. Tunnel interior is warm, pretty, and safe with light from the opposite opening and shell details. Tori reads relieved rather than scared. Banguli remains a soft water droplet. Korean story text is readable and appears exact, with generator-style ellipsis punctuation.
+- Generated page 9:
+  - `series/coral-town-daycare/images/episodes/토리야_한_걸음만/work_2026-06-06/batch_3/09_candidate_20260607_v1.png`
+  - Size: `1054 x 1492`, A5 portrait ratio pass.
+  - QA: review candidate. Tori is moving forward inside the tunnel with the shell entering and Banguli guiding ahead. This does not show the completed exit/success moment. No child bag or strap is visible. Korean story text is readable and appears exact.
+- Current recommended Batch 3 review set:
+  - `07_candidate_20260607_v1.png`
+  - `08_candidate_20260607_v1.png`
+  - `09_candidate_20260607_v1.png`
+- Mobile review upload:
+  - Created Google Slides deck directly after local PPTX import returned Drive `400 Bad Request`.
+  - Google Slides: https://docs.google.com/presentation/d/1-xuP5WseuLPw1T8VgftRjoZos-4T5kQcWDkhggjXxic/edit?usp=drivesdk
+  - Connector readback verified title, native Slides MIME type, and 3 slides.
+  - Thumbnail verification returned all three slides as rendered landscape thumbnails (`1600 x 900`) with the portrait page images centered at full slide height.
+- Status:
+  - Do not promote Batch 3 to final and do not generate Batch 4 until user review/approval.
+
+## User QA notes - Batch 3 - 2026-06-07
+
+- Page 7:
+  - `07_candidate_20260607_v1.png` needs regeneration.
+  - Problem: Tori's body appears to pass through / penetrate the tunnel instead of staying outside while only the head peeks in.
+  - Required: body, shell, legs, and feet must remain outside the entrance; only head/neck may enter slightly.
+- Pages 8-9:
+  - `08_candidate_20260607_v1.png` and `09_candidate_20260607_v1.png` need regeneration.
+  - Problem: the tunnel interior is too wide and reads like a large tunnel/cavern.
+  - Required: make the tunnel a low toddler crawl-through tube, narrow and child-scale, just big enough for Tori to crawl through safely.
+
+## Batch 3 revision generation - 2026-06-07
+
+- Regenerated page 7:
+  - `series/coral-town-daycare/images/episodes/토리야_한_걸음만/work_2026-06-06/batch_3/07_candidate_20260607_v2.png`
+  - Size: `1054 x 1492`, A5 portrait ratio pass.
+  - QA: improved candidate. Tori's shell/body now read as outside the near entrance while the head/neck peek in. No child bag or strap is visible. Korean text remains readable.
+- Regenerated page 8:
+  - First narrower pass: `08_candidate_20260607_v2.png`
+  - Stronger narrow-tube pass: `08_candidate_20260607_v3.png`
+  - Size: `1054 x 1492`, A5 portrait ratio pass.
+  - QA: `v3` is the preferred revision. The composition uses a near-entrance view and reads more like a small toddler crawl-through tube rather than a broad interior corridor. Korean text remains readable.
+- Regenerated page 9:
+  - First narrower pass: `09_candidate_20260607_v2.png`
+  - Stronger narrow-tube pass: `09_candidate_20260607_v3.png`
+  - Size: `1054 x 1492`, A5 portrait ratio pass.
+  - QA: `v3` is the preferred revision. Tori is partly entering a low tube with the shell close to the tunnel scale, and the page does not show the exit/success moment. Korean text remains readable.
+- Updated the existing Batch 3 Google Slides mobile review deck with the revised recommended set:
+  - `07_candidate_20260607_v2.png`
+  - `08_candidate_20260607_v3.png`
+  - `09_candidate_20260607_v3.png`
+- Mobile review deck:
+  - https://docs.google.com/presentation/d/1-xuP5WseuLPw1T8VgftRjoZos-4T5kQcWDkhggjXxic/edit?usp=drivesdk
+  - Connector readback verified the target deck and existing image object IDs.
+  - Fresh thumbnail verification returned all three revised slides as rendered thumbnails (`1600 x 900`).
+- Current recommended Batch 3 review set:
+  - `07_candidate_20260607_v2.png`
+  - `08_candidate_20260607_v3.png`
+  - `09_candidate_20260607_v3.png`
+- Status:
+  - Await user review. Do not promote Batch 3 to final and do not generate Batch 4 until approval.
