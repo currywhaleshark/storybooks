@@ -15,6 +15,9 @@ A4_PORTRAIT = A4
 A4_LANDSCAPE = landscape(A4)
 MARGIN = 24
 GUTTER = 18
+BOOKLET_BINDING_GUIDE_WIDTH = 0.6
+BOOKLET_BINDING_GUIDE_DASH = [4, 4]
+BOOKLET_BINDING_GUIDE_GRAY = 0.55
 LAYOUTS = {"landscape", "portrait"}
 BookletSlot = Path | None
 BookletSide = tuple[BookletSlot, BookletSlot]
@@ -124,11 +127,27 @@ def draw_body_pages(pdf: canvas.Canvas, body_pages: list[Path], layout: str) -> 
     return len(pairs)
 
 
+def draw_binding_guide(pdf: canvas.Canvas) -> None:
+    page_width, page_height = A4_LANDSCAPE
+    center_x = page_width / 2
+    pdf.saveState()
+    pdf.setStrokeColorRGB(
+        BOOKLET_BINDING_GUIDE_GRAY,
+        BOOKLET_BINDING_GUIDE_GRAY,
+        BOOKLET_BINDING_GUIDE_GRAY,
+    )
+    pdf.setLineWidth(BOOKLET_BINDING_GUIDE_WIDTH)
+    pdf.setDash(BOOKLET_BINDING_GUIDE_DASH, 0)
+    pdf.line(center_x, MARGIN, center_x, page_height - MARGIN)
+    pdf.restoreState()
+
+
 def draw_booklet_side(pdf: canvas.Canvas, side: BookletSide) -> None:
     slots = body_slots("landscape")
     for page, slot in zip(side, slots):
         if page is not None:
             draw_image_contained(pdf, page, slot)
+    draw_binding_guide(pdf)
     pdf.showPage()
 
 

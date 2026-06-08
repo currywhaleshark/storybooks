@@ -28,6 +28,29 @@ def make_png(path: Path, size=(320, 240), color=(200, 80, 120)) -> None:
     Image.new("RGB", size, color).save(path)
 
 
+class RecordingPdf:
+    def __init__(self):
+        self.calls = []
+
+    def saveState(self):
+        self.calls.append(("saveState",))
+
+    def setStrokeColorRGB(self, red, green, blue):
+        self.calls.append(("setStrokeColorRGB", red, green, blue))
+
+    def setLineWidth(self, width):
+        self.calls.append(("setLineWidth", width))
+
+    def setDash(self, pattern, phase):
+        self.calls.append(("setDash", pattern, phase))
+
+    def line(self, x1, y1, x2, y2):
+        self.calls.append(("line", x1, y1, x2, y2))
+
+    def restoreState(self):
+        self.calls.append(("restoreState",))
+
+
 class PdfLayoutTest(unittest.TestCase):
     def test_discover_book_images_sorts_by_leading_number(self):
         with test_temp_dir() as folder:
@@ -150,6 +173,18 @@ class PdfLayoutTest(unittest.TestCase):
             self.assertEqual(result["booklet_sheet_count"], 2)
             self.assertTrue(result["booklet_pdf"].endswith("booklet-a4-landscape.pdf"))
             self.assertEqual(len(PdfReader(result["booklet_pdf"]).pages), 4)
+
+    def test_draw_binding_guide_marks_center_fold_line(self):
+        pdf = RecordingPdf()
+
+        pdf_layout.draw_binding_guide(pdf)
+
+        center_x = pdf_layout.A4_LANDSCAPE[0] / 2
+        page_height = pdf_layout.A4_LANDSCAPE[1]
+        self.assertIn(("setStrokeColorRGB", 0.55, 0.55, 0.55), pdf.calls)
+        self.assertIn(("setLineWidth", 0.6), pdf.calls)
+        self.assertIn(("setDash", [4, 4], 0), pdf.calls)
+        self.assertIn(("line", center_x, pdf_layout.MARGIN, center_x, page_height - pdf_layout.MARGIN), pdf.calls)
 
     def test_generate_body_pdf_excludes_selected_pages(self):
         with test_temp_dir() as folder:
