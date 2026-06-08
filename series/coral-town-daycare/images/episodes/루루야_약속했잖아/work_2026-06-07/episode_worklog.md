@@ -81,3 +81,78 @@
 - Before generation, attach/inspect the actual official reference images listed in the batch plan.
 - Save candidates in `work_2026-06-07/batch_1` with stable names such as `00_candidate_text_v1.png`.
 - QA must check character identity, exact Korean text, A5 portrait proportion, no contamination from previous episodes, and no Lulu/Sua detail loss.
+
+## Resume Note - 2026-06-08
+
+- Re-read the worklog, page plan, batch 1 prompt plan, reference asset plan, script, and rulebook with UTF-8 after mojibake appeared in console output.
+- Current workspace inventory shows only markdown planning files under this episode work folder. The PNG reference assets and batch 1 candidates mentioned above are not present in the current folder checkout.
+- Added `rework_prep_2026-06-08.md` with the corrected current inventory, missing asset list, retry locks, and first regeneration packet.
+- Next concrete action: restore or regenerate `reference_assets/lulu_favorite_picture_book_ref.png` before any page 00 regeneration, because the cover prompt references it and pages 2 through 4 need the same prop continuity.
+
+## Batch 1 Rework - 2026-06-08
+
+- Generated and saved:
+  - `work_2026-06-07/batch_1/00_candidate_text_v4.png`
+  - `work_2026-06-07/batch_1/00_candidate_text_v5.png`
+  - `work_2026-06-07/reference_assets/lulu_favorite_picture_book_ref.png`
+  - `work_2026-06-07/batch_1/01_candidate_text_v3.png`
+  - `work_2026-06-07/batch_1/02_candidate_text_v3.png`
+  - `work_2026-06-07/batch_1/03_candidate_text_v3.png`
+- Page 00 QA:
+  - `00_candidate_text_v4.png`: hold/fail. Lulu detail is strong, but the title appears as `약속 했잖아` with an extra space, Jun-i has too much human-like lower body/leg structure, and background bags draw attention.
+  - `00_candidate_text_v5.png`: current preferred candidate. Better title spacing, stronger Jun-i shark silhouette and tail, no worn bags, and Lulu detail remains strong. User review still needed before promotion.
+- Page 01 QA:
+  - `01_candidate_text_v3.png`: current preferred candidate. Text is readable, Lulu keeps detail, Aru remains a single pufferfish body with scarf and no human torso, Popo has hidden/barely visible eyes, and no characters wear bags.
+- Page 02 QA:
+  - `02_candidate_text_v3.png`: current preferred candidate. Text is readable, Lulu and Jun-i are close to their references, Jun-i avoids human legs, and the favorite picture book is clear between them.
+- Page 03 QA:
+  - `03_candidate_text_v3.png`: current preferred candidate. Text is readable, Lulu's gentle disappointment is clear, Jun-i is friendly and unaware in block play, and the same favorite picture book lies safely on the floor.
+- Size check:
+  - Page candidates are A5 portrait-like: `00` files are `1055x1491`, `01`-`03` files are `1054x1492`.
+- Batch 1 status: candidates generated, not final promoted. Await user QA before final folder promotion or targeted retries.
+
+## Mobile Review Upload - 2026-06-08
+
+- Uploaded a Google Slides mobile review deck to Drive:
+  - `루루야, 약속했잖아 - 배치1 후보 모바일 확인용 2026-06-08`
+  - `https://docs.google.com/presentation/d/1LWs-bWQd8bbWdNXnbZ2xiLqg9SEurbh2UbaBgiMW7sA/edit?usp=drivesdk`
+- Deck contents:
+  - Slide 1: `00_candidate_text_v5.png`
+  - Slide 2: `01_candidate_text_v3.png`
+  - Slide 3: `02_candidate_text_v3.png`
+  - Slide 4: `03_candidate_text_v3.png`
+  - Slide 5: `lulu_favorite_picture_book_ref.png`
+- Drive readback confirmed 5 slides in the presentation. This is for mobile QA only; no files were promoted to `final`.
+
+## User Approval And Batch 2 Handoff - 2026-06-08
+
+- User QA: "오 아주 좋아 모두 통과".
+- Batch 1 approved candidates promoted to final:
+  - `final/00_표지.png` from `batch_1/00_candidate_text_v5.png`
+  - `final/01_페이지.png` from `batch_1/01_candidate_text_v3.png`
+  - `final/02_페이지.png` from `batch_1/02_candidate_text_v3.png`
+  - `final/03_페이지.png` from `batch_1/03_candidate_text_v3.png`
+- Added batch 2 preparation files:
+  - `work_2026-06-07/batch_2/batch_2_prompt_plan.md`
+  - `work_2026-06-07/handoff_to_next_thread_batch_2.md`
+- Batch 2 scope: pages 04-06.
+- Next-thread first concrete action: re-read UTF-8 handoff and regenerate or restore `reference_assets/messy_art_time_state_ref.png` before pages 05-06. Page 04 may be generated first because it only needs the picture book prop, classroom, Lulu, Jun-i, Banguli, and Mari teacher.
+- Stop gate: after batch 2 candidates and QA, return to user for approval before batch 3.
+
+## Batch 2 Reference Prep - 2026-06-08
+
+- Regenerated the missing messy art-time state reference:
+  - `work_2026-06-07/reference_assets/messy_art_time_state_ref.png`
+- Method note: built-in image generation initially failed with a server error. A grounded composite backup was made first as `reference_assets/messy_art_time_state_ref_composite_v1.png`. A later built-in generated version was rejected because it changed the classroom space, and was preserved only as `reference_assets/messy_art_time_state_ref_off_reference_room_v1.png`. The accepted main reference was then regenerated with the official classroom reference visible as the strict spatial source; the overpainted composite was preserved only as `reference_assets/messy_art_time_state_ref_overpaint_v1.png`.
+- QA: accepted main reference passes as a reusable state reference for pages 05-10. It keeps the official classroom layout and watercolor/colored-pencil style, has no characters, no text, no labels, no worn bags, no sharp scissors, no broken glass, no dark stains, and leaves a visible walkable route while showing enough safe art-play clutter that a child can read it as needing cleanup.
+
+## Batch 2 Generation - 2026-06-08
+
+- Page 04:
+  - `batch_2/04_candidate_illustration_v1.png`: built-in generated illustration candidate; strong visual candidate with a blank text panel.
+  - `batch_2/04_candidate_text_v1.png`: hold. Codex-added local text pass; text overflows/does not match prior page lettering well enough.
+  - `batch_2/04_candidate_text_v2.png`: current preferred page 04 candidate. This is a user-provided text composite based on `04_candidate_illustration_v1.png`, made to match the approved page lettering/panel feel more closely.
+- Page 05:
+  - `batch_2/05_candidate_text_v1.png`: built-in generated text-in-image candidate. Initial QA: text is contained inside the panel and appears close to the approved storybook lettering style; characters and art mess still need user QA before final promotion.
+- Page 06:
+  - Not yet generated. Multiple built-in text-in-image attempts failed with server errors. Do not fall back to Codex local text overlay unless the user explicitly asks; next attempt should generate the illustration and exact Korean text together, using page 04 v2 lettering/panel feel and page 05/messy-art continuity as references.

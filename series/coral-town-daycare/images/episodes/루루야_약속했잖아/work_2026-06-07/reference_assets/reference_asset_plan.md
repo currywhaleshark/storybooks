@@ -65,4 +65,4 @@ Create an environment-state reference image for a Korean toddler picture-book ep
 ## Generated Assets
 
 - `lulu_favorite_picture_book_ref.png`: accepted as the current prop reference. It has no readable text, a clear seafoam cover, pink coral frame, yellow shell emblem, cream pages, and pink shell/ribbon tab.
-- `messy_art_time_state_ref.png`: accepted as the current scene-state reference. It matches the classroom feeling and clearly shows a safe but significant art-time mess. For main page prompts, keep the same mess identity but request slightly clearer child walkable space when characters are present.
+- `messy_art_time_state_ref.png`: restored/regenerated in the current checkout on 2026-06-08 with the official classroom reference used as the strict spatial source. It preserves the same classroom space and watercolor/colored-pencil style, and clearly shows a safe but significant art-time mess that should read to a child as needing cleanup. For main page prompts, keep the same mess identity but request slightly clearer child walkable space when characters are present.
