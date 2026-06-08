@@ -156,3 +156,57 @@
   - `batch_2/05_candidate_text_v1.png`: built-in generated text-in-image candidate. Initial QA: text is contained inside the panel and appears close to the approved storybook lettering style; characters and art mess still need user QA before final promotion.
 - Page 06:
   - Not yet generated. Multiple built-in text-in-image attempts failed with server errors. Do not fall back to Codex local text overlay unless the user explicitly asks; next attempt should generate the illustration and exact Korean text together, using page 04 v2 lettering/panel feel and page 05/messy-art continuity as references.
+
+## Batch 2 Page 06 Retry - 2026-06-08
+
+- User confirmed the interrupted target is page 06 / `06_candidate_text_v1.png`.
+- Reconfirmed required references are present:
+  - `references/characters/루루.png`
+  - `references/characters/방울이.png`
+  - `references/characters/마리_선생님.png`
+  - `references/characters/몽글이.png`
+  - `references/characters/아루.png`
+  - `references/배경_교실.png`
+  - `work_2026-06-07/reference_assets/messy_art_time_state_ref.png`
+  - continuity/style references `batch_2/05_candidate_text_v1.png` and `batch_2/04_candidate_text_v2.png`
+- Built-in image generation retry attempts:
+  - Attempt 1: full structured text-in-image prompt, failed with `ServerError`.
+  - Attempt 2: shortened text-in-image prompt with same hard locks, failed with `ServerError`.
+- No `06_candidate_text_v1.png` file was produced.
+- Next retry should remain built-in text-in-image generation if the server recovers. Do not use local text overlay unless the user explicitly requests it. CLI fallback is available only if the user explicitly chooses it and `OPENAI_API_KEY` is configured.
+- Additional user-requested retry:
+  - Attempt 3: shortened built-in text-in-image prompt for page 06, failed with `ServerError`.
+  - Attempt 4: illustration-first prompt with a blank text panel allowed to reduce text-rendering load, failed with `ServerError`.
+  - No page 06 candidate was produced.
+- Later user-requested retry after waiting about two hours:
+  - Attempt 5: built-in page 06 text-in-image prompt with page 04/05 continuity and official character locks, failed with `ServerError`.
+  - Attempt 6: built-in page 06 illustration-first prompt allowing a clean blank text panel if Korean text rendering fails, failed with `ServerError`.
+  - No `batch_2/06_candidate_text_v1.png` file was produced.
+- Later retry after waiting about four more hours:
+  - Attempt 7: built-in page 06 text-in-image prompt, failed with `ServerError`.
+  - Attempt 8: shortened built-in page 06 text-in-image prompt succeeded.
+  - Saved generated output to `batch_2/06_candidate_text_v1.png`.
+  - Size check: `1054x1492`, A5 portrait-like.
+  - Initial assistant QA noted possible text concern, but user QA corrected this: text is acceptable.
+  - User requested composition improvement: Lulu should look toward Mari teacher while raising her hand/fin.
+  - Attempt 9: regenerate as `06_candidate_text_v2.png` with Lulu looking at Mari teacher, failed with `ServerError`.
+  - Attempt 10: shortened regenerate prompt with the same composition change, failed with `ServerError`.
+  - Attempt 11: edit-style prompt using existing v1, preserving all text and changing only Lulu's gaze/body direction toward Mari teacher, failed with `ServerError`.
+  - Current available page 06 candidate remains `batch_2/06_candidate_text_v1.png`; no v2 file was produced.
+
+## Batch 2 Page 06 Composition Retry - 2026-06-08
+
+- User QA clarified that the page 06 text in `06_candidate_text_v1.png` is acceptable.
+- User requested a composition improvement: Lulu should look toward Mari teacher while raising her hand/fin.
+- Retry attempts:
+  - Attempt 12: built-in regenerate prompt for `06_candidate_text_v2.png`, failed with `ServerError`.
+  - Attempt 13: shortened regenerate prompt, failed with `ServerError`.
+  - Attempt 14: edit-style prompt using the visible v1 candidate, preserving the text panel and changing Lulu's staging toward Mari teacher, succeeded.
+- Saved generated output to `batch_2/06_candidate_text_v2.png`.
+- Size check: `1054x1492`, A5 portrait-like.
+- Assistant QA: `06_candidate_text_v2.png` improves the requested interaction because Lulu now turns her face/body toward Mari teacher while raising her hand/fin. Text panel remains readable and in the same style. Character structures, safe art mess, and no-worn-bag lock remain acceptable for user review.
+- User QA note: Banguli gained a small hand/arm-like appendage in `06_candidate_text_v2.png`; user wants it removed while keeping the rest of v2.
+- Banguli correction attempts:
+  - Attempt 15: minimal edit prompt preserving all content and removing only Banguli's hand/arm-like appendage, failed with `ServerError`.
+  - Attempt 16: shortened minimal edit prompt, failed with `ServerError`.
+  - No `06_candidate_text_v3.png` file was produced.
