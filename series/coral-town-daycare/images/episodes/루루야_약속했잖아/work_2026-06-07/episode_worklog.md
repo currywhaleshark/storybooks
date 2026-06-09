@@ -210,3 +210,196 @@
   - Attempt 15: minimal edit prompt preserving all content and removing only Banguli's hand/arm-like appendage, failed with `ServerError`.
   - Attempt 16: shortened minimal edit prompt, failed with `ServerError`.
   - No `06_candidate_text_v3.png` file was produced.
+
+## Batch 2 Page 06 Banguli Correction - 2026-06-09
+
+- User requested retry for page 06, continuing from `06_candidate_text_v2.png`.
+- Attempt 17: built-in edit-style prompt using the visible v2 candidate and official Banguli reference, preserving the text panel and all page composition while removing only Banguli's small hand/arm-like appendage, succeeded.
+- Saved generated output to `batch_2/06_candidate_text_v3.png`.
+- Size check: `1054x1492`, A5 portrait-like.
+- Assistant QA: `06_candidate_text_v3.png` keeps Lulu looking toward Mari teacher with her hand/fin raised, preserves the Korean text panel, and removes Banguli's problematic hand/arm-like appendage while keeping Banguli's round water-drop body and side bubbles. Await user QA before final promotion.
+
+## User Approval And Batch 3 Handoff - 2026-06-09
+
+- User QA: "배치2도 모두 통과".
+- Batch 2 approved candidates promoted to final:
+  - `final/04_페이지.png` from `batch_2/04_candidate_text_v2.png`
+  - `final/05_페이지.png` from `batch_2/05_candidate_text_v1.png`
+  - `final/06_페이지.png` from `batch_2/06_candidate_text_v3.png`
+- Batch 2 final status: pages 04-06 are complete and accepted.
+- Batch 3 scope: pages 07-09.
+  - `07_페이지.png`: cleanup time arrives, but Lulu delays.
+  - `08_페이지.png`: Jun-i gently reminds Lulu of her own promise.
+  - `09_페이지.png`: Lulu quietly realizes she also made a promise.
+- Required continuity for next batch:
+  - Use `reference_assets/messy_art_time_state_ref.png` for pages 07-09 so the same art-play mess continues from pages 05-06.
+  - Preserve the approved page 04-06 text-panel feel and A5 portrait format.
+  - Carry forward no-worn-bag lock, official character silhouettes, Lulu/Sua detail protection, Aru as one true pufferfish body with scarf only, and Popo's hidden/barely visible eyes unless explicitly required.
+- Stop gate: do not generate batch 3 until its prompt plan is prepared from the UTF-8 page plan/script and current final pages 00-06 are verified as the continuity base.
+
+## Batch 3 Prompt Prep And Generation - 2026-06-09
+
+- Added batch 3 prompt plan:
+  - `work_2026-06-07/batch_3/batch_3_prompt_plan.md`
+- Batch 3 scope: pages 07-09.
+- Verified continuity base before generation:
+  - Final pages 00-06 exist in `final`.
+  - `reference_assets/messy_art_time_state_ref.png` exists and remains the required art-mess continuity reference.
+  - Official references inspected: classroom, Lulu, Banguli, Jun-i, Sua, Mongle, Tori, Mari teacher.
+- Generated and saved:
+  - `work_2026-06-07/batch_3/07_candidate_text_v1.png`
+  - `work_2026-06-07/batch_3/07_candidate_text_v2.png`
+  - `work_2026-06-07/batch_3/08_candidate_text_v1.png`
+  - `work_2026-06-07/batch_3/09_candidate_text_v1.png`
+- Page 07 QA:
+  - `07_candidate_text_v1.png`: hold/fail for text; first line rendered as `따랑—` instead of `딸랑—`.
+  - `07_candidate_text_v2.png`: current preferred candidate. First line corrected to `딸랑—`; page keeps cleanup contrast, no worn bags, and art-mess continuity. User QA should still check the long ellipsis rendering in `그런데 루루는……` and Lulu's low drawing posture.
+- Page 08 QA:
+  - `08_candidate_text_v1.png`: current preferred candidate. Jun-i reminds Lulu gently, Lulu's `멈칫—` reaction is readable, Banguli watches, no worn bags, and text panel is readable.
+- Page 09 QA:
+  - `09_candidate_text_v1.png`: current preferred candidate. Quiet realization mood is clear, Mari teacher waits gently without scolding, Banguli stays droplet-like, and text panel is readable.
+- Size check:
+  - `07_candidate_text_v2.png`: `1054x1492`
+  - `08_candidate_text_v1.png`: `1054x1492`
+  - `09_candidate_text_v1.png`: `1054x1492`
+- Batch 3 status: candidates generated, not final promoted. Await user QA before final folder promotion or targeted retries.
+
+## Mobile Review Upload - 2026-06-09
+
+- Created local mobile review PPTX:
+  - `work_2026-06-07/batch_3/루루야_약속했잖아_batch_3_mobile_review_20260609.pptx`
+- Uploaded and converted to native Google Slides:
+  - `루루야, 약속했잖아 - 배치3 후보 모바일 확인용 2026-06-09`
+  - `https://docs.google.com/presentation/d/1TZiomIq6sc_idDIWM3TN0KyItbGIw7pf8ol83cWZa0o/edit?usp=drivesdk`
+- Connector readback confirmed presentation id `1TZiomIq6sc_idDIWM3TN0KyItbGIw7pf8ol83cWZa0o`, title, native Google Slides MIME type from import response, and 3 slides in the presentation.
+- Deck contents:
+  - Slide 1: `07_candidate_text_v2.png`
+  - Slide 2: `08_candidate_text_v1.png`
+  - Slide 3: `09_candidate_text_v1.png`
+- This is for mobile QA only; no batch 3 files were promoted to `final`.
+
+## Batch 3 Button-Eye Reference Retry - 2026-06-09
+
+- User QA requested a targeted retry after the first batch 3 mobile review:
+  - All child characters should keep the series' common small black button-eye design.
+  - Lulu should keep small black button eyes with a subtle single eyelash expression.
+  - Page 07 Lulu's outfit had drifted and should match the official Lulu reference exactly.
+- Official references re-inspected before regeneration:
+  - `references/characters/루루.png`
+  - `references/characters/준이.png`
+  - `references/characters/방울이.png`
+  - `references/characters/마리_선생님.png`
+- Regenerated/saved revised batch 3 candidates:
+  - `work_2026-06-07/batch_3/07_candidate_text_v3.png`
+  - `work_2026-06-07/batch_3/08_candidate_text_v2.png`
+  - `work_2026-06-07/batch_3/09_candidate_text_v2.png`
+- Size check:
+  - `07_candidate_text_v3.png`: `1054x1492`
+  - `08_candidate_text_v2.png`: `1054x1492`
+  - `09_candidate_text_v2.png`: `1054x1492`
+- Assistant QA:
+  - Page 07: Lulu now keeps the official cream sailor top, pink/mauve collar and scarf, shell patch/name tag, mauve pleated skirt, small black button eyes, eyelash detail, long snout, spiny ridge, translucent fin, and curled tail. Other children avoid the previous large anime-eye drift.
+  - Page 08: Jun-i and Lulu were corrected away from enlarged shiny iris eyes toward small black button eyes; Lulu's official outfit and seahorse anatomy are preserved.
+  - Page 09: Lulu and Banguli keep the small black button-eye design; Lulu's official sailor outfit and Mari teacher's reference outfit are preserved.
+- Batch 3 status: revised candidates generated for mobile QA only. No files were promoted to `final`.
+
+## Mobile Review Upload - 2026-06-09 v2
+
+- Created local mobile review PPTX:
+  - `work_2026-06-07/batch_3/루루야_약속했잖아_batch_3_mobile_review_refeye_20260609.pptx`
+- Uploaded and converted to native Google Slides:
+  - `루루야, 약속했잖아 - 배치3 후보 모바일 확인용 2026-06-09 v2`
+  - `https://docs.google.com/presentation/d/19bbts95XpSi-qkP7DI8zbR6yH1HKj4l72LI0uhsTfkI/edit?usp=drivesdk`
+- Connector readback confirmed presentation id `19bbts95XpSi-qkP7DI8zbR6yH1HKj4l72LI0uhsTfkI`, title, and 3 slides.
+- Deck contents:
+  - Slide 1: `07_candidate_text_v3.png`
+  - Slide 2: `08_candidate_text_v2.png`
+  - Slide 3: `09_candidate_text_v2.png`
+- This is for mobile QA only; no batch 3 files were promoted to `final`.
+
+## User Approval And Batch 4 Handoff - 2026-06-09
+
+- User QA: "오케이 통과".
+- Batch 3 approved candidates promoted to final:
+  - `final/07_페이지.png` from `batch_3/07_candidate_text_v3.png`
+  - `final/08_페이지.png` from `batch_3/08_candidate_text_v2.png`
+  - `final/09_페이지.png` from `batch_3/09_candidate_text_v2.png`
+- Batch 3 final status: pages 07-09 are complete and accepted.
+- Added batch 4 preparation files:
+  - `work_2026-06-07/batch_4/batch_4_prompt_plan.md`
+  - `work_2026-06-07/handoff_to_next_thread_batch_4.md`
+- Updated reference asset plan with the missing page 11 prop:
+  - Target: `work_2026-06-07/reference_assets/promise_heart_shell_ref.png`
+  - Status: not generated yet.
+- Batch 4 scope: pages 10-12.
+  - `10_페이지.png`: Lulu starts cleaning and Jun-i helps.
+  - `11_페이지.png`: Mari teacher shows the softly glowing promise heart shell.
+  - `12_페이지.png`: Lulu thinks before making a new promise.
+- Next-thread first concrete action:
+  - Re-read the worklog, page plan, batch 4 prompt plan, reference asset plan, script, and rulebook.
+  - Verify final pages 00-09 as the continuity base.
+  - Generate and QA `reference_assets/promise_heart_shell_ref.png` before page 11 generation.
+  - Confirm whether the page 12 source text typo `새끼 손가락를` should be corrected to `새끼 손가락을` before generating page 12.
+- Stop gate: after batch 4 candidates and mobile QA upload, return to user for approval before final promotion.
+
+## Page 07 Sua Reference Correction - 2026-06-09
+
+- User QA found a missed issue on approved page 07: purple seahorse Sua drifted from the official reference design and needed a targeted correction.
+- Official Sua reference re-inspected:
+  - `series/coral-town-daycare/references/characters/수아.png`
+- Generated and saved targeted page 07 correction candidate:
+  - `work_2026-06-07/batch_3/07_candidate_text_v4_sua_ref.png`
+- Assistant QA:
+  - Sua is corrected closer to the official reference: slender purple seahorse body, long tube snout, small black button eyes, spiny/dotted crown-like head ridge, blue sailor collar/skirt, translucent fin, and curled tail.
+  - Page 07 text remains readable and unchanged.
+  - Existing scene composition, Lulu, Tori, Mongle, Banguli, classroom cleanup state, and no-worn-bag lock remain acceptable for mobile QA.
+- Created a new Google Slides mobile review deck by copying the prior batch 3 v2 mobile review deck, replacing slide 1 with `07_candidate_text_v4_sua_ref.png`, and deleting slides 2-3:
+  - `루루야, 약속했잖아 - 07페이지 수아 레퍼런스 수정 모바일 확인용 2026-06-09`
+  - `https://docs.google.com/presentation/d/1VeAVRrfVKFUY52GOR3XweSGlcIEdPIEG2QZvwI9-meA/edit?usp=drivesdk`
+- Connector readback confirmed presentation id `1VeAVRrfVKFUY52GOR3XweSGlcIEdPIEG2QZvwI9-meA`, title, 1 slide, and image alt text/description pointing to `07_candidate_text_v4_sua_ref.png`.
+- User QA accepted the corrected page 07 candidate: "좋아 이제 배치3 갈 수 있겠다".
+- Final-promoted corrected page 07:
+  - `final/07_페이지.png` from `batch_3/07_candidate_text_v4_sua_ref.png`
+- `07_candidate_text_v3.png` is now superseded by the Sua reference correction, although it remains preserved in `batch_3` history.
+
+## Batch 4 Direct Page Generation - 2026-06-09
+
+- User direction changed the batch 4 gate: because the promise heart shell appears on only one page, do not generate a separate `promise_heart_shell_ref.png`; treat it as a small in-page prop on page 11.
+- Page 12 source typo was corrected during generation from `새끼 손가락를` to `새끼 손가락을`.
+- Generated and saved:
+  - `work_2026-06-07/batch_4/10_candidate_text_v1.png`
+  - `work_2026-06-07/batch_4/11_candidate_text_v1.png`
+  - `work_2026-06-07/batch_4/12_candidate_text_v1.png`
+  - `work_2026-06-07/batch_4/12_candidate_text_v2.png`
+  - `work_2026-06-07/batch_4/12_candidate_text_v3.png`
+- User QA accepted page 10 despite minor Korean text drift, saying it was good enough to pass.
+- Final-promoted page 10:
+  - `final/10_페이지.png` from `batch_4/10_candidate_text_v1.png`
+- Page 11 QA:
+  - `11_candidate_text_v1.png`: candidate pass for scene, heart-shell scale, clean classroom mood, Lulu/Jun-i/Mari/Banguli staging, and no worn bags. Text has minor generator spacing/punctuation drift but remains readable for user QA.
+- Page 12 QA:
+  - `12_candidate_text_v1.png`: held because some indoor children had worn bags, especially Popo.
+  - `12_candidate_text_v2.png`: bags corrected, but user QA noted Lulu and Jun-i were too large, making front friends look too small.
+  - `12_candidate_text_v3.png`: current preferred candidate. Lulu and Jun-i scale was reduced closer to Mari teacher's visual scale, and foreground friends were made more readable. Await user QA before final promotion.
+- Size check:
+  - `10_candidate_text_v1.png`: `1054x1492`
+  - `11_candidate_text_v1.png`: `1054x1492`
+  - `12_candidate_text_v1.png`: `1054x1492`
+  - `12_candidate_text_v2.png`: `1054x1492`
+  - `12_candidate_text_v3.png`: `1054x1492`
+- Batch 4 status: page 10 final-promoted; pages 11 and 12 are candidates only and await user QA.
+
+## Batch 4 Final QA Completion - 2026-06-09
+
+- User QA approved page 11:
+  - `final/11_페이지.png` from `batch_4/11_candidate_text_v1.png`
+- User QA found one final page 12 issue: Aru's scarf color did not match the official Aru reference.
+- Two assistant correction attempts were not used:
+  - image-generation edit candidate changed other page details, including Lulu's outfit.
+  - local masked recolor looked too rough.
+- User manually corrected page 12 by compositing the corrected Aru from the generated edit candidate into `batch_4/12_candidate_text_v3.png`.
+- User approved the corrected page 12 and overall episode:
+  - `final/12_페이지.png` from user-corrected `batch_4/12_candidate_text_v3.png`
+- Final episode page range is now complete:
+  - `final/00_표지.png`
+  - `final/01_페이지.png` through `final/12_페이지.png`

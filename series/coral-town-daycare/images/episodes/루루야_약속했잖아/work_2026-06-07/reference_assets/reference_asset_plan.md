@@ -1,11 +1,18 @@
 # Reference Asset Plan - 루루야, 약속했잖아
 
+## Current Override - 2026-06-09
+
+- This file originally planned a separate `promise_heart_shell_ref.png`.
+- User later decided not to create that reference because the heart shell appears only on page 11.
+- Page 11 was generated with the shell directly as a small in-page prop. Do not generate `promise_heart_shell_ref.png` unless the user explicitly changes direction again.
+
 ## Purpose
 
-This episode needs two episode-specific visual references before main page generation:
+This episode needs episode-specific visual references before main page generation:
 
 - Lulu's favorite picture book, used as the same recurring prop on pages 2, 3, and 4.
 - The messy art-time state, used as the same recurring classroom condition on pages 5 through 9 and partially cleaned on page 10.
+- The promise heart shell, used as Mari teacher's small softly glowing prop on page 11.
 
 Do not use previous episode final images as visual references. Prior episode images may contain unrelated story details and should not contaminate this episode.
 
@@ -60,9 +67,34 @@ Create an environment-state reference image for a Korean toddler picture-book ep
 
 - The picture book must be recognizable at small size and remain the same object when handed, dropped on the floor, and returned.
 - The messy art-time state must be consistent enough that pages 5 through 9 feel like one continuing cleanup problem.
-- Both references must avoid text because later page text should come only from the script.
+- The promise heart shell must read as a gentle preschool story prop in Mari teacher's palm, not a jewel, lamp, neon icon, or magical weapon.
+- All references must avoid text because later page text should come only from the script.
+
+## Asset 03 - Promise Heart Shell
+
+### Target Path
+
+`series/coral-town-daycare/images/episodes/루루야_약속했잖아/work_2026-06-07/reference_assets/promise_heart_shell_ref.png`
+
+### Role
+
+Recurring/critical prop reference for page 11, where Mari teacher shows the softly glowing heart shell after Lulu and Jun-i keep their promise.
+
+### Visual Locks
+
+- A small shell that can fit naturally in Mari teacher's open palm.
+- Warm cream, peach, and pale pink shell tones, with a subtle heart-like inner glow.
+- Gentle watercolor glow only; no neon, harsh sparkle, jewel facets, lens flare, or shiny plastic.
+- It should feel comforting and symbolic for preschoolers, not powerful or dramatic.
+- No readable letters, no pseudo-writing, no labels, no watermark.
+- Plain warm off-white background or simple reference-sheet presentation.
+
+### Generation Prompt
+
+Create a clean prop reference image for a Korean toddler picture-book episode. The subject is a tiny promise heart shell that can fit in a teacher's open palm. It is a small warm cream and pale pink seashell with a subtle heart-like inner glow, soft watercolor and colored-pencil texture, low-saturation pastel colors, and a gentle paper feel. The glow is warm and quiet, not neon, not sparkling, not jewel-like, not a lamp. Show one main shell view and one small angled side view like a simple prop reference sheet. No characters. No readable text, no pseudo-writing, no labels, no watermark. Plain warm off-white background.
 
 ## Generated Assets
 
 - `lulu_favorite_picture_book_ref.png`: accepted as the current prop reference. It has no readable text, a clear seafoam cover, pink coral frame, yellow shell emblem, cream pages, and pink shell/ribbon tab.
 - `messy_art_time_state_ref.png`: restored/regenerated in the current checkout on 2026-06-08 with the official classroom reference used as the strict spatial source. It preserves the same classroom space and watercolor/colored-pencil style, and clearly shows a safe but significant art-time mess that should read to a child as needing cleanup. For main page prompts, keep the same mess identity but request slightly clearer child walkable space when characters are present.
+- `promise_heart_shell_ref.png`: intentionally not generated after user override on 2026-06-09. Page 11 uses the shell directly as a one-page in-image prop.
