@@ -120,22 +120,37 @@ function scriptCandidates(seriesRoot, episodeTitle) {
   const docsEpisodeDir = path.join(seriesRoot, "docs", "episodes");
   const candidates = [];
   if (!fs.existsSync(docsEpisodeDir)) return candidates;
-  const normalizedTitle = episodeTitle.replaceAll("_", "").toLowerCase();
+  const normalizedTitle = normalizeMatchText(episodeTitle);
   for (const name of fs.readdirSync(docsEpisodeDir)) {
     if (path.extname(name).toLowerCase() !== ".md") continue;
     const absolutePath = path.join(docsEpisodeDir, name);
-    const normalizedName = path.basename(name, ".md").replaceAll("_", "").toLowerCase();
+    const normalizedName = normalizeMatchText(path.basename(name, ".md"));
+    const normalizedContent = normalizeMatchText(fs.readFileSync(absolutePath, "utf8").slice(0, 2000));
+    const likely =
+      normalizedName.includes(normalizedTitle) ||
+      normalizedTitle.includes(normalizedName) ||
+      normalizedContent.includes(normalizedTitle);
     candidates.push({
       path: toRepoPath(absolutePath),
       name,
-      likely: normalizedName.includes(normalizedTitle) || normalizedTitle.includes(normalizedName),
+      likely,
     });
   }
-  return candidates.sort((a, b) => {
-    const aTts = /(?:^|[_-])tts(?:[_-]|\.|$)/i.test(a.name);
-    const bTts = /(?:^|[_-])tts(?:[_-]|\.|$)/i.test(b.name);
+  const likelyCandidates = candidates.filter((candidate) => candidate.likely);
+  const sortable = likelyCandidates.length ? likelyCandidates : candidates;
+  return sortable.sort((a, b) => {
+    const aTts = isTtsScriptName(a.name);
+    const bTts = isTtsScriptName(b.name);
     return Number(b.likely) - Number(a.likely) || Number(bTts) - Number(aTts) || a.name.localeCompare(b.name, "ko");
   });
+}
+
+function normalizeMatchText(text) {
+  return text.toLowerCase().replace(/[^0-9a-z가-힣]+/g, "");
+}
+
+function isTtsScriptName(name) {
+  return /(?:^|[_-])tts(?:[_-]|\.|$)/i.test(name);
 }
 
 function discoverEpisodes() {

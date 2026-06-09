@@ -94,18 +94,35 @@ def script_candidates(series_root: Path, episode_title: str) -> list[dict[str, o
     docs_episode_dir = series_root / "docs" / "episodes"
     if not docs_episode_dir.exists():
         return []
-    normalized_title = episode_title.replace("_", "").lower()
+    normalized_title = normalize_match_text(episode_title)
     candidates = []
     for path in docs_episode_dir.glob("*.md"):
-        normalized_name = path.stem.replace("_", "").lower()
+        normalized_name = normalize_match_text(path.stem)
+        normalized_content = normalize_match_text(path.read_text(encoding="utf-8", errors="ignore")[:2000])
+        likely = (
+            normalized_title in normalized_name
+            or normalized_name in normalized_title
+            or normalized_title in normalized_content
+        )
         candidates.append(
             {
                 "path": to_repo_path(path),
                 "name": path.name,
-                "likely": normalized_name in normalized_title or normalized_title in normalized_name,
+                "likely": likely,
             }
         )
-    return sorted(candidates, key=lambda item: (not item["likely"], str(item["name"])))
+    likely_candidates = [item for item in candidates if item["likely"]]
+    if likely_candidates:
+        candidates = likely_candidates
+    return sorted(candidates, key=lambda item: (not item["likely"], not is_tts_script_name(str(item["name"])), str(item["name"])))
+
+
+def normalize_match_text(text: str) -> str:
+    return re.sub(r"[^0-9a-z가-힣]+", "", text.lower())
+
+
+def is_tts_script_name(name: str) -> bool:
+    return re.search(r"(?:^|[_-])tts(?:[_-]|\.|$)", name, flags=re.I) is not None
 
 
 def discover_book_folder(folder: Path) -> dict[str, object] | None:

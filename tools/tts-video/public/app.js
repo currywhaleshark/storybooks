@@ -239,6 +239,7 @@ function alignExtractedTexts(texts) {
 async function loadEpisodes() {
   setButtonsDisabled(true);
   setStatus("에피소드 목록을 불러오는 중입니다.");
+  const previousFinalFolder = episodeSelect.value || state.selected?.finalFolder || "";
   const response = await fetch("/api/episodes");
   const data = await response.json();
   if (!response.ok || data.error) throw new Error(data.error || "에피소드 목록을 불러오지 못했습니다.");
@@ -250,8 +251,9 @@ async function loadEpisodes() {
     option.textContent = `${episode.series} / ${episode.title} (${episode.imageCount}장)`;
     episodeSelect.append(option);
   }
-  const popo = state.episodes.find((episode) => episode.title.includes("포포는_안_졸려"));
-  if (popo) episodeSelect.value = popo.finalFolder;
+  if (state.episodes.some((episode) => episode.finalFolder === previousFinalFolder)) {
+    episodeSelect.value = previousFinalFolder;
+  }
   renderEpisode();
   setButtonsDisabled(false);
 }
@@ -307,6 +309,7 @@ async function extractScriptContent(content, label = "직접 입력") {
 }
 
 async function saveScript() {
+  state.selected = selectedEpisode();
   if (!state.selected) return null;
   const response = await fetch("/api/save-script", {
     method: "POST",
@@ -409,6 +412,7 @@ async function previewVoice() {
 }
 
 async function startAudioReview() {
+  state.selected = selectedEpisode();
   if (!state.selected || ttsSelect.value === "manual") return;
   setButtonsDisabled(true);
   jobState.textContent = "음성 생성 중";
@@ -432,6 +436,7 @@ async function startAudioReview() {
 }
 
 async function rerollAudioPage(index, button) {
+  state.selected = selectedEpisode();
   if (!state.selected) return;
   const previousText = button.textContent;
   button.disabled = true;
@@ -460,6 +465,7 @@ async function rerollAudioPage(index, button) {
 }
 
 async function renderVideo() {
+  state.selected = selectedEpisode();
   if (!state.selected) return;
   setButtonsDisabled(true);
   jobState.textContent = "실행 중";
