@@ -29,24 +29,48 @@
 | --- | --- | --- | --- |
 | 장소 | `series/sherlock-fin-deep-city/references/locations/세_가지_단서의_비밀_산호골목_레퍼런스.png` | 재생성 필요 | 따뜻한 분홍/주황 산호 골목, 모래바닥, 버블 가로등, 우체통, 반복 사용 가능한 생활 골목 |
 | 장소 | `series/sherlock-fin-deep-city/references/locations/세_가지_단서의_비밀_탐정사무소_외관_레퍼런스.png` | 재생성 필요 | 조개 문, "DEEP SEA DETECTIVE AGENCY" 간판, 양쪽 램프, 둥근 돔형 사무소, 개업 첫날 느낌 |
-| 장소 | `series/sherlock-fin-deep-city/references/locations/세_가지_단서의_비밀_물살세갈래길_레퍼런스.png` | 재생성 필요 | 재즈광장/조개시장/미역숲 세 방향 표지판, 실제 구역은 보이지 않음, 산호 골목은 진입부로만 처리, 빠른 물살, 흔적이 씻기는 모래, 산호 모서리 틈 |
+| 장소 | `series/sherlock-fin-deep-city/references/locations/세_가지_단서의_비밀_물살세갈래길_레퍼런스.png` | 재생성 필요 | 단서를 따라 도착한 산호 골목 끝의 자연 모래바닥, 재즈광장/조개시장/미역숲 세 방향 표지판, 실제 구역은 보이지 않음, 포장/타일/돌바닥 없음, 발자국 없음, 빠른 물살, 분홍 별진주 가루가 씻기는 모래, 산호 모서리 틈 |
 | 소품 | `series/sherlock-fin-deep-city/references/props/펄리_별진주_레퍼런스.png` | 생성 필요 | 앞으로도 반복 등장할 공식 소품. 분홍색 둥근 별 모양 진주, 작은 조개 가방 안 빈자리, 반짝이는 별진주 가루, 조명처럼 빛나는 버전 |
-| 캐릭터 | `series/sherlock-fin-deep-city/references/characters/세_가지_단서의_비밀_해마_우체부_레퍼런스.png` | 권장 생성 | 작은 해마 우체부, 우체통/편지 꾸러미, 따뜻하고 믿음직한 목격자 |
+| 흔적 | `series/sherlock-fin-deep-city/references/props/세_가지_단서의_비밀_게발자국_레퍼런스.png` | 통과 후보 생성 | 실제 게 발자국 사진 기준. 작은 타원/슬릿형 콕콕 자국이 사선으로 여러 줄 이어지는 옆걸음 흔적. 큰 집게발 도장, 동물 발바닥, 새 발자국처럼 보이면 안 됨 |
+| 캐릭터 | `series/sherlock-fin-deep-city/references/characters/세_가지_단서의_비밀_해마_우체부_레퍼런스.png` | 통과 후보 생성 | 작은 해마 우체부, 우체통/편지 꾸러미, 따뜻하고 믿음직한 목격자, 아기 얼굴이 아닌 차분한 성인 우체부 눈매/얼굴형 |
 
 ## 페이지 범위
 
 - 표지: `00_표지.png`
 - 본문: `01_페이지.png` - `12_페이지.png`
 - 총 13장
+- 본편 제작 규격: A5 세로비율(약 1:1.414). 가로형 후보는 본편 후보로 쓰지 않는다.
 
 ## 다음 단계
 
-1. 위 신규 레퍼런스 4종은 본편 전에 먼저 생성한다.
+1. 위 신규 레퍼런스와 게 발자국 흔적 레퍼런스는 본편 전에 먼저 생성한다.
 2. 해마 우체부는 사용자가 별도 확정을 원하지 않아도 04페이지 반복 안정성을 위해 생성을 권장한다.
 3. 레퍼런스가 통과되면 `page_plan.md`를 기준으로 3-4장 단위 배치 프롬프트를 만든다.
 4. 본편 생성은 공식 캐릭터 시트와 새 장소/소품 레퍼런스를 함께 기준으로 한다.
 
 ## 생성 이력
+
+- 2026-06-10 Batch 1 가로형 초안: `work_2026-06-09/batch_1/00_cover_candidate_v1.png`, `work_2026-06-09/batch_1/01_page_candidate_v1.png`, 생성물 02 초안
+  - 상태: 폐기/제작 이력. 본편 규격이 A5 세로비율이어야 하므로 가로형 3:2 후보는 사용하지 않는다.
+  - 다음 방향: `work_2026-06-09/batch_1_a5/`에 00-03을 A5 세로비율로 새로 생성한다.
+- 2026-06-10 Batch 1 A5 1차:
+  - Google Drive 검토본: https://docs.google.com/presentation/d/1LV3FvadVwfF3Soh9HrRkFOwW-SlTiCnzPORJQ3inoOw/edit?usp=drivesdk
+  - `series/sherlock-fin-deep-city/images/episodes/세_가지_단서의_비밀/work_2026-06-09/batch_1_a5/00_cover_candidate_a5_v1.png`
+    - 상태: 후보 통과/보류 확인. A5 세로비율과 제목 가독성, 셜록 핀/펄리/단서 카드 구성은 좋다. 다만 표지 하단에 별진주가 크게 보여 사건의 분실물 상징이 강하므로, 사용자가 원하면 별진주를 작게 줄인 표지 재시도 가능.
+  - `series/sherlock-fin-deep-city/images/episodes/세_가지_단서의_비밀/work_2026-06-09/batch_1_a5/01_page_candidate_a5_v1.png`
+    - 상태: 후보 통과/텍스트 보정 필요. A5 세로비율, 탐정사무소 외관, 펄리 첫 방문 흐름이 좋다. 텍스트는 대체로 읽히지만 최종 승격 전 정확 문구 대조가 필요하다.
+  - `series/sherlock-fin-deep-city/images/episodes/세_가지_단서의_비밀/work_2026-06-09/batch_1_a5/02_page_candidate_a5_v1.png`
+    - 상태: 후보 통과/텍스트 보정 필요. 탐정사무소 내부, 빈 조개 가방, 셜록 핀의 경청 장면이 좋다. 별진주가 가방 안에 들어 있지 않고 빈자리가 보여 사건 상황이 명확하다. 텍스트는 일부 줄과 표현을 최종 대본과 대조해야 한다.
+  - `series/sherlock-fin-deep-city/images/episodes/세_가지_단서의_비밀/work_2026-06-09/batch_1_a5/03_page_candidate_a5_v1.png`
+    - 상태: 보류/재작업 필요. 산호 골목 모래바닥, 분홍 별진주 가루, 돋보기 인서트는 좋지만, 사용자가 실제 게 발자국 사진을 새 기준으로 제시했다. 다음 03 후보는 `게발자국_reference_candidate_v1.png`처럼 작은 타원/슬릿형 콕콕 자국이 사선으로 이어진 실제 게 흔적으로 바꾼다.
+  - Batch 1 다음 액션: 사용자 확인 후 00 표지 별진주 크기 조정 여부와 01-02 텍스트 보정 여부를 결정한다. 03은 게 발자국 레퍼런스를 반영해 재생성한다. 확정 전 `final` 폴더로 승격하지 않는다.
+
+- 2026-06-10 게 발자국 1차: `series/sherlock-fin-deep-city/images/episodes/세_가지_단서의_비밀/work_2026-06-09/reference_setup/candidates/게발자국_reference_candidate_v1.png`
+  - Google Drive 검토본: https://docs.google.com/presentation/d/1QtpVSaPvPEEHh8-cONKWKV3HXo8nKJwOAOxxj-cMPaY/edit?usp=drivesdk
+  - 원본 사진: `series/sherlock-fin-deep-city/images/episodes/세_가지_단서의_비밀/work_2026-06-09/reference_setup/sources/게발자국_real_photo_source.png`
+  - 원본 생성물: `C:/Users/USER/.codex/generated_images/019eaec5-be56-7f92-910a-000b0d8933b8/ig_04f2e19014e85992016a2908dc940481919fde28e17291dc19.png`
+  - 상태: 통과 후보. 실제 게 발자국 사진처럼 크고 상징적인 집게발 모양이 아니라, 작은 타원/슬릿형 콕콕 자국들이 사선과 옆걸음 흐름으로 이어진다. 아래 오른쪽 패널의 분홍 별진주 가루 예시는 03/05 본편용 흔적 연출에 참고한다.
+  - 본편 잠금: 03페이지와 05페이지의 발자국은 이 후보를 기준으로 한다. 물살 세갈래길 장소 레퍼런스 v4에는 발자국을 넣지 않는다.
 
 - 2026-06-09 산호 골목 1차: `C:/Users/yurib/.codex/generated_images/019eac6f-ddd9-7933-a118-8be9620339ad/ig_0da9a0040752a795016a280e975c808191bd0c9d9f48b86483.png`
   - 상태: 불채택. 공식 산호 골목 레퍼런스에 발자국/별진주 가루/산호 모서리 단서가 들어가면 장소가 이번 사건 전용처럼 굳어짐.
@@ -69,11 +93,30 @@
   - 수정 방향: 실제 재즈광장/조개시장/미역숲 구역은 보이지 않게 한다. 산호 골목은 화면 아래 진입부로만, 선택지는 재즈광장/조개시장/미역숲 세 방향의 아이콘/색감/길목 장식만 보이게 유지한다. 본편에서는 텍스트 라벨을 사용하지 않는다.
 - 2026-06-09 물살 세갈래길 2차: `series/sherlock-fin-deep-city/images/episodes/세_가지_단서의_비밀/work_2026-06-09/reference_setup/candidates/물살세갈래길_reference_candidate_v2.png`
   - 원본 생성물: `C:/Users/yurib/.codex/generated_images/019eac6f-ddd9-7933-a118-8be9620339ad/ig_0da9a0040752a795016a281c44fbf881919aacafaa3624f04a.png`
-  - 상태: 통과 후보. 실제 재즈광장/조개시장/미역숲 구역이 직접 보이지 않고, 세 길목의 아이콘/색감/방향감만 보임. 강한 물살과 씻기는 모래 구조가 유지됨.
-  - 본편 잠금: 05-07페이지에서 목적지를 직접 보여주지 않는다. 재즈광장은 소리와 이후 한 톨 단서로 찾아내야 하므로, 세갈래길 장면에서는 길목 암시만 허용한다.
+  - 상태: 불채택. 실제 재즈광장/조개시장/미역숲 구역이 직접 보이지 않고 세 길목의 아이콘/색감/방향감은 좋지만, 아래 전경에 포장된 반원 바닥이 보여서 이야기 흐름과 맞지 않는다. 이 장소는 셜록 핀과 펄리가 발자국과 별진주 가루를 따라 산호 골목의 자연 모래바닥 끝까지 도착한 곳이어야 한다.
+  - 재작업 방향: 전경과 진입부를 모두 자연 모래바닥으로 처리한다. 포장도로, 타일, 돌바닥, 벽돌, 광장형 플랫폼, 계단, 인공 바닥 패턴은 넣지 않는다. 모래 위에 희미한 발자국과 분홍 별진주 가루가 물살에 씻기며 끊기는 장면을 유지한다.
+  - 본편 잠금: 05-07페이지에서 목적지를 직접 보여주지 않는다. 재즈광장은 소리와 이후 한 톨 단서로 찾아내야 하므로, 세갈래길 장면에서는 길목 암시만 허용한다. 세갈래길은 포장된 광장이 아니라 산호 골목 끝의 모래바닥 갈림길이다.
+- 2026-06-10 물살 세갈래길 3차: `series/sherlock-fin-deep-city/images/episodes/세_가지_단서의_비밀/work_2026-06-09/reference_setup/candidates/물살세갈래길_reference_candidate_v3.png`
+  - 원본 생성물: `C:/Users/USER/.codex/generated_images/019eaec5-be56-7f92-910a-000b0d8933b8/ig_0733fe9acd688121016a28a9f8f5b48191b631c5b2fc353b0f.png`
+  - 상태: 대체됨. 포장바닥 문제는 해결됐지만, 사용자가 발자국 제거를 요청했으므로 v4를 새 통과 후보로 본다.
+  - 본편 잠금: 재즈광장 방향에는 목적지 자체를 보여주지 않고, 음악 아이콘과 따뜻한 빛만 암시로 둔다. 07페이지용 산호 모서리 틈의 분홍 가루 한 톨은 오른쪽 아래 디테일 패널 구성을 참고할 수 있다.
+- 2026-06-10 물살 세갈래길 4차: `series/sherlock-fin-deep-city/images/episodes/세_가지_단서의_비밀/work_2026-06-09/reference_setup/candidates/물살세갈래길_reference_candidate_v4.png`
+  - 원본 생성물: `C:/Users/USER/.codex/generated_images/019eaec5-be56-7f92-910a-000b0d8933b8/ig_0733fe9acd688121016a28b3b2259c8191a7d824da01c44e40.png`
+  - 상태: 통과 후보. 전경부터 세 갈림길까지 자연 모래바닥으로 이어지며 포장바닥/타일/돌길/광장형 플랫폼이 없다. 발자국은 제거됐고, 단서는 분홍 별진주 가루와 물살 흐름 중심으로 읽힌다.
+  - 본편 잠금: 세갈래길 레퍼런스에는 발자국을 넣지 않는다. 분홍 별진주 가루가 물살에 씻기며 끊기는 흐름을 유지한다. 재즈광장 방향은 목적지 자체를 보여주지 않고 음악 아이콘과 따뜻한 빛만 암시로 둔다.
 - 2026-06-09 펄리 별진주 1차: `series/sherlock-fin-deep-city/images/episodes/세_가지_단서의_비밀/work_2026-06-09/reference_setup/candidates/펄리_별진주_reference_candidate_v1.png`
   - 원본 생성물: `C:/Users/yurib/.codex/generated_images/019eac6f-ddd9-7933-a118-8be9620339ad/ig_0da9a0040752a795016a281f8de0cc819196d45b603c1142c8.png`
   - 상태: 통과 후보. 둥근 분홍 별 모양 진주, 조개 가방 안 빈자리, 분홍 별진주 가루, 조명처럼 빛나는 버전이 한 장에 정리됨.
   - 보류 확인: 레퍼런스 시트에는 한글 라벨이 있으나 본편 페이지에서는 별진주 주변에 라벨/설명 글자를 넣지 않는다.
   - 본편 잠금: 별진주는 펄리의 돋보기/모노클 액세서리와 다르다. 분홍색 둥근 별 모양 진주로 유지하고, 가루도 같은 분홍빛으로 통일한다.
   - 공식 승격 후보 경로: `series/sherlock-fin-deep-city/references/props/펄리_별진주_레퍼런스.png`
+- 2026-06-10 해마 우체부 1차: `series/sherlock-fin-deep-city/images/episodes/세_가지_단서의_비밀/work_2026-06-09/reference_setup/candidates/해마우체부_reference_candidate_v1.png`
+  - 원본 생성물: `C:/Users/USER/.codex/generated_images/019eaec5-be56-7f92-910a-000b0d8933b8/ig_0733fe9acd688121016a28c173e7548191b6a04c2d9e4e514b.png`
+  - 상태: 대체됨. 둥근 주황-금색 해마 실루엣, 청록색 지느러미/모자, 크림색 편지 가방, 편지 꾸러미, 산호 골목용 우체통은 좋지만, 눈매와 얼굴형이 너무 아기 얼굴처럼 보여 우체부의 직업감이 약하다.
+  - 수정 방향: 큰 동그란 눈과 아기 볼 느낌을 줄이고, 조금 더 길고 차분한 얼굴형/눈매/주둥이로 바꾼다. 귀엽고 따뜻한 톤은 유지하되 친절한 성인 동네 우체부처럼 보여야 한다.
+  - 공식 승격 후보 경로: `series/sherlock-fin-deep-city/references/characters/세_가지_단서의_비밀_해마_우체부_레퍼런스.png`
+- 2026-06-10 해마 우체부 2차: `series/sherlock-fin-deep-city/images/episodes/세_가지_단서의_비밀/work_2026-06-09/reference_setup/candidates/해마우체부_reference_candidate_v2.png`
+  - 원본 생성물: `C:/Users/USER/.codex/generated_images/019eaec5-be56-7f92-910a-000b0d8933b8/ig_0733fe9acd688121016a28ccb7e5f08191a69e4caf9fbc03de.png`
+  - 상태: 통과 후보. v1의 우체부 장비와 시트 구성을 유지하면서 눈매가 더 차분하고 얼굴형/주둥이가 덜 아기 같아졌다. 작은 해마 캐릭터의 따뜻함은 유지하되, 목격자이자 동네 우체부로 보이는 책임감이 생김.
+  - 본편 잠금: 04페이지 목격자 역할에 맞게 따뜻하고 믿음직한 표정을 유지한다. 아기 같은 큰 동그란 눈, 과한 볼터치, 유아형 얼굴 비율은 피한다. 늙거나 엄격한 우체부, 군인/경찰 같은 제복, 지나치게 복잡한 장식도 피한다. 본편에서는 배경이나 소품에 읽을 수 있는 우편 라벨/문자를 넣지 않는다.
+  - 공식 승격 후보 경로: `series/sherlock-fin-deep-city/references/characters/세_가지_단서의_비밀_해마_우체부_레퍼런스.png`

@@ -59,13 +59,13 @@ Avoid: CASE FILE standing sign, readable side boards, dark mansion, police stati
 Use case: illustration-story
 Asset type: official location reference sheet for a children's picture book series
 Primary request: Create the official reference sheet for "물살 세갈래길 / Current Three-Way Split", an underwater three-way split where small traces are washed away.
-Scene/backdrop: the end of Coral Alley opens into exactly three outgoing paths marked by clear visual icons only. The actual destinations are NOT visible from the split: no Jazz Plaza stage, no shell market stalls, no seaweed forest area in view. The Jazz Plaza path is hinted only by small music-note icons and a faint warm gold glow at the path entrance. The Shell Market path is hinted only by a small shell icon and cream-colored path markers. The Seaweed Forest path is hinted only by a small green seaweed icon and a faint emerald tint at the path entrance. Coral Alley is only the entry edge at the bottom/foreground, not a fourth selectable road. Fast swirling underwater current crosses the sandy ground and washes away tiny footprints and pink pearl dust.
+Scene/backdrop: the end of Coral Alley opens into exactly three outgoing sandy seabed paths marked by clear visual icons only. This is the place Sherlock Fin and Pearly reach after following clues across natural sand, so the entire foreground/entry area must remain continuous sandy seabed. The actual destinations are NOT visible from the split: no Jazz Plaza stage, no shell market stalls, no seaweed forest area in view. The Jazz Plaza path is hinted only by small music-note icons and a faint warm gold glow at the path entrance. The Shell Market path is hinted only by a small shell icon and cream-colored path markers. The Seaweed Forest path is hinted only by a small green seaweed icon and a faint emerald tint at the path entrance. Coral Alley is only the sandy entry edge at the bottom/foreground, not a fourth selectable road. Fast swirling underwater current crosses the sandy ground and washes away pink pearl dust. Do not show footprints in this reference sheet.
 Style/medium: polished children's picture book illustration, cute rounded forms, magical but safe underwater city.
-Composition/framing: one wide top-down/three-quarter view of the three outgoing paths bending away or fading into blue water before any destination is visible, plus smaller detail panels for the three-direction icon signpost, swirling current, washed sand, and a protected coral corner near the Jazz Plaza path where a tiny pink pearl-dust speck can remain. Use icons and pictures, not written labels.
+Composition/framing: one wide top-down/three-quarter view of the three outgoing sandy paths bending away or fading into blue water before any destination is visible, plus smaller detail panels for the three-direction icon signpost, swirling current, washed sand, pink pearl dust being washed away, and a protected coral corner near the Jazz Plaza path where a tiny pink pearl-dust speck can remain. Use icons and pictures, not written labels.
 Lighting/mood: curious mystery, still bright and safe; no danger.
 Color palette: deep blue and teal water, pink coral, gold Jazz Plaza glow, soft green seaweed, small pink sparkle accents.
-Constraints: no characters; no readable text labels anywhere; no visible destination zones; make exactly three outgoing directions easy for a child to understand through icons; show Coral Alley only as an entry/arrival area, not a fourth road; the current should look active but not threatening.
-Avoid: visible Jazz Plaza, visible stage, visible market stalls, visible seaweed forest destination, four-way intersection, crossroads, extra roads, written place names, Korean labels, English labels, title text, whirlpool danger, stormy water, dark cave, confusing maze.
+Constraints: no characters; no readable text labels anywhere; no visible destination zones; make exactly three outgoing directions easy for a child to understand through icons; show Coral Alley only as a sandy entry/arrival area, not a fourth road; the current should look active but not threatening; keep the ground natural sand throughout.
+Avoid: footprints, crab footprints, track marks, paw-like impressions, paved foreground, stone pavement, cobblestone, tile floor, brick path, plaza floor, round platform, stairs, artificial walkway, visible Jazz Plaza, visible stage, visible market stalls, visible seaweed forest destination, four-way intersection, crossroads, extra roads, written place names, Korean labels, English labels, title text, whirlpool danger, stormy water, dark cave, confusing maze.
 ```
 
 ## 4. 펄리의 별진주 레퍼런스
@@ -88,6 +88,31 @@ Constraints: no characters; no long text; make the star pearl shape simple, roun
 Avoid: sharp star points, diamond/gemstone look, hard metal jewelry, scary magical aura.
 ```
 
+## 5. 게 발자국 레퍼런스
+
+원본 사진:
+`series/sherlock-fin-deep-city/images/episodes/세_가지_단서의_비밀/work_2026-06-09/reference_setup/sources/게발자국_real_photo_source.png`
+
+저장 후보:
+`series/sherlock-fin-deep-city/references/props/세_가지_단서의_비밀_게발자국_레퍼런스.png`
+
+후보 파일:
+`series/sherlock-fin-deep-city/images/episodes/세_가지_단서의_비밀/work_2026-06-09/reference_setup/candidates/게발자국_reference_candidate_v1.png`
+
+프롬프트:
+
+```text
+Use case: illustration-story
+Asset type: official trace/clue reference sheet for a children's picture book series
+Primary request: Create the official crab footprint / crab track reference sheet for "The Secret of Three Clues", based on the provided real crab track photo.
+Input image role: The real crab track photo is the source of truth for the footprint pattern. Preserve its structure: many tiny paired oval and slit-like impressions, shallow dents, small raised sand rims, staggered rows, diagonal/sideways crab movement, and intermittent trail spacing.
+Scene/backdrop: clean sand and warm underwater golden sand panels, with one optional episode-use panel showing pink star-pearl dust sparkling beside the crab tracks.
+Style/medium: polished children's picture book reference sheet, soft realistic sand texture simplified enough for young readers, consistent with Sherlock Fin's warm underwater style.
+Composition/framing: four visual panels with no words: top-down natural sand trail, close-up detail of tiny paired marks, simplified storybook trail, episode-use trail with pink pearl dust beside the marks.
+Constraints: no characters; no readable text; no labels; no crab body; no large symbolic footprints; the tracks must read as actual small crab tracks rather than cartoon icons.
+Avoid: giant crab claws, big claw-shaped stamps, pawprints, bird tracks, dinosaur tracks, human shoeprints, flower-shaped marks, round animal pads, thick dark outlines, clutter, scary tone.
+```
+
 ## 권장 추가: 해마 우체부 레퍼런스
 
 저장 후보:
@@ -99,11 +124,11 @@ Avoid: sharp star points, diamond/gemstone look, hard metal jewelry, scary magic
 Use case: illustration-story
 Asset type: official side-character reference sheet for a children's picture book series
 Primary request: Create the official reference sheet for the Seahorse Mail Carrier, the gentle witness in "The Secret of Three Clues".
-Subject: a small friendly seahorse mail carrier with a tiny satchel of letters, small cap, warm trustworthy expression, and a Coral Alley mailbox prop.
+Subject: a small friendly adult seahorse mail carrier with a tiny satchel of letters, small cap, warm trustworthy expression, and a Coral Alley mailbox prop. He should feel like a kind neighborhood worker and witness, not a baby or toddler.
 Style/medium: polished children's picture book character sheet, rounded cute underwater creature design, consistent with Sherlock Fin character references.
 Composition/framing: front view, 3/4 view, side view, expressions for friendly greeting / remembering / explaining, plus mailbox and letter bundle details.
 Lighting/mood: helpful, calm, reliable, never stern.
 Color palette: warm orange-gold seahorse, teal cap, cream letter bag, pink coral accents.
-Constraints: no main characters; no scary anatomy; simple silhouette that remains readable at small storybook size.
-Avoid: realistic bony seahorse, old stern postman, cluttered uniform, threatening look.
+Constraints: no main characters; no scary anatomy; simple silhouette that remains readable at small storybook size; keep the eyes calm and moderately sized, with a slightly longer face and snout than a baby character.
+Avoid: baby face, toddler proportions, giant round baby eyes, oversized pupils, heavy cheek blush, realistic bony seahorse, old stern postman, cluttered uniform, threatening look.
 ```
