@@ -200,3 +200,103 @@
   - `batch_3_a5/10_page_candidate_a5_v1.png`
     - 상태: 시각 후보. 재즈광장 중앙에서 분홍 별진주가 파티 조명처럼 반짝이고, 크랩슨이 첫 만남의 놀람 표정으로 등장한다. 꽃게 친구들도 파티 장식 준비 중인 밝은 분위기로 읽힌다.
     - 보류 확인: 텍스트는 최종 승격 전 사용자 판단에 따른다.
+
+## 2026-06-11 물살 세갈래길 레퍼런스 재설계
+
+- 새 후보: `reference_setup/candidates/물살세갈래길_reference_candidate_v5_building_blocked.png`
+- 상태: 후보 통과. 기존 05-06 후보의 세갈래길이 넓은 공터처럼 읽혀 길 밖으로도 이동할 수 있어 보이는 문제를 보완했다.
+- 설계 잠금:
+  - 세 갈래 사이와 양옆은 조개 건물, 산호 화단, 낮은 담장, 계단 기단으로 막는다.
+  - 실제로 열린 이동 가능 경로는 왼쪽/가운데/오른쪽 세 통로뿐이어야 한다.
+  - 재즈광장, 조개시장, 미역숲은 목적지를 직접 보여주지 않고 음악/조개/미역 아이콘 빛으로만 암시한다.
+  - 물살과 반짝이는 흔적은 세 갈래 길 위에만 놓고, 건물 사이 빈 공터나 우회 가능한 모래 공간을 만들지 않는다.
+- 다음 적용 대상:
+  - 05 페이지는 이 레퍼런스를 기준으로 세갈래길 배경을 다시 생성한다.
+  - 06 페이지도 같은 공간 구조를 이어받아, 세 길 외에는 건물과 산호 장벽이 있어 선택지가 세 개뿐임을 유지한다.
+
+## 2026-06-11 관련 페이지 재생성 후보
+
+- 재생성 범위: 05, 06, 07, 09.
+- 기준 레퍼런스: `reference_setup/candidates/물살세갈래길_reference_candidate_v5_building_blocked.png`
+- 후보 파일:
+  - 05: `batch_2_a5/05_page_candidate_a5_v7_building_blocked.png`
+  - 06: `batch_2_a5/06_page_candidate_a5_v2_building_blocked.png`
+  - 07: `batch_2_a5/07_page_candidate_a5_v2_building_blocked.png`
+  - 09: `batch_3_a5/09_page_candidate_a5_v4_crabsen_group.png`
+- QA:
+  - 05는 세 갈래 사이와 양옆이 조개 건물/산호 화단/담장으로 막혀 공터처럼 읽히는 문제가 개선되었다.
+  - 06은 같은 세갈래길 구조를 유지하고, 재즈광장 쪽 소리 단서가 한 방향에서 들리는 장면으로 읽힌다.
+  - 07은 재즈광장 길목의 물살이 닿지 않는 산호 모서리에서 분홍 별진주 가루 한 톨을 발견하는 장면으로 읽힌다.
+  - 09는 재즈광장 원경에 크랩슨과 꽃게 친구들이 한곳에 모여 놀고 있는 모습이 추가되었다. 별진주 발견은 10페이지용으로 남겨 두기 위해 09에서는 크게 노출하지 않았다.
+- Google Drive 업로드:
+  - 모바일 확인용 Google Doc 생성을 시도했으나 Google Drive 커넥터가 `Provided authentication token is expired. Please try signing in again.` 오류를 반환했다.
+  - 로컬 후보 파일 생성과 QA는 완료되었고, Drive 업로드는 Google 계정 재인증 후 재시도해야 한다.
+
+## 2026-06-11 Google Drive 재연결 및 09 재수정
+
+- Google Drive 재연결 확인:
+  - My Drive root 목록 조회 성공.
+  - 새 모바일 확인용 Google Doc 생성 및 이미지 4장 삽입 성공.
+- 09 페이지 재수정:
+  - 기존 `batch_3_a5/09_page_candidate_a5_v4_crabsen_group.png`는 셜록핀 하반신이 두 갈래처럼 읽히는 문제가 있어 보류한다.
+  - 새 후보: `batch_3_a5/09_page_candidate_a5_v5_single_tail_crabsen_group.png`
+  - QA: 셜록핀 하반신이 하나의 연속된 청록색 인어 꼬리로 정리되었고, 재즈광장 원경의 크랩슨/꽃게 친구 무리도 유지되었다. 별진주 발견은 10페이지용으로 남겨 두고 09에서는 크게 노출하지 않았다.
+- 모바일 확인 Google Doc:
+  - `https://docs.google.com/document/d/1ouStrCtoaeAg_bKfv0ee6ns-Zc9vYZUw8lXzhL2GK3I/edit?usp=drivesdk`
+  - 포함 이미지: 05 v7, 06 v2, 07 v2, 09 v5.
+
+## 2026-06-11 Batch 4 준비 및 꽃게 친구 레퍼런스
+
+- Batch 4 범위:
+  - 11: 크랩슨이 별진주를 펄리에게 돌려주고 사과하는 장면.
+  - 12: 첫 사건 성공 마무리. 별진주는 펄리 조개 가방 안에 안전하게 들어간다.
+  - 현 대본 기준 Batch 4가 마지막 배치다. 전체 구성은 00 표지 + 01-12 본문, 총 13장.
+- 프롬프트 계획:
+  - `batch_4_prompt_plan.md`
+- 마무리 핸드오프:
+  - `batch_4_handoff.md`
+- 꽃게 친구 레퍼런스:
+  - `reference_setup/candidates/꽃게친구들_reference_candidate_v1.png`
+  - 상태: 후보 통과. 크랩슨과 구분되는 작은 일반 꽃게 친구들이다. 신사 모자/검은 정장/보라색 보타이 없이 조개, 산호, 잎, 별 장식만 가진다.
+  - 잠금: 크랩슨은 한 명만 신사 모자/정장/보라색 보타이를 착용한다. 배경 꽃게 친구들이 크랩슨 복제처럼 보이면 실패다.
+- Batch 4 후보:
+  - `batch_4_a5/11_page_candidate_a5_v1.png`
+    - 상태: 대체됨. 돌려주는 장면은 좋지만 뒤쪽 꽃게 친구들이 전부 크랩슨처럼 신사 모자/정장 차림으로 나와 실패.
+  - `batch_4_a5/11_page_candidate_a5_v2_crab_friends_ref.png`
+    - 상태: 모바일 확인 후보. 새 꽃게 친구 레퍼런스를 반영해 배경 꽃게들이 크랩슨과 분리되었다. 별진주를 펄리에게 돌려주는 순간과 셜록 핀의 따뜻한 표정이 유지된다.
+  - `batch_4_a5/12_page_candidate_a5_v1.png`
+    - 상태: 대체됨. 아래쪽 꽃게 친구들이 크랩슨 복제처럼 보이는 문제가 있다.
+  - `batch_4_a5/12_page_candidate_a5_v2_crab_friends_ref.png`
+    - 상태: 모바일 확인 후보. 새 꽃게 친구 레퍼런스를 반영해 크랩슨과 일반 꽃게 친구들이 분리되었다. 별진주는 펄리 조개 안에 들어가 있고, 세 단서 아이콘이 뒤쪽에 보인다.
+  - `batch_4_a5/11_page_candidate_a5_v3_crab_friends_textfix.png`, `batch_4_a5/12_page_candidate_a5_v3_crab_friends_textfix.png`
+    - 상태: 미채택 기록. 사용자가 생성 원본 텍스트가 문제없다고 확인했으므로 모바일 확인 후보로 쓰지 않는다.
+- 모바일 확인 Google Doc:
+  - `https://docs.google.com/document/d/1R3P9GpyOnrb0XboTanYr87BnviubJGnoVmUyE_f7p78/edit?usp=drivesdk`
+  - 포함 이미지: 꽃게 친구들 레퍼런스 v1, 11 v2, 12 v2.
+
+## 2026-06-11 전체 final 승격
+
+- 사용자 요청: 전체 승격.
+- 최종 폴더:
+  - `series/sherlock-fin-deep-city/images/episodes/세_가지_단서의_비밀/final`
+- 승격 파일:
+  - `00_표지.png` <- `batch_1_a5/00_cover_candidate_a5_v1.png`
+  - `01_페이지.png` <- `batch_1_a5/01_page_candidate_a5_v1.png`
+  - `02_페이지.png` <- `batch_1_a5/02_page_candidate_a5_v1.png`
+  - `03_페이지.png` <- `batch_1_a5/03_page_candidate_a5_v5_single_powder_trail.png`
+  - `04_페이지.png` <- `batch_2_a5/04_page_candidate_a5_v1.png`
+  - `05_페이지.png` <- `batch_2_a5/05_page_candidate_a5_v7_building_blocked.png`
+  - `06_페이지.png` <- `batch_2_a5/06_page_candidate_a5_v2_building_blocked.png`
+  - `07_페이지.png` <- `batch_2_a5/07_page_candidate_a5_v2_building_blocked.png`
+  - `08_페이지.png` <- `batch_3_a5/08_page_candidate_a5_v1.png`
+  - `09_페이지.png` <- `batch_3_a5/09_page_candidate_a5_v5_single_tail_crabsen_group.png`
+  - `10_페이지.png` <- `batch_3_a5/10_page_candidate_a5_v1.png`
+  - `11_페이지.png` <- `batch_4_a5/11_page_candidate_a5_v2_crab_friends_ref.png`
+  - `12_페이지.png` <- `batch_4_a5/12_page_candidate_a5_v2_crab_friends_ref.png`
+- 검증:
+  - `final` 폴더에서 PNG 13장 확인.
+  - 안정 파일명 `00_표지.png`, `01_페이지.png`-`12_페이지.png` 모두 존재 확인.
+  - 접촉시트 QA 파일: `.qa_tmp/sherlock_fin_three_clues_final_contact_sheet.png`
+  - 접촉시트 기준 00-12 흐름, 09 단일 꼬리, 11-12 꽃게 친구/크랩슨 분리 확인.
+- 참고:
+  - 05, 09, 11, 12는 원본 생성 규격이 `1024x1536`으로 A5 정확 비율보다 조금 길다. 사용자 승인 후보를 그대로 승격했으며, 비율 리마스터는 별도 작업으로 남긴다.
