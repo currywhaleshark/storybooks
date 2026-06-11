@@ -9,6 +9,7 @@ series/*/images/episodes/*/work_*/**/*.png
 
 # Active unfinished episode work images should be committed for handoff continuity.
 !series/coral-town-daycare/images/episodes/루루야_약속했잖아/work_2026-06-07/**/*.png
+!series/coral-town-daycare/images/episodes/준이의_싫어싫어파도/work_2026-06-11/**/*.png
 
 # Completed episode work images kept locally only.
 series/coral-town-daycare/images/episodes/포포는_안_졸려/work_2026-06-01/**/*.png
