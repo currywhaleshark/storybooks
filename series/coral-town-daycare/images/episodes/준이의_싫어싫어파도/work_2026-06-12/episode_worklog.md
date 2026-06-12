@@ -149,3 +149,87 @@
   - Page 05: `밖에 더 있고 싶어` is first clearly revealed, and Jun-i directly says `"밖에... 더 있고 싶어."`
   - Page 06: shell hourglass appears as a small time-bound alternative after Jun-i says what he wants.
 - Next action: if user approves continuing, load page 04 references with `view_image` and generate only page 04.
+
+## Batch 2 Page 04 - 2026-06-12
+
+- Generated: `batch_2/04_candidate_2026-06-12_v1.png`
+- Status: `candidate pass`
+- Reference grounding: exterior/playground, coral tunnel, Jun-i, Mari teacher, Banguli, Tori, Mongle, and Lulu loaded before generation.
+- QA:
+  - Pass: Korean page text is exact and readable:
+    - `마리 선생님은`
+    - `준이 옆에 조용히 앉았어요.`
+    - `"준아, 많이 속상했구나."`
+    - `선생님은 혼내지 않았어요.`
+    - `그냥 다정하게 기다렸어요.`
+  - Pass: watercolor/colored-pencil paper texture stays aligned with the accepted batch 1 direction; no rejected v2 smooth 3D/plastic drift.
+  - Pass: Mari teacher is lowered beside Jun-i and waits warmly without scolding, grabbing, pulling, pushing, or sharp pointing.
+  - Pass: Jun-i keeps the official shark identity: projecting snout, small black oval button eye, white lower face/belly, gill marks, dorsal fin, side fins, long tail, sailor outfit, and blue arrival bag.
+  - Pass with note: Jun-i has a small pout/frown crease, but the eye itself remains the required small black oval button eye.
+  - Pass: Banguli remains a transparent droplet and reads as worried/gentle.
+  - Pass: Tori, Mongle, and Lulu stay in the background at a respectful distance and do not pressure or shame Jun-i.
+  - Pass: no scary emotion wave appears; the scene reads as calming down after page 03.
+- Next action: continue to page 05. Keep the story lock that `밖에 더 있고 싶어` first appears on page 05 and Jun-i directly says `"밖에... 더 있고 싶어."`
+
+## Batch 2 Page 05 - 2026-06-12
+
+- Generated: `batch_2/05_candidate_2026-06-12_v1.png`
+- Status: `candidate pass`
+- Reference grounding: exterior/playground, coral tunnel, Jun-i, Mari teacher, Banguli, and Tori loaded before generation.
+- QA:
+  - Pass: Korean page text is exact and readable:
+    - `준이는 작은 목소리로 말했어요.`
+    - `"나... 그냥 싫어."`
+    - `마리 선생님은`
+    - `준이 눈길을 따라 보았어요.`
+    - `"준이 마음속 말이`
+    - `혹시 이 말일까?`
+    - `'밖에 더 있고 싶어.'"`
+    - `준이는 아주 작게 말했어요.`
+    - `"밖에... 더 있고 싶어."`
+  - Pass: `밖에 더 있고 싶어` is first clearly revealed on this page.
+  - Pass: Jun-i directly says the final line `"밖에... 더 있고 싶어."`; it is not replaced by a thought bubble.
+  - Pass: watercolor/colored-pencil paper texture remains aligned with pages 01-04; no rejected v2 smooth 3D/plastic drift.
+  - Pass: Jun-i keeps the official shark identity: projecting snout, small black oval button eye, white lower face/belly, gill marks, dorsal fin, side fins, long tail, sailor outfit, and blue arrival bag.
+  - Pass: Mari teacher keeps yellow apron, star hairpin, purple attendance notebook, and purple mermaid tail.
+  - Pass with note: Mari gestures gently toward the playground direction, but the pose reads as helping Jun-i find words rather than scolding or forcing an answer.
+  - Pass: Banguli remains a transparent droplet; Tori stays behind them with concern rather than pressure.
+- Next action: continue to page 06. Keep the shell hourglass first appearance locked to page 06 and use the official prop reference.
+
+## Batch 2 Page 06 - 2026-06-12
+
+- Generated: `batch_2/06_candidate_2026-06-12_v1.png`
+- Status: `candidate pass`
+- Reference grounding: exterior/playground, coral tunnel, Jun-i, Mari teacher, Banguli, and shell hourglass loaded before generation.
+- QA:
+  - Pass: Korean page text is exact and readable:
+    - `마리 선생님이`
+    - `조개 모래시계를 꺼냈어요.`
+    - `"말해 줘서 고마워.`
+    - `그럼 모래가 다 내려갈 때까지만`
+    - `밖에 조금 더 있다가`
+    - `들어가 볼까?"`
+    - `준이는 가만히 모래시계를 보았어요.`
+  - Pass: watercolor/colored-pencil paper texture remains aligned with pages 01-05; no rejected v2 smooth 3D/plastic drift.
+  - Pass: the shell hourglass appears for the first time on this page and follows `shell_hourglass_ref.png`: scallop shell top and bottom, transparent rounded glass, warm sand grains, and center falling sand.
+  - Pass: no jewels, magic glow, numbers, clock face, metal frame, wings, or handles were added.
+  - Pass: Jun-i keeps the official shark identity: projecting snout, small black oval button eye, white lower face/belly, gill marks, dorsal fin, side fins, long tail, sailor outfit, and blue arrival bag.
+  - Pass: Mari teacher keeps yellow apron, star hairpin, purple attendance notebook, and purple mermaid tail.
+  - Pass: Mari's posture reads as offering a small time-bound option rather than bargaining, scolding, or forcing Jun-i inside.
+  - Pass: Banguli remains a transparent droplet and looks curious/calm.
+- Next action: stop batch 2 here and write a handoff before any next batch. Do not promote candidates to `final` without explicit user approval.
+
+## Batch 2 Summary - 2026-06-12
+
+- Scope completed: pages 04-06.
+- Generated candidates:
+  - `batch_2/04_candidate_2026-06-12_v1.png` - `candidate pass`
+  - `batch_2/05_candidate_2026-06-12_v1.png` - `candidate pass`
+  - `batch_2/06_candidate_2026-06-12_v1.png` - `candidate pass`
+- Final promotion: none. No files were copied to `final`.
+- Carry forward:
+  - Keep Jun-i's blue arrival bag through pages 07-08.
+  - Use `batch_2/06_candidate_2026-06-12_v1.png` only as continuity discussion/candidate context, not as official prop truth; official shell hourglass truth remains `work_2026-06-11/reference_assets/shell_hourglass_ref.png`.
+  - Continue watercolor/colored-pencil paper texture; avoid cover v2 smooth 3D/plastic drift.
+  - Page 07 should show the `싫어싫어 파도` getting smaller while Jun-i waits outside with the same shell hourglass logic.
+- Next action: user review of batch 2 candidates, then prepare/generate page 07 only after approval or targeted retry instructions.
