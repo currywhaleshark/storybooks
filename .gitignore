@@ -1,4 +1,5 @@
 .tmp/
+.superpowers/
 print-output/
 __pycache__/
 *.pyc
