@@ -136,3 +136,16 @@
   - Pass: Tori, Mongle, and Lulu are set back as concerned observers, not a shaming crowd, and their species silhouettes/details remain readable.
   - Pass: the `싫어싫어 파도` reads as a soft symbolic feeling wave, not a dangerous real wave.
 - Next action: write batch 1 handoff. Do not promote any candidate to `final` until user approval; cover v3 still needs title text repair before final promotion.
+
+## Batch 2 Prep - 2026-06-12
+
+- Prepared: `HANDOFF_batch_2_prep.md`
+- Prepared: `batch_2/batch_2_prompt_plan.md`
+- Scope: pages 04-06.
+- Reference verification: exterior/playground, coral tunnel, Jun-i, Mari teacher, Banguli, Tori, Mongle, Lulu, and shell hourglass paths were checked and exist.
+- Style lock: continue page 01-03 / cover v3 watercolor and colored-pencil paper texture; do not use cover v2's smooth 3D/plastic style.
+- Story locks:
+  - Page 04: Mari waits, validates, and does not scold or pull.
+  - Page 05: `밖에 더 있고 싶어` is first clearly revealed, and Jun-i directly says `"밖에... 더 있고 싶어."`
+  - Page 06: shell hourglass appears as a small time-bound alternative after Jun-i says what he wants.
+- Next action: if user approves continuing, load page 04 references with `view_image` and generate only page 04.

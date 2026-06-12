@@ -80,6 +80,15 @@
 출렁였어요.
 ```
 
+## Batch 2
+
+- Prepared handoff: `HANDOFF_batch_2_prep.md`
+- Prepared prompt plan: `batch_2/batch_2_prompt_plan.md`
+- Scope: pages 04-06.
+- Page 04: Mari sits beside Jun-i and waits without scolding.
+- Page 05: Jun-i first says `밖에... 더 있고 싶어.`
+- Page 06: Mari offers the shell hourglass timed alternative.
+
 ## Later Batches
 
 - Page 04: Mari sits beside Jun-i and waits without scolding.
