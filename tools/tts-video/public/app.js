@@ -6,7 +6,57 @@ const state = {
   jobId: null,
   jobKind: null,
   pollTimer: null,
+  ttsPresets: null,
+  activeScriptTextarea: null,
+  directScriptContent: "",
+  directScriptLabel: "",
 };
+
+const TAG_TRANSLATIONS = Object.freeze({
+  "[amazed]": "놀라워하며",
+  "[awkwardly]": "어색하게",
+  "[brightly]": "밝게",
+  "[calmly]": "차분하게",
+  "[cheerfully]": "명랑하게",
+  "[clearly]": "또렷하게",
+  "[crying]": "울먹이며",
+  "[curious]": "궁금한 듯",
+  "[excited]": "신난 목소리로",
+  "[excitedly]": "신나게",
+  "[firmly]": "단호하게",
+  "[formally]": "정중하게",
+  "[frustrated]": "답답해하며",
+  "[gasp]": "숨을 들이켜며",
+  "[gently]": "부드럽게",
+  "[giggles]": "킥킥 웃으며",
+  "[laughs]": "웃으며",
+  "[mischievously]": "장난스럽게",
+  "[mysteriously]": "신비롭게",
+  "[nervously]": "긴장해서",
+  "[playfully]": "장난치듯",
+  "[proudly]": "뿌듯하게",
+  "[quietly]": "조용히",
+  "[reassuringly]": "안심시키듯",
+  "[relieved]": "안도하며",
+  "[reluctantly]": "마지못해",
+  "[serious]": "진지하게",
+  "[sleepily]": "졸린 듯",
+  "[softly]": "부드럽고 작게",
+  "[surprised]": "놀라며",
+  "[thoughtfully]": "생각에 잠겨",
+  "[tired]": "지친 듯",
+  "[trembling]": "떨리는 목소리로",
+  "[very fast]": "매우 빠르게",
+  "[very slow]": "매우 느리게",
+  "[warmly]": "따뜻하게",
+  "[whisper]": "속삭이며",
+  "[whispers]": "속삭이며",
+  "[yawn]": "하품하며",
+  "[pause]": "잠깐 쉬기",
+  "[short pause]": "짧게 쉬기",
+  "[long pause]": "길게 쉬기",
+  "[sigh]": "한숨 쉬며",
+});
 
 const episodeSelect = document.querySelector("#episodeSelect");
 const scriptSelect = document.querySelector("#scriptSelect");
@@ -45,6 +95,10 @@ const manualAudioInput = document.querySelector("#manualAudioInput");
 const manualAudioStatus = document.querySelector("#manualAudioStatus");
 const audioReviewStatus = document.querySelector("#audioReviewStatus");
 const audioReviewList = document.querySelector("#audioReviewList");
+const presetSeriesLabel = document.querySelector("#presetSeriesLabel");
+const presetCharacterSelect = document.querySelector("#presetCharacterSelect");
+const presetDescription = document.querySelector("#presetDescription");
+const presetTagList = document.querySelector("#presetTagList");
 
 function imageUrl(path) {
   return `/image?path=${encodeURIComponent(path)}`;
@@ -85,6 +139,7 @@ function renderSettingsVisibility() {
   });
   sampleButton.disabled = tts === "manual";
   reviewAudioButton.disabled = tts === "manual";
+  renderPresetPalette();
 }
 
 function updateRangeLabels() {
@@ -97,12 +152,17 @@ function renderEpisode() {
   state.selected = selectedEpisode();
   state.texts = [];
   state.audioReview = null;
+  state.ttsPresets = null;
+  state.activeScriptTextarea = null;
+  state.directScriptContent = "";
+  state.directScriptLabel = "";
   scriptEditor.innerHTML = "";
 
   if (!state.selected) {
     summary.textContent = "사용 가능한 final 이미지 폴더가 없습니다.";
     pageCount.textContent = "0장";
     pageStrip.innerHTML = "";
+    renderPresetPalette();
     return;
   }
 
@@ -139,6 +199,12 @@ function renderEpisode() {
 
   scriptStatus.textContent = "대본 추출 전";
   renderAudioReview();
+  renderPresetPalette();
+  loadTtsPresets().catch((error) => {
+    state.ttsPresets = null;
+    renderPresetPalette();
+    setStatus(error.message, true);
+  });
   setStatus("대본 파일을 선택한 뒤 추출하세요.");
 }
 
@@ -156,6 +222,9 @@ function renderScriptEditor() {
     count.textContent = `${(state.texts[index] || "").length}자`;
     const textarea = document.createElement("textarea");
     textarea.value = state.texts[index] || "";
+    textarea.addEventListener("focus", () => {
+      state.activeScriptTextarea = textarea;
+    });
     textarea.addEventListener("input", () => {
       state.texts[index] = textarea.value;
       count.textContent = `${textarea.value.length}자`;
@@ -258,7 +327,104 @@ async function loadEpisodes() {
   setButtonsDisabled(false);
 }
 
+async function loadTtsPresets() {
+  if (!state.selected) return;
+  const response = await fetch(`/api/tts-presets?finalFolder=${encodeURIComponent(state.selected.finalFolder)}`);
+  const data = await response.json();
+  if (!response.ok || data.error) throw new Error(data.error || "TTS 프리셋을 불러오지 못했습니다.");
+  state.ttsPresets = data.preset || null;
+  renderPresetPalette();
+}
+
+function selectedPresetCharacter() {
+  const characters = state.ttsPresets?.characters || {};
+  return characters[presetCharacterSelect.value] || null;
+}
+
+function tagTooltipText(tag) {
+  const translation = TAG_TRANSLATIONS[tag];
+  return translation ? `${tag} - ${translation}` : `${tag} - 번역 없음`;
+}
+
+function renderPresetPalette() {
+  if (!presetCharacterSelect || !presetDescription || !presetTagList || !presetSeriesLabel) return;
+  const preset = state.ttsPresets;
+  const characters = preset?.characters || {};
+  const entries = Object.entries(characters);
+  const previousValue = presetCharacterSelect.value;
+  presetSeriesLabel.textContent = preset?.seriesLabel || "프리셋 없음";
+  presetCharacterSelect.innerHTML = "";
+  presetTagList.innerHTML = "";
+
+  if (ttsSelect.value !== "gemini") {
+    presetDescription.textContent = "캐릭터 태그는 Gemini-TTS에서만 사용합니다.";
+    return;
+  }
+
+  if (!entries.length) {
+    presetCharacterSelect.disabled = true;
+    presetDescription.textContent = "이 시리즈의 캐릭터 프리셋 파일을 찾지 못했습니다.";
+    presetTagList.innerHTML = '<p class="hint">series/<series>/docs/tts_voice_presets.yaml 파일이 필요합니다.</p>';
+    return;
+  }
+
+  presetCharacterSelect.disabled = false;
+  for (const [key, character] of entries) {
+    const option = document.createElement("option");
+    option.value = key;
+    option.textContent = character.label || key;
+    presetCharacterSelect.append(option);
+  }
+  if (characters[previousValue]) presetCharacterSelect.value = previousValue;
+
+  const character = selectedPresetCharacter();
+  if (!character) return;
+  presetDescription.textContent = character.toneKo || character.promptKo || "";
+
+  const tags = Array.from(new Set([character.defaultTag, ...(character.tagCandidates || [])].filter(Boolean)));
+  for (const tag of tags) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "tag-button";
+    button.textContent = tag;
+    button.title = tagTooltipText(tag);
+    button.setAttribute("aria-label", tagTooltipText(tag));
+    button.addEventListener("click", () => insertAudioTag(tag));
+    presetTagList.append(button);
+  }
+}
+
+function activeScriptTextarea() {
+  if (state.activeScriptTextarea?.isConnected) return state.activeScriptTextarea;
+  const firstTextarea = scriptEditor.querySelector("textarea");
+  if (firstTextarea) {
+    state.activeScriptTextarea = firstTextarea;
+    return firstTextarea;
+  }
+  return null;
+}
+
+function insertAudioTag(tag) {
+  const textarea = activeScriptTextarea();
+  if (!textarea) {
+    setStatus("태그를 넣을 TTS 원고 칸을 먼저 선택하세요.", true);
+    return;
+  }
+  const insertText = `${tag} `;
+  const start = textarea.selectionStart ?? textarea.value.length;
+  const end = textarea.selectionEnd ?? textarea.value.length;
+  textarea.value = `${textarea.value.slice(0, start)}${insertText}${textarea.value.slice(end)}`;
+  const nextCursor = start + insertText.length;
+  textarea.setSelectionRange(nextCursor, nextCursor);
+  textarea.focus();
+  textarea.dispatchEvent(new Event("input", { bubbles: true }));
+}
+
 async function extractScript() {
+  if (state.directScriptContent) {
+    await extractScriptContent(state.directScriptContent, state.directScriptLabel || "직접 선택한 대본");
+    return;
+  }
   if (!state.selected || !scriptSelect.value) return;
   setButtonsDisabled(true);
   setStatus("대본에서 페이지 텍스트를 추출하는 중입니다.");
@@ -548,6 +714,10 @@ async function refreshVoices() {
 }
 
 episodeSelect.addEventListener("change", renderEpisode);
+scriptSelect.addEventListener("change", () => {
+  state.directScriptContent = "";
+  state.directScriptLabel = "";
+});
 reloadButton.addEventListener("click", () => loadEpisodes().catch((error) => setStatus(error.message, true)));
 extractButton.addEventListener("click", extractScript);
 extractPasteButton.addEventListener("click", () => extractScriptContent(scriptPaste.value, "붙여넣은 대본"));
@@ -555,6 +725,8 @@ scriptFileInput.addEventListener("change", async () => {
   const file = scriptFileInput.files?.[0];
   if (!file) return;
   const content = await file.text();
+  state.directScriptContent = content;
+  state.directScriptLabel = file.name;
   scriptPaste.value = content;
   extractScriptContent(content, file.name);
 });
@@ -571,6 +743,7 @@ reviewAudioButton.addEventListener("click", startAudioReview);
 renderButton.addEventListener("click", renderVideo);
 voiceButton.addEventListener("click", refreshVoices);
 sampleButton.addEventListener("click", previewVoice);
+presetCharacterSelect.addEventListener("change", renderPresetPalette);
 ttsSelect.addEventListener("change", () => {
   renderSettingsVisibility();
   invalidateAudioReview("TTS 방식이 변경되어 검수 음성을 다시 생성해야 합니다.");

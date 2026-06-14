@@ -1,0 +1,138 @@
+version: 1
+seriesId: coral-town-daycare
+seriesLabel: 산호마을 어린이집
+defaultVoice: Kore
+sameVoicePolicy: true
+audioTagPolicy:
+  language: en
+  note: "Gemini TTS audio tags are exploratory. Keep the same voice and use tags/tone prompts to separate character acting."
+characters:
+  narrator:
+    label: 나레이터
+    aliases: [해설, 내레이션, narrator]
+    voice: Kore
+    role: narration
+    toneKo: "따뜻하고 다정한 어린이집 그림책 낭독가. 또박또박 읽고 문장 끝을 부드럽게 쉰다."
+    defaultTag: "[warmly]"
+    tagCandidates: ["[warmly]", "[gently]", "[clearly]", "[softly]", "[very slow]"]
+    promptKo: "따뜻하고 다정한 어린이 그림책 선생님처럼, 유아가 따라듣기 좋게 또박또박 읽는다."
+    sourceHints:
+      - "docs/google_cloud_tts_video_workflow.md: 기본 Gemini prompt"
+
+  mari_teacher:
+    label: 마리 선생님
+    aliases: [마리, 선생님, 마리선생님]
+    voice: Kore
+    role: teacher
+    toneKo: "차분하고 안정적인 선생님. 혼내기보다 아이 마음을 먼저 읽고 눈높이에 맞춘다."
+    defaultTag: "[gently]"
+    tagCandidates: ["[gently]", "[softly]", "[calmly]", "[reassuringly]", "[very slow]"]
+    promptKo: "안정적이고 다정한 어린이집 선생님처럼, 낮은 긴장감과 부드러운 확신으로 말한다."
+    sourceHints:
+      - "docs/산호마을_어린이집_이미지_규칙서.md: 마리 선생님"
+      - "docs/episodes/popo_naptime_story_prompts.md: 마리 선생님"
+      - "docs/episodes/tori_tunnel_story_prompts.md: 마리 선생님"
+
+  monggeul:
+    label: 몽글이
+    aliases: [몽글, 문어 아이]
+    voice: Kore
+    role: child
+    toneKo: "활기차고 미술을 좋아하는 문어 아이. 장난스럽지만 과하게 산만하지 않다."
+    defaultTag: "[cheerfully]"
+    tagCandidates: ["[cheerfully]", "[playfully]", "[excitedly]", "[giggles]", "[curious]"]
+    promptKo: "미술 놀이를 좋아하는 밝은 아이처럼, 통통 튀지만 듣기 편하게 말한다."
+    sourceHints:
+      - "docs/산호마을_어린이집_이미지_규칙서.md: 몽글이"
+      - "docs/episodes/popo_naptime_story_prompts.md: 조연 친구들"
+
+  banguli:
+    label: 방울이
+    aliases: [방울, 물방울, 마스코트]
+    voice: Kore
+    role: mascot
+    toneKo: "작고 투명한 감정 보조 친구. 말이 있다면 가볍고 다정하며 표정 변화가 빠르다."
+    defaultTag: "[gently]"
+    tagCandidates: ["[gently]", "[softly]", "[curious]", "[gasp]", "[giggles]", "[reassuringly]"]
+    promptKo: "작은 물방울 친구처럼 가볍고 맑게, 친구를 놀라게 하지 않는 톤으로 말한다."
+    sourceHints:
+      - "docs/산호마을_어린이집_이미지_규칙서.md: 방울이"
+      - "docs/episodes/tori_tunnel_story_prompts.md: 방울이"
+
+  aru:
+    label: 아루
+    aliases: [아루, 가시복 아이]
+    voice: Kore
+    role: child
+    toneKo: "마음을 먼저 방어하는 주황 가시복 아이. 고집이 있어도 무섭거나 공격적이지 않다."
+    defaultTag: "[firmly]"
+    tagCandidates: ["[firmly]", "[reluctantly]", "[curious]", "[softly]", "[brightly]"]
+    promptKo: "처음에는 짧고 단단하게, 마음이 풀릴수록 부드럽고 밝아지는 아이처럼 말한다."
+    sourceHints:
+      - "docs/산호마을_어린이집_이미지_규칙서.md: 아루"
+      - "docs/episodes/아루와_수아의_반짝_마음조개.md: 아루 감정 흐름"
+
+  popo:
+    label: 포포
+    aliases: [포포, 보름달해파리]
+    voice: Kore
+    role: child
+    toneKo: "둥실둥실 떠다니는 맑고 순한 해파리 아이. 신날 때도 부드럽고, 졸릴 때는 느긋하다."
+    defaultTag: "[softly]"
+    tagCandidates: ["[softly]", "[sleepily]", "[very slow]", "[gently]", "[curious]", "[yawn]"]
+    promptKo: "맑고 순한 아이처럼 살짝 떠 있는 느낌으로, 낮잠 장면에서는 느긋하고 졸린 숨을 섞는다."
+    sourceHints:
+      - "docs/산호마을_어린이집_이미지_규칙서.md: 포포"
+      - "docs/episodes/popo_naptime_story_prompts.md: 포포"
+
+  lulu:
+    label: 루루
+    aliases: [루루, 분홍 해마]
+    voice: Kore
+    role: child
+    toneKo: "밝고 수다스럽고 다정한 해마 아이. 조잘조잘하지만 깨달음 장면에서는 조용히 멈춘다."
+    defaultTag: "[excitedly]"
+    tagCandidates: ["[excitedly]", "[cheerfully]", "[curious]", "[giggles]", "[softly]"]
+    promptKo: "평소에는 밝게 재잘거리되, 약속을 돌아보는 장면에서는 작고 차분하게 낮춘다."
+    sourceHints:
+      - "docs/산호마을_어린이집_이미지_규칙서.md: 루루"
+      - "docs/episodes/루루야_약속했잖아.md: 루루의 수다와 깨달음"
+
+  juni:
+    label: 준이
+    aliases: [준이, 상어 아이]
+    voice: Kore
+    role: child
+    toneKo: "힘차고 씩씩하지만 큰 마음을 말로 꺼내기 어려워하는 상어 아이."
+    defaultTag: "[firmly]"
+    tagCandidates: ["[firmly]", "[frustrated]", "[reluctantly]", "[softly]", "[proudly]"]
+    promptKo: "초반에는 삐친 마음이 있어 짧고 단단하게, 후반에는 작게 말하다가 자신감 있게 밝아진다."
+    sourceHints:
+      - "docs/산호마을_어린이집_이미지_규칙서.md: 준이"
+      - "docs/episodes/준이의_싫어싫어파도.md: 준이 감정 흐름"
+
+  sua:
+    label: 수아
+    aliases: [수아, 보라 해마]
+    voice: Kore
+    role: child
+    toneKo: "조용하고 관찰력이 좋은 보라 해마 아이. 가늘고 조심스럽게 말한다."
+    defaultTag: "[softly]"
+    tagCandidates: ["[softly]", "[curious]", "[gently]", "[very slow]", "[quietly]"]
+    promptKo: "작은 것을 살피는 조용한 아이처럼, 낮은 볼륨과 천천히 고르는 말투로 말한다."
+    sourceHints:
+      - "docs/산호마을_어린이집_이미지_규칙서.md: 수아"
+      - "docs/episodes/아루와_수아의_반짝_마음조개.md: 수아"
+
+  tori:
+    label: 토리
+    aliases: [토리, 거북이 아이]
+    voice: Kore
+    role: child
+    toneKo: "걱정이 많고 조심스럽지만 따뜻한 거북이 아이. 천천히 용기를 낸다."
+    defaultTag: "[nervously]"
+    tagCandidates: ["[nervously]", "[trembling]", "[softly]", "[gently]", "[relieved]"]
+    promptKo: "처음에는 조심스럽고 떨리는 듯, 해냈을 때는 작게 안도하며 밝아지는 톤으로 말한다."
+    sourceHints:
+      - "docs/산호마을_어린이집_이미지_규칙서.md: 토리"
+      - "docs/episodes/tori_tunnel_story_prompts.md: 토리"

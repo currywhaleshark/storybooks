@@ -7,6 +7,7 @@ import mimetypes
 import os
 import re
 import shutil
+import subprocess
 import sys
 import threading
 import time
@@ -30,6 +31,7 @@ RENDERER_PATH = (
 )
 IMAGE_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp"}
 EXCLUDED_DIRS = {"audio", "segments", "work", "drafts", "rejected", "print-output"}
+TTS_PRESET_FILENAME = "tts_voice_presets.yaml"
 JOBS: dict[str, dict[str, object]] = {}
 
 
@@ -62,6 +64,28 @@ def repo_path(relative_path: str | None) -> Path:
 
 def to_repo_path(path: Path) -> str:
     return path.resolve().relative_to(REPO_ROOT.resolve()).as_posix()
+
+
+def describe_exception(exc: Exception) -> str:
+    message = str(exc)
+    if message:
+        return message
+    return f"{type(exc).__name__}: {exc!r}"
+
+
+def renderer_python_executable() -> str:
+    local_roots = []
+    if os.environ.get("LOCALAPPDATA"):
+        local_roots.append(Path(str(os.environ["LOCALAPPDATA"])))
+    if os.environ.get("USERPROFILE"):
+        local_roots.append(Path(str(os.environ["USERPROFILE"])) / "AppData" / "Local")
+    local_roots.append(Path.home() / "AppData" / "Local")
+
+    for local_root in local_roots:
+        gcloud_python = local_root / "Google" / "Cloud SDK" / "google-cloud-sdk" / "platform" / "bundledpython" / "python.exe"
+        if gcloud_python.exists():
+            return str(gcloud_python)
+    return sys.executable
 
 
 def leading_number(path: Path) -> int | None:
@@ -125,6 +149,107 @@ def is_tts_script_name(name: str) -> bool:
     return re.search(r"(?:^|[_-])tts(?:[_-]|\.|$)", name, flags=re.I) is not None
 
 
+def parse_preset_value(value: str) -> object:
+    value = value.strip()
+    if not value:
+        return ""
+    if value.lower() == "true":
+        return True
+    if value.lower() == "false":
+        return False
+    if value.startswith("[") and value.endswith("]"):
+        inner = value[1:-1].strip()
+        if not inner:
+            return []
+        return [strip_preset_quotes(part.strip()) for part in inner.split(",")]
+    return strip_preset_quotes(value)
+
+
+def strip_preset_quotes(value: str) -> str:
+    if len(value) >= 2 and value[0] == value[-1] and value[0] in {'"', "'"}:
+        return value[1:-1]
+    return value
+
+
+def load_tts_voice_presets(series_root: Path | None) -> dict[str, object] | None:
+    if not series_root:
+        return None
+    preset_path = series_root / "docs" / TTS_PRESET_FILENAME
+    if not preset_path.exists():
+        return None
+
+    data: dict[str, object] = {}
+    current_section = ""
+    current_character = ""
+    current_list_key = ""
+    for raw_line in preset_path.read_text(encoding="utf-8").splitlines():
+        if not raw_line.strip() or raw_line.lstrip().startswith("#"):
+            continue
+        indent = len(raw_line) - len(raw_line.lstrip(" "))
+        line = raw_line.strip()
+
+        if indent == 0:
+            key, _, raw_value = line.partition(":")
+            if raw_value.strip():
+                data[key] = parse_preset_value(raw_value)
+                current_section = ""
+            else:
+                data[key] = {}
+                current_section = key
+            current_character = ""
+            current_list_key = ""
+            continue
+
+        if current_section == "audioTagPolicy" and indent == 2:
+            key, _, raw_value = line.partition(":")
+            policy = data.setdefault("audioTagPolicy", {})
+            if isinstance(policy, dict):
+                policy[key] = parse_preset_value(raw_value)
+            continue
+
+        if current_section != "characters":
+            continue
+
+        characters = data.setdefault("characters", {})
+        if not isinstance(characters, dict):
+            continue
+
+        if indent == 2 and line.endswith(":"):
+            current_character = line[:-1]
+            characters[current_character] = {}
+            current_list_key = ""
+            continue
+
+        if not current_character:
+            continue
+
+        character = characters.get(current_character)
+        if not isinstance(character, dict):
+            continue
+
+        if indent == 4:
+            key, _, raw_value = line.partition(":")
+            if raw_value.strip():
+                character[key] = parse_preset_value(raw_value)
+                current_list_key = ""
+            else:
+                character[key] = []
+                current_list_key = key
+            continue
+
+        if indent == 6 and current_list_key and line.startswith("- "):
+            list_value = character.setdefault(current_list_key, [])
+            if isinstance(list_value, list):
+                list_value.append(parse_preset_value(line[2:]))
+
+    return data
+
+
+def tts_voice_presets_for_episode_folder(final_folder: str | None) -> dict[str, object] | None:
+    folder = repo_path(final_folder)
+    return load_tts_voice_presets(series_root_for_episode_folder(folder))
+
+
 def discover_book_folder(folder: Path) -> dict[str, object] | None:
     images = sorted_images(folder)
     if not images:
@@ -185,6 +310,16 @@ def extract_text_blocks(markdown: str) -> list[str]:
         blocks = [clean_extracted_text(match) for match in re.findall(pattern, markdown)]
         if blocks:
             return blocks
+    saved_blocks = []
+    for section in re.split(r"^##\s+", markdown, flags=re.MULTILINE)[1:]:
+        title, _, body = section.partition("\n")
+        if Path(title.strip()).suffix.lower() not in IMAGE_EXTENSIONS:
+            continue
+        text = clean_extracted_text(body)
+        if text:
+            saved_blocks.append(text)
+    if saved_blocks:
+        return saved_blocks
     return []
 
 
@@ -281,28 +416,101 @@ def renderer_audio(settings: dict[str, object], text: str, output: Path) -> None
     tts = str(settings.get("tts") or "gemini")
     rate = float(settings.get("speakingRate") or 1)
     pitch = float(settings.get("pitch") or 0)
+    args = [
+        renderer_python_executable(),
+        "-X",
+        "utf8",
+        str(RENDERER_PATH),
+        "--tts",
+        tts,
+        "--speaking-rate",
+        str(rate),
+        "--pitch",
+        str(pitch),
+        "--sample-text",
+        text,
+        "--sample-output",
+        str(output),
+    ]
     if tts == "cloud":
-        RENDERER.download_cloud_tts(
-            text,
-            output,
-            voice=str(settings.get("cloudVoice") or "ko-KR-Chirp3-HD-Kore"),
-            language_code="ko-KR",
-            speaking_rate=rate,
-            pitch=pitch,
-        )
+        args.extend(["--cloud-voice", str(settings.get("cloudVoice") or "ko-KR-Chirp3-HD-Kore")])
     elif tts == "gemini":
-        RENDERER.download_cloud_tts(
-            text,
-            output,
-            voice=str(settings.get("geminiVoice") or "Kore"),
-            language_code="ko-KR",
-            speaking_rate=rate,
-            pitch=pitch,
-            model_name=str(settings.get("geminiModel") or "gemini-2.5-flash-tts"),
-            prompt=str(settings.get("geminiPrompt") or ""),
+        args.extend(
+            [
+                "--gemini-model",
+                str(settings.get("geminiModel") or "gemini-2.5-flash-tts"),
+                "--gemini-voice",
+                str(settings.get("geminiVoice") or "Kore"),
+                "--gemini-prompt",
+                str(settings.get("geminiPrompt") or ""),
+            ]
         )
-    else:
-        RENDERER.download_google_tts(text, output, slow=False)
+
+    result = subprocess.run(
+        args,
+        cwd=REPO_ROOT,
+        env=renderer_subprocess_env(),
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace",
+        timeout=180,
+    )
+    if result.returncode != 0:
+        detail = (result.stderr or result.stdout or f"TTS process failed with exit code {result.returncode}").strip()
+        raise RuntimeError(detail)
+
+
+def renderer_subprocess_env() -> dict[str, str]:
+    env = os.environ.copy()
+    for key in list(env):
+        if key.lower() == "path" and key != "PATH":
+            del env[key]
+    python_dir = Path(renderer_python_executable()).resolve().parent
+    dll_dir = python_dir / "DLLs"
+    existing_path = env.get("PATH", "")
+    env["PATH"] = f"{python_dir};{dll_dir};{existing_path}" if existing_path else f"{python_dir};{dll_dir}"
+    env["PYTHONIOENCODING"] = "utf-8"
+    env["PYTHONUTF8"] = "1"
+    return env
+
+
+def run_renderer_process(args: list[str], timeout: int = 180) -> subprocess.CompletedProcess[str]:
+    return subprocess.run(
+        args,
+        cwd=REPO_ROOT,
+        env=renderer_subprocess_env(),
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace",
+        timeout=timeout,
+    )
+
+
+def renderer_cloud_voices(language_code: str = "ko-KR") -> list[dict[str, object]]:
+    result = run_renderer_process(
+        [
+            renderer_python_executable(),
+            "-X",
+            "utf8",
+            str(RENDERER_PATH),
+            "--list-cloud-voices",
+            "--cloud-language",
+            language_code,
+        ],
+        timeout=90,
+    )
+    if result.returncode != 0:
+        detail = (result.stderr or result.stdout or f"Voice list process failed with exit code {result.returncode}").strip()
+        raise RuntimeError(detail)
+    voices = []
+    for line in result.stdout.splitlines():
+        if not line.strip():
+            continue
+        name, gender, sample_rate, languages = (line.split("\t") + ["", "", "", ""])[:4]
+        voices.append({"name": name, "gender": gender, "sampleRate": sample_rate, "languages": languages})
+    return voices
 
 
 def create_sample(settings: dict[str, object]) -> dict[str, str]:
@@ -374,7 +582,7 @@ def run_audio_review(job: dict[str, object], body: dict[str, object]) -> None:
         job["stdout"] = f"음성 검수용 파일 {len(pages)}개 생성 완료"
     except Exception as exc:
         job["status"] = "failed"
-        job["stderr"] = str(exc)
+        job["stderr"] = describe_exception(exc)
     finally:
         job["finishedAt"] = time.strftime("%Y-%m-%dT%H:%M:%S")
 
@@ -458,7 +666,7 @@ def run_render(job: dict[str, object], body: dict[str, object]) -> None:
       job["status"] = "complete"
     except Exception as exc:
       job["status"] = "failed"
-      job["stderr"] = str(exc)
+      job["stderr"] = describe_exception(exc)
     finally:
       job["finishedAt"] = time.strftime("%Y-%m-%dT%H:%M:%S")
 
@@ -495,8 +703,12 @@ class Handler(BaseHTTPRequestHandler):
                 self.send_json(200, {"episodes": find_book_folders(SERIES_DIR)})
                 return
             if parsed.path == "/api/voices":
-                voices = RENDERER.list_cloud_voices(params.get("language", ["ko-KR"])[0])
+                voices = renderer_cloud_voices(params.get("language", ["ko-KR"])[0])
                 self.send_json(200, {"voices": voices})
+                return
+            if parsed.path == "/api/tts-presets":
+                preset = tts_voice_presets_for_episode_folder(params.get("finalFolder", [""])[0])
+                self.send_json(200, {"preset": preset})
                 return
             if parsed.path.startswith("/api/jobs/"):
                 job = JOBS.get(unquote(parsed.path.removeprefix("/api/jobs/")))
@@ -512,7 +724,7 @@ class Handler(BaseHTTPRequestHandler):
             target = PUBLIC_DIR / ("index.html" if parsed.path == "/" else parsed.path.lstrip("/"))
             self.serve_file(target)
         except Exception as exc:
-            self.send_json(500, {"error": str(exc)})
+            self.send_json(500, {"error": describe_exception(exc)})
 
     def do_POST(self) -> None:
         parsed = urlparse(self.path)
@@ -547,7 +759,7 @@ class Handler(BaseHTTPRequestHandler):
                 return
             self.send_json(404, {"error": "Not found"})
         except Exception as exc:
-            self.send_json(500, {"error": str(exc)})
+            self.send_json(500, {"error": describe_exception(exc)})
 
 
 def main() -> None:

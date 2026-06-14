@@ -1,15 +1,33 @@
 import importlib.util
+import subprocess
 import unittest
+from unittest import mock
 from pathlib import Path
 
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 SERVER_PATH = REPO_ROOT / "tools" / "tts-video" / "server.py"
 APP_PATH = REPO_ROOT / "tools" / "tts-video" / "public" / "app.js"
+START_CMD_PATH = REPO_ROOT / "tools" / "tts-video" / "start_tts_video_server.cmd"
+RENDERER_PATH = (
+    REPO_ROOT
+    / "series"
+    / "sherlock-fin-deep-city"
+    / "videos"
+    / "누가_먼저_왔을까_tts_google"
+    / "make_tts_video.py"
+)
 
 
 def load_server():
     spec = importlib.util.spec_from_file_location("tts_video_server", SERVER_PATH)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def load_renderer():
+    spec = importlib.util.spec_from_file_location("tts_video_renderer_test", RENDERER_PATH)
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module
@@ -42,6 +60,164 @@ class EpisodeSelectionTests(unittest.TestCase):
         app = APP_PATH.read_text(encoding="utf-8")
 
         self.assertNotIn('title.includes("포포는_안_졸려")', app)
+
+    def test_loads_series_tts_voice_presets(self):
+        preset = self.server.load_tts_voice_presets(self.series_root)
+
+        self.assertEqual(preset["seriesId"], "coral-town-daycare")
+        self.assertEqual(preset["defaultVoice"], "Kore")
+        self.assertTrue(preset["sameVoicePolicy"])
+        self.assertEqual(preset["characters"]["lulu"]["label"], "루루")
+        self.assertEqual(preset["characters"]["lulu"]["voice"], "Kore")
+        self.assertIn("[excitedly]", preset["characters"]["lulu"]["tagCandidates"])
+
+    def test_extracts_saved_tts_script_markdown(self):
+        script = self.server.build_script_markdown(
+            "테스트_에피소드",
+            ["series/test/images/episodes/sample/final/00_표지.png", "series/test/images/episodes/sample/final/01_페이지.png"],
+            ["표지 문장입니다.", "[excitedly] 다시 불러온 원고입니다.\n\n두 번째 줄도 유지합니다."],
+        )
+
+        self.assertEqual(
+            self.server.extract_text_blocks(script),
+            ["표지 문장입니다.", "[excitedly] 다시 불러온 원고입니다.\n\n두 번째 줄도 유지합니다."],
+        )
+
+    def test_frontend_fetches_tts_presets_and_inserts_audio_tags(self):
+        app = APP_PATH.read_text(encoding="utf-8")
+
+        self.assertIn("/api/tts-presets", app)
+        self.assertIn("insertAudioTag", app)
+        self.assertIn("presetCharacterSelect", app)
+
+    def test_frontend_reuses_directly_selected_script_on_extract(self):
+        app = APP_PATH.read_text(encoding="utf-8")
+
+        self.assertIn("directScriptContent", app)
+        self.assertIn("if (state.directScriptContent)", app)
+        self.assertIn('scriptSelect.addEventListener("change"', app)
+
+    def test_frontend_shows_korean_tooltips_for_audio_tags(self):
+        app = APP_PATH.read_text(encoding="utf-8")
+
+        self.assertIn("const TAG_TRANSLATIONS", app)
+        self.assertIn('"[excitedly]": "신나게"', app)
+        self.assertIn("function tagTooltipText", app)
+        self.assertIn("button.title = tagTooltipText(tag);", app)
+        self.assertIn('button.setAttribute("aria-label", tagTooltipText(tag));', app)
+
+    def test_renderer_bypasses_disabled_local_proxy_for_https_calls(self):
+        renderer = load_renderer()
+
+        self.assertTrue(hasattr(renderer, "open_url"))
+        self.assertTrue(hasattr(renderer, "direct_url_opener"))
+
+        HTTPSHandler = type("HTTPSHandler", (), {})
+
+        class DummyOpener:
+            handlers = [HTTPSHandler()]
+
+            def open(self, request, timeout):
+                return {"url": request.full_url, "timeout": timeout}
+
+        with mock.patch.dict(renderer.os.environ, {"HTTPS_PROXY": "http://127.0.0.1:9"}, clear=True):
+            with mock.patch.object(renderer, "direct_url_opener", return_value=DummyOpener()):
+                with mock.patch.object(renderer, "urlopen", side_effect=AssertionError("normal urlopen used")):
+                    result = renderer.open_url(renderer.Request("https://oauth2.googleapis.com/token"), timeout=7)
+
+        self.assertEqual(result, {"url": "https://oauth2.googleapis.com/token", "timeout": 7})
+
+    def test_renderer_falls_back_to_curl_when_https_handler_is_missing(self):
+        renderer = load_renderer()
+
+        class DummyOpener:
+            handlers = []
+
+            def open(self, request, timeout):
+                raise AssertionError("urllib opener should not be used without HTTPSHandler")
+
+        completed = subprocess.CompletedProcess(args=[], returncode=0, stdout=b'{"ok": true}', stderr=b"")
+        request = renderer.Request(
+            "https://example.test/token",
+            data=b"grant_type=refresh_token",
+            headers={"Content-Type": "application/x-www-form-urlencoded"},
+            method="POST",
+        )
+
+        with mock.patch.dict(renderer.os.environ, {"HTTPS_PROXY": "http://127.0.0.1:9"}, clear=True):
+            with mock.patch.object(renderer, "direct_url_opener", return_value=DummyOpener()):
+                with mock.patch.object(renderer.subprocess, "run", return_value=completed) as run:
+                    response = renderer.open_url(request, timeout=9)
+
+        self.assertEqual(response.read(), b'{"ok": true}')
+        args = run.call_args.args[0]
+        self.assertIn("curl.exe", args[0])
+        self.assertIn("--noproxy", args)
+        self.assertIn("*", args)
+        self.assertIn("https://example.test/token", args)
+
+    def test_renderer_audio_uses_isolated_subprocess_for_gemini_tts(self):
+        completed = subprocess.CompletedProcess(args=[], returncode=0, stdout="ok", stderr="")
+
+        with mock.patch.object(self.server.subprocess, "run", return_value=completed) as run:
+            with mock.patch.object(self.server.RENDERER, "download_cloud_tts", side_effect=AssertionError("in-process TTS used")):
+                self.server.renderer_audio(
+                    {
+                        "tts": "gemini",
+                        "geminiVoice": "Kore",
+                        "geminiModel": "gemini-3.1-flash-tts-preview",
+                        "geminiPrompt": "따뜻하게",
+                        "speakingRate": 0.95,
+                        "pitch": 0.1,
+                    },
+                    "짧은 테스트입니다.",
+                    REPO_ROOT / "tools" / "tts-video" / "runtime" / "test.mp3",
+                )
+
+        args = [str(arg) for arg in run.call_args.args[0]]
+        self.assertIn(str(RENDERER_PATH), args)
+        self.assertIn("--sample-text", args)
+        self.assertIn("짧은 테스트입니다.", args)
+        self.assertIn("--sample-output", args)
+        self.assertIn("--gemini-model", args)
+        self.assertIn("gemini-3.1-flash-tts-preview", args)
+        python_dir = Path(self.server.renderer_python_executable()).resolve().parent
+        env_path = run.call_args.kwargs["env"]["PATH"].split(";")
+        self.assertEqual(env_path[0], str(python_dir))
+        self.assertEqual(env_path[1], str(python_dir / "DLLs"))
+        self.assertNotIn("PYTHONHOME", run.call_args.kwargs["env"])
+
+    def test_cloud_voice_list_uses_isolated_subprocess(self):
+        completed = subprocess.CompletedProcess(
+            args=[],
+            returncode=0,
+            stdout="ko-KR-Chirp3-HD-Kore\tFEMALE\t24000\tko-KR\n",
+            stderr="",
+        )
+
+        with mock.patch.object(self.server.subprocess, "run", return_value=completed) as run:
+            with mock.patch.object(self.server.RENDERER, "list_cloud_voices", side_effect=AssertionError("in-process voice list used")):
+                voices = self.server.renderer_cloud_voices("ko-KR")
+
+        args = [str(arg) for arg in run.call_args.args[0]]
+        self.assertIn("--list-cloud-voices", args)
+        self.assertIn("--cloud-language", args)
+        python_dir = Path(self.server.renderer_python_executable()).resolve().parent
+        env_path = run.call_args.kwargs["env"]["PATH"].split(";")
+        self.assertEqual(env_path[0], str(python_dir))
+        self.assertEqual(env_path[1], str(python_dir / "DLLs"))
+        self.assertNotIn("PYTHONHOME", run.call_args.kwargs["env"])
+        self.assertEqual(voices[0]["name"], "ko-KR-Chirp3-HD-Kore")
+        self.assertEqual(voices[0]["gender"], "FEMALE")
+
+    def test_windows_start_script_runs_server_with_cloud_sdk_python(self):
+        self.assertTrue(START_CMD_PATH.exists(), "Windows start script should exist")
+        script = START_CMD_PATH.read_text(encoding="utf-8")
+
+        self.assertIn("Google\\Cloud SDK\\google-cloud-sdk\\platform\\bundledpython\\python.exe", script)
+        self.assertIn("-X utf8", script)
+        self.assertIn("server.py", script)
+        self.assertIn("cd /d", script)
 
 
 if __name__ == "__main__":

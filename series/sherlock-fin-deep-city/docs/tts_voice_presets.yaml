@@ -1,0 +1,183 @@
+version: 1
+seriesId: sherlock-fin-deep-city
+seriesLabel: 심해탐정 셜록 핀
+defaultVoice: Kore
+sameVoicePolicy: true
+audioTagPolicy:
+  language: en
+  note: "Gemini TTS audio tags are exploratory. Keep the same voice and use tags/tone prompts to separate character acting."
+characters:
+  narrator:
+    label: 나레이터
+    aliases: [해설, 내레이션, narrator]
+    voice: Kore
+    role: narration
+    toneKo: "따뜻하고 차분한 미스터리 그림책 해설자. 무섭지 않게 궁금증을 만들고 단서를 또렷하게 짚는다."
+    defaultTag: "[curious]"
+    tagCandidates: ["[curious]", "[calmly]", "[serious]", "[clearly]", "[mysteriously]"]
+    promptKo: "유아용 탐정 그림책 해설자처럼, 따뜻하지만 단서가 드러나는 순간에는 호기심 있게 읽는다."
+    sourceHints:
+      - "docs/심해탐정_셜록핀_사건생성_규칙서.md: 따뜻한 추리 원칙"
+      - "docs/심해탐정_셜록핀_그림책_대본_작성방법.md: 페이지 원고 기준"
+
+  sherlock_fin:
+    label: 셜록 핀
+    aliases: [셜록, 셜록핀, 탐정]
+    voice: Kore
+    role: detective
+    toneKo: "밝고 자신감 있으며 친절한 어린 인어 탐정. 먼저 안심시켜 주고 차근차근 생각한다."
+    defaultTag: "[curious]"
+    tagCandidates: ["[curious]", "[serious]", "[gently]", "[clearly]", "[thoughtfully]"]
+    promptKo: "총명하지만 차갑지 않은 꼬마 탐정처럼, 친구를 안심시키며 단서를 또렷하게 말한다."
+    sourceHints:
+      - "docs/심해탐정_셜록핀_이미지_생성_디자인_규칙서.md: 셜록 핀"
+      - "docs/episodes/반짝이_비늘_모임_수정본.md: 비밀을 지켜주는 영리한 다정함"
+
+  pearly:
+    label: 펄리
+    aliases: [펄리, 진주조개]
+    voice: Kore
+    role: child
+    toneKo: "순수하고 여린 아기 조개. 속상할 때 울먹이고, 안심하면 금방 밝아진다."
+    defaultTag: "[softly]"
+    tagCandidates: ["[softly]", "[crying]", "[gasp]", "[giggles]", "[relieved]"]
+    promptKo: "여리고 순수한 아이처럼 작게 울먹이다가, 안심하는 순간 맑게 밝아지는 톤으로 말한다."
+    sourceHints:
+      - "docs/심해탐정_셜록핀_이미지_생성_디자인_규칙서.md: 펄리"
+      - "docs/episodes/웃고_있는데_슬픈_얼굴.md: 펄리"
+
+  crabson:
+    label: 크랩슨
+    aliases: [크랩슨, 꽃게 신사]
+    voice: Kore
+    role: supporting
+    toneKo: "재즈 광장의 유쾌하고 예의 바른 꽃게 신사. 밝고 재치 있지만 가끔 덜렁거린다."
+    defaultTag: "[cheerfully]"
+    tagCandidates: ["[cheerfully]", "[playfully]", "[mischievously]", "[laughs]", "[formally]"]
+    promptKo: "신사답게 예의 바르지만 재즈 광장 친구처럼 유쾌하고 리듬감 있게 말한다."
+    sourceHints:
+      - "docs/심해탐정_셜록핀_이미지_생성_디자인_규칙서.md: 크랩슨"
+      - "docs/episodes/같은_시간에_깜빡이는_가로등.md: 증언자"
+
+  momo:
+    label: 모모
+    aliases: [모모, 심해등각류]
+    voice: Kore
+    role: observer
+    toneKo: "조용하고 수줍은 관찰자. 느리지만 꼼꼼하고 작은 변화를 잘 알아챈다."
+    defaultTag: "[softly]"
+    tagCandidates: ["[softly]", "[nervously]", "[very slow]", "[curious]", "[serious]"]
+    promptKo: "수줍고 조심스러운 목격자처럼, 천천히 고른 말로 관찰한 것을 조용히 전한다."
+    sourceHints:
+      - "docs/심해탐정_셜록핀_이미지_생성_디자인_규칙서.md: 모모"
+      - "docs/episodes/골목길의_커다란_뾰족_그림자.md: 모모"
+      - "docs/episodes/웃고_있는데_슬픈_얼굴.md: 모모"
+
+  poppop:
+    label: 팝팝
+    aliases: [팝팝, 복어, 노란 복어]
+    voice: Kore
+    role: child
+    toneKo: "음악과 춤을 좋아하는 분위기 메이커. 평소 명랑하고 흥이 많지만, 마음이 가라앉는 장면도 있다."
+    defaultTag: "[excitedly]"
+    tagCandidates: ["[excitedly]", "[cheerfully]", "[laughs]", "[very fast]", "[softly]", "[tired]"]
+    promptKo: "기본은 리듬감 있고 명랑하게, 조용해진 팝팝 장면에서는 속도를 낮추고 작게 말한다."
+    sourceHints:
+      - "docs/심해탐정_셜록핀_이미지_생성_디자인_규칙서.md: 팝팝"
+      - "docs/episodes/조용해진_팝팝.md: 팝팝"
+
+  banjjagi:
+    label: 반짝이
+    aliases: [반짝이, 바다반딧불이]
+    voice: Kore
+    role: memory_character
+    toneKo: "작고 둥근 바다반딧불이 친구. 부드러운 푸른빛처럼 조용하고 따뜻한 기억의 톤."
+    defaultTag: "[softly]"
+    tagCandidates: ["[softly]", "[gently]", "[whispers]", "[warmly]"]
+    promptKo: "멀리 있지만 슬프지 않은 친구의 기억처럼, 아주 부드럽고 맑게 말한다."
+    sourceHints:
+      - "docs/episodes/조용해진_팝팝.md: 반짝이"
+
+  chorongi:
+    label: 초롱이
+    aliases: [초롱이, 아기 초롱아귀]
+    voice: Kore
+    role: client
+    toneKo: "수줍지만 호기심 많은 아기 초롱아귀. 어두운 곳을 무서워해 조심스럽게 말한다."
+    defaultTag: "[nervously]"
+    tagCandidates: ["[nervously]", "[trembling]", "[softly]", "[curious]", "[relieved]"]
+    promptKo: "초반에는 어둠이 무서워 떨리는 듯, 단서를 따라가며 조금씩 안심하는 톤으로 말한다."
+    sourceHints:
+      - "docs/episodes/초롱불을_어디에_두고_왔을까.md: 초롱이"
+
+  snack_shop_owner:
+    label: 조개 간식 가게 주인
+    aliases: [가게 주인, 간식 가게 주인, 조개 가게 주인]
+    voice: Kore
+    role: witness
+    toneKo: "작고 다정한 가게 주인. 증언할 때도 놀라게 하지 않고 따뜻하게 도와준다."
+    defaultTag: "[warmly]"
+    tagCandidates: ["[warmly]", "[gently]", "[reassuringly]", "[curious]"]
+    promptKo: "친절한 동네 가게 주인처럼, 짧은 증언도 포근하고 선명하게 말한다."
+    sourceHints:
+      - "docs/episodes/초롱불을_어디에_두고_왔을까.md: 조개 간식 가게 주인"
+
+  sea_horse_friend:
+    label: 해마 친구
+    aliases: [해마 친구, 미역 숲 쉼터 친구]
+    voice: Kore
+    role: witness
+    toneKo: "반갑게 불러 주는 작은 해마 친구. 증언자는 밝고 협조적인 톤."
+    defaultTag: "[cheerfully]"
+    tagCandidates: ["[cheerfully]", "[gently]", "[curious]", "[clearly]"]
+    promptKo: "친구를 반갑게 부르는 밝은 증언자처럼, 짧고 또렷하게 말한다."
+    sourceHints:
+      - "docs/episodes/초롱불을_어디에_두고_왔을까.md: 미역 숲 쉼터 친구"
+
+  bakery_owner:
+    label: 빵집 주인
+    aliases: [빵집 주인, 버블 베이커리 주인]
+    voice: Kore
+    role: witness
+    toneKo: "마음씨 좋고 다정한 분홍 해면 빵집 주인. 놀라도 부드럽고 성실하다."
+    defaultTag: "[warmly]"
+    tagCandidates: ["[warmly]", "[gently]", "[surprised]", "[cheerfully]", "[reassuringly]"]
+    promptKo: "따뜻한 빵 냄새가 나는 동네 빵집 주인처럼, 놀람 뒤에도 다정하게 말한다."
+    sourceHints:
+      - "docs/episodes/같은_시간에_깜빡이는_가로등.md: 빵집 주인"
+
+  seahorse_postman:
+    label: 해마 우체부
+    aliases: [해마 우체부, 우체부]
+    voice: Kore
+    role: witness
+    toneKo: "골목을 오가는 친구들을 잘 본 작은 해마 증언자. 친절하고 정확하다."
+    defaultTag: "[clearly]"
+    tagCandidates: ["[clearly]", "[gently]", "[curious]", "[serious]"]
+    promptKo: "친절한 우체부처럼, 본 것을 정확하고 밝게 알려준다."
+    sourceHints:
+      - "docs/episodes/세_가지_단서의_비밀.md: 해마 우체부"
+
+  pori:
+    label: 포리
+    aliases: [포리, 은빛 정어리]
+    voice: Kore
+    role: client
+    toneKo: "순하고 잘 믿지만 이상한 느낌을 솔직히 말할 줄 아는 은빛 정어리 아이."
+    defaultTag: "[curious]"
+    tagCandidates: ["[curious]", "[softly]", "[nervously]", "[amazed]", "[excited]"]
+    promptKo: "순진하고 호기심 많은 의뢰인처럼, 이상하다고 느낄 때는 조심스럽게 묻고 기쁠 때는 환하게 밝아진다."
+    sourceHints:
+      - "docs/episodes/반짝이_비늘_모임_수정본.md: 포리"
+
+  tari:
+    label: 타리
+    aliases: [타리, 진행자]
+    voice: Kore
+    role: guest
+    toneKo: "점잖은 큰 은빛 물고기 진행자. 친절하지만 비밀 임무 때문에 조금 어설프고 시간을 살핀다."
+    defaultTag: "[formally]"
+    tagCandidates: ["[formally]", "[gently]", "[nervously]", "[awkwardly]", "[cheerfully]"]
+    promptKo: "점잖은 사회자처럼 시작하되, 시간을 끌어야 해서 살짝 어색한 웃음이 섞이게 말한다."
+    sourceHints:
+      - "docs/episodes/반짝이_비늘_모임_수정본.md: 타리"

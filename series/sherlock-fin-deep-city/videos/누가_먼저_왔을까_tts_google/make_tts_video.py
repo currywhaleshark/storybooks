@@ -12,8 +12,9 @@ import sys
 import time
 import shutil
 from pathlib import Path
-from urllib.parse import urlencode
-from urllib.request import Request, urlopen
+from urllib.parse import urlencode, urlparse
+from urllib.error import URLError
+from urllib.request import ProxyHandler, Request, build_opener, urlopen
 
 
 ROOT = Path(__file__).resolve().parents[4]
@@ -21,6 +22,92 @@ EPISODE_DIR = ROOT / "series" / "sherlock-fin-deep-city" / "images" / "episodes"
 OUT_DIR = Path(__file__).resolve().parent
 SCRIPT_PATH = OUT_DIR / "tts_script.md"
 CLOUD_TTS_SCOPE = "https://www.googleapis.com/auth/cloud-platform"
+DISABLED_PROXY_ENDPOINTS = {"127.0.0.1:9", "localhost:9", "[::1]:9", "::1:9"}
+_DIRECT_URL_OPENER = None
+
+
+class CurlResponse:
+    def __init__(self, body: bytes):
+        self.body = body
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc, traceback):
+        return False
+
+    def read(self) -> bytes:
+        return self.body
+
+
+def proxy_endpoint(value: str | None) -> str:
+    if not value:
+        return ""
+    parsed = urlparse(value if "://" in value else f"//{value}")
+    return (parsed.netloc or parsed.path).rstrip("/")
+
+
+def environment_uses_disabled_proxy(environ: dict[str, str] | None = None) -> bool:
+    environ = environ or os.environ
+    for name in ("HTTPS_PROXY", "HTTP_PROXY", "ALL_PROXY", "https_proxy", "http_proxy", "all_proxy"):
+        if proxy_endpoint(environ.get(name)) in DISABLED_PROXY_ENDPOINTS:
+            return True
+    return False
+
+
+def direct_url_opener():
+    global _DIRECT_URL_OPENER
+    if _DIRECT_URL_OPENER is None:
+        _DIRECT_URL_OPENER = build_opener(ProxyHandler({}))
+    return _DIRECT_URL_OPENER
+
+
+def opener_supports_https(opener) -> bool:
+    return any(type(handler).__name__ == "HTTPSHandler" for handler in getattr(opener, "handlers", []))
+
+
+def curl_open(request: Request, *, timeout: int) -> CurlResponse:
+    args = [
+        "curl.exe",
+        "--silent",
+        "--show-error",
+        "--location",
+        "--max-time",
+        str(timeout),
+        "--noproxy",
+        "*",
+        "--request",
+        request.get_method(),
+    ]
+    for name, value in request.header_items():
+        args.extend(["--header", f"{name}: {value}"])
+    if request.data is not None:
+        args.extend(["--data-binary", "@-"])
+    args.append(request.full_url)
+    result = subprocess.run(args, input=request.data, capture_output=True)
+    if result.returncode != 0:
+        detail = result.stderr.decode("utf-8", errors="replace") or result.stdout.decode("utf-8", errors="replace")
+        raise URLError(detail.strip() or f"curl failed with exit code {result.returncode}")
+    return CurlResponse(result.stdout)
+
+
+def open_url(request: Request, *, timeout: int):
+    opener = direct_url_opener() if environment_uses_disabled_proxy() else None
+    if request.full_url.lower().startswith("https://") and opener is not None and not opener_supports_https(opener):
+        return curl_open(request, timeout=timeout)
+    if environment_uses_disabled_proxy():
+        try:
+            return opener.open(request, timeout=timeout)
+        except URLError as exc:
+            if "unknown url type: https" in str(exc):
+                return curl_open(request, timeout=timeout)
+            raise
+    try:
+        return urlopen(request, timeout=timeout)
+    except URLError as exc:
+        if "unknown url type: https" in str(exc):
+            return curl_open(request, timeout=timeout)
+        raise
 
 
 def read_script() -> list[dict[str, str]]:
@@ -83,7 +170,7 @@ def download_google_tts(text: str, output: Path, *, lang: str = "ko", slow: bool
             },
         )
         temp = output.with_name(f"{output.stem}_{index:02d}.mp3")
-        with urlopen(req, timeout=30) as response:
+        with open_url(req, timeout=30) as response:
             temp.write_bytes(response.read())
         temp_files.append(temp)
         time.sleep(0.15)
@@ -137,7 +224,7 @@ def cloud_access_token(adc: dict[str, str]) -> str:
         data=body,
         headers={"Content-Type": "application/x-www-form-urlencoded"},
     )
-    with urlopen(req, timeout=30) as response:
+    with open_url(req, timeout=30) as response:
         data = json.loads(response.read().decode("utf-8"))
     if "access_token" not in data:
         raise RuntimeError(f"OAuth token response did not include access_token: {data}")
@@ -163,7 +250,7 @@ def cloud_tts_request(payload: dict[str, object], *, endpoint: str = "text:synth
         headers=cloud_headers(adc),
         method="POST" if payload else "GET",
     )
-    with urlopen(req, timeout=60) as response:
+    with open_url(req, timeout=60) as response:
         return json.loads(response.read().decode("utf-8"))
 
 
@@ -171,7 +258,7 @@ def list_cloud_voices(language_code: str = "ko-KR") -> list[dict[str, object]]:
     adc = read_adc()
     url = f"https://texttospeech.googleapis.com/v1/voices?{urlencode({'languageCode': language_code})}"
     req = Request(url, headers=cloud_headers(adc))
-    with urlopen(req, timeout=60) as response:
+    with open_url(req, timeout=60) as response:
         data = json.loads(response.read().decode("utf-8"))
     return data.get("voices", [])
 
