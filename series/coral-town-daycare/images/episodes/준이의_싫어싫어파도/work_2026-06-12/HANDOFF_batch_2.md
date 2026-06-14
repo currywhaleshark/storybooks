@@ -3,8 +3,11 @@
 ## Generated Candidates
 
 - Page 04: `batch_2/04_candidate_2026-06-12_v1.png`
-  - Status: `candidate pass`
-  - Note: Mari sits/lowers herself beside Jun-i and waits warmly without grabbing, pulling, pushing, or scolding.
+  - Status: `hold - rework required for supporting-character reference fidelity`
+  - Note: Mari-Jun-i interaction and Korean text are usable, but the back-row friends drift too far from the official references. Rework page 04 before final promotion.
+- Page 04 retry: `batch_2/04_candidate_2026-06-12_v4_textfix.png`
+  - Status: `superseded optional textfix`
+  - Note: v4_textfix was created from an over-conservative text concern. User clarified the suspected dot in `준이` was not an actual text error, so v2/v3 remain the natural generated page 04 retry candidates.
 - Page 05: `batch_2/05_candidate_2026-06-12_v1.png`
   - Status: `candidate pass`
   - Note: `밖에 더 있고 싶어` first appears here; Jun-i directly says `"밖에... 더 있고 싶어."`
@@ -20,7 +23,7 @@ No batch 2 candidate has been promoted to `final`.
 - Character identity: pages 04-06 pass official-reference identity QA for Jun-i, Mari teacher, and Banguli.
 - Jun-i continuity: Jun-i keeps the official shark identity and blue arrival bag through pages 04-06.
 - Mari continuity: Mari keeps yellow apron, star hairpin, purple attendance notebook, purple mermaid tail, and a warm teacher posture.
-- Friends: page 04 friends and page 05 Tori stay distant/supportive rather than pressuring or shaming Jun-i.
+- Friends: page 04 v1 friends failed reference fidelity, but the retry improved Tori, Mongle, Lulu, and Banguli enough to continue. Page 05 Tori remains distant/supportive.
 - Story locks:
   - Page 04 validates and waits; no solving, scolding, pulling, or pushing.
   - Page 05 is the first clear reveal of `밖에 더 있고 싶어`, and Jun-i directly says the final line.
@@ -44,18 +47,21 @@ No batch 2 candidate has been promoted to `final`.
 ## Candidate Notes
 
 - Page 04 has a small Jun-i pout/frown crease, but the eye remains the official small black oval button eye.
+- Page 04 v1 must not be promoted without rework. For v2, keep the main text and Mari-Jun-i waiting emotion, but rebuild the background friends from official refs or omit them if they cannot stay on-model at small scale.
+- Page 04 retry v2/v3 are the natural generated review candidates after user clarification. Do not use old v1 background-friend drift as guidance.
 - Page 05 has Mari gesturing toward the playground direction; the pose reads as helping Jun-i find words rather than scolding or forcing an answer.
 - Page 06 prop should be used as candidate continuity context only. The official visual truth for the shell hourglass remains `shell_hourglass_ref.png`.
 
 ## User Review Needed
 
 - Review pages 04-06 and either approve, reject, or request targeted retries.
+- Targeted retry for page 04 background friends produced usable natural generated retry candidates (`v2`/`v3`). The local `v4_textfix` is process history only unless requested.
 - Do not promote anything to `final` until the user approves specific candidates.
 - Cover v3 remains a separate `hold` because its title spacing still needs repair before final promotion.
 
 ## Next Batch If Approved
 
-- Next scope starts at page 07, where Jun-i waits outside while the `싫어싫어 파도` gets smaller.
+- Next scope starts at page 07.
 - Carry forward Jun-i's blue arrival bag through pages 07-08.
 - Carry forward the shell hourglass shape from the official `shell_hourglass_ref.png`.
 - First concrete next action:

@@ -153,7 +153,7 @@
 ## Batch 2 Page 04 - 2026-06-12
 
 - Generated: `batch_2/04_candidate_2026-06-12_v1.png`
-- Status: `candidate pass`
+- Status: `hold - rework required for supporting-character reference fidelity`
 - Reference grounding: exterior/playground, coral tunnel, Jun-i, Mari teacher, Banguli, Tori, Mongle, and Lulu loaded before generation.
 - QA:
   - Pass: Korean page text is exact and readable:
@@ -167,9 +167,31 @@
   - Pass: Jun-i keeps the official shark identity: projecting snout, small black oval button eye, white lower face/belly, gill marks, dorsal fin, side fins, long tail, sailor outfit, and blue arrival bag.
   - Pass with note: Jun-i has a small pout/frown crease, but the eye itself remains the required small black oval button eye.
   - Pass: Banguli remains a transparent droplet and reads as worried/gentle.
-  - Pass: Tori, Mongle, and Lulu stay in the background at a respectful distance and do not pressure or shame Jun-i.
+  - Fail: the back-row friends drift too far from the official references. Tori is simplified, Mongle reads as a generic purple sea animal instead of the official octopus child with yellow beret, sailor collar, and visible tentacles, and Lulu loses the official seahorse structure such as long snout, head ridge, fin, and curled tail.
+  - User QA: page 04 needs rework specifically for the background friends. Do not promote v1 to `final`.
   - Pass: no scary emotion wave appears; the scene reads as calming down after page 03.
-- Next action: continue to page 05. Keep the story lock that `밖에 더 있고 싶어` first appears on page 05 and Jun-i directly says `"밖에... 더 있고 싶어."`
+- Next action: prepare/regenerate `batch_2/04_candidate_2026-06-12_v2.png` before final promotion. Keep the main page 04 text, Mari-Jun-i waiting emotion, Jun-i bag, and watercolor style, but rebuild or omit background friends unless Tori, Mongle, Lulu, and Banguli match their official reference PNGs.
+
+## Batch 2 Page 04 Retry - 2026-06-12
+
+- Generated: `batch_2/04_candidate_2026-06-12_v2.png`
+- Status: `candidate pass`
+- Reference grounding: official exterior/playground, coral tunnel, Jun-i, Mari teacher, Banguli, Tori, Mongle, and Lulu were loaded before generation.
+- QA:
+  - Pass: requested supporting-character rework improved. Tori reads as the official green turtle child with yellow hat, visible shell, sailor clothes, and yellow bag.
+  - Pass: Mongle reads as the official purple octopus child with yellow beret, sailor collar, yellow bag, and multiple visible tentacles.
+  - Pass: Lulu reads as the official pink seahorse child with long snout, head ridge/spiky silhouette, small fin, curled tail, sailor outfit, and yellow bag.
+  - Pass: Banguli remains a translucent blue droplet with worried face.
+  - Pass: Mari and Jun-i keep the intended waiting/validation posture; Jun-i keeps his blue arrival bag and official shark details.
+  - Pass: Korean story text is readable and accepted by user review; earlier dot/separator concern was an overcall caused by paper texture/antialiasing.
+- Generated text-edit attempts: `batch_2/04_candidate_2026-06-12_v3.png`
+  - Status: `candidate pass`
+  - Note: v3 kept the improved friends and readable generated text. User review clarified that the suspected dot/separator was not an actual text error.
+- Created local text repair: `batch_2/04_candidate_2026-06-12_v4_textfix.png`
+  - Status: `superseded optional textfix`
+  - Note: v4_textfix was created from an over-conservative text concern and should not replace the natural generated candidate unless the user later wants a cleaner text-panel style.
+- User clarification: suspected dot in `준이` did not actually appear as a text error. Continue to batch 3.
+- Next action: proceed to batch 3 pages 07-09. Use page 04 retry v2/v3 only as review context; official references remain visual truth.
 
 ## Batch 2 Page 05 - 2026-06-12
 
@@ -223,13 +245,159 @@
 
 - Scope completed: pages 04-06.
 - Generated candidates:
-  - `batch_2/04_candidate_2026-06-12_v1.png` - `candidate pass`
+  - `batch_2/04_candidate_2026-06-12_v1.png` - `hold - rework required for supporting-character reference fidelity`
+  - `batch_2/04_candidate_2026-06-12_v2.png` - `candidate pass`
+  - `batch_2/04_candidate_2026-06-12_v3.png` - `candidate pass`
+  - `batch_2/04_candidate_2026-06-12_v4_textfix.png` - `superseded optional textfix`
   - `batch_2/05_candidate_2026-06-12_v1.png` - `candidate pass`
   - `batch_2/06_candidate_2026-06-12_v1.png` - `candidate pass`
 - Final promotion: none. No files were copied to `final`.
 - Carry forward:
+  - Page 04 background-friend rework is accepted enough to continue; do not let the old v1 background-friend drift guide later pages.
   - Keep Jun-i's blue arrival bag through pages 07-08.
   - Use `batch_2/06_candidate_2026-06-12_v1.png` only as continuity discussion/candidate context, not as official prop truth; official shell hourglass truth remains `work_2026-06-11/reference_assets/shell_hourglass_ref.png`.
   - Continue watercolor/colored-pencil paper texture; avoid cover v2 smooth 3D/plastic drift.
   - Page 07 should show the `싫어싫어 파도` getting smaller while Jun-i waits outside with the same shell hourglass logic.
-- Next action: user review of batch 2 candidates, then prepare/generate page 07 only after approval or targeted retry instructions.
+- Next action: prepare and generate batch 3 pages 07-09.
+
+## Batch 3 Page 09 - 2026-06-12
+
+- Generated: `batch_3/09_candidate_2026-06-12_v1.png`
+- Status: `fail - regenerate`
+- Reference grounding: official classroom, Jun-i, Mari teacher, Banguli, Tori, Mongle, Lulu, Aru, Popo, and Sua were loaded before generation.
+- QA:
+  - Pass: overall classroom warmth and watercolor/colored-pencil texture followed the accepted Sanho Village Daycare direction.
+  - Fail: Korean text misspelled `앉았어요` as `앉었어요`.
+  - Fail: some indoor friend details drifted toward worn bags/straps and off-reference body shapes.
+- Next action: regenerate a simpler page 09 with fewer visible friends, no Aru/Popo/Sua, and a hard no-bags-worn-indoors lock.
+
+## Batch 3 Page 09 Retry - 2026-06-12
+
+- Generated: `batch_3/09_candidate_2026-06-12_v2.png`
+- Status: `superseded - omitted Sua and Popo`
+- Reference grounding: official classroom, Jun-i, Mari teacher, Banguli, Tori, Mongle, and Lulu were loaded before generation. Aru, Popo, and Sua were intentionally omitted in this retry to protect reference fidelity and reduce crowding.
+- QA:
+  - Pass: Korean page text is exact and readable:
+    - `어린이집 안으로 들어온 준이는`
+    - `친구들과 함께 앉았어요.`
+    - `이제 준이는 알았어요.`
+    - `싫은 마음은 말해도 돼요.`
+    - `쿵쿵하기보다`
+    - `말로 말하면 돼요.`
+  - Pass: Jun-i keeps the official shark identity, small black oval button eye, white lower face/belly, gill marks, side fins, sailor shirt, and blue shorts.
+  - Pass: Jun-i is not wearing his blue arrival bag indoors; the blue bag is stored in the classroom cubby area.
+  - Pass: Mari teacher keeps her yellow apron, star hairpin, attendance notebook, and purple mermaid tail, and reads as warmly supportive.
+  - Pass: Banguli, Tori, Mongle, and Lulu form a calm supportive group and do not wear bags indoors.
+  - Pass: classroom setting is readable with rounded windows, cubbies, coral details, and warm underwater light.
+  - User QA: v2 omitted Sua and Popo, so it should not be the preferred page 09 candidate.
+- Next action: retry with Sua and Popo as required visible classmates.
+
+## Batch 3 Page 09 Sua/Popo Retry - 2026-06-12
+
+- Generated: `batch_3/09_candidate_2026-06-12_v3.png`
+- Status: `hold - indoor bag/strap drift`
+- Reference grounding: official classroom, Jun-i, Mari teacher, Banguli, Tori, Mongle, Lulu, Popo, and Sua were loaded before generation.
+- QA:
+  - Pass: Sua and Popo are restored as visible classmates.
+  - Pass: Korean page text is exact and readable.
+  - Hold: a bag/strap-like detail appears on Popo and some classmates, conflicting with the page 09 indoor no-bags lock.
+- Next action: retry once more with the same Sua/Popo inclusion lock and stricter no-bags-on-children lock.
+
+## Batch 3 Page 09 Sua/Popo No-Bag Retry - 2026-06-12
+
+- Generated: `batch_3/09_candidate_2026-06-12_v4.png`
+- Status: `candidate pass`
+- Reference grounding: official classroom, Jun-i, Mari teacher, Banguli, Tori, Mongle, Lulu, Popo, and Sua were loaded before generation.
+- QA:
+  - Pass: Korean page text is exact and readable:
+    - `어린이집 안으로 들어온 준이는`
+    - `친구들과 함께 앉았어요.`
+    - `이제 준이는 알았어요.`
+    - `싫은 마음은 말해도 돼요.`
+    - `쿵쿵하기보다`
+    - `말로 말하면 돼요.`
+  - Pass: Sua is visible as a purple seahorse child with long snout, ridged head, small fin, curled tail, and blue sailor outfit.
+  - Pass: Popo is visible as a translucent moon jellyfish child with internal flower-like pattern and trailing tentacles.
+  - Pass: Jun-i is calm, speaks with a raised hand, and is not wearing his blue arrival bag.
+  - Pass: bags are stored on hooks/cubbies in the classroom, not worn by children.
+  - Pass: Mari teacher reads as warm and supportive; Banguli, Tori, Mongle, Lulu, Sua, and Popo are supportive classmates.
+- Next action: hold `v4` as the preferred page 09 candidate for user review. Do not promote to `final` without approval.
+
+## Batch 4 Prep - 2026-06-13
+
+- Prepared: `batch_4/batch_4_prompt_plan.md`
+- Scope: page 10.
+- Reference verification: exterior/playground, coral tunnel, Jun-i, Mari teacher, Banguli, Tori, Mongle, Lulu, Aru, Popo, and Sua paths were checked/loaded before generation attempts.
+- Story locks:
+  - Page 10 is dismissal time outside the daycare.
+  - Jun-i and friends may wear official bags again.
+  - Jun-i should feel emotionally settled, bright, and confident.
+  - Ending text must be exact:
+    - `하원 시간이 되었어요.`
+    - `준이는 활짝 웃으며 말했어요.`
+    - `"내일도 올래!"`
+    - `산호마을 어린이집은`
+    - `오늘도 맑음.`
+    - `준이 마음도`
+    - `조금씩 맑음.`
+
+## Batch 4 Page 10 Built-in Generation Attempts - 2026-06-13
+
+- Intended output: `batch_4/10_candidate_2026-06-13_v1.png`
+- Status: `blocked - built-in image generator ignored prompt`
+- Reference grounding: official exterior/playground, coral tunnel, Jun-i, Mari teacher, Banguli, Tori, Mongle, Lulu, Aru, Popo, and Sua were loaded before attempts.
+- QA:
+  - Fail: first built-in `image_gen` output was an unrelated English `VITAMINS AND THEIR BENEFITS` infographic.
+  - Fail: second built-in `image_gen` output was an unrelated English `TYPES OF POLLUTION` infographic.
+  - Fail: third built-in `image_gen` output was an unrelated English `TYPES OF ROCKS` infographic.
+  - No page 10 candidates were copied into `batch_4` because all outputs were unrelated to the episode.
+- Next action: do not keep retrying the same built-in path until the generator state is healthy. Use a fresh generation route/session or user-approved CLI fallback if needed.
+
+## Batch 4 Page 10 Fresh Session Retry - 2026-06-13
+
+- Generated: `batch_4/10_candidate_2026-06-13_v1.png`
+- Source generated image preserved at: `C:\Users\yurib\.codex\generated_images\019ebc75-1c90-74a3-88aa-9e04ee5e7828\ig_0d10b51dffc569a8016a2c272ceab8819180ba43d9ad66213f.png`
+- Status: `hold - review/regenerate likely`
+- Reference grounding: official exterior/playground, coral tunnel, Jun-i, Mari teacher, Banguli, Tori, Mongle, Lulu, Aru, Popo, and Sua were loaded before generation.
+- QA:
+  - Pass: output is a proper Korean toddler picture-book page, not an unrelated infographic.
+  - Pass: Korean ending text is exact and readable:
+    - `하원 시간이 되었어요.`
+    - `준이는 활짝 웃으며 말했어요.`
+    - `"내일도 올래!"`
+    - `산호마을 어린이집은`
+    - `오늘도 맑음.`
+    - `준이 마음도`
+    - `조금씩 맑음.`
+  - Pass: daycare exterior, blue door, coral playground details, warm underwater light, and closing-page mood are strong.
+  - Pass: Jun-i is the clear focus, smiling/waving, wearing the official-style blue dismissal bag, and reads emotionally settled.
+  - Pass: Mari teacher is near the doorway, warm, waving, and not controlling Jun-i.
+  - Hold: a non-reference dog-like character appears in the foreground, replacing or distracting from official friend coverage.
+  - Hold: Banguli is not clearly visible as the official blue droplet friend.
+  - Hold: Popo is missing or unclear, and several background friends drift from exact official shapes.
+- Next action: keep v1 as a useful visual/text candidate, but regenerate page 10 if official-friend fidelity is required. Next prompt should explicitly forbid any pet/dog/new character and either reduce the friend group or make Banguli/Popo placement unambiguous.
+
+## Batch 4 Page 10 Focused Friend Retry - 2026-06-13
+
+- Generated: `batch_4/10_candidate_2026-06-13_v2.png`
+- Source generated image preserved at: `C:\Users\yurib\.codex\generated_images\019ebc75-1c90-74a3-88aa-9e04ee5e7828\ig_0d10b51dffc569a8016a2c28a4723c8191962d91cbbb4630e9.png`
+- Status: `candidate pass - preferred over v1`
+- Reference grounding: official exterior/playground, coral tunnel, Jun-i, Mari teacher, Banguli, Tori, Mongle, Lulu, Aru, Popo, and Sua were loaded before generation. The prompt reduced the visible friend group to protect official-friend fidelity.
+- QA:
+  - Pass: output is a proper Korean toddler picture-book page and no unrelated infographic content appears.
+  - Pass: Korean ending text is exact and readable:
+    - `하원 시간이 되었어요.`
+    - `준이는 활짝 웃으며 말했어요.`
+    - `"내일도 올래!"`
+    - `산호마을 어린이집은`
+    - `오늘도 맑음.`
+    - `준이 마음도`
+    - `조금씩 맑음.`
+  - Pass: daycare exterior, blue door, coral playground, and warm closing mood match the series direction.
+  - Pass: Jun-i is the clear emotional focus, smiling/waving, wearing the official-style blue dismissal bag, and reads calm/resolved.
+  - Pass: Mari teacher is near the doorway, waving warmly, with star hairpin, yellow apron, purple notebook, and purple mermaid tail.
+  - Pass: Banguli is clearly visible as the official light-blue droplet friend.
+  - Pass: Popo is clearly visible as a moon jellyfish child with translucent bell, internal flower-like pattern, sailor collar, tentacles, and shell bag; no big human eyes.
+  - Pass: no dog/pet/new character appears in this retry.
+  - Note: friend group is intentionally simplified compared with the full class roster; this is preferable to v1's off-reference extra character.
+- Next action: hold v2 as the preferred page 10 candidate for user review. Do not promote to `final` without approval.

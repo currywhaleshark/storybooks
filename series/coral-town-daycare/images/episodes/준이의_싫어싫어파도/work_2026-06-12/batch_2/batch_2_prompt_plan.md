@@ -64,6 +64,38 @@ QA:
 - Jun-i keeps official snout, small black button eye, gills, fins, tail, sailor outfit, and blue bag.
 - Scene reads as calming down after page 03.
 
+### Page 04 Rework Addendum - user QA 2026-06-12
+
+Output for retry: `batch_2/04_candidate_2026-06-12_v2.png`
+
+Status of v1: `hold - rework required for supporting-character reference fidelity`.
+
+Keep from v1:
+
+- Exact Korean story text and upper-left text placement.
+- Mari sitting low beside Jun-i, waiting kindly without scolding, grabbing, pulling, pushing, or pointing sharply.
+- Jun-i's official shark body, small black oval eye, gills, sailor outfit, and blue arrival bag.
+- Warm watercolor/colored-pencil paper texture.
+
+Fix for v2:
+
+- Rebuild the back-row friends from the official individual character references, not from the v1 image.
+- Tori must read as the official green turtle child: yellow hat with flower, rounded turtle face, visible shell, sailor clothes, and yellow bag.
+- Mongle must read as the official purple octopus child: round purple head, yellow beret, sailor collar, yellow bag, and multiple visible tentacles/suckers. Do not turn Mongle into a generic purple blob, squid, or two-legged child.
+- Lulu must read as the official pink seahorse child: long tubular snout, head ridge/spiky seahorse silhouette, coral ornament, small fin, curled tail, sailor outfit, and yellow bag. Do not turn Lulu into a generic pink fish, dinosaur, pony, or simplified doll.
+- Banguli must remain a translucent blue water droplet with tiny side bubble-hands and a simple worried face, not a solid jelly blob.
+- If the generator cannot preserve all small background friend identities at the chosen scale, reduce the number of background friends or push them partly out of frame. It is better to omit a friend than to invent an off-reference replacement.
+- Friends remain distant and gentle; no crowding, judging, or pressure.
+
+Avoid for v2: using `04_candidate_2026-06-12_v1.png` as visual truth, generic sea-animal toddlers, changed species, missing signature accessories, missing tentacles, missing seahorse snout/curl, smooth 3D/plastic texture, random Korean text, or text paraphrase.
+
+### Page 04 Retry Result - 2026-06-12
+
+- `04_candidate_2026-06-12_v2.png`: supporting friends corrected and accepted enough to continue.
+- `04_candidate_2026-06-12_v3.png`: generated text edit remains a usable natural generated candidate.
+- User clarification: the suspected dot/separator in `준이` was an overcall; paper texture/antialiasing was mistaken for a text error.
+- `04_candidate_2026-06-12_v4_textfix.png`: optional local textfix created from that overcall; keep as process history, not the preferred natural candidate unless the user later wants the cleaner text-panel look.
+
 ## Page 05 - 밖에 더 있고 싶어
 
 Output: `batch_2/05_candidate_2026-06-12_v1.png`
