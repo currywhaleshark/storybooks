@@ -56,6 +56,12 @@ class EpisodeSelectionTests(unittest.TestCase):
         self.assertEqual(names[0], "루루야_약속했잖아_tts.md")
         self.assertEqual(names[1], "루루야_약속했잖아.md")
 
+    def test_juni_episode_prefers_matching_prompt_document(self):
+        names = self.script_names_for("준이의_싫어싫어파도")
+
+        self.assertEqual(names[0], "준이의_싫어싫어파도.md")
+        self.assertNotIn("루루야_약속했잖아_tts.md", names)
+
     def test_frontend_does_not_force_popo_as_default_episode(self):
         app = APP_PATH.read_text(encoding="utf-8")
 
@@ -82,6 +88,15 @@ class EpisodeSelectionTests(unittest.TestCase):
             self.server.extract_text_blocks(script),
             ["표지 문장입니다.", "[excitedly] 다시 불러온 원고입니다.\n\n두 번째 줄도 유지합니다."],
         )
+
+    def test_extracts_korean_text_blocks_from_prompt_document(self):
+        path = self.series_root / "docs" / "episodes" / "준이의_싫어싫어파도.md"
+        texts = self.server.extract_text_blocks(path.read_text(encoding="utf-8"))
+
+        self.assertEqual(len(texts), 11)
+        self.assertIn("준이의 싫어싫어파도", texts[0])
+        self.assertIn("아침이 되었어요.", texts[1])
+        self.assertIn("준이 마음도", texts[-1])
 
     def test_frontend_fetches_tts_presets_and_inserts_audio_tags(self):
         app = APP_PATH.read_text(encoding="utf-8")

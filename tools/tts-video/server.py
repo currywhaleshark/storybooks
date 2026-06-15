@@ -302,6 +302,7 @@ def clean_extracted_text(text: str) -> str:
 
 def extract_text_blocks(markdown: str) -> list[str]:
     patterns = [
+        r"(?:표지|페이지) 안에 다음 한국어(?: 제목)? 텍스트[^\n]*:\s*```text\s*\n([\s\S]*?)```",
         r"###\s*페이지\s*텍스트[\s\S]*?```text\s*\n([\s\S]*?)```",
         r"(?:^|\n)Text:\s*\n```text\s*\n([\s\S]*?)```",
         r'(?:^|\n)Text:\s*\n(["“][\s\S]*?["”])(?=\n\s*(?:---|##|###|$))',
