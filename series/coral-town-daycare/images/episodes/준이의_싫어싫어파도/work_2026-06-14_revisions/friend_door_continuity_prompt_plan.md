@@ -135,3 +135,17 @@ Keep:
 조금씩 작아졌어요.
 출렁... 출렁...
 ```
+
+## Generation Results - 2026-06-15
+
+Generated with official references loaded before each page edit. Original candidates were preserved.
+
+| Page | Revision file | Review copy | QA |
+| --- | --- | --- | --- |
+| 03 | `03_candidate_2026-06-14_v2_door_friends.png` | `review_final_candidates_2026-06-14/03_페이지_후보_v2_문안친구.png` | user approved: Tori, Mongle, and Lulu are inside the open doorway; Jun-i, Banguli, wave, and text remain usable. |
+| 04 | `04_candidate_2026-06-14_v5_door_friends.png` | `review_final_candidates_2026-06-14/04_페이지_후보_v5_문안친구.png` | user approved: classmates are behind the threshold; Mari and Jun-i remain outside in the waiting scene. |
+| 05 | `05_candidate_2026-06-14_v2_door_friend.png` | `review_final_candidates_2026-06-14/05_페이지_후보_v2_문안친구.png` | user approved: Tori is inside the doorway; emotional close-up and text remain usable. |
+| 06 | `06_candidate_2026-06-15_v4_door_official_friends_lulu_refined.png` | `review_final_candidates_2026-06-14/06_페이지_후보_v4_문안친구_루루수정.png` | Lulu refined after v3; doorway uses official Tori, Mongle, and Lulu only. Mari, Jun-i, Banguli, shell hourglass, and text remain usable. |
+| 07 | `07_candidate_2026-06-14_v3_door_friends.png` | `review_final_candidates_2026-06-14/07_페이지_후보_v3_문안친구.png` | user approved: classmates are inside the open doorway; shell hourglass, smaller wave, and waiting mood remain usable. |
+
+Next action: use the five approved `문안친구` candidates for final packaging after the remaining cover/title decision is resolved.

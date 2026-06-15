@@ -401,3 +401,56 @@
   - Pass: no dog/pet/new character appears in this retry.
   - Note: friend group is intentionally simplified compared with the full class roster; this is preferable to v1's off-reference extra character.
 - Next action: hold v2 as the preferred page 10 candidate for user review. Do not promote to `final` without approval.
+
+## Friend Door Continuity Revisions - 2026-06-15
+
+- Source plan: `work_2026-06-14_revisions/friend_door_continuity_prompt_plan.md`
+- Scope: pages 03, 04, 05, 06, and 07.
+- User QA lock applied:
+  - Friends must not reappear outside around Jun-i after entering daycare on earlier pages.
+  - Visible classmates on these pages are placed inside the open daycare doorway or just behind the interior threshold.
+  - Jun-i, Mari teacher, and Banguli remain outside near the entrance/playground.
+- Generated revision candidates:
+  - `work_2026-06-14_revisions/03_candidate_2026-06-14_v2_door_friends.png`
+  - `work_2026-06-14_revisions/04_candidate_2026-06-14_v5_door_friends.png`
+  - `work_2026-06-14_revisions/05_candidate_2026-06-14_v2_door_friend.png`
+  - `work_2026-06-14_revisions/06_candidate_2026-06-15_v4_door_official_friends_lulu_refined.png`
+  - `work_2026-06-14_revisions/07_candidate_2026-06-14_v3_door_friends.png`
+- Review copies added:
+  - `review_final_candidates_2026-06-14/03_페이지_후보_v2_문안친구.png`
+  - `review_final_candidates_2026-06-14/04_페이지_후보_v5_문안친구.png`
+  - `review_final_candidates_2026-06-14/05_페이지_후보_v2_문안친구.png`
+  - `review_final_candidates_2026-06-14/06_페이지_후보_v4_문안친구_루루수정.png`
+  - `review_final_candidates_2026-06-14/07_페이지_후보_v3_문안친구.png`
+- QA status: `user approved` for the requested door-continuity fix after mobile review. Page 06 was additionally revised so the door is open and official classmates watch from inside. Korean text, main character placement, and shell hourglass remain usable by visual inspection.
+- Next action: use the five approved revised candidates for final packaging after the remaining cover/title decision is resolved.
+
+## Final Approval And Packaging - 2026-06-15
+
+- User confirmed the cover title spacing is acceptable and the whole episode is OK.
+- Promoted approved review candidates to `final/`:
+  - `final/00_표지.png`
+  - `final/01_페이지.png`
+  - `final/02_페이지.png`
+  - `final/03_페이지.png`
+  - `final/04_페이지.png`
+  - `final/05_페이지.png`
+  - `final/06_페이지.png`
+  - `final/07_페이지.png`
+  - `final/08_페이지.png`
+  - `final/09_페이지.png`
+  - `final/10_페이지.png`
+- Packaged final approved pages:
+  - `준이의_싫어싫어파도_최종승인본_페이지순_2026-06-15.zip`
+- Final status: `user approved` and `final promoted` for cover plus 10 story pages.
+
+## Page 06 Door Continuity Patch - 2026-06-15
+
+- User requested page 06 match the open-door continuity: the daycare door should be open and friends should be watching from inside.
+- First v2 attempt was rejected by user because the doorway characters were not official classmates.
+- Regenerated v3 with official Tori, Mongle, and Lulu in the doorway, then refined Lulu's silhouette and details in v4:
+  - `work_2026-06-14_revisions/06_candidate_2026-06-15_v4_door_official_friends_lulu_refined.png`
+  - `review_final_candidates_2026-06-14/06_페이지_후보_v4_문안친구_루루수정.png`
+  - `final/06_페이지.png`
+- Existing `review_final_candidates_2026-06-14/06_페이지_후보_v1.png` remains as comparison history, v2 remains rejected history, and v3 remains official-friends correction history.
+- Final zip refreshed with the revised page 06.
