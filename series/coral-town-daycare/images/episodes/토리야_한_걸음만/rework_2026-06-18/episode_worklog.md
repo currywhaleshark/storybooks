@@ -58,8 +58,21 @@ No candidates generated yet.
 
 ## Tunnel Lock Candidate Generation Attempt - 2026-06-18
 
-- Status: `blocked`
-- Built-in image generation preview was generated from the viewed reference images, but the tool did not expose a filesystem path for the generated image in this environment.
-- The CLI fallback is available but cannot run because `OPENAI_API_KEY` is not set.
-- No `coral_tunnel_straight_tube_lock_candidate_v1.png` file has been saved yet.
-- Next action: either obtain a savable image-generation output path from the built-in tool, or run the CLI fallback after `OPENAI_API_KEY` is configured.
+- Status: `resolved`
+- The generated preview was found in the user's Downloads folder and copied into the rework folder.
+
+## Tunnel Lock Candidate v1 - 2026-06-18
+
+- File: `series/coral-town-daycare/images/episodes/토리야_한_걸음만/rework_2026-06-18/tunnel_lock/coral_tunnel_straight_tube_lock_candidate_v1.png`
+- Source from user: `C:/Users/USER/Downloads/생성된 이미지 1 (3).png`
+- Status: `candidate pass`
+- QA:
+  - Straight single-axis tube: pass
+  - Same-facing double opening: pass
+  - L shape / corner / branch: pass
+  - Toddler scale with Tori: pass
+  - Warm safe style: pass
+  - Tori identity for scale marker: pass
+- Caveat:
+  - The top main view has a large dark near opening. For story pages, prioritize the lower side-view and crawling-view scale so the tunnel stays low and toddler-sized, not cave-like.
+- Next action: ask user to approve this tunnel lock before Batch 1 page generation.
