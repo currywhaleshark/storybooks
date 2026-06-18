@@ -100,3 +100,18 @@ No candidates generated yet.
   - Warm Coral Town Daycare style: pass
   - User confirmed cover text is acceptable: pass
 - Next action: generate page 1 only.
+
+## Batch 1 Page 1 Generation - 2026-06-18
+
+- File: `series/coral-town-daycare/images/episodes/토리야_한_걸음만/rework_2026-06-18/batch_1/01_candidate_2026-06-18_v1.png`
+- Source from user Downloads: `C:/Users/USER/Downloads/생성된 이미지 1 (4).png`
+- Status: `user approved`
+- QA:
+  - Page text: pass, user confirmed it is not misspelled.
+  - Coral tunnel: pass, readable as the new tunnel prop for this page.
+  - Tori emotion and position: pass, Tori is hesitant and slightly apart.
+  - Story setting: pass, daycare playground is visible.
+  - Continuity caveat: classmates and Mari teacher are acceptable for this page, but next pages must lock official character references more strongly to avoid unrelated rabbit/dolphin/clownfish substitutions.
+- Rejected/superseded:
+  - The second page-1 generation was rejected by the user because non-Tori characters changed into unrelated rabbit/dolphin/clownfish designs.
+- Next action: commit approved page 1, then generate page 2 with stricter official-character constraints.
