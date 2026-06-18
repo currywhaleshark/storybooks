@@ -76,3 +76,14 @@ No candidates generated yet.
 - Caveat:
   - The top main view has a large dark near opening. For story pages, prioritize the lower side-view and crawling-view scale so the tunnel stays low and toddler-sized, not cave-like.
 - Next action: ask user to approve this tunnel lock before Batch 1 page generation.
+
+## Batch 1 Prompt Plan - 2026-06-18
+
+- Status: `prompt plan ready`
+- File: `series/coral-town-daycare/images/episodes/토리야_한_걸음만/rework_2026-06-18/batch_1/batch_1_prompt_plan.md`
+- Scope:
+  - `00_cover_candidate_2026-06-18_v1.png`
+  - `01_candidate_2026-06-18_v1.png`
+  - `02_candidate_2026-06-18_v1.png`
+  - `03_candidate_2026-06-18_v1.png`
+- Required gate: generate only after user confirms this prompt plan.
