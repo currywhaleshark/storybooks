@@ -41,3 +41,25 @@ No candidates generated yet.
 - Status: `prompt plan ready`
 - File: `series/coral-town-daycare/images/episodes/토리야_한_걸음만/rework_2026-06-18/tunnel_lock/tunnel_lock_prompt_plan.md`
 - Next action: generate `coral_tunnel_straight_tube_lock_candidate_v1.png` using the listed reference images.
+
+## Tunnel Lock Reference Board - 2026-06-18
+
+- File: `series/coral-town-daycare/images/episodes/토리야_한_걸음만/rework_2026-06-18/tunnel_lock/tunnel_lock_reference_board.png`
+- Status: `candidate pass`
+- Source references:
+  - `series/coral-town-daycare/references/locations/산호_터널_레퍼런스.png`
+  - `series/coral-town-daycare/references/props/산호_터널_크기비교_레퍼런스_v2.png`
+  - `series/coral-town-daycare/references/characters/토리.png`
+  - `series/coral-town-daycare/references/배경_전경과_놀이터.png`
+- QA:
+  - Official references are visible on one board: pass
+  - Geometry locks are written directly on the board: pass
+  - Board is suitable as prompt support for tunnel candidate generation: pass
+
+## Tunnel Lock Candidate Generation Attempt - 2026-06-18
+
+- Status: `blocked`
+- Built-in image generation preview was generated from the viewed reference images, but the tool did not expose a filesystem path for the generated image in this environment.
+- The CLI fallback is available but cannot run because `OPENAI_API_KEY` is not set.
+- No `coral_tunnel_straight_tube_lock_candidate_v1.png` file has been saved yet.
+- Next action: either obtain a savable image-generation output path from the built-in tool, or run the CLI fallback after `OPENAI_API_KEY` is configured.
