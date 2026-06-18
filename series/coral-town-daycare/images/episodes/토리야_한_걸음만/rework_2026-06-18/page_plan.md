@@ -23,6 +23,20 @@ Before every generation, list concrete reference image paths for all visible nam
 - `02_페이지.png`: Friends pass through the tunnel; Tori watches from a distance.
 - `03_페이지.png`: Tori looks at the tunnel and worries.
 
+## Batch 2
+
+- `04_페이지.png`: Lulu and Mongle invite Tori kindly; Tori refuses and steps back; friends wait without forcing.
+- `05_페이지.png`: Mari teacher sits beside Tori at eye level and validates his fear; Tori relaxes a little.
+- `06_페이지.png`: Mari suggests going only to the entrance; Banguli demonstrates passing through; Tori gains a small amount of courage.
+
+## Batch 3
+
+- `07_페이지.png`: Tori approaches the tunnel and puts only his head inside while Mari quietly supports him.
+- `08_페이지.png`: Tori discovers the inside is warm and pretty rather than scary; Banguli welcomes him.
+- `09_페이지.png`: Tori takes one step, then another, and his shell begins to enter the tunnel as Banguli guides him.
+
 ## Batch Gate
 
-Do not generate Batch 1 until the tunnel lock candidate has passed QA and the user has accepted it as the new tunnel visual truth.
+- Batch 1 tunnel lock and pages `00`-`03` are accepted for continuing production.
+- Batch 2 pages `04`-`06` are accepted for continuing production.
+- Generate Batch 3 one page at a time because the image result currently needs manual direct-save/download handling.
