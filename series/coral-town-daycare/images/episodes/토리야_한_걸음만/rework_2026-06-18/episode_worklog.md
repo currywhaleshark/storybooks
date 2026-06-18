@@ -35,3 +35,9 @@ Existing `final`, `work_2026-06-03`, and `work_2026-06-06` files are process his
 ## Candidate Status Log
 
 No candidates generated yet.
+
+## Tunnel Lock Prompt Plan - 2026-06-18
+
+- Status: `prompt plan ready`
+- File: `series/coral-town-daycare/images/episodes/토리야_한_걸음만/rework_2026-06-18/tunnel_lock/tunnel_lock_prompt_plan.md`
+- Next action: generate `coral_tunnel_straight_tube_lock_candidate_v1.png` using the listed reference images.
