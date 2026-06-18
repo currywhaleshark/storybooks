@@ -87,3 +87,16 @@ No candidates generated yet.
   - `02_candidate_2026-06-18_v1.png`
   - `03_candidate_2026-06-18_v1.png`
 - Required gate: generate only after user confirms this prompt plan.
+
+## Batch 1 Cover Generation - 2026-06-18
+
+- File: `series/coral-town-daycare/images/episodes/토리야_한_걸음만/rework_2026-06-18/batch_1/00_cover_candidate_2026-06-18_v2.png`
+- Source from user Downloads: `C:/Users/USER/Downloads/생성된 이미지 2 (1).png`
+- Status: `user approved`
+- QA:
+  - Tori identity and hesitant emotion: pass
+  - Banguli identity and reassuring role: pass
+  - Approved low side-view tunnel direction: pass
+  - Warm Coral Town Daycare style: pass
+  - User confirmed cover text is acceptable: pass
+- Next action: generate page 1 only.
