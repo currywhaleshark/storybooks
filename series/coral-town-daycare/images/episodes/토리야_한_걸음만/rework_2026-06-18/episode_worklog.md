@@ -115,3 +115,22 @@ No candidates generated yet.
 - Rejected/superseded:
   - The second page-1 generation was rejected by the user because non-Tori characters changed into unrelated rabbit/dolphin/clownfish designs.
 - Next action: commit approved page 1, then generate page 2 with stricter official-character constraints.
+
+## Batch 1 Page 2 Generation - 2026-06-18
+
+- File: `series/coral-town-daycare/images/episodes/토리야_한_걸음만/rework_2026-06-18/batch_1/02_candidate_2026-06-18_v1.png`
+- Source from user Downloads: `C:/Users/USER/Downloads/생성된 이미지 1 (5).png`
+- Status: `user approved`
+- QA:
+  - User confirmed the apparent `준이가` text concern is acceptable and will handle text QA personally.
+  - Coral tunnel: pass, low horizontal tunnel form is retained.
+  - Character set: pass, official friend set is closer than the rejected page-1 retry.
+  - Tori hesitation: pass, Tori stands apart with hands gathered.
+- Next action: persist page 3 candidate if a downloadable/generated source file is available.
+
+## Batch 1 Page 3 Generation Attempt - 2026-06-18
+
+- Status: `hold`
+- A page 3 candidate was generated in chat and visually reviewed as usable for Tori's worry page, but the built-in image result did not appear in Downloads or `C:/Users/USER/.codex/generated_images`.
+- Because the user left before manually downloading the displayed preview, no page 3 source image file was available to copy into the project.
+- Next action: download or regenerate page 3 in a session where the output file can be persisted, then save as `batch_1/03_candidate_2026-06-18_v1.png`.
