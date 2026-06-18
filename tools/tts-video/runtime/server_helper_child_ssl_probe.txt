@@ -1,0 +1,7 @@
+executable=C:\Users\yurib\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe
+path0=
+env_PATH=C:\Users\yurib\.cache\codex-runtimes\codex-primary-runtime\dependencies\python;C:\Users\yurib\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\DLLs;C:\Users\yurib\.codex\tmp\arg0\codex-arg0gFfKjg;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WI
+ssl_file=C:\Users\yurib\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\ssl.py
+ssl_version=OpenSSL 3.5.5 27 Jan 2026
+has_https_connection=True
+handlers=['ProxyHandler', 'UnknownHandler', 'HTTPHandler', 'HTTPDefaultErrorHandler', 'HTTPRedirectHandler', 'FTPHandler', 'FileHandler', 'DataHandler', 'HTTPSHandler', 'HTTPErrorProcessor']
