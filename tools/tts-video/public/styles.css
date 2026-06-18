@@ -186,7 +186,8 @@ audio {
   padding-top: 12px;
 }
 
-.preset-panel {
+.preset-panel,
+.tag-catalog {
   display: grid;
   gap: 9px;
   border: 1px solid var(--line);
@@ -229,6 +230,34 @@ button.tag-button {
   color: var(--accent-dark);
   padding: 0 9px;
   font-size: 12px;
+  line-height: 1.25;
+  text-align: left;
+  white-space: normal;
+}
+
+.tag-catalog-list {
+  display: grid;
+  gap: 10px;
+  max-height: 300px;
+  overflow: auto;
+  padding-right: 2px;
+}
+
+.tag-catalog-group {
+  display: grid;
+  gap: 6px;
+}
+
+.tag-catalog-group h4 {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.tag-catalog button.tag-button {
+  min-height: 32px;
+  padding: 5px 8px;
 }
 
 .range-field strong {

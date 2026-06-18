@@ -1,0 +1,4 @@
+ssl_file=C:\Users\yurib\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\ssl.py
+ssl_version=OpenSSL 3.5.5 27 Jan 2026
+path0=
+handlers=['ProxyHandler', 'UnknownHandler', 'HTTPHandler', 'HTTPDefaultErrorHandler', 'HTTPRedirectHandler', 'FTPHandler', 'FileHandler', 'DataHandler', 'HTTPSHandler', 'HTTPErrorProcessor']

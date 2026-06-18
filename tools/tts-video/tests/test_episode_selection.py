@@ -8,6 +8,7 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[3]
 SERVER_PATH = REPO_ROOT / "tools" / "tts-video" / "server.py"
 APP_PATH = REPO_ROOT / "tools" / "tts-video" / "public" / "app.js"
+INDEX_PATH = REPO_ROOT / "tools" / "tts-video" / "public" / "index.html"
 START_CMD_PATH = REPO_ROOT / "tools" / "tts-video" / "start_tts_video_server.cmd"
 RENDERER_PATH = (
     REPO_ROOT
@@ -120,6 +121,23 @@ class EpisodeSelectionTests(unittest.TestCase):
         self.assertIn("function tagTooltipText", app)
         self.assertIn("button.title = tagTooltipText(tag);", app)
         self.assertIn('button.setAttribute("aria-label", tagTooltipText(tag));', app)
+
+    def test_frontend_shows_broad_audio_tag_catalog_with_translations(self):
+        app = APP_PATH.read_text(encoding="utf-8")
+        html = INDEX_PATH.read_text(encoding="utf-8")
+
+        self.assertIn('id="audioTagCatalog"', html)
+        self.assertIn("const AUDIO_TAG_CATALOG", app)
+        self.assertIn("function renderAudioTagCatalog", app)
+        self.assertIn("function tagButtonLabel", app)
+        self.assertIn('"감정"', app)
+        self.assertIn('"속도와 쉼"', app)
+        self.assertIn('"소리와 반응"', app)
+        self.assertIn('"[excitedly]", "신나게"', app)
+        self.assertIn('"[whispers]", "속삭이며"', app)
+        self.assertIn('"[short pause]", "짧게 쉬기"', app)
+        self.assertIn('button.textContent = tagButtonLabel(tag);', app)
+        self.assertIn("insertAudioTag(tag)", app)
 
     def test_renderer_bypasses_disabled_local_proxy_for_https_calls(self):
         renderer = load_renderer()

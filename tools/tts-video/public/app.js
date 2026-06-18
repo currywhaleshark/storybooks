@@ -15,14 +15,21 @@ const state = {
 const TAG_TRANSLATIONS = Object.freeze({
   "[amazed]": "놀라워하며",
   "[awkwardly]": "어색하게",
+  "[beat]": "한 박자 쉬기",
+  "[bored]": "지루한 듯",
+  "[breathes in]": "숨을 들이마시며",
   "[brightly]": "밝게",
   "[calmly]": "차분하게",
   "[cheerfully]": "명랑하게",
+  "[clears throat]": "목을 가다듬으며",
   "[clearly]": "또렷하게",
+  "[cough]": "기침하며",
   "[crying]": "울먹이며",
   "[curious]": "궁금한 듯",
+  "[dramatic pause]": "극적으로 쉬기",
   "[excited]": "신난 목소리로",
   "[excitedly]": "신나게",
+  "[fast]": "빠르게",
   "[firmly]": "단호하게",
   "[formally]": "정중하게",
   "[frustrated]": "답답해하며",
@@ -30,9 +37,15 @@ const TAG_TRANSLATIONS = Object.freeze({
   "[gently]": "부드럽게",
   "[giggles]": "킥킥 웃으며",
   "[laughs]": "웃으며",
+  "[like a bedtime story]": "잠자리 이야기처럼",
+  "[like a brave child]": "용기 낸 아이처럼",
+  "[like a curious detective]": "호기심 많은 탐정처럼",
+  "[like a gentle teacher]": "다정한 선생님처럼",
+  "[like a shy child]": "수줍은 아이처럼",
   "[mischievously]": "장난스럽게",
   "[mysteriously]": "신비롭게",
   "[nervously]": "긴장해서",
+  "[one word at a time]": "한 단어씩 천천히",
   "[playfully]": "장난치듯",
   "[proudly]": "뿌듯하게",
   "[quietly]": "조용히",
@@ -40,9 +53,12 @@ const TAG_TRANSLATIONS = Object.freeze({
   "[relieved]": "안도하며",
   "[reluctantly]": "마지못해",
   "[serious]": "진지하게",
+  "[shouting]": "외치듯",
   "[sleepily]": "졸린 듯",
+  "[slowly]": "천천히",
   "[softly]": "부드럽고 작게",
   "[surprised]": "놀라며",
+  "[tenderly]": "다정하고 여리게",
   "[thoughtfully]": "생각에 잠겨",
   "[tired]": "지친 듯",
   "[trembling]": "떨리는 목소리로",
@@ -51,12 +67,117 @@ const TAG_TRANSLATIONS = Object.freeze({
   "[warmly]": "따뜻하게",
   "[whisper]": "속삭이며",
   "[whispers]": "속삭이며",
+  "[with a smile]": "미소를 담아",
+  "[with wonder]": "경이로운 듯",
   "[yawn]": "하품하며",
   "[pause]": "잠깐 쉬기",
   "[short pause]": "짧게 쉬기",
   "[long pause]": "길게 쉬기",
   "[sigh]": "한숨 쉬며",
+  "[sighs]": "한숨 쉬며",
+  "[panicked]": "당황해서",
+  "[sarcastic]": "빈정대듯",
+  "[sarcastically]": "빈정대듯",
+  "[carefully]": "조심스럽게",
+  "[in a small voice]": "작은 목소리로",
+  "[as if telling a secret]": "비밀을 말하듯",
 });
+
+const AUDIO_TAG_CATALOG = Object.freeze([
+  {
+    category: "감정",
+    tags: [
+      ["[warmly]", "따뜻하게"],
+      ["[gently]", "부드럽게"],
+      ["[softly]", "부드럽고 작게"],
+      ["[calmly]", "차분하게"],
+      ["[cheerfully]", "명랑하게"],
+      ["[brightly]", "밝게"],
+      ["[excitedly]", "신나게"],
+      ["[excited]", "신난 목소리로"],
+      ["[curious]", "궁금한 듯"],
+      ["[amazed]", "놀라워하며"],
+      ["[surprised]", "놀라며"],
+      ["[relieved]", "안도하며"],
+      ["[proudly]", "뿌듯하게"],
+      ["[thoughtfully]", "생각에 잠겨"],
+      ["[serious]", "진지하게"],
+      ["[mysteriously]", "신비롭게"],
+      ["[reassuringly]", "안심시키듯"],
+      ["[playfully]", "장난치듯"],
+      ["[mischievously]", "장난스럽게"],
+      ["[formally]", "정중하게"],
+      ["[awkwardly]", "어색하게"],
+      ["[nervously]", "긴장해서"],
+      ["[reluctantly]", "마지못해"],
+      ["[frustrated]", "답답해하며"],
+      ["[crying]", "울먹이며"],
+      ["[tired]", "지친 듯"],
+      ["[sleepily]", "졸린 듯"],
+      ["[bored]", "지루한 듯"],
+      ["[panicked]", "당황해서"],
+    ],
+  },
+  {
+    category: "속도와 쉼",
+    tags: [
+      ["[very fast]", "매우 빠르게"],
+      ["[fast]", "빠르게"],
+      ["[slowly]", "천천히"],
+      ["[very slow]", "매우 느리게"],
+      ["[one word at a time]", "한 단어씩 천천히"],
+      ["[pause]", "잠깐 쉬기"],
+      ["[short pause]", "짧게 쉬기"],
+      ["[long pause]", "길게 쉬기"],
+      ["[beat]", "한 박자 쉬기"],
+      ["[dramatic pause]", "극적으로 쉬기"],
+    ],
+  },
+  {
+    category: "소리와 반응",
+    tags: [
+      ["[laughs]", "웃으며"],
+      ["[giggles]", "킥킥 웃으며"],
+      ["[whispers]", "속삭이며"],
+      ["[whisper]", "속삭이며"],
+      ["[shouting]", "외치듯"],
+      ["[gasp]", "숨을 들이켜며"],
+      ["[cough]", "기침하며"],
+      ["[sighs]", "한숨 쉬며"],
+      ["[sigh]", "한숨 쉬며"],
+      ["[yawn]", "하품하며"],
+      ["[trembling]", "떨리는 목소리로"],
+      ["[breathes in]", "숨을 들이마시며"],
+      ["[clears throat]", "목을 가다듬으며"],
+    ],
+  },
+  {
+    category: "전달",
+    tags: [
+      ["[clearly]", "또렷하게"],
+      ["[firmly]", "단호하게"],
+      ["[quietly]", "조용히"],
+      ["[tenderly]", "다정하고 여리게"],
+      ["[carefully]", "조심스럽게"],
+      ["[with a smile]", "미소를 담아"],
+      ["[with wonder]", "경이로운 듯"],
+      ["[in a small voice]", "작은 목소리로"],
+      ["[as if telling a secret]", "비밀을 말하듯"],
+      ["[sarcastic]", "빈정대듯"],
+      ["[sarcastically]", "빈정대듯"],
+    ],
+  },
+  {
+    category: "그림책 연기",
+    tags: [
+      ["[like a bedtime story]", "잠자리 이야기처럼"],
+      ["[like a gentle teacher]", "다정한 선생님처럼"],
+      ["[like a shy child]", "수줍은 아이처럼"],
+      ["[like a brave child]", "용기 낸 아이처럼"],
+      ["[like a curious detective]", "호기심 많은 탐정처럼"],
+    ],
+  },
+]);
 
 const episodeSelect = document.querySelector("#episodeSelect");
 const scriptSelect = document.querySelector("#scriptSelect");
@@ -99,6 +220,8 @@ const presetSeriesLabel = document.querySelector("#presetSeriesLabel");
 const presetCharacterSelect = document.querySelector("#presetCharacterSelect");
 const presetDescription = document.querySelector("#presetDescription");
 const presetTagList = document.querySelector("#presetTagList");
+const audioTagCatalog = document.querySelector("#audioTagCatalog");
+const audioTagCatalogList = document.querySelector("#audioTagCatalogList");
 
 function imageUrl(path) {
   return `/image?path=${encodeURIComponent(path)}`;
@@ -140,6 +263,7 @@ function renderSettingsVisibility() {
   sampleButton.disabled = tts === "manual";
   reviewAudioButton.disabled = tts === "manual";
   renderPresetPalette();
+  renderAudioTagCatalog();
 }
 
 function updateRangeLabels() {
@@ -342,8 +466,11 @@ function selectedPresetCharacter() {
 }
 
 function tagTooltipText(tag) {
-  const translation = TAG_TRANSLATIONS[tag];
-  return translation ? `${tag} - ${translation}` : `${tag} - 번역 없음`;
+  return `${tag} - ${TAG_TRANSLATIONS[tag] || "번역 없음"}`;
+}
+
+function tagButtonLabel(tag) {
+  return `${tag} · ${TAG_TRANSLATIONS[tag] || "번역 없음"}`;
 }
 
 function renderPresetPalette() {
@@ -386,11 +513,43 @@ function renderPresetPalette() {
     const button = document.createElement("button");
     button.type = "button";
     button.className = "tag-button";
-    button.textContent = tag;
+    button.textContent = tagButtonLabel(tag);
     button.title = tagTooltipText(tag);
     button.setAttribute("aria-label", tagTooltipText(tag));
     button.addEventListener("click", () => insertAudioTag(tag));
     presetTagList.append(button);
+  }
+}
+
+function renderAudioTagCatalog() {
+  if (!audioTagCatalog || !audioTagCatalogList) return;
+  audioTagCatalogList.innerHTML = "";
+
+  if (ttsSelect.value !== "gemini") return;
+
+  for (const group of AUDIO_TAG_CATALOG) {
+    const section = document.createElement("section");
+    section.className = "tag-catalog-group";
+
+    const heading = document.createElement("h4");
+    heading.textContent = group.category;
+
+    const tags = document.createElement("div");
+    tags.className = "tag-list";
+
+    for (const [tag, translation] of group.tags) {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "tag-button";
+      button.textContent = tagButtonLabel(tag);
+      button.title = `${tag} - ${translation}`;
+      button.setAttribute("aria-label", `${tag} - ${translation}`);
+      button.addEventListener("click", () => insertAudioTag(tag));
+      tags.append(button);
+    }
+
+    section.append(heading, tags);
+    audioTagCatalogList.append(section);
   }
 }
 
@@ -763,4 +922,5 @@ gapInput.addEventListener("input", updateRangeLabels);
 renderSettingsVisibility();
 updateRangeLabels();
 renderAudioReview();
+renderAudioTagCatalog();
 loadEpisodes().catch((error) => setStatus(error.message, true));
