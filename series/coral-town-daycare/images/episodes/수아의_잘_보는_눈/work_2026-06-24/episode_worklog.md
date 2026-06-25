@@ -419,3 +419,173 @@
 - Current candidate for page 05 user review: `batch_2/05_candidate_text_v3.png`.
 - Held/superseded: `batch_2/05_candidate_text_v1.png` for too-obvious hairpin placement; `batch_2/05_candidate_text_v2.png` for the `톡!` typo.
 - Status: candidate only; needs user QA before page 06 generation or final promotion.
+## User Approval - Page 05 Candidate v3 - 2026-06-25
+
+- User accepted moving on from `batch_2/05_candidate_text_v3.png` with feedback: "상태 괜찮으니 6페이지로 가자".
+- Treat page 05 v3 as user approved for continuing to page 06.
+- Carry forward the page 05 continuity locks: Lulu is not wearing the special hairpin after the fall, the single hairpin remains hidden/subtle before the find, and the text-panel correction must preserve `톡!`.
+
+## Page 06 Candidate v1 - 2026-06-25
+
+- Generated `batch_2/06_candidate_text_v1.png` for Sua quietly examining the sand gap after user accepted page 05 v3.
+- References emitted with `nodeRepl.emitImage` before generation:
+  - playground/yard: `series/coral-town-daycare/references/배경_전경과_놀이터.png`
+  - no-bag Sua: `series/coral-town-daycare/references/characters/no_bag/수아_no_bag.png`
+  - Banguli: `series/coral-town-daycare/references/characters/방울이.png`
+  - Lulu no-bag without special hairpin: `series/coral-town-daycare/references/characters/no_bag/루루_no_bag.png`
+  - optional background Jun-i no-bag: `series/coral-town-daycare/references/characters/no_bag/준이_no_bag.png`
+  - optional background Mongle no-bag: `series/coral-town-daycare/references/characters/no_bag/몽글이_no_bag.png`
+- File check: 1054x1492 RGB PNG, 2,938,389 bytes.
+- Assistant visual QA from saved output: Sua is centered low to the sand with small focused eyes and a subtle sparkle; Banguli looks beside her; Lulu watches from the background without the special hairpin; no found hairpin is visibly revealed early; the Korean story text appears exact and readable.
+- Current candidate for page 06 user review: `batch_2/06_candidate_text_v1.png`.
+- Status: candidate only; needs user QA before page 07 generation or final promotion.
+
+## User Approval - Page 06 Candidate v1 - 2026-06-25
+
+- User approved moving on from `batch_2/06_candidate_text_v1.png` with feedback: "좋아 다음으로".
+- Treat page 06 v1 as user approved for continuing to page 07.
+- Carry forward the page 06 continuity locks: Lulu still does not wear the special hairpin; the find is revealed only on page 07; Sua's small focused eyes remain official and not oversized.
+
+## Page 07 Candidates v1-v2 - 2026-06-25
+
+- Generated `batch_2/07_candidate_text_v1.png` for Sua finding the special hairpin and showing it to Lulu and friends.
+- References emitted with `nodeRepl.emitImage` before generation:
+  - playground/yard: `series/coral-town-daycare/references/배경_전경과_놀이터.png`
+  - no-bag Sua: `series/coral-town-daycare/references/characters/no_bag/수아_no_bag.png`
+  - special loose/found hairpin prop: `series/coral-town-daycare/images/episodes/수아의_잘_보는_눈/work_2026-06-24/reference_assets/special_coral_hairpin_ref_v1.png`
+  - Lulu no-bag without special hairpin: `series/coral-town-daycare/references/characters/no_bag/루루_no_bag.png`
+  - Banguli: `series/coral-town-daycare/references/characters/방울이.png`
+  - Jun-i no-bag: `series/coral-town-daycare/references/characters/no_bag/준이_no_bag.png`
+  - optional background Mongle no-bag: `series/coral-town-daycare/references/characters/no_bag/몽글이_no_bag.png`
+- Assistant QA held v1 because the line `루루의 얼굴이 환해졌어요.` rendered like `루루의 얼굴이 화해졌어요.`.
+- Created `batch_2/07_candidate_text_v2.png` by locally correcting only that two-line text area from v1, preserving the illustration, text panel, found-hairpin placement, and character poses.
+- File check for v2: 1054x1492 RGB PNG, 3,946,919 bytes.
+- Assistant visual QA from saved v2 preview: Sua holds exactly one approved mint/aqua special hairpin; Lulu's head is bare and she reacts happily; Banguli and Jun-i react with surprise; no duplicate hairpin is visible; Korean text now reads `루루의 얼굴이 / 환해졌어요.`.
+- Current candidate for page 07 user review: `batch_2/07_candidate_text_v2.png`.
+- Held/superseded: `batch_2/07_candidate_text_v1.png` for the `환해졌어요` text typo.
+- Status: candidate only; needs user QA before final promotion.
+
+## Page 07 Scale/Eyelash Regeneration - Candidate v4 - 2026-06-25
+
+- User QA on `batch_2/07_candidate_text_v2.png`: Sua and the coral ornament felt too large.
+- A scale-focused generated retry was saved as `batch_2/07_candidate_text_v3_raw_scalefix.png`, and local patch experiments produced `batch_2/07_candidate_text_v3.png` plus crop/preview helper files, but the user then requested: "그냥 생성을 하쇼".
+- Treat the v3 local-patch line as superseded history only, not the current review candidate.
+- Generated a fresh, unpatched page-07 retry and saved it as:
+  - `batch_2/07_candidate_text_v4.png`
+- References emitted before v4 generation:
+  - playground/yard: `series/coral-town-daycare/references/배경_전경과_놀이터.png`
+  - no-bag Sua: `series/coral-town-daycare/references/characters/no_bag/수아_no_bag.png`
+  - special loose/found hairpin prop: `series/coral-town-daycare/images/episodes/수아의_잘_보는_눈/work_2026-06-24/reference_assets/special_coral_hairpin_ref_v1.png`
+  - Lulu no-bag without special hairpin: `series/coral-town-daycare/references/characters/no_bag/루루_no_bag.png`
+  - Banguli: `series/coral-town-daycare/references/characters/방울이.png`
+  - Jun-i no-bag: `series/coral-town-daycare/references/characters/no_bag/준이_no_bag.png`
+- File check for v4: 1054x1492 RGB PNG, 2,987,863 bytes.
+- Assistant visual QA from saved v4 preview: Sua is less dominant than v2 and closer to peer scale; the found hairpin is smaller and reads more like a hairpin; Lulu's head remains bare and includes a subtle single eyelash; Banguli and Jun-i react happily; no duplicate hairpin is visible; text appears readable and includes `루루의 얼굴이 환해졌어요.`.
+- Current candidate for page 07 user review: `batch_2/07_candidate_text_v4.png`.
+- Held/superseded: `batch_2/07_candidate_text_v1.png` for text typo, `batch_2/07_candidate_text_v2.png` for oversized Sua/hairpin, and v3 patch/intermediate files because user requested fresh generation.
+- Status: candidate only; needs user QA before final promotion or moving to page 08.
+
+## User Approval - Page 07 Candidate v4 - 2026-06-25
+
+- User accepted moving on from `batch_2/07_candidate_text_v4.png` with feedback: "오케이 다음으로".
+- Treat page 07 v4 as user approved for continuing to page 08.
+- Carry forward the page 07 correction locks: Sua and the special coral hairpin should stay modest in scale; Lulu keeps her subtle single eyelash; fresh generation is preferred over local visual patching unless explicitly requested.
+
+## Page 08 Candidate v1 - 2026-06-25
+
+- Created `batch_3/batch_3_prompt_plan.md` and started batch 3 with page 08.
+- Generated a fresh page-08 candidate and saved it as:
+  - `batch_3/08_candidate_text_v1.png`
+- References emitted before generation:
+  - playground/yard: `series/coral-town-daycare/references/배경_전경과_놀이터.png`
+  - no-bag Sua: `series/coral-town-daycare/references/characters/no_bag/수아_no_bag.png`
+  - approved Lulu wearing returned special hairpin: `series/coral-town-daycare/images/episodes/수아의_잘_보는_눈/work_2026-06-24/reference_assets/lulu_node_emitted_special_hairpin_candidate_v1.png`
+  - Banguli: `series/coral-town-daycare/references/characters/방울이.png`
+  - optional Jun-i no-bag: `series/coral-town-daycare/references/characters/no_bag/준이_no_bag.png`
+  - optional Mongle no-bag: `series/coral-town-daycare/references/characters/no_bag/몽글이_no_bag.png`
+- File check: 1054x1492 RGB PNG, 2,902,038 bytes.
+- Assistant visual QA from saved preview: Lulu wears exactly one returned special hairpin and keeps the subtle single eyelash; Sua is peer-sized and shy, with small official eyes; Banguli, Jun-i, and Mongle remain secondary; no duplicate loose hairpin is visible; the Korean text appears readable and matches the page-08 script content.
+- Current candidate for page 08 user review: `batch_3/08_candidate_text_v1.png`.
+- Status: candidate only; needs user QA before page 09 generation or final promotion.
+
+## User Approval - Page 08 Candidate v1 - 2026-06-25
+
+- User approved continuing from `batch_3/08_candidate_text_v1.png` with feedback: "지금도 좋군 이어가도 되겠다".
+- Treat page 08 v1 as user approved for continuing to page 09.
+- Carry forward locks: Lulu's returned hairpin state is established; avoid duplicate hairpins; keep Sua peer-sized with official small eyes.
+
+## Page 09 Candidate v1 - 2026-06-25
+
+- Added page 09 to `batch_3/batch_3_prompt_plan.md`.
+- Generated a fresh page-09 candidate and saved it as:
+  - `batch_3/09_candidate_text_v1.png`
+- References emitted before generation:
+  - playground/yard: `series/coral-town-daycare/references/배경_전경과_놀이터.png`
+  - Mari teacher no-bag: `series/coral-town-daycare/references/characters/no_bag/마리_선생님_no_bag.png`
+  - no-bag Sua: `series/coral-town-daycare/references/characters/no_bag/수아_no_bag.png`
+  - Banguli: `series/coral-town-daycare/references/characters/방울이.png`
+- File check: 1054x1492 RGB PNG, 2,865,853 bytes.
+- Assistant visual QA from saved preview: Mari teacher stays warm and teacher-like with yellow apron, star hairpin, and purple mermaid tail; she lowers herself near Sua's eye level; Sua keeps small official eyes and shows shy realization; Banguli remains a small transparent droplet; no Lulu or hairpin appears; the Korean text appears readable and matches the page-09 script content line by line.
+- Current candidate for page 09 user review: `batch_3/09_candidate_text_v1.png`.
+- Status: candidate only; needs user QA before page 10 generation or final promotion.
+
+## User Approval - Page 09 Candidate v1 - 2026-06-26
+
+- User approved continuing from `batch_3/09_candidate_text_v1.png` with feedback: "오늘 좋네 계속 가보자".
+- Treat page 09 v1 as user approved for continuing to page 10.
+- Carry forward locks: Sua's small official eyes remain special without becoming oversized; keep message scenes warm and non-comparative.
+
+## Page 10 Candidate v1 - 2026-06-26
+
+- Added page 10 to `batch_3/batch_3_prompt_plan.md`.
+- Generated a fresh page-10 candidate and saved it as:
+  - `batch_3/10_candidate_text_v1.png`
+- References emitted before generation:
+  - playground/yard: `series/coral-town-daycare/references/배경_전경과_놀이터.png`
+  - no-bag Sua: `series/coral-town-daycare/references/characters/no_bag/수아_no_bag.png`
+  - approved Lulu wearing returned special hairpin: `series/coral-town-daycare/images/episodes/수아의_잘_보는_눈/work_2026-06-24/reference_assets/lulu_node_emitted_special_hairpin_candidate_v1.png`
+  - Banguli: `series/coral-town-daycare/references/characters/방울이.png`
+- File check: 1054x1492 RGB PNG, 2,874,897 bytes.
+- Assistant visual QA from saved preview: Sua and Lulu face each other warmly; Lulu wears exactly one returned special hairpin and keeps a visible eyelash; Sua remains official small-eyed and brighter; Banguli floats between them; no duplicate loose hairpin is visible; the Korean text appears readable and follows the page-10 script content.
+- Current candidate for page 10 user review: `batch_3/10_candidate_text_v1.png`.
+- Status: candidate only; needs user QA before page 11 generation or final promotion.
+
+## User Approval - Page 10 Candidate v1 - 2026-06-26
+
+- User approved continuing from `batch_3/10_candidate_text_v1.png` with feedback: "좋아 다음".
+- Treat page 10 v1 as user approved for continuing to page 11.
+
+## Page 11 Candidates v1-v2 - 2026-06-26
+
+- Added page 11 to `batch_3/batch_3_prompt_plan.md`.
+- Generated `batch_3/11_candidate_text_v1.png` after emitting references for the playground/yard, Sua, approved Lulu with returned hairpin, Jun-i, Tori, Mongle, Popo, Aru, Mari teacher, and Banguli.
+- Held `batch_3/11_candidate_text_v1.png`: overall emotion was good, but Popo was not visible enough despite being named in the page text.
+- Generated a fresh correction with Popo explicitly visible and saved it as:
+  - `batch_3/11_candidate_text_v2.png`
+- File check for v2: 1054x1492 RGB PNG, 3,088,684 bytes.
+- Assistant visual QA from saved preview: Popo is clearly visible as a separate moon jellyfish and distinct from Banguli; Aru remains a round pufferfish without human limbs; Mongle keeps octopus tentacles and drawing tools; Lulu wears one returned hairpin; Sua smiles among friends; text appears readable and follows the page-11 script.
+- User approved continuing from v2 with feedback: "아주 좋아 마지막까지".
+- Treat page 11 v2 as user approved for continuing to the final page.
+
+## Page 12 Candidate v1 - 2026-06-26
+
+- Created `batch_4/batch_4_prompt_plan.md` for the final page.
+- Generated fresh page-12 raw candidate and saved it as:
+  - `batch_4/12_candidate_text_v1.png`
+- Raw file check: 1055x1491 RGB PNG, 2,731,886 bytes.
+- Normalized the raw candidate to the existing A5 candidate size and saved current review candidate as:
+  - `batch_4/12_candidate_text_v1_a5.png`
+- A5 file check: 1054x1492 RGB PNG, 3,575,340 bytes.
+- References emitted before generation:
+  - classroom background: `series/coral-town-daycare/references/배경_교실.png`
+  - no-bag Sua: `series/coral-town-daycare/references/characters/no_bag/수아_no_bag.png`
+  - Banguli: `series/coral-town-daycare/references/characters/방울이.png`
+- Assistant visual QA from saved preview: Sua smiles warmly at her mirror reflection; the mirror reads as a reflection rather than an unrelated second character; Banguli smiles beside the mirror; the scene is bright indoor classroom, not outdoor; Sua keeps small official eyes; Korean text appears readable and follows the final page script content.
+- Current candidate for final page user review: `batch_4/12_candidate_text_v1_a5.png`.
+- Status: candidate only; needs user QA before final promotion/package assembly.
+
+## User Approval - Page 12 Candidate v1 A5 - 2026-06-26
+
+- User approved stopping production here and proceeding to commit/push with final QA afterward: "좋아 여기까지 하고 커밋, 푸쉬 최종 전체 qa가 마지막 절차다".
+- Treat `batch_4/12_candidate_text_v1_a5.png` as approved for continuation to final overall QA.
+- Note: final assembly/package promotion has not been performed in this commit; this commit preserves the approved work candidates, prompt plans, and handoff records through page 12.

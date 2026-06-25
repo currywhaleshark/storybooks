@@ -115,3 +115,37 @@ Then emit/inspect the page-04 references and generate `batch_2/04_candidate_text
 - Assistant QA on v3: hairpin is only slightly visible in the lower-right coral/tunnel corner, exactly one hairpin appears, Lulu is not wearing it, and text now reads `톡!`.
 - Current gate: user QA for `05_candidate_text_v3.png`.
 - Next action if user approves page 05: generate `batch_2/06_candidate_text_v1.png`, with Lulu still missing the hairpin and Sua quietly examining the sand gaps without revealing the find too early.
+## Session Update - Page 06 Candidate v1 - 2026-06-25
+
+- Page 05: `batch_2/05_candidate_text_v3.png` is user approved for continuing.
+- Current page 06 candidate is `batch_2/06_candidate_text_v1.png`.
+- References emitted before generation: playground/yard, no-bag Sua, Banguli, Lulu no-bag without special hairpin, optional no-bag Jun-i, and optional no-bag Mongle.
+- Assistant QA on v1: Sua is the quiet visual center, lowered close to the sand with small focused eyes and only a subtle sparkle; Banguli looks beside her; Lulu watches from the background without the special hairpin; no found hairpin is revealed early; the Korean text appears exact and readable.
+- Current gate: user QA for `06_candidate_text_v1.png`.
+- Next action if user approves page 06: generate `batch_2/07_candidate_text_v1.png`, with Sua carefully lifting the found hairpin while Lulu still does not wear it yet.
+
+## Session Update - Page 07 Candidate v2 - 2026-06-25
+
+- Page 06: `batch_2/06_candidate_text_v1.png` is user approved for continuing.
+- Current page 07 candidate is `batch_2/07_candidate_text_v2.png`.
+- Hold `batch_2/07_candidate_text_v1.png`: illustration was strong, but `루루의 얼굴이 환해졌어요.` rendered like `루루의 얼굴이 화해졌어요.`.
+- v2 was made by a local text-panel patch from v1, correcting only the `루루의 얼굴이 / 환해졌어요.` area and preserving the reveal illustration.
+- Assistant QA on v2: Sua holds exactly one approved mint/aqua special hairpin; Lulu is not wearing it yet; Banguli and Jun-i react happily; the text panel now reads the intended line correctly.
+- Current gate: user QA for `07_candidate_text_v2.png`.
+- Next action if user approves page 07: continue to page 08, where Lulu asks how Sua found such a small thing and Sua begins to name her small-eye strength.
+
+## Session Update - Page 07 Candidate v4 - 2026-06-25
+
+- User QA held `batch_2/07_candidate_text_v2.png` because Sua and the coral ornament were too large.
+- User also noted Lulu's missing eyelash during the retry discussion, then requested fresh generation rather than local patching: "그냥 생성을 하쇼".
+- Current page 07 review candidate is now `batch_2/07_candidate_text_v4.png`, generated fresh and saved without local text or eyelash patching.
+- Assistant QA on v4: Sua is less dominant and closer to peer scale; the hairpin is smaller and more hairpin-like; Lulu's head is still bare and has a subtle single eyelash; Banguli and Jun-i react happily; the text appears readable with `루루의 얼굴이 환해졌어요.`.
+- Held/superseded: `07_candidate_text_v1.png` text typo, `07_candidate_text_v2.png` oversized Sua/hairpin, and v3 patch/intermediate files after the fresh-generation request.
+- Current gate: user QA for `07_candidate_text_v4.png`.
+- Next action if user approves page 07: continue to page 08, where Lulu asks how Sua found such a small thing and Sua begins to name her small-eye strength.
+
+## User Approval - Page 07 Candidate v4 - 2026-06-25
+
+- User accepted moving on from `batch_2/07_candidate_text_v4.png` with feedback: "오케이 다음으로".
+- Batch 2 can be treated as complete for continuation purposes: page 04 v3, page 05 v3, page 06 v1, and page 07 v4 are approved for moving forward.
+- Page 08 work has started in `../batch_3/`.
