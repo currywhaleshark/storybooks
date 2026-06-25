@@ -8,7 +8,7 @@
 - Page plan: `series/coral-town-daycare/sua-different-is-good/script/pages.json`
 - Rulebook: `series/coral-town-daycare/docs/산호마을_어린이집_이미지_규칙서.md`
 - Work folder: `series/coral-town-daycare/images/episodes/수아의_잘_보는_눈/work_2026-06-24/batch_1`
-- Candidate filenames: `00_candidate_text_v3.png`, `01_candidate_text_v4.png`, `02_candidate_text_v1.png`, `03_candidate_text_v1.png`
+- Candidate filenames: `00_candidate_text_v3.png`, `01_candidate_text_v7.png`, `02_candidate_text_v1.png`, `03_candidate_text_v2.png`
 
 ## Official References
 
@@ -46,7 +46,10 @@
 - Episode special hairpin lock: when this story calls for Lulu's coral ornament, use the new mint/aqua coral hairpin with a cream star-shell and pale-yellow bead nubs from `special_coral_hairpin_ref_v1.png`. It is a special one-day accessory, more noticeable than her ordinary ornament, and must not be recolored pink.
 - Cover continuity lock: because the cover shows the lost hairpin in the sand, Lulu must not also be wearing that special hairpin on the cover. Only one special mint/aqua star-shell hairpin may appear, and it must be the loose foreground prop.
 - When both appear, their seahorse features must stay distinct: snouts, ridges, curled tails, and fin shapes should remain reference-like even at small scale.
-- Hat/clothing preservation lock for page 01 v4: Mongle must keep his yellow beret and sailor collar; Tori must keep his yellow hat/helmet and turtle shell. Bag bans must not remove fixed hats or clothing.
+- Page 03 eye-size lock: keep Lulu and Sua eyes close to official small black button-eye proportions; avoid oversized glossy/anime eyes.
+- Lulu eyelash lock: Lulu alone has one subtle single eyelash stroke from the official reference style. Do not add eyelashes to Sua or make Lulu glamorous.
+- Hat/clothing preservation lock for page 01: Tori must keep his yellow hat/helmet and turtle shell; Jun-i must keep his sailor clothes. Bag bans must not remove fixed hats, shells, collars, or clothing.
+- Page 01 v7 cast lock: Mongle is excluded from this page because repeated retries coupled Lulu and Mongle gestures. Do not include Mongle or any octopus child on page 01 v7; use Jun-i and Tori as the admiring friends instead.
 
 ## Mari / Banguli Detail Locks
 
@@ -104,14 +107,13 @@ Constraints: pastel watercolor and colored-pencil picture-book style. No neon co
 
 ### Output
 
-`01_candidate_text_v4.png`
+`01_candidate_text_v7.png`
 
 ### References To Load
 
 - `series/coral-town-daycare/images/episodes/수아의_잘_보는_눈/work_2026-06-24/reference_assets/lulu_node_emitted_special_hairpin_candidate_v1.png`
 - `series/coral-town-daycare/references/characters/no_bag/수아_no_bag.png`
 - `series/coral-town-daycare/references/characters/no_bag/준이_no_bag.png`
-- `series/coral-town-daycare/references/characters/no_bag/몽글이_no_bag.png`
 - `series/coral-town-daycare/references/characters/no_bag/토리_no_bag.png`
 - `series/coral-town-daycare/references/characters/방울이.png`
 - `series/coral-town-daycare/references/배경_교실.png`
@@ -142,9 +144,9 @@ Constraints: pastel watercolor and colored-pencil picture-book style. No neon co
 Use case: illustration-story
 Asset type: Korean toddler picture-book page 01
 Primary request: Create page 01 of `수아의 잘 보는 눈` in A5 portrait proportion.
-Input images: loaded approved Lulu-with-special-hairpin reference, official no-bag Sua, no-bag Jun-i, no-bag Mongle with his yellow beret preserved, no-bag Tori with his yellow hat preserved, Banguli, and classroom references are the visual truth. Page 01 continuity lock: this is before Lulu loses the accessory, so the special mint/aqua star-shell hairpin appears only on Lulu's head; do not draw it as a loose object elsewhere.
+Input images: loaded approved Lulu-with-special-hairpin reference, official no-bag Sua, no-bag Jun-i, no-bag Tori with his yellow hat preserved, Banguli, and classroom references are the visual truth. Page 01 v7 cast lock: do not include Mongle or any octopus child. Page 01 continuity lock: this is before Lulu loses the accessory, so the special mint/aqua star-shell hairpin appears only on Lulu's head; do not draw it as a loose object elsewhere.
 
-Scene: free play time in the daycare classroom. Lulu, a bright pink seahorse child wearing the special mint/aqua coral hairpin with a cream star-shell, is smiling warmly among friends. Jun-i, Mongle, and Tori gather around her and say she is pretty and like a princess. Do not include Aru on this retry, because the previous candidate gave Aru a human-like body, hands, and feet. Lulu is not arrogant — she is kind and simply bright. On the other side, Sua watches quietly from a little distance. She lowers her head slightly and looks down at her own purple body with quiet longing, not heavy sadness. Banguli floats beside Sua with two or three tiny droplets.
+Scene: free play time in the daycare classroom. Lulu, a bright pink seahorse child wearing the special mint/aqua coral hairpin with a cream star-shell, is smiling warmly among friends. Jun-i and Tori gather around her and say she is pretty and like a princess. Do not include Mongle or any octopus child on this retry. Do not include Aru, because the previous candidate gave Aru a human-like body, hands, and feet. Lulu is not arrogant — she is kind and simply bright. On the other side, Sua watches quietly from a little distance. She lowers her head slightly and looks down at her own purple body with quiet longing, not heavy sadness. Banguli floats beside Sua with two or three tiny droplets.
 
 Composition/framing: medium-wide classroom view with a soft blocked-text area on one side. Place the friend group and Lulu on one side and Sua on the opposite side so the contrast reads clearly but both remain sweet. Keep rounded windows and shell decorations visible as background hints only.
 
@@ -166,7 +168,7 @@ Text (verbatim): render exactly:
 수아는 멀리서
 가만히 봤어요.
 
-Constraints: keep all characters reference-like. Do not include Aru or any pufferfish child on this v4 retry. Keep Lulu and Sua as seahorse children, Jun-i as shark child, Mongle as octopus child with his yellow beret and sailor collar, Tori as turtle child with his yellow hat/helmet and turtle shell, and Banguli as droplet friend. Avoid same-face repetition. Forbid only child-worn backpacks, shoulder bags, cross-body bags, satchels, and bag straps; do not remove fixed hats, shells, collars, or clothing. No neon colors, harsh highlights, human legs/feet, or unrelated previous episode details.
+Constraints: keep all characters reference-like. Do not include Aru or any pufferfish child on this v7 retry. Do not include Mongle or any octopus child. Keep Lulu and Sua as seahorse children, Jun-i as shark child, Tori as turtle child with his yellow hat/helmet and turtle shell, and Banguli as droplet friend. Avoid same-face repetition. Forbid only child-worn backpacks, shoulder bags, cross-body bags, satchels, and bag straps; do not remove fixed hats, shells, collars, or clothing. No neon colors, harsh highlights, human legs/feet, or unrelated previous episode details.
 ```
 
 ## Page 02 - 나도 루루처럼 되면 좋겠다
@@ -240,7 +242,7 @@ Constraints: preserve Sua's official seahorse shape, snout, ridge, and curled ta
 
 ### Output
 
-`03_candidate_text_v1.png`
+`03_candidate_text_v2.png`
 
 ### References To Load
 

@@ -249,3 +249,173 @@
 - File check: 1024x1536 RGB PNG, 3,148,897 bytes.
 - Assistant visual QA from saved output: Aru/pufferfish child is absent; Mongle keeps the yellow beret and sailor collar; Tori keeps the yellow hat/helmet and turtle shell; no obvious child-worn bag straps on Sua/Lulu/Mongle; Lulu's special hairpin appears once on Lulu's head and not loose elsewhere; Korean story text appears readable and close to exact.
 - Status: candidate only; needs user QA before final promotion.
+
+## Page 01 Candidate v4 Held - 2026-06-25
+
+- User QA caught another rulebook issue in `batch_1/01_candidate_text_v4.png`: Mongle's front limbs read as human-like clasped hands rather than octopus tentacles.
+- Hold: `batch_1/01_candidate_text_v4.png`.
+- Correction target: preserve v4's good parts, including Lulu's hands, Lulu's special hairpin, Mongle's yellow beret and sailor collar, Tori's yellow hat and shell, and the existing Korean text, while changing only Mongle's human-hand shapes into rounded purple tentacles with suction cups.
+- A first retry was rejected in-chat because Lulu's hands disappeared; it was not promoted into the batch folder.
+
+## Page 01 Candidate v5 - 2026-06-25
+
+- Re-emitted `batch_1/01_candidate_text_v4.png`, the approved Lulu-with-special-hairpin reference, and official Mongle references before retrying.
+- Saved retry candidate:
+  - `batch_1/01_candidate_text_v5.png`
+- Assistant visual QA from generated output: Lulu's small hands/front fins remain visible, Mongle's front shapes are closer to octopus tentacles than human fingers, and the page text/layout are broadly preserved.
+- Status: candidate only; needs user QA for Mongle tentacle fidelity, Lulu hand preservation, and exact Korean text before final promotion.
+## Page 01 Candidate v5 Held - 2026-06-25
+
+- User QA caught that `batch_1/01_candidate_text_v5.png` still failed because Lulu's small front hands/fins disappeared while fixing Mongle.
+- Hold: `batch_1/01_candidate_text_v5.png`.
+- A local composite attempt preserved Lulu but left visible patch boundaries around Mongle, so it was kept as scratch preview only and not promoted into the batch folder.
+
+## Page 01 Candidate v6 - 2026-06-25
+
+- Generated a targeted retry from v5: restore Lulu's two small front hands/fins near her chest while preserving Mongle's octopus tentacles, yellow beret, and sailor collar.
+- Saved retry candidate:
+  - `batch_1/01_candidate_text_v6.png`
+- File check: 1023x1537 RGB PNG, 2,988,237 bytes.
+- Assistant visual QA from generated output: Lulu's front hands/fins are visible again; Mongle's front limbs read closer to rounded octopus tentacles with suction cups rather than human fingers; page text and overall layout are broadly preserved.
+- Status: candidate only; needs user QA for Lulu hand preservation, Mongle tentacle fidelity, and exact Korean text before final promotion.
+## Page 01 Candidate v6 Held - 2026-06-25
+
+- User QA caught that `batch_1/01_candidate_text_v6.png` still failed: Mongle's front limbs again read as attached hands rather than clean octopus tentacles.
+- Hold: `batch_1/01_candidate_text_v6.png`.
+- Diagnosis: Lulu and Mongle were close together and repeatedly treated as a paired gesture group by generation/edit attempts; fixing one character kept affecting the other.
+- Strategy change: because page 01 text does not name Mongle, remove Mongle from the page instead of spending more retries on a non-essential character. Use Jun-i and Tori as the admiring friends around Lulu.
+
+## Page 01 Candidate v7 - 2026-06-25
+
+- Generated a clean page 01 retry with Mongle excluded entirely.
+- References emitted before generation:
+  - approved Lulu wearing special hairpin: `reference_assets/lulu_node_emitted_special_hairpin_candidate_v1.png`
+  - no-bag Sua: `series/coral-town-daycare/references/characters/no_bag/수아_no_bag.png`
+  - no-bag Jun-i: `series/coral-town-daycare/references/characters/no_bag/준이_no_bag.png`
+  - no-bag Tori: `series/coral-town-daycare/references/characters/no_bag/토리_no_bag.png`
+  - Banguli: `series/coral-town-daycare/references/characters/방울이.png`
+  - classroom: `series/coral-town-daycare/references/배경_교실.png`
+- Saved retry candidate:
+  - `batch_1/01_candidate_text_v7.png`
+- File check: 1023x1537 RGB PNG, 3,073,721 bytes.
+- Assistant visual QA from generated output: Mongle/octopus child is absent; Lulu's front hands/fins are visible; Tori keeps yellow hat and shell; page text and overall composition are broadly preserved.
+- Status: candidate only; needs user QA before final promotion.
+## User Approval - Page 01 Candidate v7 - 2026-06-25
+
+- User approved `batch_1/01_candidate_text_v7.png` with feedback: "좋다 / 이제 다음페이지 갈 수 있다".
+- Treat page 01 v7 as user approved for continuing the batch.
+- Do not return to Mongle-included page 01 candidates unless explicitly requested; v7's cast strategy removes the repeated Lulu/Mongle gesture coupling problem.
+## Page 02 Candidate v1 - 2026-06-25
+
+- Generated page 02 after user approved page 01 v7 and allowed moving to the next page.
+- References emitted with `nodeRepl.emitImage` before generation:
+  - no-bag Sua: `series/coral-town-daycare/references/characters/no_bag/수아_no_bag.png`
+  - Banguli: `series/coral-town-daycare/references/characters/방울이.png`
+  - classroom: `series/coral-town-daycare/references/배경_교실.png`
+- Saved candidate:
+  - `batch_1/02_candidate_text_v1.png`
+- File check: 1023x1537 RGB PNG, 2,916,608 bytes.
+- Assistant visual QA from generated output: scene reads as Sua at a classroom mirror with Banguli beside her; Sua remains purple/seahorse-like with small eyes and a curled tail; no extra named friends are visible; mood is quiet rather than heavy.
+- QA needed before promotion: exact Korean text, especially quote marks and line breaks; mirror reflection should remain faithful to Sua rather than idealized.
+- Status: candidate only; needs user QA before final promotion.
+## User Approval - Page 02 Candidate v1 - 2026-06-25
+
+- User approved `batch_1/02_candidate_text_v1.png` with feedback: "아주 좋아 / 다음으로 가자".
+- Treat page 02 v1 as user approved for continuing the batch.
+## Page 03 Candidate v1 - 2026-06-25
+
+- Generated page 03 after user approved page 02 v1 and allowed moving to the next page.
+- References emitted with `nodeRepl.emitImage` before generation:
+  - approved Lulu wearing special hairpin: `reference_assets/lulu_node_emitted_special_hairpin_candidate_v1.png`
+  - no-bag Sua: `series/coral-town-daycare/references/characters/no_bag/수아_no_bag.png`
+  - Banguli: `series/coral-town-daycare/references/characters/방울이.png`
+  - classroom: `series/coral-town-daycare/references/배경_교실.png`
+- Saved candidate:
+  - `batch_1/03_candidate_text_v1.png`
+- File check: 1024x1536 RGB PNG, 3,196,274 bytes.
+- Assistant visual QA from generated output: page focuses only on Lulu, Sua, and Banguli; Lulu remains kind and wears the special hairpin; Sua reads quiet and unconvinced rather than melodramatic; no extra classmates are visible.
+- QA needed before promotion: exact Korean text, especially quote punctuation and line breaks; confirm Lulu's front fins/hands and Sua's official seahorse silhouette remain acceptable.
+- Status: candidate only; needs user QA before final promotion.
+## Page 03 Candidate v1 Held - 2026-06-25
+
+- User QA said `batch_1/03_candidate_text_v1.png` came out well overall, but both Lulu and Sua's eyes felt too large compared with the official references.
+- User also requested preserving Lulu's reference-specific single eyelash detail; only Lulu should have the subtle one-strand eyelash expression.
+- Hold: `batch_1/03_candidate_text_v1.png` pending the eye-size/eyelash correction.
+
+## Page 03 Candidate v2 - 2026-06-25
+
+- Edited page 03 from v1, preserving the composition, classroom, text panel, emotional tone, and character poses while targeting smaller official-style button eyes.
+- Correction target: reduce Lulu and Sua's eyes by about 20-30%, avoid oversized glossy/anime eyes, and add Lulu-only subtle single eyelash detail without adding eyelashes to Sua.
+- Saved retry candidate:
+  - `batch_1/03_candidate_text_v2.png`
+- File check: 1023x1537 RGB PNG, 3,016,693 bytes.
+- Status: candidate only; needs user QA for eye scale, Lulu eyelash fidelity, and text preservation before promotion.
+## User Approval - Page 03 Candidate v2 - 2026-06-25
+
+- User accepted `batch_1/03_candidate_text_v2.png` with feedback: "음 좋아".
+- Treat page 03 v2 as user approved for continuing to the next batch.
+- Carry forward the page 03 correction locks: Lulu and Sua should keep official small button-eye proportions, and Lulu alone may keep one subtle single eyelash stroke.
+
+## Batch 1 Gate / Batch 2 Handoff - 2026-06-25
+
+- Prepared batch 2 handoff after user requested: "배치2 인계준비".
+- Final-promoted files: none yet; `final` folder assembly remains a later promotion step.
+- Current batch-1 files to consider at the next promotion gate:
+  - `batch_1/00_candidate_text_v3.png` — current cover candidate; final QA/promotion still pending.
+  - `batch_1/01_candidate_text_v7.png` — user approved.
+  - `batch_1/02_candidate_text_v1.png` — user approved.
+  - `batch_1/03_candidate_text_v2.png` — user approved.
+- Batch 2 handoff file: `batch_2/batch_2_handoff.md`.
+- Batch 2 page plan file: `batch_2/batch_2_prompt_plan.md`.
+- Next batch scope from `main.md`: pages 04-07, from outdoor-play foreshadowing through Sua finding Lulu's lost special hairpin.
+- First next action: read the worklog and batch 2 handoff in UTF-8, then generate `batch_2/04_candidate_text_v1.png` with actual reference images emitted/attached and exact Korean page text included.
+
+## Page 04 Candidate v1 - 2026-06-25
+
+- Generated page 04 after reading the batch 2 handoff, prompt plan, rulebook, worklog, and script in UTF-8.
+- References emitted with `nodeRepl.emitImage` before generation:
+  - playground/yard: `series/coral-town-daycare/references/배경_전경과_놀이터.png`
+  - no-bag Sua: `series/coral-town-daycare/references/characters/no_bag/수아_no_bag.png`
+  - approved Lulu wearing special hairpin: `reference_assets/lulu_node_emitted_special_hairpin_candidate_v1.png`
+  - Banguli: `series/coral-town-daycare/references/characters/방울이.png`
+  - no-bag Jun-i: `series/coral-town-daycare/references/characters/no_bag/준이_no_bag.png`
+  - no-bag Aru: `series/coral-town-daycare/references/characters/no_bag/아루_no_bag.png`
+  - no-bag Mongle: `series/coral-town-daycare/references/characters/no_bag/몽글이_no_bag.png`
+- Saved candidate:
+  - `batch_2/04_candidate_text_v1.png`
+- File check: 1054x1492 RGB PNG, 2,953,044 bytes.
+- Assistant visual QA from saved output: page reads as outdoor play with Sua quietly collecting shells in the foreground, Banguli nearby, and Lulu still wearing the approved special hairpin while playing. No loose/lost hairpin is visible, so page 05 is not revealed early. No obvious child-worn bags or straps are visible. Mongle remains secondary with octopus tentacles and beret; Aru is not visibly included, which avoids the pufferfish anatomy risk but should be noted if the user wants all planned secondary friends present.
+- QA needed before promotion: user check for exact Korean text, Lulu hairpin fidelity, Sua eye/body fidelity, and whether Aru's absence is acceptable for page 04.
+- Status: candidate only; needs user QA before page 05 generation or final promotion.
+
+## Page 04 Candidate v2/v3 Corrections - 2026-06-25
+
+- User QA held `batch_2/04_candidate_text_v1.png` because Lulu's clothing color drifted from the official Lulu reference and Lulu was missing the reference-specific eyelash detail.
+- Generated and saved `batch_2/04_candidate_text_v2.png` from v1, using emitted references for v1, official Lulu no-bag, approved Lulu-with-special-hairpin, playground/yard, Sua, Banguli, Jun-i, and Mongle.
+- v2 correction target: restore Lulu's official cream shirt with muted rose-pink sailor collar/scarf/skirt, keep the approved special mint/aqua hairpin, and add Lulu-only subtle one-strand eyelash.
+- User QA then held v2 because Jun-i was too small.
+- Generated and saved `batch_2/04_candidate_text_v3.png` from v2, using emitted references for v2, no-bag Jun-i, official Lulu no-bag, approved Lulu-with-special-hairpin, no-bag Sua, and Banguli.
+- File check for v3: 1054x1492 RGB PNG, 2,973,461 bytes.
+- Assistant visual QA from saved v3: Jun-i now reads as a clearly visible playmate near Lulu and the beach ball, not a tiny distant figure. Lulu keeps the corrected cream/pink clothing, approved special hairpin, and Lulu-only eyelash detail. Sua, Banguli, text panel, no-bag continuity, and no-loose-hairpin page-04 continuity remain intact.
+- Current candidate for page 04 user review: `batch_2/04_candidate_text_v3.png`.
+- Held/superseded: `batch_2/04_candidate_text_v1.png` for Lulu clothing/eyelash drift; `batch_2/04_candidate_text_v2.png` for Jun-i scale.
+- Status: candidate only; needs user QA before page 05 generation or final promotion.
+
+## User Approval - Page 04 Candidate v3 - 2026-06-25
+
+- User approved moving on from `batch_2/04_candidate_text_v3.png` with feedback: "좋아 다음으로 가자".
+- Treat page 04 v3 as user approved for continuing to page 05.
+- Carry forward the page 04 correction locks: Lulu's outfit must stay cream/rose-pink, Lulu keeps her subtle one-strand eyelash only on Lulu, Jun-i should stay readable at a normal secondary-character size, and no loose hairpin appears before page 05.
+
+## Page 05 Candidates v1-v3 - 2026-06-25
+
+- Generated `batch_2/05_candidate_text_v1.png` for the page 05 incident after emitting references for playground/yard, Lulu no-bag, the special loose hairpin prop, Banguli, Jun-i, and Mongle.
+- User QA held v1 because the hairpin was directly in front of the children, making "friends searched but could not see it" feel illogical.
+- Generated `batch_2/05_candidate_text_v2.png` from v1 to move the single special hairpin into the lower-right coral/tunnel corner, partly tucked into sand and coral clutter.
+- Assistant QA held v2 because the story logic improved but the text line `톡!` had drifted to `록!`.
+- Created `batch_2/05_candidate_text_v3.png` by locally correcting only the text-panel typo from `록!` to `톡!`, preserving the v2 illustration and hidden-hairpin placement.
+- File check for v3: 1054x1492 RGB PNG, 3,119,814 bytes.
+- Assistant visual QA from saved v3: the special hairpin appears only once, hidden subtly in the lower-right corner near the coral tunnel/sand gap, away from the children's direct line of sight. Lulu is not wearing the hairpin, looks upset but child-safe, and keeps cream/rose-pink clothing and Lulu-only eyelash. Jun-i, Mongle, and Banguli search nearby. Korean text is now readable with `톡!` corrected.
+- Current candidate for page 05 user review: `batch_2/05_candidate_text_v3.png`.
+- Held/superseded: `batch_2/05_candidate_text_v1.png` for too-obvious hairpin placement; `batch_2/05_candidate_text_v2.png` for the `톡!` typo.
+- Status: candidate only; needs user QA before page 06 generation or final promotion.
