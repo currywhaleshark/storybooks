@@ -149,3 +149,19 @@ Then emit/inspect the page-04 references and generate `batch_2/04_candidate_text
 - User accepted moving on from `batch_2/07_candidate_text_v4.png` with feedback: "오케이 다음으로".
 - Batch 2 can be treated as complete for continuation purposes: page 04 v3, page 05 v3, page 06 v1, and page 07 v4 are approved for moving forward.
 - Page 08 work has started in `../batch_3/`.
+
+## Final QA Correction - Page 05 Candidate v4 - 2026-06-26
+
+- Final QA found a story-logic issue in `batch_2/05_candidate_text_v3.png`: the special coral hairpin still read as being inside the lower-right cave/tunnel, while page 06 and page 07 establish the find as coming from a sand gap.
+- Created `batch_2/05_candidate_text_v4.png` by editing only the lower-right cave/sand area.
+- QA result for v4:
+  - The cave/tunnel no longer contains the readable special hairpin.
+  - A tiny, mostly buried hint of the mint/aqua coral hairpin remains outside the cave in the nearby sand gap.
+  - The clue is subtle enough for the friends to miss, but it now supports the page 06 sand-gap search and page 07 reveal.
+  - The Korean story text, page composition, and characters remain visually consistent.
+- Current page 05 review/final-QA candidate: `batch_2/05_candidate_text_v4.png`.
+- Superseded for final assembly: `batch_2/05_candidate_text_v3.png`.
+
+## 2026-06-26 15:48:14 - Final text corrections
+- Page 05 final now uses 05_candidate_text_v5_textfix_generated.png (산호 장식이).
+- Page 07 final now uses 07_candidate_text_v5_textfix_generated.png (루루의 산호 장식).

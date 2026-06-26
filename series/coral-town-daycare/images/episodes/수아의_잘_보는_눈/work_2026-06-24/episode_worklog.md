@@ -589,3 +589,50 @@
 - User approved stopping production here and proceeding to commit/push with final QA afterward: "좋아 여기까지 하고 커밋, 푸쉬 최종 전체 qa가 마지막 절차다".
 - Treat `batch_4/12_candidate_text_v1_a5.png` as approved for continuation to final overall QA.
 - Note: final assembly/package promotion has not been performed in this commit; this commit preserves the approved work candidates, prompt plans, and handoff records through page 12.
+
+
+## Final QA Correction - Page 05 Candidate v4 - 2026-06-26
+
+- Final QA found a story-logic issue in the previous page 05 candidate: the special coral ornament still read as being inside the lower-right cave/tunnel, while pages 06-07 establish the find as coming from a sand gap.
+- Created batch_2/05_candidate_text_v4.png by editing only the lower-right cave/sand area.
+- QA result for v4:
+  - The cave/tunnel no longer contains the readable special ornament.
+  - A tiny, mostly buried hint of the mint/aqua coral ornament remains outside the cave in the nearby sand gap.
+  - The clue is subtle enough for the friends to miss, but it now supports the page 06 sand-gap search and page 07 reveal.
+  - The Korean story text, page composition, and characters remain visually consistent.
+- Current page 05 review/final-QA candidate: batch_2/05_candidate_text_v4.png.
+- Superseded for final assembly: batch_2/05_candidate_text_v3.png.
+
+## Final Promotion - Full Episode Approved - 2026-06-26
+
+- User gave full-episode approval after the page 05 final-QA correction.
+- Created the final folder under this episode.
+- Promoted approved/current candidates into stable final filenames 00 through 12.
+- Verification run after promotion returned FINAL_QA_OK:
+  - 13 final PNG files are present.
+  - Final filenames are ordered 00 through 12.
+  - Each final PNG is byte-identical to its approved source candidate.
+  - All final PNGs are portrait RGB images.
+- QA contact sheet for this session: .qa_preview/sua_final_contact_sheet.png.
+
+## Final QA Correction - Page 12 Same-Space Mirror - 2026-06-26
+
+- User requested one more final QA correction: page 02 and page 12 should form a clear mirror-structure pair, so page 12 should use the same physical space as page 02.
+- Created batch_4/12_candidate_text_v2_same_space.png.
+- Source/continuity intent:
+  - Page 02 was used as the spatial reference: same classroom mirror corner, tall shell-framed mirror, arched window, purple star rug, side shelves, and cozy coral-town daycare room.
+  - The ending text and emotion from page 12 were preserved: Sua returns to the same mirror spot, but now looks at herself with calm acceptance.
+- Promoted the new candidate over the previous final page 12.
+- Superseded for final assembly: batch_4/12_candidate_text_v1_a5.png.
+- Verification after replacement returned FINAL_QA_OK:
+  - 13 final PNG files are present.
+  - Final filenames remain ordered 00 through 12.
+  - Each final PNG is byte-identical to its approved/current source candidate, now including page 12 v2.
+  - All final PNGs are portrait RGB images.
+- QA contact sheet after this correction: .qa_preview/sua_final_contact_sheet_after_page12_same_space.png.
+
+## Final Text-Panel Generation Pass - 2026-06-26
+
+- Page 05 promoted from batch_2/05_candidate_text_v5_textfix_generated.png: removed the color adjective from the coral ornament line.
+- Page 07 promoted from batch_2/07_candidate_text_v5_textfix_generated.png: changed the coral ornament reference to Lulu's coral ornament using a generated text-panel edit rather than a local paste.
+- Page 11 promoted from batch_3/11_candidate_text_v5_textfix_generated.png: kept the original page-11 structure and added Aru/Lulu list lines by generated text-panel edit. User accepted this generation-level result as sufficient.

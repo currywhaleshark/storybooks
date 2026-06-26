@@ -96,3 +96,6 @@
 - User approved continuing from v2 with feedback: "아주 좋아 마지막까지".
 - Page 11 v2 is approved for continuation.
 - Final page work has started in `../batch_4/`.
+
+## 2026-06-26 15:48:14 - Final text correction
+- Page 11 final now uses 11_candidate_text_v5_textfix_generated.png, preserving the page-11 structure and adding Aru/Lulu lines. User accepted the generated text-panel quality as sufficient.
