@@ -305,16 +305,3 @@ Text (verbatim): render exactly:
 
 Constraints: preserve both official seahorse faces and reference features. Do not make either character generic or round-child-like. Keep the mood tender, not heavy. No neon colors, harsh highlights, or unrelated episode details.
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
