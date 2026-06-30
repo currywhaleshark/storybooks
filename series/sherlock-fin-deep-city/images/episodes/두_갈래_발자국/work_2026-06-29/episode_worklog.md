@@ -250,3 +250,134 @@
 - Candidate filenames planned: `00_candidate_text_v1.png`, `01_candidate_text_v1.png`, `02_candidate_text_v1.png`, `03_candidate_text_v1.png`.
 - Batch 1 reference set: Sherlock Fin, Dudu beret, 은모래언덕, 조개목걸이/새우발자국 단서, 텍스트박스 layout, optional distant Deep City glow for cover.
 - QA gate before generation: attach/inspect actual PNG references, preserve Dudu identity, keep the sandfield broad/open, keep page 03's clue as a V-shaped shrimp-footprint fork, and render exact Korean text from the script.
+## Batch 1 Focus Revision - 2026-06-30
+
+- User raised a pre-generation concern that page images may contain too much visual information, causing characters and key props to lose focus.
+- Updated `batch_1/batch_1_prompt_plan.md` before generation.
+- Added `Focus Discipline For Batch 1`: one primary visual focus per page, quiet low-detail silver-sand backgrounds, restrained text panels, and no full V-shaped clue reveal before page 03.
+- Revised pages 00-03 with explicit visual hierarchy blocks:
+  - 00: Sherlock Fin, Dudu, and the necklace/footprint clue grouped as the main foreground focus; distant Deep City glow stays faint.
+  - 01: Dudu noticing the necklace is primary; footprints are only two or three faint hints.
+  - 02: Dudu's caring expression and held necklace are primary; footprints stay secondary and no full V fork appears.
+  - 03: V-shaped shrimp-footprint fork becomes the primary clue; surrounding sand remains clean and uncluttered.
+- Added QA checks for visual focus, quiet backgrounds, restrained text panels, and delayed full clue reveal.
+- Next generation should use this revised prompt plan instead of the earlier all-elements-equal version.
+
+## Batch 1 Candidate Generation and Drive Upload - 2026-06-30
+
+- Generated Batch 1 mobile-review candidates with the revised focus-discipline prompt plan.
+- Local candidates saved under `series/sherlock-fin-deep-city/images/episodes/두_갈래_발자국/work_2026-06-29/batch_1/`:
+  - `00_candidate_text_v1.png` / 1054x1492 / SHA256 `97AA6A89B850E6BC4636B49ADD0D253CE64F52AB6600CA2C20F92713F3B9A127`
+  - `01_candidate_text_v1.png` / 1054x1492 / SHA256 `522774338CAEE1249C90AFC4C0C10E6975EE4CE50213085971EC37E71B3C6ABE`
+  - `02_candidate_text_v1.png` / 1054x1492 / SHA256 `4FA8F6A64CBA1E1B25D756100B829308A4BF368F188E2B4A5291236C43FF8A8A`
+  - `03_candidate_text_v1.png` / 1054x1492 / SHA256 `EDF481FAA4D83ECBE4CA6448FF4C58577CA98AF7FF9BDADD14B5A765DB92D2FA`
+  - `batch_1_mobile_review_contact_sheet.png` / 792x1158 / mobile overview sheet.
+- Built-in generated source files were under `C:/Users/USER/.codex/generated_images/019f15c8-7981-7463-ac02-34cdb17ecb0d/`:
+  - 00 source: `ig_09081b598bc49811016a431de4881c819192b7ea1d30c99543.png`
+  - 01 source: `ig_05898beed8d3111b016a431e57a5f881919468d94a7725100d.png`
+  - 02 source: `ig_02c46b79f2ccbca2016a431ebcd6c88191852a0d2392b47a4f.png`
+  - 03 source: `ig_095a19da6f03e738016a431f24b3508191a7e6eafaa5a6aa2d.png`
+- Google Drive mobile review folder: `https://drive.google.com/drive/folders/1zwawNDgzwuslhOi1IVmIeejni42ibgfT`
+- Uploaded files:
+  - Contact sheet: `https://drive.google.com/file/d/1QnjdS31kuPq99tM8a0EROtIa2I32bgCu/view?usp=drivesdk`
+  - 00: `https://drive.google.com/file/d/1hCCjsgp390AvMFZuWd4ft2VAX1ya6qJ0/view?usp=drivesdk`
+  - 01: `https://drive.google.com/file/d/1-l5GpATdQNGjJI7P6qKk3YHbyegRJFuA/view?usp=drivesdk`
+  - 02: `https://drive.google.com/file/d/1LKEcEvxcC143ZTah2nAs9iPsKN_5YWRs/view?usp=drivesdk`
+  - 03: `https://drive.google.com/file/d/1Unf0vCl9aCrz3e5xLgBilrJfWOBRAabG/view?usp=drivesdk`
+- Drive readback confirmed 5 uploaded PNG files in the folder.
+- QA status: mobile review candidates only; do not promote to `final` until user approval. User should check Korean text exactness, Dudu identity against the beret reference, and whether page 03's shrimp footprints stay sufficiently shrimp-like rather than paw-like.
+
+## Batch 1 v1 Failure - Reference Lock Miss - 2026-06-30
+
+- User QA correctly rejected the Batch 1 v1 generation: characters drifted and non-reference character forms appeared.
+- Root cause: assistant displayed local reference paths/images in chat but did not use Node `emitImage` to expose the actual PNG reference inputs immediately before generation. The built-in image generation call therefore did not have a strong visual lock on the official character sheets.
+- Status: `00_candidate_text_v1.png`, `01_candidate_text_v1.png`, `02_candidate_text_v1.png`, `03_candidate_text_v1.png`, and `batch_1_mobile_review_contact_sheet.png` are fail/hold for reference-lock failure. Do not promote to `final` and do not use as continuity anchors.
+- Corrective action: regenerate Batch 1 as v2 with Node-emitted official references before each generation call. Use filenames with `_node_ref_lock_v2` suffix and upload those replacements to a fresh Drive review folder.
+
+## Batch 1 v2 Node Reference Lock Regeneration and Drive Upload - 2026-06-30
+
+- Regenerated Batch 1 after the reference-lock failure above.
+- Method lock: before each page generation, Node `emitImage` was used to expose the actual official PNG reference files in-chat immediately before the image request. Do not regenerate future pages from text-only descriptions or markdown path mentions.
+- Node-emitted reference set used across v2:
+  - Sherlock Fin: `series/sherlock-fin-deep-city/references/characters/셜록핀.png`
+  - Dudu beret: `series/sherlock-fin-deep-city/references/characters/두_갈래_발자국_두두_베레모_레퍼런스.png`
+  - Open silver-sand hill: `series/sherlock-fin-deep-city/references/locations/두_갈래_발자국_은모래언덕_레퍼런스.png`
+  - Necklace and shrimp-footprint V clue: `series/sherlock-fin-deep-city/references/props/두_갈래_발자국_조개목걸이_새우발자국_단서_레퍼런스.png`
+  - Text panel style: `series/sherlock-fin-deep-city/references/layouts/텍스트박스_레이아웃_레퍼런스.png`
+  - Page 00 also emitted Deep City context: `series/sherlock-fin-deep-city/references/심해탐정_셜록핀_딥시티_레퍼런스.png`
+- Local v2 candidates under `series/sherlock-fin-deep-city/images/episodes/두_갈래_발자국/work_2026-06-29/batch_1/`:
+  - `00_candidate_text_node_ref_lock_v2.png` / 1054x1492 / SHA256 `327716C4BB456A69B1BBA29FE366F82C04C911B2D3C0F41AB4A76548E4B87B7A`
+  - `01_candidate_text_node_ref_lock_v2.png` / 1054x1492 / SHA256 `0DD4BFB4FE954A9018086618AC03B8407DB119C8EF03438926476B00673FC1DE`
+  - `02_candidate_text_node_ref_lock_v2.png` / 1054x1492 / SHA256 `8ED517DEB8C39B2AAB74CBA1C8E90E049C42DE92520E17F8D8831A53AC010128`
+  - `03_candidate_text_node_ref_lock_v2.png` / 1054x1492 / SHA256 `7D3A5CC3729823092B6B58E03BC56E2E02F95C05DE44A08E683A325BC2B217BA`
+  - `batch_1_mobile_review_contact_sheet_node_ref_lock_v2.png` / 792x1158 / SHA256 `023917F44AE475FF6C2E8E85F02F4A6D862FFE6BC946AA616DBD9DD899B8698B`
+- Google Drive v2 mobile review folder: `https://drive.google.com/drive/folders/1iz34T3cGjHBvKciPxinS6ybPs1cNbGe8`
+- Uploaded v2 files:
+  - Contact sheet: `https://drive.google.com/file/d/16Ffgb7qoNYWxFGSMyZbs4T8nhuDlZaqI/view?usp=drivesdk`
+  - 00: `https://drive.google.com/file/d/1fFaGHmQ-glZ1bOjhn9oSofiowMBkIZV4/view?usp=drivesdk`
+  - 01: `https://drive.google.com/file/d/1tfzp6cT8LNxi2j2QS8HvZu7RJ79Sd5zA/view?usp=drivesdk`
+  - 02: `https://drive.google.com/file/d/1R83bkSCrcjAWUcZDkCpjYluquij8MtCk/view?usp=drivesdk`
+  - 03: `https://drive.google.com/file/d/10iavdXzhdC6L-6ssbXHSGAweu0Orw3jX/view?usp=drivesdk`
+- Drive readback confirmed all 5 v2 PNG files are present in the v2 folder.
+- QA status: v2 fixes the major reference-lock failure; Dudu now follows the official pink dumbo-octopus beret reference instead of drifting into an unknown character. Still mobile-review only: check exact Korean text, page 03's shrimp-footprint shape, and whether the focus discipline is now clean enough before any `final` promotion.
+- Carry-forward rule: v1 outputs are superseded fail/hold assets. Only the `_node_ref_lock_v2` files may be discussed as the current Batch 1 review candidates.
+
+## Batch 1 v3 Clue Geometry Correction - Non-Crossing V / Larger Shrimp Tracks - 2026-06-30
+
+- User QA on Batch 1 v2: the problem is not the V-shaped mystery itself, but that the finished clue reads as an X-shaped crossing. The footprint size also made the shrimp owner feel too tiny.
+- Corrected logic lock: keep a V-shaped mystery, but make the shell necklace the single V vertex. One arm is deeper/darker/larger; the other arm is shallower/lighter. The two arms spread apart enough to confuse Dudu, but never cross into an X or four-way split.
+- Corrected scale lock: footprints must be large enough for approved Gabi's child-shrimp body scale. Each step is a readable cluster of several rounded/comma shrimp-leg impressions, not tiny pinprick dots.
+- Updated planning docs:
+  - `batch_1/batch_1_prompt_plan.md`
+  - `page_plan.md`
+  - `reference_setup/reference_setup_plan.md`
+  - `reference_setup/reference_setup_prompt_plan.md`
+- Generated corrected clue reference candidate with Node-emitted refs for Gabi scale, silver sand surface, and necklace style:
+  - `reference_setup/조개목걸이_새우발자국_단서_reference_candidate_v4_non_crossing_v_large_tracks.png` / 1536x1024 / SHA256 `CA4814E32273DC16C53FD224A3748FDD7EBCA0EB9F2BE9DEB23CCA7ADAA283D5`
+- Regenerated affected Batch 1 pages with Node-emitted corrected clue v4 and official character/location refs:
+  - `batch_1/00_candidate_text_node_ref_lock_v3_non_crossing_v_large_tracks.png` / 1054x1492 / SHA256 `6F427110F33794E9FEF9A047E43F7EAACBD35C69AC3F0F363804BEED4354C4C9`
+  - `batch_1/03_candidate_text_node_ref_lock_v3_non_crossing_v_large_tracks.png` / 1054x1492 / SHA256 `78AF23B0D6FCA366BE0F54DCFB55FCD638195BE344510299898632771CBE52B8`
+- Pages 01 and 02 remain from v2 for this mobile review pass because they do not show the full clue geometry.
+- Mobile contact sheet:
+  - `batch_1/batch_1_mobile_review_contact_sheet_v3_non_crossing_v_large_tracks.png` / 792x1160 / SHA256 `C552E367F2157E85C36FA838A2870DA2642D21A3C0A6C8D027EE49E1ECF1D7F1`
+- Google Drive v3 mobile review folder: `https://drive.google.com/drive/folders/1QXJEQYrFALqKTyY5IXbVp0CVlJgsaw1Z`
+- Uploaded files:
+  - Contact sheet: `https://drive.google.com/file/d/1LZ4o0SS17l6qDeknpOVpC2Hoj3JYI340/view?usp=drivesdk`
+  - Corrected clue reference v4: `https://drive.google.com/file/d/1H7FmiB3Ih1MYoHyCnf5FhgnIwsgZovPK/view?usp=drivesdk`
+  - 00 v3: `https://drive.google.com/file/d/1U-edIKXOQjoiYAqiFOFTOiTXUt1HQjmV/view?usp=drivesdk`
+  - 01 v2 retained: `https://drive.google.com/file/d/1JbwD4jPxUUl6HlmPDO1OzHF3yk3g2uuR/view?usp=drivesdk`
+  - 02 v2 retained: `https://drive.google.com/file/d/1fs6vCuchejtklWbmRFHIaWHRxUgapwce/view?usp=drivesdk`
+  - 03 v3: `https://drive.google.com/file/d/1wApIf-2LgTdr7ovZNET9izcZJbsrJUHb/view?usp=drivesdk`
+- Drive readback confirmed all 6 PNG files are present in the v3 folder.
+- QA status: v3 fixes the X-shaped crossing issue on the clue structure and enlarges the shrimp-footprint scale. Still mobile-review only; do not promote to `final` until user approval, and check title/text exactness separately before final promotion.
+- Carry-forward rule: use corrected clue v4 for future pages 05/06/08/09. Do not use the v2/v3 old official clue geometry if it causes X-shaped crossing or tiny-footprint scale drift.
+
+## Batch 1 v4 Footprint Shape Correction - Irregular Oval Two Rows - 2026-06-30
+
+- User QA after v3: because the footprints are extremely important, simplify the shrimp footprint language again. The shrimp footprints should be irregular oval marks in two rows, not complex leg clusters.
+- Corrected shape lock: each footprint trail is two loose rows of plain oval impressions. Ovals may vary slightly in size, spacing, angle, and depth, but they should not become comma shapes, paw prints, crab tracks, claw marks, or many tiny pinpricks.
+- Geometry lock still holds: the necklace is the V vertex, the two arms spread apart and do not cross. One arm is deeper/darker, the other is shallower/lighter.
+- Updated planning docs with the v5 footprint shape override:
+  - `batch_1/batch_1_prompt_plan.md`
+  - `page_plan.md`
+  - `reference_setup/reference_setup_plan.md`
+  - `reference_setup/reference_setup_prompt_plan.md`
+- Generated corrected clue reference candidate with Node-emitted refs for Gabi scale, silver sand surface, and necklace style:
+  - `reference_setup/조개목걸이_새우발자국_단서_reference_candidate_v5_irregular_oval_two_rows.png` / 1536x1024 / SHA256 `5F6CE157307F0EA1C548A28390D8272906E5FFA161111DB56E0CDEF836732237`
+- Regenerated affected Batch 1 pages with Node-emitted corrected clue v5 and official character/location refs:
+  - `batch_1/00_candidate_text_node_ref_lock_v4_irregular_oval_two_rows.png` / 1054x1492 / SHA256 `633F3D78F21384F7744C48C517970F4178F3DF4F64B518EE1A9F49229ADEB102`
+  - `batch_1/03_candidate_text_node_ref_lock_v4_irregular_oval_two_rows.png` / 1054x1492 / SHA256 `D974E5483AA429E3BC36F11B87EC461B56CDA7537412C0B2D03036C7F813587D`
+- Pages 01 and 02 remain from v2 for this mobile review pass because they do not show the full clue geometry.
+- Mobile contact sheet:
+  - `batch_1/batch_1_mobile_review_contact_sheet_v4_irregular_oval_two_rows.png` / 792x1160 / SHA256 `2ED2CA1E26E8D1C932CBADBCB1C2CB0474861A5F182D934A2B68F7C62A91C7C7`
+- Google Drive v4 mobile review folder: `https://drive.google.com/drive/folders/1MzdFJXP3XRNOGzey86jzCelJPPBl5cKR`
+- Uploaded files:
+  - Contact sheet: `https://drive.google.com/file/d/1PH_2OJQnzmBhUcuHGLfceYxoqyGRkb5Y/view?usp=drivesdk`
+  - Corrected clue reference v5: `https://drive.google.com/file/d/1k2xhqXJKUNXWSyBFCsBMsrFLk0gkdErR/view?usp=drivesdk`
+  - 00 v4: `https://drive.google.com/file/d/1H4_JPFKcFExp5ps6lc24Xb4p3Vb1Wf53/view?usp=drivesdk`
+  - 01 v2 retained: `https://drive.google.com/file/d/1jUpKTELjWUdGIFlldrT0_CUEGMkdxDUE/view?usp=drivesdk`
+  - 02 v2 retained: `https://drive.google.com/file/d/1gPijQ_Aho6Y_8oooT5bBckotz3cDe6mV/view?usp=drivesdk`
+  - 03 v4: `https://drive.google.com/file/d/1ivwEDwj66jKNOlagvfwXgA6tqJR9Dw25/view?usp=drivesdk`
+- Drive readback confirmed all 6 PNG files are present in the v4 folder.
+- QA status: v4/v5 reference pass fixes the footprint language to simple irregular oval two-row marks. Still mobile-review only; do not promote to `final` until user approval, and check title/text exactness separately before final promotion.
+- Carry-forward rule: use corrected clue v5 for future pages 05/06/08/09. Do not use earlier comma/cluster/paw-like footprint language.
