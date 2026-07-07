@@ -102,7 +102,7 @@
 
 - `10_페이지.png`: Mari confirms that changing activities was the hard part.
 - `11_페이지.png`: Aru makes a small promise, splashes five times, and comes out by self-choice.
-- `12_페이지.png`: warm ending with clean, dry Aru and friends.
+- `12_페이지.png`: warm ending with clean, dry Aru, Banguli, and Mari teacher only.
 
 ## Page Targets
 
@@ -419,29 +419,33 @@
 펼쳤어요.
 ```
 
-### 12 - 바뀌는 건 어렵지만, 해보면 괜찮아
+### 12 - 산호마을 어린이집은 오늘도 맑음
 
 - Output: `12_페이지.png`
-- Scene: dry, clean Aru smiles with friends in a warm closing group.
-- References: exterior/playground or bright daycare background, Aru no-bag, Mari no-bag, Banguli no-bag, Jun-i no-bag, Lulu no-bag, Mongle no-bag, Tori no-bag, Sua no-bag, Popo no-bag.
+- Scene: dry, clean Aru smiles with Banguli and Mari teacher in a warm closing page. No extra background children or unnamed mascots. If the coral tunnel appears, it must be a small child crawl-through playground toy, not a building-scale arch.
+- References: exterior/playground or bright daycare background, small coral tunnel reference, Aru no-bag, Mari no-bag, Banguli no-bag.
 - Exact text:
 
 ```text
 아루는
-뽀송뽀송.
+조금 웃었어요.
 
-진흙놀이도 좋고,
-물놀이도 좋았어요.
+"다음에도
+처음은 어려울 수 있고,
 
-"바뀌는 건
-조금 어려워.
+나중엔
+그만두기 어려울 수도 있지."
 
-그래도 해보면—
-거기도 좋아!"
+마리 선생님이
+끄덕였어요.
+
+"그래도 아루는
+해낼 수 있어.
+천천히 해도 괜찮아."
 
 산호마을 어린이집은
 오늘도 맑음.
 
-아루 마음도
-반짝 맑음.
+아루의 마음도
+반짝반짝 맑음.
 ```

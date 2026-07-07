@@ -234,8 +234,261 @@
   - final page 03 only as user-approved Aru color/scarf continuity.
 - Status: prepared only. Batch 2 images have not been generated yet.
 
+## Batch 2 Generation - 2026-07-07
+
+- User instruction: start Batch 2.
+- Scope generated: pages 04-06.
+- Reference issue found before pages 05-06:
+  - `work_2026-07-07/reference_assets/shallow_shell_water_tub_ref.png` was listed in the worklog but missing from the workspace after pull.
+  - Recreated the shell tub reference from the approved cover tub design and `reference_asset_plan.md`.
+  - Restored workspace reference:
+    - `work_2026-07-07/reference_assets/shallow_shell_water_tub_ref.png`
+  - Restored source retained under default imagegen folder:
+    - `C:/Users/yurib/.codex/generated_images/019f3b9c-22fc-71f1-8300-b00cb7021f71/ig_0b68da60723de041016a4cc1f86c508197bb087494e9c8a0f4.png`
+  - QA: no characters or text; low shallow peach-rim shell tub with warm clear water and side view; suitable as recovered page 05-11 prop reference.
+- Generated sources retained under default imagegen folder:
+  - Page 04 source: `C:/Users/yurib/.codex/generated_images/019f3b9c-22fc-71f1-8300-b00cb7021f71/ig_0e2ca11b93251572016a4cc0b1410481919429797ae304ad05.png`
+  - Page 05 v1 source: `C:/Users/yurib/.codex/generated_images/019f3b9c-22fc-71f1-8300-b00cb7021f71/ig_07d7a9a80122fa25016a4cc2ea04808191a19716d77f9d29d5.png`
+  - Page 05 v2 source: `C:/Users/yurib/.codex/generated_images/019f3b9c-22fc-71f1-8300-b00cb7021f71/ig_07d7a9a80122fa25016a4cc37d04788191a076f38f348e20e8.png`
+  - Page 06 source: `C:/Users/yurib/.codex/generated_images/019f3b9c-22fc-71f1-8300-b00cb7021f71/ig_07d7a9a80122fa25016a4cc415988c8191bbc47c6b765b2014.png`
+
+### Saved Batch 2 Candidates
+
+- `batch_2/04_candidate_text_v1.png`
+  - Status: `candidate pass`.
+  - QA: Mari sits low beside Aru and reads as validating, not scolding or forcing. Aru remains pufferfish-only with no limbs/body, red-white scarf, soft cream/tan color, mud marks, and lowered spikes. Text appears exact and readable.
+- `batch_2/05_candidate_text_v1_hold_text.png`
+  - Status: `alternate / not preferred`.
+  - QA: scene reads, but page composition is less clean than v2.
+- `batch_2/05_candidate_text_v2_hold_text.png`
+  - Status: `candidate pass`.
+  - QA: preferred page 05 candidate. Shell tub follows the recovered reference; Banguli splashes first; Aru hesitates outside with correct color/scarf/no limbs; Mari remains warm and non-forcing. Text appears exact and readable, including `첨벙—!`.
+- `batch_2/05_candidate_text_v3_local_text_panel.png`
+  - Status: `do not use / unnecessary repair`.
+  - QA: created after the agent misread the generated `첨벙—!` as an error. User corrected that the v2 text was already correct. Keep this file only as process history.
+- `batch_2/06_candidate_text_v1.png`
+  - Status: `candidate pass`.
+  - QA: Aru is safely in the shallow shell tub; mud is washing away; expression shifts to surprised delight; spikes look softened; Banguli is nearby. Text appears exact and readable.
+
+### Batch 2 QA Summary
+
+- Character identity: pass for review. Aru remains a round pufferfish child without hands, feet, legs, arms, human torso, or school bag.
+- Safety/tone: pass for review. Mari validates and supports without force. Water scenes read as shallow, warm, clean, and safe.
+- Tub continuity: pass for review using the recovered shell tub reference.
+- Text: pages 04, 05 v2, and 06 appear exact and readable.
+- Final promotion: none. Batch 2 files are candidates only until user approval.
+
+## Batch 2 Final Promotion - 2026-07-07
+
+- User approval: `오 좋아 승인`.
+- Promoted to final:
+  - `final/04_바뀌는_건_어렵지.png` from `batch_2/04_candidate_text_v1.png`
+  - `final/05_방울이가_먼저_첨벙.png` from `batch_2/05_candidate_text_v2_hold_text.png`
+  - `final/06_어_따뜻하고_좋네.png` from `batch_2/06_candidate_text_v1.png`
+- Status: `final promoted` for pages 04-06.
+- Carry-forward locks:
+  - Use final page 06 as the approved in-water Aru state: mostly clean, wet, soft cream/tan body, darker top spots, warm beige fins, red-white scarf, no limbs.
+  - Use the recovered shell tub reference plus final pages 05-06 for water-play continuity.
+  - Keep page 08 as a mirror of page 03 in emotional pattern only: transition resistance without punishment, not literal pose copying.
+  - Page 09 realization belongs to Aru; do not make Mari teacher reveal the lesson first.
+
+## Batch 3 Preparation - 2026-07-07
+
+- Batch 3 scope:
+  - `07_candidate_text_v1.png`: Aru fully enjoys shallow shell-tub water play with Banguli; Mari watches warmly.
+  - `08_candidate_text_v1.png`: Mari says it is time to come out; Aru refuses, mirroring page 03 in the opposite transition direction.
+  - `09_candidate_text_v1.png`: Aru realizes that entering was hard before, and now leaving is hard.
+- Batch 3 prompt plan prepared:
+  - `work_2026-07-07/batch_3/batch_3_prompt_plan.md`
+- Required references:
+  - recovered shallow shell water tub reference for pages 07-09.
+  - official no-bag and original references for Aru, Banguli, and Mari teacher where visible.
+  - final page 06 for approved in-water Aru continuity.
+  - final page 03 only for page 08's transition-resistance mirror lock.
+- Status: prepared only. Batch 3 images have not been generated yet.
+
+## Batch 3 Generation - 2026-07-07
+
+- User instruction: start Batch 3.
+- Scope attempted: pages 07-09.
+- Reference loading:
+  - Loaded the recovered shell tub reference, official/no-bag character references, and approved final pages 05-06 before page 07 generation.
+  - Loaded the shell tub reference, official/no-bag Aru, Mari, and Banguli references, final page 03, and final page 06 before page 08 generation.
+  - Used the shell tub and Aru/Banguli continuity locks for page 09 attempts.
+- Generated sources retained under default imagegen folder:
+  - Page 07 v1 source: `C:/Users/yurib/.codex/generated_images/019f3b9c-22fc-71f1-8300-b00cb7021f71/ig_0837d10d68927bab016a4cd11796948191b40aae2db80e476c.png`
+  - Page 07 v2 source: `C:/Users/yurib/.codex/generated_images/019f3b9c-22fc-71f1-8300-b00cb7021f71/ig_0837d10d68927bab016a4cd1b3b90c8191bbe48c4507b462dd.png`
+  - Page 08 source: `C:/Users/yurib/.codex/generated_images/019f3b9c-22fc-71f1-8300-b00cb7021f71/ig_0aca08bcb97dfdc1016a4cd2e90c4481919b6a32b4208a0151.png`
+  - Page 09 failed/drifted sources were left only in the default imagegen folder and were not copied into the batch candidate folder.
+
+### Saved Batch 3 Candidates
+
+- `batch_3/07_candidate_text_v1_hold_text.png`
+  - Status: `hold`.
+  - QA: art reads well for joyful water play, but text rendering had visible Korean errors around `첨벙첨벙` / `둥실둥실`. Keep as process history, not preferred.
+- `batch_3/07_candidate_text_v2.png`
+  - Status: `candidate pass / generated-text option`.
+  - QA: Aru, Banguli, Mari, tub, and water-play action read well. On inspection the generated Korean text appears exact and readable. Kept as the natural generated-text option.
+- `batch_3/07_candidate_text_v3_local_text_panel.png`
+  - Status: `hold`.
+  - QA: local text-panel repair attempt fixed the text but left a faint old-text remnant near the lower panel. Superseded by v4.
+- `batch_3/07_candidate_text_v4_local_text_panel.png`
+  - Status: `candidate pass / text-safe option`.
+  - QA: exact local Korean text panel with no old-text remnant. Character and tub art are preserved from v2, though the repaired panel is flatter than the generated watercolor panel.
+- `batch_3/08_candidate_text_v1.png`
+  - Status: `candidate pass`.
+  - QA: Aru refuses to leave the shallow tub using round-body resistance only; no hands, feet, legs, arms, human torso, or school bag. Mari remains warm and non-forcing. Banguli is present and gentle. Text appears exact and readable.
+
+### Batch 3 QA Summary
+
+- Character identity: pass for review on pages 07-08. Aru remains a round pufferfish child with the approved soft cream/tan color, darker top spots, warm beige fins, and red-white scarf.
+- Safety/tone: pass for review on pages 07-08. The tub reads shallow, warm, clean, and safe. Mari does not scold, grab, drag, or force.
+- Text: page 07 has both a generated-text option and a text-safe local-panel option; page 08 appears exact and readable.
+- Page 09 status before fresh retry: blocked. Multiple page 09 attempts drifted away from the story into unrelated educational/diagram/market-style imagery, and one attempt was blocked by the safety filter. No page 09 candidate was saved for review in that context.
+- Final promotion: none. Batch 3 remains partial until the user approves pages 07-08 and page 09 is retried successfully.
+
+## Batch 3 Page 09 Fresh Retry - 2026-07-07
+
+- New session/handoff intake completed from:
+  - `work_2026-07-07/HANDOFF.md`
+  - `work_2026-07-07/episode_worklog.md`
+  - `work_2026-07-07/page_plan.md`
+  - `work_2026-07-07/batch_3/batch_3_prompt_plan.md`
+  - `series/coral-town-daycare/docs/산호마을_어린이집_이미지_규칙서.md`
+- Reference loading intentionally excluded the failed page 09 outputs from the contaminated prior context.
+- Loaded official/approved references before generation:
+  - `work_2026-07-07/reference_assets/shallow_shell_water_tub_ref.png`
+  - `series/coral-town-daycare/references/characters/no_bag/아루_no_bag.png`
+  - `series/coral-town-daycare/references/characters/no_bag/방울이_no_bag.png`
+  - `series/coral-town-daycare/references/characters/아루.png`
+  - `series/coral-town-daycare/references/characters/방울이.png`
+  - `final/06_어_따뜻하고_좋네.png`
+- Fresh retry source retained under default imagegen folder:
+  - `C:/Users/yurib/.codex/generated_images/019f3c6b-45bf-7ee1-9a8d-019b7fe26823/ig_07c61ee8f49c3512016a4ce8e804c48191870cdfd290ef7592.png`
+- Saved candidate:
+  - `batch_3/09_candidate_text_v1.png`
+  - Status: `candidate pass / fresh-session retry`.
+  - QA: the page stayed on-story as a quiet close-up realization. Aru remains a round pufferfish child with no hands, feet, legs, arms, human torso, school bag, or separate lower body. Aru keeps the red-white scarf and soft cream/tan body. The shell tub reads shallow, warm, clean, and safe. Banguli watches quietly nearby. Mari is absent. Text appears exact and readable on visual inspection.
+
+## Batch 3 Final Promotion - 2026-07-07
+
+- User approval: `좋아 / 셋 다 오케이 / 배치4 준비`.
+- Page 07 selection: promoted the natural generated-text option because no separate preference was given for the local text-panel alternate.
+- Promoted to final:
+  - `final/07_첨벙첨벙_신나는_물놀이.png` from `batch_3/07_candidate_text_v2.png`
+  - `final/08_안_나올래_더_할래.png` from `batch_3/08_candidate_text_v1.png`
+  - `final/09_어_아까는_들어가기_싫었는데.png` from `batch_3/09_candidate_text_v1.png`
+- Status: `final promoted` for pages 07-09.
+- Carry-forward locks:
+  - Use final page 09 as the approved realization page: Aru owns the insight; Mari should only confirm it on page 10.
+  - Page 11 must be self-led: Aru agrees to five more splashes and comes out by choice. Mari can hold a towel but cannot pull, drag, grab, or lift Aru.
+  - Page 12 is the warm closing group. Keep Aru dry/clean, no school bags, and preserve official character identities.
+
+## Batch 4 Preparation - 2026-07-07
+
+- Batch 4 scope:
+  - `10_candidate_text_v1.png`: Mari warmly confirms Aru's own realization.
+  - `11_candidate_text_v1.png`: Aru chooses five more splashes and comes out by self-choice while Mari holds a towel.
+  - `12_candidate_text_v1.png`: warm ending with clean, dry Aru and friends.
+- Batch 4 prompt plan prepared:
+  - `work_2026-07-07/batch_4/batch_4_prompt_plan.md`
+- Required references:
+  - recovered shallow shell water tub reference for pages 10-11.
+  - official no-bag and original references for Aru, Mari teacher, and Banguli on pages 10-11.
+  - official exterior/playground and coral tunnel references for page 12.
+  - official no-bag and original references for visible closing-group characters on page 12.
+  - approved final pages 06 and 09 for in-water Aru continuity and emotional continuity.
+- Status: prepared only. Batch 4 images have not been generated yet.
+
+## Batch 4 Generation - 2026-07-07
+
+- User instruction: `바로 시작하지`.
+- Scope attempted: pages 10-12.
+- Reference loading:
+  - Page 10 used the recovered shallow shell tub reference, official/no-bag Aru, Mari teacher, and Banguli references, and approved final pages 06 and 09 for emotional and water-state continuity.
+  - Page 11 used the recovered shell tub reference, official/no-bag Aru, Mari teacher, and Banguli references, and approved final page 09 for the self-led transition beat.
+  - Page 12 used official exterior/playground, coral tunnel, visible closing-group character references, and approved final pages 01 and 09.
+- Generated sources retained under default imagegen folder:
+  - Page 10 source: `C:/Users/yurib/.codex/generated_images/019f3c6b-45bf-7ee1-9a8d-019b7fe26823/ig_0afb4a8f34d0ff9b016a4cf7bc79748191a1a8d2f3347205e3.png`
+  - Page 11 v1 source: `C:/Users/yurib/.codex/generated_images/019f3c6b-45bf-7ee1-9a8d-019b7fe26823/ig_015d09a3dbf328a6016a4cf8f47b1c8191b364fd8bc4ea6efc.png`
+  - Page 11 v2 source: `C:/Users/yurib/.codex/generated_images/019f3c6b-45bf-7ee1-9a8d-019b7fe26823/ig_082bfddaa958db15016a4cf9c172f481918df15de544b7bfce.png`
+  - Page 12 failed/drifted source 1: `C:/Users/yurib/.codex/generated_images/019f3c6b-45bf-7ee1-9a8d-019b7fe26823/ig_025d661b914dd599016a4cfd5b4244819183dd3b21ca71e23b.png`
+  - Page 12 failed/drifted source 2: `C:/Users/yurib/.codex/generated_images/019f3c6b-45bf-7ee1-9a8d-019b7fe26823/ig_025d661b914dd599016a4cfe58c6c481918500dd51f979f8b1.png`
+  - Page 12 fresh retry source: `C:/Users/yurib/.codex/generated_images/019f3c6b-45bf-7ee1-9a8d-019b7fe26823/ig_0688e455756586e5016a4d009d4590819194f62710e56454e7.png`
+  - Page 12 generated-text retry source: `C:/Users/yurib/.codex/generated_images/019f3c6b-45bf-7ee1-9a8d-019b7fe26823/ig_0025cfb89ac2b8c6016a4d07b931b881919e203734414aeb4d.png`
+  - Page 12 template-clean retry source: `C:/Users/yurib/.codex/generated_images/019f3c6b-45bf-7ee1-9a8d-019b7fe26823/ig_0a38cfec6f0c1853016a4d0afc458c81918f8e64a31a5443fc.png`
+  - Page 12 small-tunnel retry source: `C:/Users/yurib/.codex/generated_images/019f3c6b-45bf-7ee1-9a8d-019b7fe26823/ig_06b09b4e94d68a26016a4d0dbd90908191b1c9c0e4357fc3da.png`
+
+### Saved Batch 4 Candidates
+
+- `batch_4/10_candidate_text_v1.png`
+  - Status: `candidate pass`.
+  - QA: on-story confirmation beat. Mari stays warm and non-forcing; Aru keeps pufferfish identity with scarf and no limbs; Banguli remains nearby; shallow shell tub continuity is preserved. Generated text appears close/readable on visual inspection.
+- `batch_4/11_candidate_text_v1_hold_text_scene.png`
+  - Status: `hold`.
+  - QA: gentle page, but generated text visibly misspelled `첨벙`, and Aru still read too inside the tub after the exit line.
+- `batch_4/11_candidate_text_v2_hold_text.png`
+  - Status: `source history / copied to preferred candidate`.
+  - QA: scene improved: Aru is out/on the mat by self-choice while Mari waits with a towel.
+- `batch_4/11_candidate_text_v2.png`
+  - Status: `candidate pass / preferred generated-text option`.
+  - QA: user correction noted that the original generated text had no issue and the local text-panel cover is not needed. Use this generated-text version for review/promotion unless the user changes preference.
+- `batch_4/11_candidate_text_v3_local_text_panel.png`
+  - Status: `superseded / do not use`.
+  - QA: first local text-panel repair left faint old-text remnants.
+- `batch_4/11_candidate_text_v4_local_text_panel.png`
+  - Status: `hold / local-panel alternate`.
+  - QA: uses the improved v2 art with an opaque local text panel. Exact Korean text is drawn locally, including `첨벙`; Aru exits by choice; Mari does not pull, grab, lift, or force. Not preferred after user noted the generated text version is acceptable.
+- `batch_4/12_candidate_art_v1_blank_panel.png`
+  - Status: `art source / blank-panel fresh retry`.
+  - QA: fresh retry stayed on-story with Coral Town Daycare playground/coral tunnel setting, clean dry Aru, Banguli, Mari teacher, and friends. Kept as the blank text-panel source for local lettering.
+- `batch_4/12_candidate_text_v1_hold_spacing.png`
+  - Status: `hold`.
+  - QA: first local text pass used the correct Korean text but line spacing pushed the final paragraph below the text panel. Superseded by the corrected `12_candidate_text_v1.png`.
+- `batch_4/12_candidate_text_v1.png`
+  - Status: `hold / local-font fallback`.
+  - QA: uses the fresh on-story art with corrected local Korean text fully inside the left text panel. Aru is clean, dry, scarfed, and round-bodied with no limbs or school bag. Held because the local font differs from generated page lettering.
+- `batch_4/12_candidate_text_v2_generated_text.png`
+  - Status: `hold`.
+  - QA: generated-text attempt avoided the local-font mismatch, but user rejected it because unidentified background characters appeared and the final-page closing template was not used.
+- `batch_4/12_candidate_text_v3_template_clean.png`
+  - Status: `hold`.
+  - QA: removes the unidentified pink octopus/background mermaid issue and uses the corrected final-page template, but user caught that the coral tunnel had become building-sized instead of a child crawl-through play object.
+- `batch_4/12_candidate_text_v4_small_tunnel.png`
+  - Status: `candidate pass / preferred generated-text option`.
+  - QA: keeps the page on-topic with Aru, Banguli, and Mari teacher only; no unidentified background characters visible on inspection. The coral tunnel now reads as a smaller child crawl-through playground object rather than a giant building-scale structure. The corrected final-page template remains visible: `산호마을 어린이집은 / 오늘도 맑음. / 아루의 마음도 / 반짝반짝 맑음.`
+
+### Batch 4 QA Summary
+
+- Pages 10-12 have candidates ready for user review.
+- Page 11 preferred review candidate is `11_candidate_text_v2.png`.
+- Page 12 preferred review candidate is `12_candidate_text_v4_small_tunnel.png`.
+- The two earlier page 12 drifted outputs were left only in the default imagegen folder and should not be used as references.
+- Final promotion: completed after user approval; see `Batch 4 Final Promotion - 2026-07-07` below.
+
+## Batch 4 Approval Gate
+
+- Awaited user approval for Batch 4 final promotion.
+- Approved candidates:
+   - `batch_4/10_candidate_text_v1.png`
+   - `batch_4/11_candidate_text_v2.png`
+   - `batch_4/12_candidate_text_v4_small_tunnel.png`
+
+## Batch 4 Final Promotion - 2026-07-07
+
+- User approval: `좋아 승ㄱㄱ`.
+- Promoted to final:
+  - `final/10_맞아_바뀌는_게_어려웠구나.png` from `batch_4/10_candidate_text_v1.png`
+  - `final/11_조금만_더_그리고_나오기.png` from `batch_4/11_candidate_text_v2.png`
+  - `final/12_산호마을_어린이집은_오늘도_맑음.png` from `batch_4/12_candidate_text_v4_small_tunnel.png`
+- Status: `final promoted` for pages 10-12.
+- Carry-forward locks for any future revision:
+  - Page 11 uses the generated-text version, not the local text-panel alternate.
+  - Page 12 uses the final-page template ending: `산호마을 어린이집은 / 오늘도 맑음. / 아루의 마음도 / 반짝반짝 맑음.`
+  - Page 12 should show only Aru, Banguli, and Mari teacher; no extra children, pink octopus characters, background mermaid children, or unnamed mascots.
+  - Any coral tunnel on page 12 must remain a small child crawl-through playground toy, around Aru's body height and at most Mari teacher's knee-to-waist height, not a giant building-scale arch.
+
 ## Current Next Step
 
-1. Start Batch 2 generation from `work_2026-07-07/batch_2/batch_2_prompt_plan.md` when the user says to proceed.
-2. Before each generation, load the actual reference image files listed for that page.
-3. Stop after pages 04-06 candidates for QA before any Batch 3 work.
+1. Review the full final folder pages 00-12 as a complete episode set.
+2. If no further revisions are requested, package or hand off the final image set.
