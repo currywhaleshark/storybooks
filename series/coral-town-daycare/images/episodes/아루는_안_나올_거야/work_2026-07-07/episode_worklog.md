@@ -492,3 +492,25 @@
 
 1. Review the full final folder pages 00-12 as a complete episode set.
 2. If no further revisions are requested, package or hand off the final image set.
+
+## Page 12 Original-Script Regeneration - 2026-07-08
+
+- Issue found: the promoted page 12 final followed the later `page_plan.md` alternate ending text instead of the original script ending in `series/coral-town-daycare/docs/episodes/아루는_안_나올_거야.md`.
+- Regeneration target: page 12 only, using the original script text:
+  - `아루는 / 뽀송뽀송.`
+  - `진흙놀이도 좋고, / 물놀이도 좋았어요.`
+  - `"바뀌는 건 / 조금 어려워. / 그래도 해보면— / 거기도 좋아!"`
+  - `산호마을 어린이집은 / 오늘도 맑음.`
+  - `아루 마음도 / 반짝 맑음.`
+- Reference policy:
+  - Did not use the previous alternate-text page 12 as a visual reference.
+  - Used official character references for Aru, Mari teacher, and Banguli, the coral tunnel reference, and final page 11 for continuity.
+- Generated source:
+  - `C:/Users/USER/.codex/generated_images/019f3ef5-efb1-78c0-a820-ee4fda312271/ig_0e8bd478c4a2af4a016a4de4c55b0c8191a2a6706595f5e948.png`
+- Saved candidate:
+  - `work_2026-07-07/batch_4/12_candidate_text_v5_original_script.png`
+- Status: `final promoted / original-script retry`.
+- QA: original-script ending text is visible and readable; the rejected alternate ending text about `다음에도 처음은 어려울 수 있고` is not present. Aru remains a round pufferfish child with scarf and no limbs or school bag. Mari and Banguli are present with warm closing energy.
+- User approval: `오케이 통과`.
+- Promoted to final:
+  - `final/12_산호마을_어린이집은_오늘도_맑음.png` from `batch_4/12_candidate_text_v5_original_script.png`
