@@ -381,3 +381,158 @@
 - Drive readback confirmed all 6 PNG files are present in the v4 folder.
 - QA status: v4/v5 reference pass fixes the footprint language to simple irregular oval two-row marks. Still mobile-review only; do not promote to `final` until user approval, and check title/text exactness separately before final promotion.
 - Carry-forward rule: use corrected clue v5 for future pages 05/06/08/09. Do not use earlier comma/cluster/paw-like footprint language.
+
+## Script Rework Lock - Heavy Necklace + Depth/Stride Contrast - 2026-07-10
+
+- User approved reworking the core clue so the two branches differ in both footprint depth and stride length.
+- Updated authoritative script: `series/sherlock-fin-deep-city/docs/episodes/두_갈래_발자국.md`.
+- Updated page plan: `series/sherlock-fin-deep-city/images/episodes/두_갈래_발자국/work_2026-06-29/page_plan.md`.
+- New truth lock:
+  - Gabi wears a visibly heavy, ornate shell-and-pearl necklace with a large central pearl, layered shells, coral details, and gold connectors.
+  - Before the drop, the heavy necklace makes Gabi walk slowly with deep/dark footprints and short, close stride spacing.
+  - At the necklace vertex Gabi turns; the necklace drops and presses a slight depression into the silver sand.
+  - After the drop, Gabi is lighter and hurries away with shallow/light footprints and wider stride spacing.
+- Same-owner visual lock: footprint oval size and the width between the two footprint rows stay identical on both branches. Only depth, darkness, and stride spacing change.
+- Route geometry lock: one non-crossing V with the necklace as the single vertex. No X shape, no four-way split.
+- Evidence preservation lock: Dudu briefly lifts the necklace to feel its weight, marks the exact location with a small star shell, and replaces the necklace before going to Sherlock Fin.
+- Deduction lock: matching shape/track width suggests one friend but does not prove it alone. The sand anemone's testimony that one small shrimp turned at the spot is required for confirmation.
+- Witness limitation: the turn kicks up a sand cloud, so the sand anemone cannot see which branch Gabi takes.
+- Ending safety lock: the heavy necklace is secured to Gabi's sturdy suspender ring, not tied back onto her antennae. The shell memo uses a coral-bell picture symbol rather than generated writing.
+- Existing reference status:
+  - `references/props/두_갈래_발자국_조개목걸이_새우발자국_단서_레퍼런스.png`: superseded/hold for this rework.
+  - `reference_setup/조개목걸이_새우발자국_단서_reference_candidate_v5_irregular_oval_two_rows.png`: superseded/hold for this rework.
+  - A new integrated heavy-necklace + depth/stride clue reference is required and must be approved before any page regeneration.
+- Generation status: no new reference or page image generated in this script-rework pass.
+
+## Integrated Clue Reference v6 - User Approved / Final Promoted - 2026-07-10
+
+- User response after visual review: `그래`; treated as approval to continue and promote the shown reference candidate.
+- Built-in image generation used the actual official visual inputs:
+  - Gabi: `series/sherlock-fin-deep-city/references/characters/두_갈래_발자국_가비_레퍼런스.png`
+  - Silver Sand Hill: `series/sherlock-fin-deep-city/references/locations/두_갈래_발자국_은모래언덕_레퍼런스.png`
+- Explicitly excluded all superseded v3/v5 necklace-footprint attempts from the generation inputs.
+- Candidate preserved at:
+  - `series/sherlock-fin-deep-city/images/episodes/두_갈래_발자국/work_2026-06-29/reference_setup/조개목걸이_발자국_통합_reference_candidate_v6_heavy_depth_stride.png`
+- User-approved official reference promoted non-destructively at:
+  - `series/sherlock-fin-deep-city/references/props/두_갈래_발자국_무거운조개목걸이_깊이보폭_통합_레퍼런스.png`
+- Dimensions: 1536x1024.
+- SHA256: `7CE1AFF2185E2D03AFD486D883C98C8B5E391818D81C494F0E1366DF8286FC39`.
+- QA status: `user approved`, `final promoted`.
+- QA pass:
+  - Gabi identity, body proportions, suspenders, antennae, and mint bows remain recognizable against the official sheet.
+  - The necklace is visibly heavy and ornate, using a large luminous central pearl, layered shells, coral branches, and gold connectors.
+  - The main clue is a single non-crossing V with the necklace as the sole vertex.
+  - The deep branch is dark and closely spaced; the shallow branch is pale with wider stride spacing.
+  - Both arms keep the same two-row oval footprint language and do not become paws, boots, crab tracks, an X, or a four-way split.
+  - No text, signage, unrelated characters, or prior-episode contamination appears.
+- Carry-forward lock: pages 00/01/02/03/05/06/07/08/09/10/11 must attach the new official integrated clue reference. Do not attach the old official prop reference or the v5 candidate.
+- Batch gate: reference setup is complete. Stop here before page generation; the next session/batch begins by rewriting the Batch 1 prompts for pages 00-03 from the revised script and the new official reference.
+
+## Integrated Clue Reference v6 Reopened / Hold - Human-Footprint Read - 2026-07-10
+
+- User QA after promotion: `발자국이 콕콕 찍히는 발자국이어야할듯. 지금은 새우발자국이라기보다는 사람발자국같네`.
+- v6 status changed from `user approved / final promoted` to `hold`; it must not be used for page generation.
+- v6 hold file remains preserved non-destructively at:
+  - `series/sherlock-fin-deep-city/references/props/두_갈래_발자국_무거운조개목걸이_깊이보폭_통합_레퍼런스.png`
+  - `series/sherlock-fin-deep-city/images/episodes/두_갈래_발자국/work_2026-06-29/reference_setup/조개목걸이_발자국_통합_reference_candidate_v6_heavy_depth_stride.png`
+- Root cause: the individual marks are too long and sole-shaped, so they read as human or shoe footprints even though the V geometry and depth/stride contrast are correct.
+- v7 correction lock:
+  - Change only the footprint marks in the main clue panel and the footprint comparison panel.
+  - Preserve Gabi, the ornate necklace, silver-sand style, panel layout, and single non-crossing V geometry.
+  - Each mark becomes a small, short, plump bean-like dot impression, close to circular, with no heel, toe, sole, paw, or directional anatomy.
+  - Keep exactly two orderly loose rows per branch, not a random dot cloud or complex multi-leg cluster.
+  - Deep branch: same small dot size, deep/dark, short close stride spacing.
+  - Shallow branch: exactly the same small dot size and track width, shallow/pale, wider stride spacing.
+- Script and page plan updated from `타원 자국` to `작고 둥근 콩알형 콕콕 자국`.
+- Batch gate remains closed until the v7 correction receives user approval and is promoted to a new official reference.
+
+## Integrated Clue Reference v7 Hold - Footprints Too Regular - 2026-07-10
+
+- v7 candidate preserved at:
+  - `series/sherlock-fin-deep-city/images/episodes/두_갈래_발자국/work_2026-06-29/reference_setup/조개목걸이_발자국_통합_reference_candidate_v7_round_dot_rows_hold.png`
+- Dimensions: 1536x1024.
+- SHA256: `16723550DABED65E529EBC979032C967FB18C24FC61A57A9499A0199B94888C7`.
+- v7 successfully removed the human-foot/sole shape, but user QA identified a new logic issue: a shrimp's many moving legs should leave a messier pattern than two regular dotted rows.
+- v7 status: `hold`. Do not promote and do not use for page generation.
+- v8 correction lock:
+  - Preserve Gabi, ornate necklace, panel layout, silver-sand style, depth/stride contrast, and the single non-crossing V.
+  - One walking beat is not one dot. It is an asymmetric cluster of 3-5 tiny round poke marks made by several small legs.
+  - The repeated clusters drift and stagger within two loose lateral bands, so the path remains readable but never becomes ruler-straight dotted rows.
+  - Deep branch: clusters are deep/dark and close together.
+  - Shallow branch: same cluster size, same 3-5 dot range, and same overall track width, but pale/shallow with wider space between clusters.
+  - Avoid both extremes: no human/boot/paw anatomy and no random sand-speck cloud that erases the route.
+- Script and page plan updated to the controlled-irregular cluster language.
+- Batch gate remains closed until a v8 cluster-pattern candidate receives user approval.
+
+## Integrated Clue Reference v8 Hold - Cluster Stamps Too Obvious - 2026-07-10
+
+- v8 candidate preserved at:
+  - `series/sherlock-fin-deep-city/images/episodes/두_갈래_발자국/work_2026-06-29/reference_setup/조개목걸이_발자국_통합_reference_candidate_v8_cluster_stamps_hold.png`
+- Dimensions: 1536x1024.
+- SHA256: `E5F3B84A7C5B04B53767E01EF8DB9593D3A4391F106B1B5BE610127F675C92CF`.
+- User QA: `뭉쳐진게 너무 티나는데 더 자연스럽게 안 되나`.
+- v8 status: `hold`. The repeated 3-5-dot clusters read as obvious flower/paw/rosette stamps rather than natural traces from many moving shrimp legs.
+- v9 correction lock:
+  - Preserve Gabi, ornate necklace, panel layout, Silver Sand Hill, V geometry, and depth contrast.
+  - Remove all visible cluster boundaries and all repeated stamp shapes.
+  - Many tiny round pinprick marks scatter continuously and overlap subtly inside two narrow irregular lateral bands.
+  - The bands may meander slightly, with local density variation, but must remain a readable path and not dissolve into background sand noise.
+  - Deep incoming arm: dark, deeply pressed, dense, almost continuous micro-dimple bands with few long gaps.
+  - Shallow outgoing arm: same micro-dot size distribution and same overall band width, but pale/shallow with frequent longer blank intervals to imply wider stride.
+  - Close-up: show two natural irregular patches of micro-dimples with no flower/paw outline; one dense/deep and one sparse/shallow.
+- Script and page plan updated from discrete step clusters to continuous natural micro-dimple bands.
+- Batch gate remains closed until the v9 natural-band candidate receives user approval.
+
+## Reference QA / Regeneration - integrated footprint v10 - 2026-07-10
+
+- User QA on v9: `음 좀만 더 성글게 너무 빽빽하다`.
+- v9 status: `hold`. Its irregular micro-dimples no longer read as repeated clusters, but their density fills the route like a stippled carpet or mesh instead of separated shrimp-leg pricks.
+- Held candidate: `series/sherlock-fin-deep-city/images/episodes/두_갈래_발자국/work_2026-06-29/reference_setup/조개목걸이_발자국_통합_reference_candidate_v9_micro_dimple_bands_too_dense_hold.png`
+- Dimensions: 1536x1024.
+- SHA256: `A51A2B8B9EBFACBDDA7E3A5A3E4ED77F92123F6D1A9A9CAA8BD09A0C744EA449`.
+- v10 correction lock:
+  - Preserve Gabi, the heavy ornate necklace, three-panel layout, Silver Sand Hill, single noncrossing V, necklace vertex, natural irregular footprint flow, and depth contrast.
+  - Reduce the total micro-dimple count so individual pricks are separated by clearly visible clean sand; no carpet, mesh, sponge, or filled-band texture.
+  - Incoming arm: deep and dark at a moderate density, with visible sand around each mark and only rare overlaps.
+  - Outgoing arm: same small-dot size distribution and route width, but noticeably fewer, shallower, paler marks and frequent long blank intervals.
+  - Close-up: use separated irregular dots rather than clusters—roughly 14-18 deep marks versus 7-10 shallow marks in comparable areas.
+- Script and page plan updated from near-continuous dense bands to open, moderately sparse natural micro-dimple trails.
+- At this QA stage the batch gate remained closed pending v10 approval; the approval and reopened handoff are recorded immediately below.
+
+## Reference Approval / Final Promotion - integrated footprint v10 - 2026-07-10
+
+- User approval: `된것같군 이제`.
+- Status: `user approved`, then `final promoted` as the official integrated necklace-and-footprint reference.
+- Generated source retained: `C:/Users/USER/.codex/generated_images/019f494e-4715-7162-af34-3b985bfabce8/exec-10ad722c-f837-423d-a60c-ac8fa2c31283.png`
+- Approved candidate retained: `series/sherlock-fin-deep-city/images/episodes/두_갈래_발자국/work_2026-06-29/reference_setup/조개목걸이_발자국_통합_reference_candidate_v10_sparse_natural_dimples_user_approved.png`
+- Official reference: `series/sherlock-fin-deep-city/references/props/두_갈래_발자국_무거운조개목걸이_성긴점자국_통합_레퍼런스.png`
+- Dimensions: 1536x1024.
+- Candidate and official SHA256: `C7350FB7AA4F7106D18CF00430646D76652F409624E04274B84DD86841EEFE2A`.
+- Carried-forward locks: heavy ornate necklace, one noncrossing V with necklace at its vertex, separated round pinprick dimples, clean sand between marks, incoming deep/moderate-density, outgoing shallow/sparser with long gaps, same dot-size distribution and route width.
+- Do not use v3/v5/v6/v7/v8/v9 footprint candidates or the held v6 prop reference in page generation.
+- Reference setup gate is complete. Next batch is 00-03 (cover through the two-branch discovery), after verifying the remaining page-specific character, location, prop and text-panel reference paths.
+
+## Batch 1 v10 Start - pages 00-03 - 2026-07-10
+
+- User instruction: `좋아 이제 시작하자`.
+- Batch scope: cover through page 03 only.
+- Candidate folder: `series/sherlock-fin-deep-city/images/episodes/두_갈래_발자국/work_2026-06-29/batch_1_v10/`
+- Prompt plan: `series/sherlock-fin-deep-city/images/episodes/두_갈래_발자국/work_2026-06-29/batch_1_v10/batch_1_v10_prompt_plan.md`
+- Verified official references:
+  - `series/sherlock-fin-deep-city/references/characters/셜록핀.png`
+  - `series/sherlock-fin-deep-city/references/characters/두_갈래_발자국_두두_베레모_레퍼런스.png`
+  - `series/sherlock-fin-deep-city/references/locations/두_갈래_발자국_은모래언덕_레퍼런스.png`
+  - `series/sherlock-fin-deep-city/references/props/두_갈래_발자국_무거운조개목걸이_성긴점자국_통합_레퍼런스.png`
+  - `series/sherlock-fin-deep-city/references/layouts/텍스트박스_레이아웃_레퍼런스.png`
+- The old `batch_1/` candidates and held v6-v9 footprint images are excluded from all generation calls.
+- Status: generation starting; all new images remain `ungated draft` until batch QA and user review.
+
+## Batch 1 v10 Interrupted / Format Correction - 2026-07-10
+
+- User stop instruction: `스따핏`.
+- User format correction: `규격은 a5 세로 사이즈다`.
+- First v10 cover attempt was generated at 1536x1024 landscape and is therefore `hold / fail` regardless of otherwise usable illustration or title text.
+- Held file: `series/sherlock-fin-deep-city/images/episodes/두_갈래_발자국/work_2026-06-29/batch_1_v10/00_candidate_v10_text_1_wrong_landscape_hold.png`
+- New format lock: every page, including the cover, must be A5 portrait at 148:210 ratio; use the established production target 1054x1492 pixels.
+- No pages 01-03 were generated in this v10 batch.
+- Next action after resume: regenerate page 00 from the approved v10 prop/footprint reference as `00_candidate_v10_a5_portrait_text_2.png`; do not continue to 01 until page 00 format and clue QA pass.
