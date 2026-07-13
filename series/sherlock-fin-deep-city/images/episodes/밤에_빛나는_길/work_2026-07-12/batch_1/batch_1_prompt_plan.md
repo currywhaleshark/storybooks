@@ -5,7 +5,8 @@
 - Scope: cover `00` and story pages `01`-`03` only.
 - Reference gate: complete. Grandfather v5 and the golden-trail effect are user-approved official references.
 - Candidate folder: `series/sherlock-fin-deep-city/images/episodes/밤에_빛나는_길/work_2026-07-12/batch_1/`
-- User QA: **BATCH 1 APPROVED AND PROMOTED**. Cover `00` v3, page `01` v4, page `02` v1, and page `03` v1 are final. Page `01` v3 remains rejected for missing torso and arms.
+- User QA: **BATCH 1 APPROVED AND PROMOTED**. Cover `00` v3 and page `01` v4 were the original approved finals; page `02` v1 and page `03` v1 remain current finals. Page `01` v3 remains rejected for missing torso and arms.
+- Post-production QA note: current `final/00_표지.png` and `final/01_페이지.png` were superseded by the user-approved micro-moss revisions in `qa_round_1_2026-07-13/`; this batch retains their original lineage.
 - Final outputs: `final/00_표지.png` through `final/03_페이지.png`; all are `1054 x 1492`.
 - Built-in image generation mode, one call per page.
 

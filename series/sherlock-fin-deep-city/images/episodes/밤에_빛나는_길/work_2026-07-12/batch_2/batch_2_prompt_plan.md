@@ -5,7 +5,8 @@
 - Scope: story pages `04`-`07` only.
 - Batch 1 gate: complete; user-approved final pages `00`-`03` are registered.
 - Candidate folder: `series/sherlock-fin-deep-city/images/episodes/밤에_빛나는_길/work_2026-07-12/batch_2/`
-- Generation, local QA, and user QA complete. Pages `04`-`07` are promoted to stable final filenames.
+- Generation, local QA, and user QA complete. Pages `04`-`07` were promoted to stable final filenames.
+- Post-production QA note: current `final/04_페이지.png` and `final/06_페이지.png` were superseded by the user-approved moss-scale/magnifier revisions in `qa_round_1_2026-07-13/`; this batch retains their original lineage. Pages `05` and `07` remain the original approved finals.
 - Built-in image generation mode, one call per page.
 
 ## Official and Approved References
