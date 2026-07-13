@@ -596,10 +596,11 @@ async function extractScript() {
     const data = await response.json();
     if (!response.ok || data.error) throw new Error(data.error || "대본 추출 실패");
     state.texts = alignExtractedTexts(data.texts || []);
+    const extractedCount = state.texts.length;
     state.audioReview = null;
     renderScriptEditor();
     renderAudioReview();
-    const diff = state.selected.imageCount - state.texts.length;
+    const diff = state.selected.imageCount - extractedCount;
     setStatus(diff === 0 ? "대본 추출 완료." : `대본 추출 완료. 이미지와 텍스트 개수 차이: ${diff}`);
   } catch (error) {
     setStatus(error.message, true);
@@ -621,10 +622,11 @@ async function extractScriptContent(content, label = "직접 입력") {
     const data = await response.json();
     if (!response.ok || data.error) throw new Error(data.error || "대본 추출 실패");
     state.texts = alignExtractedTexts(data.texts || []);
+    const extractedCount = state.texts.length;
     state.audioReview = null;
     renderScriptEditor();
     renderAudioReview();
-    const diff = state.selected.imageCount - state.texts.length;
+    const diff = state.selected.imageCount - extractedCount;
     setStatus(diff === 0 ? "대본 추출 완료." : `대본 추출 완료. 이미지와 텍스트 개수 차이: ${diff}`);
   } catch (error) {
     setStatus(error.message, true);

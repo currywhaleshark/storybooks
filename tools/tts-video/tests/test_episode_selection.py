@@ -99,6 +99,57 @@ class EpisodeSelectionTests(unittest.TestCase):
         self.assertIn("아침이 되었어요.", texts[1])
         self.assertIn("준이 마음도", texts[-1])
 
+    def test_extracts_all_unfenced_page_text_blocks_without_shifting_dialogue_page(self):
+        path = (
+            REPO_ROOT
+            / "series"
+            / "sherlock-fin-deep-city"
+            / "docs"
+            / "episodes"
+            / "밤에_빛나는_길.md"
+        )
+
+        texts = self.server.extract_text_blocks(path.read_text(encoding="utf-8"))
+
+        self.assertEqual(len(texts), 12)
+        self.assertEqual(texts[0], "심해탐정 셜록 핀\n\n밤에 빛나는 길")
+        self.assertIn("딥시티에\n포근한 밤이 왔어요.", texts[1])
+        self.assertTrue(texts[9].startswith("“안녕하세요!”"))
+        self.assertTrue(texts[9].endswith("나는 통 몰랐지 뭐냐.”"))
+        self.assertIn("꼬마 탐정단,\n오늘도 성공!", texts[11])
+
+    def test_extracts_plain_text_blocks_with_document_level_outer_quotes(self):
+        markdown = '''### 00 표지
+
+Text:
+"표지 문장"
+
+### 01
+
+Text:
+"첫 페이지 문장."
+'''
+
+        self.assertEqual(self.server.extract_text_blocks(markdown), ["표지 문장", "첫 페이지 문장."])
+
+    def test_preserves_empty_plain_text_pages_without_shifting_later_pages(self):
+        markdown = '''### 00 표지
+
+Text:
+표지 문장
+
+### 01
+
+Text:
+
+### 02
+
+Text:
+마지막 문장
+'''
+
+        self.assertEqual(self.server.extract_text_blocks(markdown), ["표지 문장", "", "마지막 문장"])
+
     def test_frontend_fetches_tts_presets_and_inserts_audio_tags(self):
         app = APP_PATH.read_text(encoding="utf-8")
 
@@ -112,6 +163,12 @@ class EpisodeSelectionTests(unittest.TestCase):
         self.assertIn("directScriptContent", app)
         self.assertIn("if (state.directScriptContent)", app)
         self.assertIn('scriptSelect.addEventListener("change"', app)
+
+    def test_frontend_reports_extracted_count_before_padding_empty_editors(self):
+        app = APP_PATH.read_text(encoding="utf-8")
+
+        self.assertEqual(app.count("const extractedCount = state.texts.length;"), 2)
+        self.assertEqual(app.count("state.selected.imageCount - extractedCount"), 2)
 
     def test_frontend_shows_korean_tooltips_for_audio_tags(self):
         app = APP_PATH.read_text(encoding="utf-8")

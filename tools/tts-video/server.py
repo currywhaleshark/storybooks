@@ -292,15 +292,60 @@ def find_book_folders(folder: Path, depth: int = 0) -> list[dict[str, object]]:
     return found
 
 
-def clean_extracted_text(text: str) -> str:
+def has_matching_outer_quotes(text: str) -> bool:
+    stripped = text.strip()
+    return (stripped.startswith('"') and stripped.endswith('"')) or (
+        stripped.startswith("“") and stripped.endswith("”")
+    )
+
+
+def clean_extracted_text(text: str, *, strip_outer_quotes: bool = True) -> str:
     result = text.strip().replace("\r\n", "\n")
-    result = re.sub(r'^["“]+', "", result)
-    result = re.sub(r'["”]+$', "", result)
+    if strip_outer_quotes:
+        result = re.sub(r'^["“]+', "", result)
+        result = re.sub(r'["”]+$', "", result)
     result = re.sub(r"\n{3,}", "\n\n", result)
     return result.strip()
 
 
+def extract_labeled_text_blocks(markdown: str) -> list[str]:
+    markers = list(re.finditer(r"^Text:\s*$", markdown, flags=re.MULTILINE))
+    if not markers:
+        return []
+
+    raw_blocks: list[tuple[str, bool]] = []
+    for marker in markers:
+        remainder = markdown[marker.end() :]
+        remainder = re.sub(r"^(?:[ \t]*\r?\n)+", "", remainder)
+        fenced = re.match(r"```text[ \t]*\r?\n([\s\S]*?)```", remainder, flags=re.IGNORECASE)
+        if fenced:
+            raw_blocks.append((fenced.group(1), True))
+            continue
+
+        next_heading = re.search(r"^[ \t]*#{1,3}[ \t]+", remainder, flags=re.MULTILINE)
+        body = remainder[: next_heading.start()] if next_heading else remainder
+        raw_blocks.append((body, False))
+
+    if not raw_blocks:
+        return []
+
+    plain_blocks = [body for body, is_fenced in raw_blocks if not is_fenced and body.strip()]
+    strip_plain_wrappers = bool(plain_blocks) and all(has_matching_outer_quotes(body) for body in plain_blocks)
+
+    return [
+        clean_extracted_text(
+            body,
+            strip_outer_quotes=not is_fenced and strip_plain_wrappers,
+        )
+        for body, is_fenced in raw_blocks
+    ]
+
+
 def extract_text_blocks(markdown: str) -> list[str]:
+    labeled_blocks = extract_labeled_text_blocks(markdown)
+    if labeled_blocks:
+        return labeled_blocks
+
     patterns = [
         r"(?:표지|페이지) 안에 다음 한국어(?: 제목)? 텍스트[^\n]*:\s*```text\s*\n([\s\S]*?)```",
         r"###\s*페이지\s*텍스트[\s\S]*?```text\s*\n([\s\S]*?)```",
