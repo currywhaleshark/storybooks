@@ -299,14 +299,31 @@ input[type="range"] {
   min-width: 0;
 }
 
-.page-card img {
-  display: block;
+.scene-preview {
+  display: flex;
   width: 100%;
   aspect-ratio: 4 / 3;
-  object-fit: contain;
+  overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 6px;
   background: var(--panel);
+}
+
+.scene-preview img {
+  display: block;
+  width: 0;
+  min-width: 0;
+  flex: 1 1 0;
+  height: 100%;
+  object-fit: contain;
+}
+
+.scene-preview.scene-spread {
+  aspect-ratio: 2108 / 1492;
+}
+
+.scene-preview img + img {
+  border-left: 1px solid var(--line);
 }
 
 .page-card span {
@@ -371,13 +388,13 @@ input[type="range"] {
   padding: 10px;
 }
 
-.audio-review-item img {
+.audio-review-preview {
   width: 88px;
-  aspect-ratio: 4 / 3;
-  object-fit: contain;
-  border: 1px solid var(--line);
-  border-radius: 6px;
   background: #fff;
+}
+
+.audio-review-preview img {
+  height: 100%;
 }
 
 .audio-review-main {

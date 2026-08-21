@@ -168,7 +168,87 @@ Text:
         app = APP_PATH.read_text(encoding="utf-8")
 
         self.assertEqual(app.count("const extractedCount = state.texts.length;"), 2)
-        self.assertEqual(app.count("state.selected.imageCount - extractedCount"), 2)
+        self.assertEqual(app.count("episodeScenes().length - extractedCount"), 2)
+
+    def test_manifest_builds_story_spreads_without_listing_every_pair(self):
+        final_folder = (
+            REPO_ROOT
+            / "series"
+            / "sherlock-fin-deep-city"
+            / "images"
+            / "episodes"
+            / "자주빛_리본의_손님"
+            / "final"
+        )
+
+        episode = self.server.discover_book_folder(final_folder)
+
+        self.assertIsNotNone(episode)
+        self.assertEqual(episode["layoutMode"], "manifest")
+        self.assertEqual(episode["imageCount"], 33)
+        self.assertEqual(episode["sceneCount"], 16)
+        self.assertEqual(episode["scenes"][0]["narration"], "title")
+        self.assertEqual(episode["scenes"][1]["label"], "02 + 03 펼침")
+        self.assertTrue(episode["scenes"][1]["images"][0].endswith("/02_페이지.png"))
+        self.assertTrue(episode["scenes"][1]["images"][1].endswith("/03_페이지.png"))
+        self.assertEqual(episode["scenes"][14]["label"], "28 + 29 펼침")
+        self.assertEqual(episode["scenes"][15]["label"], "32_페이지.png")
+
+    def test_episode_without_manifest_keeps_one_scene_per_image(self):
+        final_folder = self.series_root / "images" / "episodes" / "루루야_약속했잖아" / "final"
+
+        episode = self.server.discover_book_folder(final_folder)
+
+        self.assertIsNotNone(episode)
+        self.assertEqual(episode["layoutMode"], "pages")
+        self.assertEqual(episode["sceneCount"], episode["imageCount"])
+        self.assertTrue(all(scene["kind"] == "single" for scene in episode["scenes"]))
+
+    def test_manifest_aligns_script_blocks_only_to_narrated_spreads(self):
+        final_folder = (
+            REPO_ROOT
+            / "series"
+            / "sherlock-fin-deep-city"
+            / "images"
+            / "episodes"
+            / "자주빛_리본의_손님"
+            / "final"
+        )
+        scenes, layout_mode = self.server.build_episode_scenes(final_folder)
+        source = [f"본문 {index:02d}" for index in range(1, 15)]
+
+        aligned = self.server.align_texts_for_scenes("자줏빛_리본의_손님", scenes, source, layout_mode)
+
+        self.assertEqual(len(aligned), 16)
+        self.assertEqual(aligned[0], "자줏빛 리본의 손님")
+        self.assertEqual(aligned[1:15], source)
+        self.assertEqual(aligned[15:], [""])
+
+    def test_saved_script_extraction_preserves_silent_scenes(self):
+        script = self.server.build_script_markdown(
+            "테스트",
+            ["00_표지.png", "spread_02_03.png", "32_페이지.png"],
+            ["제목", "본문", ""],
+        )
+
+        self.assertEqual(self.server.extract_text_blocks(script), ["제목", "본문", ""])
+
+    def test_renderer_keeps_silent_visual_scenes(self):
+        renderer = load_renderer()
+        original_script_path = renderer.SCRIPT_PATH
+        script_path = REPO_ROOT / "tools" / "tts-video" / "runtime" / "test_silent_scene_script.md"
+        try:
+            script_path.write_text(
+                "# 테스트\n\n## 00_표지.png\n\n제목\n\n## 32_페이지.png\n\n",
+                encoding="utf-8",
+            )
+            renderer.SCRIPT_PATH = script_path
+            pages = renderer.read_script()
+        finally:
+            renderer.SCRIPT_PATH = original_script_path
+            script_path.unlink(missing_ok=True)
+
+        self.assertEqual(pages, [{"image": "00_표지.png", "text": "제목"}, {"image": "32_페이지.png", "text": ""}])
 
     def test_frontend_shows_korean_tooltips_for_audio_tags(self):
         app = APP_PATH.read_text(encoding="utf-8")

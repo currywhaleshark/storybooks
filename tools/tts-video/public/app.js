@@ -291,7 +291,10 @@ function renderEpisode() {
   }
 
   summary.textContent = `${state.selected.series} / ${state.selected.title}`;
-  pageCount.textContent = `${state.selected.imageCount}장`;
+  const scenes = episodeScenes();
+  pageCount.textContent = state.selected.layoutMode === "manifest"
+    ? `${scenes.length}개 장면 · 원본 ${state.selected.imageCount}장`
+    : `${scenes.length}장`;
   outputName.value = `${state.selected.title}_gemini_tts.mp4`;
 
   scriptSelect.innerHTML = "";
@@ -309,15 +312,12 @@ function renderEpisode() {
   }
 
   pageStrip.innerHTML = "";
-  for (const image of state.selected.images) {
+  for (const scene of scenes) {
     const card = document.createElement("div");
     card.className = "page-card";
-    const img = document.createElement("img");
-    img.src = imageUrl(image);
-    img.alt = image.split("/").pop();
     const label = document.createElement("span");
-    label.textContent = image.split("/").pop();
-    card.append(img, label);
+    label.textContent = scene.label;
+    card.append(createScenePreview(scene), label);
     pageStrip.append(card);
   }
 
@@ -332,16 +332,39 @@ function renderEpisode() {
   setStatus("대본 파일을 선택한 뒤 추출하세요.");
 }
 
+function episodeScenes() {
+  if (!state.selected) return [];
+  if (state.selected.scenes?.length) return state.selected.scenes;
+  return (state.selected.images || []).map((image) => ({
+    kind: "single",
+    label: image.split("/").pop(),
+    images: [image],
+    narration: "script",
+  }));
+}
+
+function createScenePreview(scene, extraClass = "") {
+  const preview = document.createElement("div");
+  preview.className = `scene-preview scene-${scene.kind || "single"} ${extraClass}`.trim();
+  for (const imagePath of scene.images || []) {
+    const image = document.createElement("img");
+    image.src = imageUrl(imagePath);
+    image.alt = imagePath.split("/").pop();
+    preview.append(image);
+  }
+  return preview;
+}
+
 function renderScriptEditor() {
   scriptEditor.innerHTML = "";
-  const images = state.selected?.images || [];
-  state.texts = images.map((_, index) => state.texts[index] || "");
-  images.forEach((image, index) => {
+  const scenes = episodeScenes();
+  state.texts = scenes.map((_, index) => state.texts[index] || "");
+  scenes.forEach((scene, index) => {
     const row = document.createElement("div");
     row.className = "script-page";
     const label = document.createElement("label");
     const name = document.createElement("span");
-    name.textContent = image.split("/").pop();
+    name.textContent = scene.label;
     const count = document.createElement("span");
     count.textContent = `${(state.texts[index] || "").length}자`;
     const textarea = document.createElement("textarea");
@@ -358,14 +381,14 @@ function renderScriptEditor() {
     row.append(label, textarea);
     scriptEditor.append(row);
   });
-  scriptStatus.textContent = `${state.texts.filter((text) => text.trim()).length} / ${images.length}쪽`;
+  scriptStatus.textContent = `${state.texts.filter((text) => text.trim()).length} / ${scenes.length}장면`;
 }
 
 function hasReviewedAudio() {
   return Boolean(
     state.audioReview?.items?.length &&
-      state.selected?.imageCount &&
-      state.audioReview.items.length >= state.selected.imageCount,
+      episodeScenes().length &&
+      state.audioReview.items.length >= episodeScenes().length,
   );
 }
 
@@ -389,16 +412,14 @@ function renderAudioReview() {
     const row = document.createElement("div");
     row.className = "audio-review-item";
 
-    const image = document.createElement("img");
-    const imagePath = `${state.selected.finalFolder}/${item.image}`;
-    image.src = imageUrl(imagePath);
-    image.alt = item.image;
+    const scene = episodeScenes()[item.index];
+    const preview = scene ? createScenePreview(scene, "audio-review-preview") : document.createElement("div");
 
     const main = document.createElement("div");
     main.className = "audio-review-main";
     const title = document.createElement("div");
     title.className = "audio-review-title";
-    title.textContent = `${String(item.index).padStart(2, "0")} · ${item.image}`;
+    title.textContent = `${String(item.index).padStart(2, "0")} · ${scene?.label || item.image}`;
     const audio = document.createElement("audio");
     audio.controls = true;
     audio.src = item.url;
@@ -410,17 +431,35 @@ function renderAudioReview() {
     reroll.textContent = "리롤";
     reroll.addEventListener("click", () => rerollAudioPage(item.index, reroll));
 
-    row.append(image, main, reroll);
+    row.append(preview, main, reroll);
     audioReviewList.append(row);
   }
 }
 
 function coverFallbackText() {
   if (!state.selected) return "";
-  return state.selected.title.replaceAll("_", " ");
+  const titleScene = episodeScenes().find((scene) => scene.narration === "title");
+  return titleScene?.defaultText || state.selected.title.replaceAll("_", " ");
 }
 
 function alignExtractedTexts(texts) {
+  const scenes = episodeScenes();
+  if (state.selected?.layoutMode === "manifest") {
+    if (texts.length === scenes.length) return texts;
+    const scriptCount = scenes.filter((scene) => scene.narration === "script").length;
+    const titleCount = scenes.filter((scene) => scene.narration === "title").length;
+    const consumeTitle = texts.length >= scriptCount + titleCount;
+    let sourceIndex = 0;
+    return scenes.map((scene) => {
+      if (scene.narration === "title") {
+        if (consumeTitle && sourceIndex < texts.length) return texts[sourceIndex++];
+        return coverFallbackText();
+      }
+      if (scene.narration === "script") return texts[sourceIndex++] || "";
+      if (scene.narration === "fixed") return scene.defaultText || "";
+      return "";
+    });
+  }
   const images = state.selected?.images || [];
   const hasCover = images.some((image) => image.split("/").pop().startsWith("00"));
   if (hasCover && texts.length === images.length - 1) {
@@ -441,7 +480,9 @@ async function loadEpisodes() {
   for (const episode of state.episodes) {
     const option = document.createElement("option");
     option.value = episode.finalFolder;
-    option.textContent = `${episode.series} / ${episode.title} (${episode.imageCount}장)`;
+    option.textContent = episode.layoutMode === "manifest"
+      ? `${episode.series} / ${episode.title} (${episode.sceneCount}장면 / ${episode.imageCount}장)`
+      : `${episode.series} / ${episode.title} (${episode.imageCount}장)`;
     episodeSelect.append(option);
   }
   if (state.episodes.some((episode) => episode.finalFolder === previousFinalFolder)) {
@@ -600,7 +641,7 @@ async function extractScript() {
     state.audioReview = null;
     renderScriptEditor();
     renderAudioReview();
-    const diff = state.selected.imageCount - extractedCount;
+    const diff = episodeScenes().length - extractedCount;
     setStatus(diff === 0 ? "대본 추출 완료." : `대본 추출 완료. 이미지와 텍스트 개수 차이: ${diff}`);
   } catch (error) {
     setStatus(error.message, true);
@@ -626,7 +667,7 @@ async function extractScriptContent(content, label = "직접 입력") {
     state.audioReview = null;
     renderScriptEditor();
     renderAudioReview();
-    const diff = state.selected.imageCount - extractedCount;
+    const diff = episodeScenes().length - extractedCount;
     setStatus(diff === 0 ? "대본 추출 완료." : `대본 추출 완료. 이미지와 텍스트 개수 차이: ${diff}`);
   } catch (error) {
     setStatus(error.message, true);
@@ -694,7 +735,7 @@ function arrayBufferToBase64(buffer) {
 
 async function manualAudioPayload() {
   const files = sortedManualAudioFiles();
-  const expected = state.selected?.imageCount || 0;
+  const expected = state.texts.filter((text) => text.trim()).length;
   if (!files.length) {
     throw new Error("오디오 업로드 모드에서는 페이지별 오디오 파일을 선택해야 합니다.");
   }

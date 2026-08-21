@@ -67,13 +67,13 @@ class PdfLayoutTest(unittest.TestCase):
                 ["01_page.png", "02_page.png", "10_page.png"],
             )
 
-    def test_pair_body_pages_leaves_blank_for_odd_count(self):
+    def test_pair_body_pages_keeps_title_page_alone_then_pairs_spreads(self):
         with test_temp_dir() as folder:
             pages = [folder / "01.png", folder / "02.png", folder / "03.png"]
 
             self.assertEqual(
                 pdf_layout.pair_body_pages(pages),
-                [(pages[0], pages[1]), (pages[2], None)],
+                [(None, pages[0]), (pages[1], pages[2])],
             )
 
     def test_booklet_pages_include_cover_inside_blank_body_and_padding(self):
@@ -201,8 +201,8 @@ class PdfLayoutTest(unittest.TestCase):
 
             self.assertEqual(result["body_page_count"], 2)
             self.assertEqual(result["excluded_page_count"], 1)
-            self.assertEqual(result["body_sheet_count"], 1)
-            self.assertEqual(len(PdfReader(result["body_pdf"]).pages), 1)
+            self.assertEqual(result["body_sheet_count"], 2)
+            self.assertEqual(len(PdfReader(result["body_pdf"]).pages), 2)
 
 
 if __name__ == "__main__":

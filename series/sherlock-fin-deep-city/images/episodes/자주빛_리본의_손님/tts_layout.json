@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "layout": [
+    {
+      "type": "single",
+      "page": 0,
+      "narration": "title",
+      "text": "자줏빛 리본의 손님"
+    },
+    {
+      "type": "spread-range",
+      "start": 2,
+      "end": 29,
+      "narration": "script"
+    },
+    {
+      "type": "single",
+      "page": 32,
+      "narration": "none"
+    }
+  ]
+}

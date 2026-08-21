@@ -32,6 +32,7 @@ RENDERER_PATH = (
 IMAGE_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp"}
 EXCLUDED_DIRS = {"audio", "segments", "work", "drafts", "rejected", "print-output"}
 TTS_PRESET_FILENAME = "tts_voice_presets.yaml"
+TTS_LAYOUT_FILENAME = "tts_layout.json"
 JOBS: dict[str, dict[str, object]] = {}
 
 
@@ -102,6 +103,94 @@ def sorted_images(folder: Path) -> list[Path]:
         if path.is_file() and path.suffix.lower() in IMAGE_EXTENSIONS and leading_number(path) is not None
     ]
     return sorted(images, key=lambda path: (leading_number(path) if leading_number(path) is not None else 999999, path.name))
+
+
+def episode_folder_for_images(folder: Path) -> Path:
+    return folder.parent if folder.name == "final" else folder
+
+
+def load_tts_layout(folder: Path) -> dict[str, object] | None:
+    layout_path = episode_folder_for_images(folder) / TTS_LAYOUT_FILENAME
+    if not layout_path.exists():
+        return None
+    data = json.loads(layout_path.read_text(encoding="utf-8"))
+    if not isinstance(data, dict) or data.get("version") != 1 or not isinstance(data.get("layout"), list):
+        raise RuntimeError(f"지원하지 않는 TTS 레이아웃 파일입니다: {layout_path}")
+    return data
+
+
+def build_episode_scenes(folder: Path, images: list[Path] | None = None) -> tuple[list[dict[str, object]], str]:
+    images = images if images is not None else sorted_images(folder)
+    layout = load_tts_layout(folder)
+    if layout is None:
+        return (
+            [
+                {
+                    "id": f"page-{leading_number(image):02d}",
+                    "kind": "single",
+                    "label": image.name,
+                    "images": [to_repo_path(image)],
+                    "renderImage": image.name,
+                    "narration": "script",
+                }
+                for image in images
+            ],
+            "pages",
+        )
+
+    by_number = {leading_number(image): image for image in images}
+
+    def require_page(number: int) -> Path:
+        image = by_number.get(number)
+        if image is None:
+            raise RuntimeError(f"TTS 레이아웃이 참조한 {number:02d}페이지 이미지를 찾을 수 없습니다.")
+        return image
+
+    scenes: list[dict[str, object]] = []
+
+    def append_scene(page_numbers: list[int], narration: str, default_text: str = "") -> None:
+        selected = [require_page(number) for number in page_numbers]
+        kind = "spread" if len(selected) == 2 else "single"
+        number_label = " + ".join(f"{number:02d}" for number in page_numbers)
+        render_name = selected[0].name if kind == "single" else f"spread_{page_numbers[0]:02d}_{page_numbers[1]:02d}.png"
+        scenes.append(
+            {
+                "id": f"{kind}-{'-'.join(f'{number:02d}' for number in page_numbers)}",
+                "kind": kind,
+                "label": f"{number_label} 펼침" if kind == "spread" else selected[0].name,
+                "images": [to_repo_path(image) for image in selected],
+                "renderImage": render_name,
+                "narration": narration,
+                "defaultText": default_text,
+            }
+        )
+
+    for entry in layout["layout"]:
+        if not isinstance(entry, dict):
+            raise RuntimeError("TTS 레이아웃의 각 항목은 객체여야 합니다.")
+        kind = str(entry.get("type") or "")
+        narration = str(entry.get("narration") or "script")
+        if narration not in {"script", "title", "fixed", "none"}:
+            raise RuntimeError(f"지원하지 않는 narration 값입니다: {narration}")
+        default_text = str(entry.get("text") or "")
+        if kind == "single":
+            append_scene([int(entry["page"])], narration, default_text)
+        elif kind == "spread":
+            pages = [int(number) for number in entry.get("pages", [])]
+            if len(pages) != 2:
+                raise RuntimeError("spread 항목에는 pages 두 개가 필요합니다.")
+            append_scene(pages, narration, default_text)
+        elif kind == "spread-range":
+            start = int(entry["start"])
+            end = int(entry["end"])
+            if start > end or (end - start + 1) % 2:
+                raise RuntimeError("spread-range는 짝수 개 페이지 범위여야 합니다.")
+            for left in range(start, end + 1, 2):
+                append_scene([left, left + 1], narration, default_text)
+        else:
+            raise RuntimeError(f"지원하지 않는 TTS 레이아웃 항목입니다: {kind}")
+
+    return scenes, "manifest"
 
 
 def series_root_for_episode_folder(folder: Path) -> Path | None:
@@ -260,8 +349,9 @@ def discover_book_folder(folder: Path) -> dict[str, object] | None:
         return None
 
     series_root = series_root_for_episode_folder(folder)
-    episode_folder = folder.parent if folder.name == "final" else folder
+    episode_folder = episode_folder_for_images(folder)
     episode_title = episode_folder.name
+    scenes, layout_mode = build_episode_scenes(folder, images)
     return {
         "id": to_repo_path(folder),
         "title": episode_title,
@@ -269,6 +359,9 @@ def discover_book_folder(folder: Path) -> dict[str, object] | None:
         "finalFolder": to_repo_path(folder),
         "imageCount": len(images),
         "images": [to_repo_path(path) for path in images],
+        "sceneCount": len(scenes),
+        "scenes": scenes,
+        "layoutMode": layout_mode,
         "scripts": script_candidates(series_root, episode_title) if series_root else [],
         "defaultOutputDir": to_repo_path((series_root or REPO_ROOT) / "videos" / f"{episode_title}_tts_app"),
     }
@@ -357,14 +450,15 @@ def extract_text_blocks(markdown: str) -> list[str]:
         if blocks:
             return blocks
     saved_blocks = []
+    found_saved_sections = False
     for section in re.split(r"^##\s+", markdown, flags=re.MULTILINE)[1:]:
         title, _, body = section.partition("\n")
         if Path(title.strip()).suffix.lower() not in IMAGE_EXTENSIONS:
             continue
+        found_saved_sections = True
         text = clean_extracted_text(body)
-        if text:
-            saved_blocks.append(text)
-    if saved_blocks:
+        saved_blocks.append(text)
+    if found_saved_sections:
         return saved_blocks
     return []
 
@@ -392,14 +486,53 @@ def align_texts_for_images(title: str, images: list[str], texts: list[str]) -> l
     return aligned
 
 
+def align_texts_for_scenes(
+    title: str,
+    scenes: list[dict[str, object]],
+    texts: list[str],
+    layout_mode: str,
+) -> list[str]:
+    if layout_mode == "pages":
+        return align_texts_for_images(title, [str(scene["renderImage"]) for scene in scenes], texts)
+
+    aligned = [normalize_tts_text(str(text)) for text in texts]
+    if len(aligned) == len(scenes):
+        return aligned
+
+    script_count = sum(scene.get("narration") == "script" for scene in scenes)
+    title_count = sum(scene.get("narration") == "title" for scene in scenes)
+    consume_title = len(aligned) >= script_count + title_count
+    source_index = 0
+    result: list[str] = []
+    for scene in scenes:
+        narration = scene.get("narration")
+        if narration == "title":
+            if consume_title and source_index < len(aligned):
+                result.append(aligned[source_index])
+                source_index += 1
+            else:
+                result.append(str(scene.get("defaultText") or title.replace("_", " ")))
+        elif narration == "script":
+            result.append(aligned[source_index] if source_index < len(aligned) else "")
+            source_index += 1
+        elif narration == "fixed":
+            result.append(str(scene.get("defaultText") or ""))
+        else:
+            result.append("")
+    return result
+
+
 def save_script(body: dict[str, object]) -> dict[str, object]:
     episode = body["episode"]
     texts = body.get("texts") or []
     output_dir = repo_path(str(body.get("outputDir") or episode["defaultOutputDir"]))
     output_dir.mkdir(parents=True, exist_ok=True)
-    images = [to_repo_path(path) for path in sorted_images(repo_path(str(episode["finalFolder"])))]
+    final_folder = repo_path(str(episode["finalFolder"]))
+    scenes, layout_mode = build_episode_scenes(final_folder)
+    images = [str(scene["renderImage"]) for scene in scenes]
     title = str(episode["title"])
-    script = build_script_markdown(title, images, align_texts_for_images(title, images, [str(text) for text in texts]))
+    aligned = align_texts_for_scenes(title, scenes, [str(text) for text in texts], layout_mode)
+    script = build_script_markdown(title, images, aligned)
     script_path = output_dir / "tts_script.md"
     script_path.write_text(script, encoding="utf-8")
     return {"scriptPath": to_repo_path(script_path), "outputDir": to_repo_path(output_dir), "script": script}
@@ -429,16 +562,45 @@ def sorted_audio_payload(files: list[object]) -> list[dict[str, object]]:
     return [file for _, file in sorted(indexed, key=sort_key)]
 
 
-def prepare_manual_audio(output_dir: Path, files: list[object], expected_count: int) -> None:
+def create_silent_audio(output: Path, duration: float = 2.0) -> None:
+    output.parent.mkdir(parents=True, exist_ok=True)
+    RENDERER.run_ffmpeg(
+        [
+            "-y",
+            "-f",
+            "lavfi",
+            "-i",
+            "anullsrc=r=48000:cl=stereo",
+            "-t",
+            f"{duration:.3f}",
+            "-c:a",
+            "libmp3lame",
+            "-b:a",
+            "128k",
+            str(output),
+        ]
+    )
+
+
+def prepare_manual_audio(output_dir: Path, files: list[object], pages: list[dict[str, str]]) -> None:
     audio_files = sorted_audio_payload(files)
+    expected_count = sum(bool(page["text"].strip()) for page in pages)
     if len(audio_files) < expected_count:
         raise RuntimeError(f"오디오 파일이 부족합니다. 현재 {len(audio_files)}개, 필요한 파일 {expected_count}개입니다.")
 
     audio_dir = output_dir / "audio"
     audio_dir.mkdir(parents=True, exist_ok=True)
 
-    for index, file in enumerate(audio_files[:expected_count]):
-        name = Path(str(file.get("name") or f"{index:02d}.mp3")).name
+    file_index = 0
+    for page_index, page in enumerate(pages):
+        target = audio_dir / f"{page_index:02d}.mp3"
+        if not page["text"].strip():
+            create_silent_audio(target)
+            continue
+
+        file = audio_files[file_index]
+        file_index += 1
+        name = Path(str(file.get("name") or f"{file_index - 1:02d}.mp3")).name
         extension = Path(name).suffix.lower() or ".mp3"
         data = str(file.get("dataBase64") or "")
         if "," in data:
@@ -448,12 +610,11 @@ def prepare_manual_audio(output_dir: Path, files: list[object], expected_count: 
         except Exception as exc:
             raise RuntimeError(f"{name} 오디오 파일을 읽지 못했습니다.") from exc
 
-        target = audio_dir / f"{index:02d}.mp3"
         if extension == ".mp3":
             target.write_bytes(audio_bytes)
             continue
 
-        source = audio_dir / f"{index:02d}_source{extension}"
+        source = audio_dir / f"{page_index:02d}_source{extension}"
         source.write_bytes(audio_bytes)
         RENDERER.run_ffmpeg(["-y", "-i", str(source), "-vn", "-c:a", "libmp3lame", "-b:a", "192k", str(target)])
 
@@ -590,12 +751,49 @@ def synthesize_review_audio(output_dir: Path, pages: list[dict[str, str]], setti
     audio_dir = output_dir / "audio"
     audio_dir.mkdir(parents=True, exist_ok=True)
     audio_path = audio_dir / f"{index:02d}.mp3"
-    renderer_audio(settings, pages[index]["text"], audio_path)
+    if pages[index]["text"].strip():
+        renderer_audio(settings, pages[index]["text"], audio_path)
+    else:
+        create_silent_audio(audio_path)
     return audio_review_item(output_dir, pages[index], index)
 
 
+def materialize_episode_scenes(episode: dict[str, object], output_dir: Path) -> tuple[Path, str]:
+    final_folder = repo_path(str(episode["finalFolder"]))
+    scenes, layout_mode = build_episode_scenes(final_folder)
+    if layout_mode == "pages":
+        return final_folder, layout_mode
+
+    visual_dir = output_dir / "visuals"
+    visual_dir.mkdir(parents=True, exist_ok=True)
+    for scene in scenes:
+        sources = [repo_path(str(path)) for path in scene["images"]]
+        target = visual_dir / Path(str(scene["renderImage"])).name
+        newest_source = max(source.stat().st_mtime for source in sources)
+        if target.exists() and target.stat().st_mtime >= newest_source:
+            continue
+        if len(sources) == 1:
+            shutil.copy2(sources[0], target)
+            continue
+        RENDERER.run_ffmpeg(
+            [
+                "-y",
+                "-i",
+                str(sources[0]),
+                "-i",
+                str(sources[1]),
+                "-filter_complex",
+                "[0:v][1:v]hstack=inputs=2",
+                "-frames:v",
+                "1",
+                str(target),
+            ]
+        )
+    return visual_dir, layout_mode
+
+
 def setup_episode_render_context(episode: dict[str, object], script_path: str, output_dir: Path) -> list[dict[str, str]]:
-    RENDERER.EPISODE_DIR = repo_path(str(episode["finalFolder"]))
+    RENDERER.EPISODE_DIR, _layout_mode = materialize_episode_scenes(episode, output_dir)
     RENDERER.SCRIPT_PATH = repo_path(script_path)
     RENDERER.OUT_DIR = output_dir
     return RENDERER.read_script()
@@ -682,7 +880,7 @@ def run_render(job: dict[str, object], body: dict[str, object]) -> None:
       reuse_audio = bool(settings.get("reviewedAudio"))
       renderer_tts = tts_mode
       if tts_mode == "manual":
-          prepare_manual_audio(output_dir, list(settings.get("manualAudioFiles") or []), len(pages))
+          prepare_manual_audio(output_dir, list(settings.get("manualAudioFiles") or []), pages)
           reuse_audio = True
           renderer_tts = "gemini"
       if settings.get("reviewedAudio"):

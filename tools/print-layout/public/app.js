@@ -32,9 +32,10 @@ function setStatus(message, isError = false) {
 function currentSpreads() {
   if (!state.selected) return [];
   const pages = state.selected.bodyPages.filter((page) => !state.excludedPages.has(page));
+  const spreadSlots = [null, ...pages];
   const spreads = [];
-  for (let index = 0; index < pages.length; index += 2) {
-    spreads.push([pages[index], pages[index + 1] || null]);
+  for (let index = 0; index < spreadSlots.length; index += 2) {
+    spreads.push([spreadSlots[index], spreadSlots[index + 1] || null]);
   }
   return spreads;
 }
@@ -44,7 +45,7 @@ function visibleBodyPageCount() {
 }
 
 function visibleBodySheetCount() {
-  return Math.ceil(visibleBodyPageCount() / 2);
+  return Math.ceil((visibleBodyPageCount() + 1) / 2);
 }
 
 function currentLayout() {

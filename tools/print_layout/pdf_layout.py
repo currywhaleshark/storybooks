@@ -20,6 +20,8 @@ BOOKLET_BINDING_GUIDE_DASH = [4, 4]
 BOOKLET_BINDING_GUIDE_GRAY = 0.55
 LAYOUTS = {"landscape", "portrait"}
 BookletSlot = Path | None
+SpreadSlot = Path | None
+Spread = tuple[SpreadSlot, SpreadSlot]
 BookletSide = tuple[BookletSlot, BookletSlot]
 BookletSheet = tuple[BookletSide, BookletSide]
 
@@ -45,11 +47,12 @@ def discover_book_images(folder: Path) -> dict[str, Any]:
     return {"cover": cover, "body_pages": body_pages}
 
 
-def pair_body_pages(pages: list[Path]) -> list[tuple[Path, Path | None]]:
+def pair_body_pages(pages: list[Path]) -> list[Spread]:
+    spread_slots: list[SpreadSlot] = [None, *pages]
     pairs = []
-    for index in range(0, len(pages), 2):
-        left = pages[index]
-        right = pages[index + 1] if index + 1 < len(pages) else None
+    for index in range(0, len(spread_slots), 2):
+        left = spread_slots[index]
+        right = spread_slots[index + 1] if index + 1 < len(spread_slots) else None
         pairs.append((left, right))
     return pairs
 
@@ -120,7 +123,8 @@ def draw_body_pages(pdf: canvas.Canvas, body_pages: list[Path], layout: str) -> 
     pairs = pair_body_pages(body_pages)
     slots = body_slots(layout)
     for left, right in pairs:
-        draw_image_contained(pdf, left, slots[0])
+        if left is not None:
+            draw_image_contained(pdf, left, slots[0])
         if right is not None:
             draw_image_contained(pdf, right, slots[1])
         pdf.showPage()

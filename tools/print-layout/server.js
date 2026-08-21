@@ -72,14 +72,25 @@ function discoverBookFolder(folder) {
   };
 }
 
-function walkForBooks(folder, depth = 0) {
-  if (!fs.existsSync(folder) || depth > 5) return [];
+function walkForBooks(folder, depth = 0, maxDepth = 5) {
+  if (!fs.existsSync(folder) || depth > maxDepth) return [];
   const current = discoverBookFolder(folder);
   const childBooks = fs
     .readdirSync(folder, { withFileTypes: true })
     .filter((entry) => entry.isDirectory() && entry.name !== "print-output")
-    .flatMap((entry) => walkForBooks(path.join(folder, entry.name), depth + 1));
+    .flatMap((entry) => walkForBooks(path.join(folder, entry.name), depth + 1, maxDepth));
   return current ? [current, ...childBooks] : childBooks;
+}
+
+function discoverEpisodeBooks() {
+  if (!fs.existsSync(seriesDir)) return [];
+  return fs
+    .readdirSync(seriesDir, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory())
+    .flatMap((entry) => {
+      const episodesDir = path.join(seriesDir, entry.name, "images", "episodes");
+      return walkForBooks(episodesDir, 0, 2);
+    });
 }
 
 function sendJson(res, status, payload) {
@@ -185,7 +196,7 @@ async function handleRequest(req, res) {
   try {
     const url = new URL(req.url, `http://${req.headers.host}`);
     if (url.pathname === "/api/books") {
-      sendJson(res, 200, { books: walkForBooks(seriesDir) });
+      sendJson(res, 200, { books: discoverEpisodeBooks() });
       return;
     }
     if (url.pathname === "/image") {
